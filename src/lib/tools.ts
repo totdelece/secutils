@@ -40,4 +40,12 @@ export const tools: Tool[] = [
     category: "encoding",
     icon: "🔁",
   },
+  {
+    slug: "jwt-decoder",
+    title: "JWT Decoder",
+    description:
+      "JWT（JSON Web Token）をHeader/Payload/Signatureに分解して可視化。標準クレームの説明・有効期限チェック付き。",
+    category: "security",
+    icon: "🪪",
+  },
 ];
