@@ -64,4 +64,12 @@ export const tools: Tool[] = [
     category: "misc",
     icon: "🆔",
   },
+  {
+    slug: "cidr-calculator",
+    title: "CIDR / Subnet Calculator",
+    description:
+      "CIDR表記からネットワーク・ブロードキャスト・ホスト範囲・サブネットマスク・ワイルドカードを即時計算。IPv4 / IPv6 両対応。",
+    category: "network",
+    icon: "🌐",
+  },
 ];
