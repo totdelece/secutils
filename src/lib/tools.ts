@@ -56,4 +56,12 @@ export const tools: Tool[] = [
     category: "encoding",
     icon: "🔗",
   },
+  {
+    slug: "uuid-generator",
+    title: "UUID Generator",
+    description:
+      "UUID v4（ランダム）/ v7（時系列ソート可能、RFC 9562）を一括生成。1〜1000個・複数フォーマット・個別コピー対応。",
+    category: "misc",
+    icon: "🆔",
+  },
 ];
