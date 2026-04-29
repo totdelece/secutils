@@ -32,4 +32,12 @@ export const tools: Tool[] = [
     category: "security",
     icon: "🔑",
   },
+  {
+    slug: "base64",
+    title: "Base64 Encode / Decode",
+    description:
+      "テキストとBase64の相互変換。標準/URL-safe両対応、UTF-8対応、即時変換。",
+    category: "encoding",
+    icon: "🔁",
+  },
 ];

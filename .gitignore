@@ -37,7 +37,7 @@ yarn-error.log*
 .vercel
 
 # claude code (local agent settings & internal docs - not for public repo)
-.claude/settings.local.json
+.claude/
 CLAUDE.md
 AGENTS.md
 
