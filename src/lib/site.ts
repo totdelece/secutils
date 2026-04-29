@@ -32,9 +32,10 @@ export function getToolMetadata(slug: string): Metadata {
       locale: "ja_JP",
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       title: fullTitle,
       description: tool.description,
+      images: [`${path}/opengraph-image`],
     },
   };
 }
