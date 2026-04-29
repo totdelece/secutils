@@ -48,4 +48,12 @@ export const tools: Tool[] = [
     category: "security",
     icon: "🪪",
   },
+  {
+    slug: "url-encoder",
+    title: "URL Encoder / Decoder",
+    description:
+      "URLとテキストの相互変換。クエリパラメータ用 encodeURIComponent と URL全体用 encodeURI を切替可能、即時変換。",
+    category: "encoding",
+    icon: "🔗",
+  },
 ];
