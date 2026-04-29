@@ -24,4 +24,12 @@ export const tools: Tool[] = [
     category: "security",
     icon: "🔐",
   },
+  {
+    slug: "hash-generator",
+    title: "Hash Generator",
+    description:
+      "テキストから MD5 / SHA-1 / SHA-256 / SHA-512 ハッシュを同時計算。コピー対応。",
+    category: "security",
+    icon: "🔑",
+  },
 ];
