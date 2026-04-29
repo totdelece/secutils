@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
+import { getBaseUrl, siteDescription, siteName } from "@/lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,13 +14,41 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const defaultTitle = `${siteName} — エンジニア向けセキュリティ＆ユーティリティツール集`;
+
 export const metadata: Metadata = {
+  metadataBase: new URL(getBaseUrl()),
   title: {
-    default: "secutils — エンジニア向けセキュリティ＆ユーティリティツール集",
-    template: "%s | secutils",
+    default: defaultTitle,
+    template: `%s | ${siteName}`,
   },
-  description:
-    "セキュリティ寄りのWebツール集。パスワード生成、ハッシュ計算、エンコード、ネットワーク調査など、エンジニアの日常作業を高速化します。",
+  description: siteDescription,
+  applicationName: siteName,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    siteName,
+    locale: "ja_JP",
+    url: "/",
+    title: defaultTitle,
+    description: siteDescription,
+  },
+  twitter: {
+    card: "summary",
+    title: defaultTitle,
+    description: siteDescription,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
 };
 
 export default function RootLayout({
