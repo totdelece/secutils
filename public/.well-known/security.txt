@@ -1,0 +1,3 @@
+Contact: https://github.com/totdelece/secutils/security/advisories/new
+Expires: 2027-04-29T00:00:00.000Z
+Preferred-Languages: ja, en
