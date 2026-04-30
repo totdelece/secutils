@@ -104,4 +104,12 @@ export const tools: Tool[] = [
     category: "encoding",
     icon: "🏷️",
   },
+  {
+    slug: "diff-viewer",
+    title: "Diff Viewer",
+    description:
+      "2つのテキストの差分を行単位で表示。LCSベースで追加・削除をハイライト、空白/大小無視オプション、統計表示。",
+    category: "misc",
+    icon: "🆚",
+  },
 ];
