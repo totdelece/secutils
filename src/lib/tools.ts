@@ -96,4 +96,12 @@ export const tools: Tool[] = [
     category: "misc",
     icon: "🕐",
   },
+  {
+    slug: "html-entity",
+    title: "HTML Entity Encoder / Decoder",
+    description:
+      "HTMLエンティティとテキストの相互変換。XSS対策の最小エスケープ・名前付き・数値参照（10進/16進）切替対応。",
+    category: "encoding",
+    icon: "🏷️",
+  },
 ];
