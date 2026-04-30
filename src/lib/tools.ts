@@ -72,4 +72,12 @@ export const tools: Tool[] = [
     category: "network",
     icon: "🌐",
   },
+  {
+    slug: "regex-tester",
+    title: "Regex Tester",
+    description:
+      "正規表現のテスト・デバッグ。マッチをハイライト、キャプチャグループ表示、置換プレビュー、6フラグ対応。",
+    category: "misc",
+    icon: "🔍",
+  },
 ];
