@@ -10,6 +10,12 @@ export const siteDescription =
 export function getBaseUrl(): string {
   const explicit = process.env.NEXT_PUBLIC_SITE_URL;
   if (explicit) return explicit.replace(/\/$/, "");
+  // VERCEL_PROJECT_PRODUCTION_URL: プロジェクトの本番固定URL（例: secutils.vercel.app）
+  // sitemap.xml や OG画像URLには Production URL を使うべき。
+  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
+    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
+  }
+  // VERCEL_URL: デプロイメント固有URL。Preview デプロイでのフォールバック。
   if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
   return "http://localhost:3000";
 }
