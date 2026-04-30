@@ -80,4 +80,12 @@ export const tools: Tool[] = [
     category: "misc",
     icon: "🔍",
   },
+  {
+    slug: "json-formatter",
+    title: "JSON Formatter / Validator",
+    description:
+      "JSONの整形・最小化・バリデーション。インデント幅切替、キーソート、エラー位置（行・列）表示。",
+    category: "encoding",
+    icon: "📋",
+  },
 ];
