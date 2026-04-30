@@ -88,4 +88,12 @@ export const tools: Tool[] = [
     category: "encoding",
     icon: "📋",
   },
+  {
+    slug: "timestamp-converter",
+    title: "Timestamp Converter",
+    description:
+      "UNIX秒/ミリ秒/マイクロ秒/ナノ秒・ISO 8601・RFC 2822 を相互変換。UTC/JST/ローカル表示・相対時刻・曜日付き。",
+    category: "misc",
+    icon: "🕐",
+  },
 ];
