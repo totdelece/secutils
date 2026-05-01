@@ -8,13 +8,52 @@ const isDev = process.env.NODE_ENV === "development";
 // - 'unsafe-eval' は dev のみ（Reactのエラースタック復元に必要）
 // - Vercel Analytics: script は va.vercel-scripts.com から、ビーコンは
 //   vitals.vercel-insights.com に POST される
+// - Google AdSense: 多数のドメインへのアクセスが必要（script/img/iframe/connect）
+const adsenseScriptHosts = [
+  "https://pagead2.googlesyndication.com",
+  "https://*.googlesyndication.com",
+  "https://googleads.g.doubleclick.net",
+  "https://*.g.doubleclick.net",
+  "https://tpc.googlesyndication.com",
+  "https://partner.googleadservices.com",
+  "https://www.googletagservices.com",
+  "https://adservice.google.com",
+  "https://*.adtrafficquality.google",
+].join(" ");
+
+const adsenseImgHosts = [
+  "https://pagead2.googlesyndication.com",
+  "https://*.googlesyndication.com",
+  "https://*.g.doubleclick.net",
+  "https://*.googleusercontent.com",
+  "https://www.google.com",
+  "https://*.gstatic.com",
+].join(" ");
+
+const adsenseFrameHosts = [
+  "https://googleads.g.doubleclick.net",
+  "https://tpc.googlesyndication.com",
+  "https://*.googlesyndication.com",
+  "https://*.g.doubleclick.net",
+  "https://*.adtrafficquality.google",
+].join(" ");
+
+const adsenseConnectHosts = [
+  "https://pagead2.googlesyndication.com",
+  "https://*.googlesyndication.com",
+  "https://*.g.doubleclick.net",
+  "https://www.google.com",
+  "https://*.adtrafficquality.google",
+].join(" ");
+
 const cspDirectives = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com${isDev ? " 'unsafe-eval'" : ""}`,
+  `script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com ${adsenseScriptHosts}${isDev ? " 'unsafe-eval'" : ""}`,
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob:",
+  `img-src 'self' data: blob: ${adsenseImgHosts}`,
   "font-src 'self' data:",
-  "connect-src 'self' https://vitals.vercel-insights.com",
+  `connect-src 'self' https://vitals.vercel-insights.com ${adsenseConnectHosts}`,
+  `frame-src 'self' ${adsenseFrameHosts}`,
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",

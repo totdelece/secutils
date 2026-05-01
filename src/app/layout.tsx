@@ -77,6 +77,11 @@ export default function RootLayout({
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1275613569762995"
+          crossOrigin="anonymous"
+        />
       </head>
       <body className="min-h-full flex flex-col font-sans">
         <SiteJsonLd />

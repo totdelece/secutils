@@ -93,13 +93,52 @@ export default function PrivacyPage() {
         </p>
 
         <h2 className="text-xl font-bold tracking-tight mt-8 mb-3">
-          5. 第三者サービス（広告）
+          5. 第三者サービス（広告 / Google AdSense）
         </h2>
         <p>
-          将来的に Google AdSense 等の広告サービスを導入する可能性があります。広告サービスはユーザーのブラウザに Cookie を設定し、過去のアクセス情報に基づいて広告を表示することがあります。導入時には本ポリシーを更新するとともに、広告に関する利用者のオプトアウト方法を明示します。
+          本サイトは第三者配信の広告サービス <strong>Google AdSense</strong> を使用しています。広告配信事業者は、利用者の興味に応じた広告を表示するために Cookie（{" "}
+          <a
+            href="https://policies.google.com/technologies/cookies"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-emerald-600 dark:hover:text-emerald-400"
+          >
+            Cookieポリシー
+          </a>{" "}
+          ）を使用することがあります。
         </p>
         <p>
-          Google による広告 Cookie の利用については{" "}
+          Google などの第三者配信事業者は、Cookie を使用して、利用者が当サイトや他のサイトに過去アクセスした際の情報に基づいて広告を表示します。これらの Cookie には個人を特定する情報は含まれません。
+        </p>
+        <p>
+          利用者は以下の方法で<strong>パーソナライズ広告を無効化</strong>できます:
+        </p>
+        <ul className="list-disc list-inside space-y-1 mt-2">
+          <li>
+            <a
+              href="https://www.google.com/settings/ads"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-emerald-600 dark:hover:text-emerald-400"
+            >
+              Google アカウントの広告設定
+            </a>{" "}
+            から個別に無効化
+          </li>
+          <li>
+            <a
+              href="https://www.aboutads.info/choices"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-emerald-600 dark:hover:text-emerald-400"
+            >
+              www.aboutads.info/choices
+            </a>{" "}
+            から第三者ベンダー全体のパーソナライズ広告を無効化
+          </li>
+        </ul>
+        <p className="mt-2">
+          Google による広告 Cookie の詳細は{" "}
           <a
             href="https://policies.google.com/technologies/ads"
             target="_blank"
