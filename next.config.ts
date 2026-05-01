@@ -6,13 +6,15 @@ const isDev = process.env.NODE_ENV === "development";
 // - nonce方式は使わない（静的レンダリング/CDNキャッシュを温存するため）
 // - Next.jsのSSRがinline script/styleを出すため 'unsafe-inline' を許容
 // - 'unsafe-eval' は dev のみ（Reactのエラースタック復元に必要）
+// - Vercel Analytics: script は va.vercel-scripts.com から、ビーコンは
+//   vitals.vercel-insights.com に POST される
 const cspDirectives = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
+  `script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com${isDev ? " 'unsafe-eval'" : ""}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob:",
   "font-src 'self' data:",
-  "connect-src 'self'",
+  "connect-src 'self' https://vitals.vercel-insights.com",
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",

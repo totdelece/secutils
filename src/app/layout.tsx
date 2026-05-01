@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { getBaseUrl, siteDescription, siteName } from "@/lib/site";
 import { SiteJsonLd } from "@/lib/ld";
@@ -123,6 +124,7 @@ export default function RootLayout({
             </nav>
           </div>
         </footer>
+        <Analytics />
       </body>
     </html>
   );

@@ -59,17 +59,37 @@ export default function PrivacyPage() {
         </p>
 
         <h2 className="text-xl font-bold tracking-tight mt-8 mb-3">
-          3. アクセス解析
+          3. アクセス解析（Vercel Analytics）
         </h2>
         <p>
-          現時点でアクセス解析ツールは導入していません。将来的に Vercel Analytics（Cookie 不要・個人特定不可な集計データ）または同等のプライバシーフレンドリーな解析サービスを導入する可能性があり、その場合は本ポリシーを更新します。
+          本サイトはアクセス解析として{" "}
+          <strong>Vercel Web Analytics</strong>{" "}
+          を使用しています。Vercel Analytics は<strong>Cookie を使用せず</strong>、IPアドレスやUser-Agent等から個人を特定できないハッシュベースの集計データのみを記録します。記録される情報は次の通りです:
+        </p>
+        <ul className="list-disc list-inside space-y-1 mt-2">
+          <li>訪問されたページのパス（クエリ文字列なし）</li>
+          <li>リファラー（参照元URL）</li>
+          <li>地域（国・地方レベル、IPアドレスは保存されません）</li>
+          <li>デバイス種別、ブラウザ、OS（バージョンの集計値）</li>
+        </ul>
+        <p className="mt-2">
+          詳細は{" "}
+          <a
+            href="https://vercel.com/docs/analytics/privacy-policy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-emerald-600 dark:hover:text-emerald-400"
+          >
+            Vercel Analytics のプライバシーポリシー
+          </a>{" "}
+          をご参照ください。
         </p>
 
         <h2 className="text-xl font-bold tracking-tight mt-8 mb-3">
           4. Cookie
         </h2>
         <p>
-          現時点で本サイト独自の Cookie は設定していません。将来的に第三者サービス（広告等）を導入した場合、その第三者が Cookie を設定する可能性があります。
+          本サイト独自の Cookie は設定していません。Vercel Analytics は Cookie を使用しません。将来的に第三者サービス（広告等）を導入した場合、その第三者が Cookie を設定する可能性があります。
         </p>
 
         <h2 className="text-xl font-bold tracking-tight mt-8 mb-3">
