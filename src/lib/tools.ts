@@ -120,4 +120,12 @@ export const tools: Tool[] = [
     category: "misc",
     icon: "📱",
   },
+  {
+    slug: "json-yaml",
+    title: "JSON ↔ YAML Converter",
+    description:
+      "JSONとYAMLの相互変換。Kubernetes / Docker Compose / GitHub Actions 等の設定ファイル形式変換に。インデント幅切替対応。",
+    category: "encoding",
+    icon: "🔄",
+  },
 ];
