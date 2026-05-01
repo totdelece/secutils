@@ -112,4 +112,12 @@ export const tools: Tool[] = [
     category: "misc",
     icon: "🆚",
   },
+  {
+    slug: "qr-code",
+    title: "QR Code Generator",
+    description:
+      "テキスト・URLからQRコードをブラウザで生成。エラー訂正レベル4段階、色カスタム、SVG/PNGダウンロード対応。",
+    category: "misc",
+    icon: "📱",
+  },
 ];
