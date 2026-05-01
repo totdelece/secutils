@@ -5,6 +5,13 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { getBaseUrl, siteDescription, siteName } from "@/lib/site";
 import { SiteJsonLd } from "@/lib/ld";
+import { ThemeToggle } from "./_components/ThemeToggle";
+
+// FOUC防止: <html> がレンダされる前に同期的に dark/light クラスを付与する。
+// 1) localStorage の保存値を優先
+// 2) なければ prefers-color-scheme に従う
+// CSP は 'unsafe-inline' を許容しているので inline script で問題なし。
+const themeInitScript = `(function(){try{var s=localStorage.getItem('theme');var t=(s==='dark'||s==='light')?s:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.classList.add(t);}catch(e){document.documentElement.classList.add('light');}})();`;
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -66,7 +73,11 @@ export default function RootLayout({
     <html
       lang="ja"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body className="min-h-full flex flex-col font-sans">
         <SiteJsonLd />
         <header className="border-b border-black/10 dark:border-white/10">
@@ -90,6 +101,7 @@ export default function RootLayout({
               >
                 About
               </Link>
+              <ThemeToggle />
             </nav>
           </div>
         </header>
