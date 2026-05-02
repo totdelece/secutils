@@ -128,4 +128,12 @@ export const tools: Tool[] = [
     category: "encoding",
     icon: "🔄",
   },
+  {
+    slug: "hmac",
+    title: "HMAC Generator",
+    description:
+      "メッセージとシークレットキーから HMAC 署名を生成。SHA-1/256/384/512 対応、hex/base64/base64url 出力切替。Webhook検証・APIシグネチャ生成に。",
+    category: "security",
+    icon: "🔏",
+  },
 ];
