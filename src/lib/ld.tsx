@@ -1,5 +1,6 @@
 import { getBaseUrl, siteDescription, siteName } from "./site";
 import { tools } from "./tools";
+import { articleCategoryLabels, articles } from "./articles";
 
 function jsonLdScript(data: object) {
   return (
@@ -27,6 +28,35 @@ export function SiteJsonLd() {
       name: siteName,
       url,
     },
+  });
+}
+
+export function ArticleJsonLd({ slug }: { slug: string }) {
+  const article = articles.find((a) => a.slug === slug);
+  if (!article) return null;
+  const base = getBaseUrl();
+  const url = `${base}/learn/${article.category}/${article.slug}`;
+  return jsonLdScript({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    description: article.description,
+    url,
+    inLanguage: "ja",
+    datePublished: article.date,
+    dateModified: article.date,
+    articleSection: articleCategoryLabels[article.category],
+    author: {
+      "@type": "Organization",
+      name: siteName,
+      url: base,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteName,
+      url: base,
+    },
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
   });
 }
 

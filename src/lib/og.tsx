@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 import { tools } from "./tools";
 import { siteName, siteTagline } from "./site";
+import { articleCategoryLabels, articles } from "./articles";
 
 export const ogImageSize = { width: 1200, height: 630 };
 export const ogImageContentType = "image/png";
@@ -9,6 +10,11 @@ export function getOgAlt(slug?: string): string {
   if (!slug) return `${siteName} — ${siteTagline}`;
   const tool = tools.find((t) => t.slug === slug);
   return tool ? `${tool.title} | ${siteName}` : siteName;
+}
+
+export function getArticleOgAlt(slug: string): string {
+  const article = articles.find((a) => a.slug === slug);
+  return article ? `${article.title} | ${siteName}` : siteName;
 }
 
 const COLORS = {
@@ -96,6 +102,80 @@ export function renderRootOg() {
           >
             🛡 ブラウザ完結 · データ送信なし
           </div>
+        </div>
+      </Frame>
+    ),
+    ogImageSize,
+  );
+}
+
+export function renderArticleOg(slug: string) {
+  const article = articles.find((a) => a.slug === slug);
+  if (!article) {
+    throw new Error(`Unknown article: ${slug}`);
+  }
+  const categoryLabel = articleCategoryLabels[article.category];
+  return new ImageResponse(
+    (
+      <Frame>
+        <div
+          style={{
+            flex: 1,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              fontSize: 22,
+              color: COLORS.accent,
+              fontWeight: 600,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              marginBottom: 16,
+            }}
+          >
+            📖 LEARN · {categoryLabel}
+          </div>
+          <div
+            style={{
+              fontSize: 64,
+              fontWeight: 800,
+              letterSpacing: "-0.03em",
+              lineHeight: 1.15,
+              marginBottom: 28,
+            }}
+          >
+            {article.title}
+          </div>
+          <div
+            style={{
+              fontSize: 26,
+              color: COLORS.muted,
+              lineHeight: 1.45,
+              maxWidth: 1060,
+            }}
+          >
+            {article.description.length > 140
+              ? article.description.slice(0, 140) + "…"
+              : article.description}
+          </div>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            position: "absolute",
+            right: 70,
+            bottom: 60,
+            fontSize: 22,
+            color: COLORS.accent,
+            fontWeight: 600,
+            letterSpacing: "0.02em",
+          }}
+        >
+          🛡 secutils
         </div>
       </Frame>
     ),

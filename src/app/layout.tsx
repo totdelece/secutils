@@ -101,6 +101,12 @@ export default function RootLayout({
                 Tools
               </Link>
               <Link
+                href="/learn"
+                className="hover:text-foreground transition"
+              >
+                Learn
+              </Link>
+              <Link
                 href="/about"
                 className="hover:text-foreground transition"
               >
@@ -114,7 +120,10 @@ export default function RootLayout({
         <footer className="border-t border-black/10 dark:border-white/10 mt-16">
           <div className="mx-auto max-w-5xl px-6 py-6 text-xs text-black/50 dark:text-white/50 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div>secutils — built for engineers, by engineers.</div>
-            <nav className="flex items-center gap-4">
+            <nav className="flex flex-wrap items-center gap-x-4 gap-y-2">
+              <Link href="/learn" className="hover:text-foreground transition">
+                Learn
+              </Link>
               <Link href="/about" className="hover:text-foreground transition">
                 About
               </Link>
