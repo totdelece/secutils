@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 
 const STANDARD_CLAIMS: Record<string, string> = {
@@ -21,16 +21,130 @@ const STANDARD_CLAIMS: Record<string, string> = {
 
 const TIME_CLAIMS = new Set(["exp", "nbf", "iat", "auth_time"]);
 
-function fromBase64Url(b64url: string): string {
+type AlgParams =
+  | { type: "hmac"; hash: string }
+  | { type: "rsa"; hash: string }
+  | { type: "ecdsa"; hash: string; curve: string }
+  | { type: "rsa-pss"; hash: string; saltLength: number };
+
+const ALG_MAP: Record<string, AlgParams> = {
+  HS256: { type: "hmac", hash: "SHA-256" },
+  HS384: { type: "hmac", hash: "SHA-384" },
+  HS512: { type: "hmac", hash: "SHA-512" },
+  RS256: { type: "rsa", hash: "SHA-256" },
+  RS384: { type: "rsa", hash: "SHA-384" },
+  RS512: { type: "rsa", hash: "SHA-512" },
+  ES256: { type: "ecdsa", hash: "SHA-256", curve: "P-256" },
+  ES384: { type: "ecdsa", hash: "SHA-384", curve: "P-384" },
+  ES512: { type: "ecdsa", hash: "SHA-512", curve: "P-521" },
+  PS256: { type: "rsa-pss", hash: "SHA-256", saltLength: 32 },
+  PS384: { type: "rsa-pss", hash: "SHA-384", saltLength: 48 },
+  PS512: { type: "rsa-pss", hash: "SHA-512", saltLength: 64 },
+};
+
+// SubtleCrypto API は BufferSource (= ArrayBufferView<ArrayBuffer> | ArrayBuffer)
+// を要求するため、明示的に ArrayBuffer 上の Uint8Array を返す
+function base64UrlToBytes(b64url: string): Uint8Array<ArrayBuffer> {
   let s = b64url.replace(/-/g, "+").replace(/_/g, "/");
   const pad = s.length % 4;
   if (pad === 2) s += "==";
   else if (pad === 3) s += "=";
-  else if (pad === 1) throw new Error("Base64URL文字列の長さが不正です");
+  else if (pad === 1) throw new Error("不正なBase64URL長");
   const binary = atob(s);
-  const bytes = new Uint8Array(binary.length);
+  const buf = new ArrayBuffer(binary.length);
+  const bytes = new Uint8Array(buf);
   for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
-  return new TextDecoder("utf-8", { fatal: true }).decode(bytes);
+  return bytes;
+}
+
+function pemToBytes(pem: string): Uint8Array<ArrayBuffer> {
+  const m = pem.match(
+    /-----BEGIN [A-Z0-9 ]+-----([\s\S]+?)-----END [A-Z0-9 ]+-----/,
+  );
+  if (!m) {
+    throw new Error(
+      "PEM形式として認識できません（-----BEGIN xxx-----...-----END xxx-----）",
+    );
+  }
+  const cleaned = m[1].replace(/\s+/g, "");
+  const binary = atob(cleaned);
+  const buf = new ArrayBuffer(binary.length);
+  const bytes = new Uint8Array(buf);
+  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return bytes;
+}
+
+async function verifyJwt(
+  token: string,
+  alg: string,
+  keyInput: string,
+): Promise<boolean> {
+  const params = ALG_MAP[alg];
+  if (!params) throw new Error(`未対応のアルゴリズム: ${alg}`);
+
+  const parts = token.trim().split(".");
+  if (parts.length !== 3) throw new Error("JWT形式が不正です");
+  const [headerB64, payloadB64, sigB64] = parts;
+  const signedData = new TextEncoder().encode(`${headerB64}.${payloadB64}`);
+  const signature = base64UrlToBytes(sigB64);
+
+  if (params.type === "hmac") {
+    const key = await crypto.subtle.importKey(
+      "raw",
+      new TextEncoder().encode(keyInput),
+      { name: "HMAC", hash: params.hash },
+      false,
+      ["verify"],
+    );
+    return crypto.subtle.verify("HMAC", key, signature, signedData);
+  }
+  if (params.type === "rsa") {
+    const spki = pemToBytes(keyInput);
+    const key = await crypto.subtle.importKey(
+      "spki",
+      spki,
+      { name: "RSASSA-PKCS1-v1_5", hash: params.hash },
+      false,
+      ["verify"],
+    );
+    return crypto.subtle.verify(
+      "RSASSA-PKCS1-v1_5",
+      key,
+      signature,
+      signedData,
+    );
+  }
+  if (params.type === "ecdsa") {
+    const spki = pemToBytes(keyInput);
+    const key = await crypto.subtle.importKey(
+      "spki",
+      spki,
+      { name: "ECDSA", namedCurve: params.curve },
+      false,
+      ["verify"],
+    );
+    return crypto.subtle.verify(
+      { name: "ECDSA", hash: params.hash },
+      key,
+      signature,
+      signedData,
+    );
+  }
+  // rsa-pss
+  const spki = pemToBytes(keyInput);
+  const key = await crypto.subtle.importKey(
+    "spki",
+    spki,
+    { name: "RSA-PSS", hash: params.hash },
+    false,
+    ["verify"],
+  );
+  return crypto.subtle.verify(
+    { name: "RSA-PSS", saltLength: params.saltLength },
+    key,
+    signature,
+    signedData,
+  );
 }
 
 type DecodedJWT = {
@@ -51,12 +165,20 @@ function decodeJWT(token: string): DecodedJWT {
   let header: Record<string, unknown>;
   let payload: Record<string, unknown>;
   try {
-    header = JSON.parse(fromBase64Url(headerB64));
+    header = JSON.parse(
+      new TextDecoder("utf-8", { fatal: true }).decode(
+        base64UrlToBytes(headerB64),
+      ),
+    );
   } catch {
     throw new Error("Headerのデコードに失敗しました（不正なBase64URL or JSON）");
   }
   try {
-    payload = JSON.parse(fromBase64Url(payloadB64));
+    payload = JSON.parse(
+      new TextDecoder("utf-8", { fatal: true }).decode(
+        base64UrlToBytes(payloadB64),
+      ),
+    );
   } catch {
     throw new Error("Payloadのデコードに失敗しました（不正なBase64URL or JSON）");
   }
@@ -115,8 +237,19 @@ const SAMPLE_JWT =
   "eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ." +
   "SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
 
+const SAMPLE_HS256_SECRET = "your-256-bit-secret";
+
+type VerifyState =
+  | { kind: "idle" }
+  | { kind: "verifying" }
+  | { kind: "valid" }
+  | { kind: "invalid" }
+  | { kind: "error"; message: string };
+
 export default function JwtDecoderPage() {
   const [input, setInput] = useState("");
+  const [keyInput, setKeyInput] = useState("");
+  const [verify, setVerify] = useState<VerifyState>({ kind: "idle" });
 
   const result = useMemo(() => {
     if (!input.trim()) return null;
@@ -124,9 +257,37 @@ export default function JwtDecoderPage() {
       const decoded = decodeJWT(input);
       return { ok: true as const, ...decoded };
     } catch (e) {
-      return { ok: false as const, error: e instanceof Error ? e.message : String(e) };
+      return {
+        ok: false as const,
+        error: e instanceof Error ? e.message : String(e),
+      };
     }
   }, [input]);
+
+  // 入力やキーが変わったら検証結果をリセット
+  useEffect(() => {
+    setVerify({ kind: "idle" });
+  }, [input, keyInput]);
+
+  const detectedAlg =
+    result?.ok && typeof result.header.alg === "string"
+      ? result.header.alg
+      : null;
+  const algInfo = detectedAlg ? ALG_MAP[detectedAlg] : null;
+
+  const handleVerify = async () => {
+    if (!result?.ok || !detectedAlg || !keyInput.trim()) return;
+    setVerify({ kind: "verifying" });
+    try {
+      const ok = await verifyJwt(input, detectedAlg, keyInput);
+      setVerify({ kind: ok ? "valid" : "invalid" });
+    } catch (e) {
+      setVerify({
+        kind: "error",
+        message: e instanceof Error ? e.message : "検証エラー",
+      });
+    }
+  };
 
   const expStatus =
     result && result.ok ? getExpirationStatus(result.payload) : null;
@@ -144,6 +305,18 @@ export default function JwtDecoderPage() {
         })
       : [];
 
+  const keyLabel = !algInfo
+    ? "キー"
+    : algInfo.type === "hmac"
+      ? "シークレットキー（HMAC）"
+      : "公開鍵（PEM形式）";
+
+  const keyPlaceholder = !algInfo
+    ? "JWTを入力するとアルゴリズムが判定されます"
+    : algInfo.type === "hmac"
+      ? "your-256-bit-secret"
+      : "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE...\n-----END PUBLIC KEY-----";
+
   return (
     <div className="mx-auto max-w-3xl px-6 py-12">
       <nav className="text-sm text-black/50 dark:text-white/50 mb-6">
@@ -155,23 +328,22 @@ export default function JwtDecoderPage() {
       <h1 className="text-2xl sm:text-3xl font-bold tracking-tight mb-2">
         🪪 JWT Decoder
       </h1>
-      <p className="text-sm text-black/60 dark:text-white/60 mb-4">
-        JWT（JSON Web Token）をHeader / Payload / Signatureに分解して可視化します。
-        すべてブラウザ内で処理され、トークンはサーバーに送信されません。
+      <p className="text-sm text-black/60 dark:text-white/60 mb-6">
+        JWT（JSON Web Token）をHeader / Payload / Signatureに分解して可視化し、HMAC / RSA / ECDSA / RSA-PSS で<strong>署名検証</strong>もできます。
+        すべてブラウザ内（<code className="font-mono">SubtleCrypto</code>）で処理され、トークン・キーはサーバーに送信されません。
       </p>
-      <div className="text-xs bg-amber-500/10 border border-amber-500/30 rounded p-3 mb-6 text-amber-800 dark:text-amber-300">
-        ⚠ <strong>このツールは署名検証を行いません。</strong>
-        署名の正当性を確認するには発行者の公開鍵/共有秘密鍵が必要です。デコード結果は信頼できる情報源としては扱わないでください。
-      </div>
 
       <div className="rounded-lg border border-black/10 dark:border-white/10 p-5 mb-6">
         <div className="flex items-center justify-between mb-2">
           <label className="text-sm font-medium">JWT文字列</label>
           <button
-            onClick={() => setInput(SAMPLE_JWT)}
+            onClick={() => {
+              setInput(SAMPLE_JWT);
+              setKeyInput(SAMPLE_HS256_SECRET);
+            }}
             className="text-xs px-2 py-1 rounded border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 transition"
           >
-            サンプルを入力
+            サンプル（HS256）
           </button>
         </div>
         <textarea
@@ -180,6 +352,7 @@ export default function JwtDecoderPage() {
           rows={5}
           placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
           className="w-full font-mono text-xs sm:text-sm bg-black/5 dark:bg-white/5 rounded p-3 outline-none resize-y focus:ring-2 focus:ring-emerald-500/50 break-all"
+          spellCheck={false}
         />
       </div>
 
@@ -274,12 +447,95 @@ export default function JwtDecoderPage() {
             color="text-cyan-600 dark:text-cyan-400"
             badge="🟦"
           >
-            <div className="font-mono text-xs sm:text-sm break-all mb-2">
+            <div className="font-mono text-xs sm:text-sm break-all mb-3">
               {result.signature || "（空）"}
             </div>
-            <div className="text-xs text-black/50 dark:text-white/50">
-              署名はBase64URL形式のバイナリです。検証には発行元の鍵が必要なため、このツールでは検証しません。
-            </div>
+            {detectedAlg && (
+              <div className="text-xs text-black/60 dark:text-white/60 mb-3">
+                検出アルゴリズム:{" "}
+                <span className="font-mono font-bold">{detectedAlg}</span>
+                {algInfo ? (
+                  <span className="text-black/40 dark:text-white/40">
+                    {" "}
+                    ({algInfo.type === "hmac"
+                      ? "対称鍵"
+                      : algInfo.type === "rsa"
+                        ? "RSA 公開鍵"
+                        : algInfo.type === "ecdsa"
+                          ? "ECDSA 公開鍵"
+                          : "RSA-PSS 公開鍵"}
+                    )
+                  </span>
+                ) : (
+                  <span className="text-amber-600 dark:text-amber-400">
+                    {" "}
+                    （未対応・検証不可）
+                  </span>
+                )}
+              </div>
+            )}
+          </Section>
+
+          {/* 署名検証セクション */}
+          <Section
+            title="署名検証"
+            color="text-emerald-600 dark:text-emerald-400"
+            badge="🟩"
+          >
+            {algInfo ? (
+              <>
+                <label className="block text-xs font-medium mb-2">
+                  {keyLabel}
+                </label>
+                <textarea
+                  value={keyInput}
+                  onChange={(e) => setKeyInput(e.target.value)}
+                  rows={algInfo.type === "hmac" ? 2 : 6}
+                  placeholder={keyPlaceholder}
+                  className="w-full font-mono text-xs bg-white dark:bg-black/30 rounded p-3 outline-none resize-y focus:ring-2 focus:ring-emerald-500/50 break-all border border-black/10 dark:border-white/10"
+                  spellCheck={false}
+                  autoComplete="off"
+                />
+
+                <div className="flex items-center gap-3 mt-3">
+                  <button
+                    onClick={handleVerify}
+                    disabled={!keyInput.trim() || verify.kind === "verifying"}
+                    className="px-4 py-1.5 rounded bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-medium transition disabled:opacity-50"
+                  >
+                    {verify.kind === "verifying" ? "検証中..." : "署名を検証"}
+                  </button>
+
+                  {verify.kind === "valid" && (
+                    <span className="text-sm text-emerald-700 dark:text-emerald-400 font-medium">
+                      ✓ 署名は有効です
+                    </span>
+                  )}
+                  {verify.kind === "invalid" && (
+                    <span className="text-sm text-red-700 dark:text-red-400 font-medium">
+                      ✗ 署名が一致しません
+                    </span>
+                  )}
+                  {verify.kind === "error" && (
+                    <span className="text-sm text-red-700 dark:text-red-400 font-medium">
+                      ⚠ {verify.message}
+                    </span>
+                  )}
+                </div>
+
+                {algInfo.type !== "hmac" && (
+                  <div className="text-[11px] text-black/50 dark:text-white/50 mt-2">
+                    💡 公開鍵は <code className="font-mono">SubjectPublicKeyInfo (SPKI)</code> 形式の PEM を貼り付けてください（<code className="font-mono">-----BEGIN PUBLIC KEY-----</code> で始まる）。秘密鍵は不要です。
+                  </div>
+                )}
+              </>
+            ) : (
+              <div className="text-xs text-black/50 dark:text-white/50">
+                {detectedAlg
+                  ? `アルゴリズム ${detectedAlg} は本ツールでは未対応です（HS256/384/512、RS256/384/512、ES256/384/512、PS256/384/512 のみ）。`
+                  : "JWTの header に alg クレームが見つからないか、Header をデコードできません。"}
+              </div>
+            )}
           </Section>
         </div>
       )}
@@ -299,8 +555,14 @@ export default function JwtDecoderPage() {
             <strong>署名（Signature）</strong>は改ざん検知のためのもので、ペイロードの秘匿には使えません。
           </li>
           <li>
+            <strong>HMAC（HS*）</strong>は対称鍵で署名・検証も同じシークレットを使います。<strong>RSA / ECDSA / RSA-PSS</strong> は公開鍵で検証のみ行います（秘密鍵は不要）。
+          </li>
+          <li>
             <code className="font-mono">alg: none</code>{" "}
-            のJWTは署名なしで受け入れる脆弱性の温床になるため、検証側で必ず拒否すべきです。
+            のJWTは署名なしで受け入れる脆弱性の温床になるため、検証側で必ず拒否すべきです。本ツールも未対応です。
+          </li>
+          <li>
+            ECDSA署名はJWS仕様（RFC 7515）に従い R||S 連結形式で扱います（DER形式ではない）。
           </li>
         </ul>
       </div>
