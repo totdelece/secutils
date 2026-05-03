@@ -77,6 +77,46 @@ export const articles: Article[] = [
     readingMinutes: 7,
     relatedTools: ["hmac"],
   },
+  {
+    slug: "osi-tcpip-model",
+    category: "network",
+    title: "OSI参照モデルと TCP/IP モデル - L1 から L7 まで",
+    description:
+      "ネットワーク学習の入口となる OSI 7 層モデルと、実際に使われる TCP/IP 4 層モデル。各層の役割とプロトコル例（Ethernet / IP / TCP / HTTP）を初学者向けに整理。",
+    date: "2026-05-02",
+    readingMinutes: 6,
+    relatedTools: [],
+  },
+  {
+    slug: "port-numbers",
+    category: "network",
+    title: "ポート番号の話 - well-known / registered / dynamic",
+    description:
+      "ポート番号とは何か、80・443・22 はなぜ決まっているのか。0-65535 の範囲、IANA の3区分、よく使われるポート一覧、ポートスキャンの基本を初学者向けに解説。",
+    date: "2026-05-02",
+    readingMinutes: 5,
+    relatedTools: [],
+  },
+  {
+    slug: "nat-port-forwarding",
+    category: "network",
+    title: "NAT とポートフォワーディング - 家庭ルーターから理解する",
+    description:
+      "なぜ家庭の PC 全部から外に出られるのか。NAT / NAPT の仕組み、ポートフォワーディング、CGNAT、IPv6 で NAT が要らない理由を初学者向けに解説。",
+    date: "2026-05-02",
+    readingMinutes: 6,
+    relatedTools: ["cidr-calculator"],
+  },
+  {
+    slug: "icmp-ping-traceroute",
+    category: "network",
+    title: "ICMP / ping / traceroute - ネットワーク調査の基本",
+    description:
+      "「サーバーに繋がらない」を切り分けるための基本3点セット。ICMP プロトコルとは何か、ping と traceroute の仕組み、結果の読み方、パケット落とされたときの判断材料を初学者向けに解説。",
+    date: "2026-05-02",
+    readingMinutes: 6,
+    relatedTools: [],
+  },
 ];
 
 export function getArticle(
