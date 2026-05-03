@@ -136,4 +136,28 @@ export const tools: Tool[] = [
     category: "security",
     icon: "🔏",
   },
+  {
+    slug: "cron-parser",
+    title: "Cron Expression Parser",
+    description:
+      "cron 式を人間に読める日本語に変換し、次回実行予定を5件まで表示。`*/5 * * * *` 等の表記検証・デバッグに。",
+    category: "misc",
+    icon: "⏱",
+  },
+  {
+    slug: "totp",
+    title: "TOTP Generator (2FA)",
+    description:
+      "RFC 6238 の TOTP（時間ベースワンタイムパスワード）をブラウザ内で計算。Google Authenticator 互換、SHA-1/256/512、Base32秘密鍵対応。",
+    category: "security",
+    icon: "🔢",
+  },
+  {
+    slug: "bcrypt",
+    title: "Bcrypt Hasher / Verifier",
+    description:
+      "パスワード保存の定番 bcrypt をブラウザで生成・検証。コストファクター調整、ソルト自動生成、ハッシュ照合、計算時間の体感に。",
+    category: "security",
+    icon: "🧂",
+  },
 ];
