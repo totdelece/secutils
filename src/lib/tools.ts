@@ -160,4 +160,28 @@ export const tools: Tool[] = [
     category: "security",
     icon: "🧂",
   },
+  {
+    slug: "http-status",
+    title: "HTTP Status Code Reference",
+    description:
+      "全HTTPステータスコード（100-599）の意味と用途を日本語で網羅。検索フィルタ、カテゴリ別表示、典型的な使用シーンと注意点。",
+    category: "network",
+    icon: "📟",
+  },
+  {
+    slug: "cookie-parser",
+    title: "HTTP Cookie Parser",
+    description:
+      "Set-Cookie / Cookie ヘッダー文字列を解析し、Domain/Path/Secure/HttpOnly/SameSite等の属性を可視化。セキュリティ上の注意点も警告。",
+    category: "security",
+    icon: "🍪",
+  },
+  {
+    slug: "color-converter",
+    title: "Color Converter",
+    description:
+      "色を HEX / RGB / HSL / HSV で相互変換。カラーピッカー、WCAG コントラスト比判定（AA/AAA）対応。",
+    category: "encoding",
+    icon: "🎨",
+  },
 ];
