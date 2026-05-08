@@ -297,6 +297,16 @@ export const articles: Article[] = [
     readingMinutes: 7,
     relatedTools: ["password-generator", "uuid-generator"],
   },
+  {
+    slug: "xserver-vs-conoha-wing",
+    category: "network",
+    title: "エックスサーバー vs ConoHa WING - 個人開発者・副業ブロガーのレンタルサーバー選び",
+    description:
+      "国内シェアNo.1のエックスサーバーと、後発で勢いのあるConoHa WINGを実用目線で比較。料金・速度・管理画面・WordPress機能・サポート・安定性まで、選ぶ前に知っておくべき違いを整理。",
+    date: "2026-05-08",
+    readingMinutes: 10,
+    relatedTools: [],
+  },
 ];
 
 export function getArticle(
