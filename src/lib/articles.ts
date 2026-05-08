@@ -237,6 +237,36 @@ export const articles: Article[] = [
     readingMinutes: 8,
     relatedTools: ["bcrypt", "hash-generator"],
   },
+  {
+    slug: "cors-same-origin",
+    category: "security",
+    title: "CORS と Same-Origin Policy 入門 - なぜブラウザに弾かれるのか",
+    description:
+      "「Access-Control-Allow-Origin が無い」エラーで詰まる初学者向けに、Same-Origin Policy の歴史、なぜ存在するのか、CORS でどう穴を開けるのか、プリフライト・credentials・ワイルドカード制限まで実装目線で解説。",
+    date: "2026-05-08",
+    readingMinutes: 8,
+    relatedTools: ["http-status", "cookie-parser"],
+  },
+  {
+    slug: "session-vs-jwt",
+    category: "security",
+    title: "セッション認証 vs JWT 認証 - どちらを選ぶべきか",
+    description:
+      "Web認証の二大方式を初学者向けに比較。サーバ状態 vs ステートレス、Cookie vs localStorage、トークンの失効、リフレッシュトークン、サイズ、CSRF/XSS耐性の違いを実務目線で整理。",
+    date: "2026-05-08",
+    readingMinutes: 9,
+    relatedTools: ["jwt-decoder", "cookie-parser"],
+  },
+  {
+    slug: "public-key-crypto",
+    category: "security",
+    title: "公開鍵暗号の基本 - RSA / ECDSA / 鍵交換のしくみ",
+    description:
+      "「公開鍵」と「秘密鍵」が結局何なのか、初学者向けに整理。共通鍵暗号との違い、デジタル署名、RSA/ECDSA/Ed25519 の使い分け、Diffie-Hellman 鍵交換、量子耐性まで。",
+    date: "2026-05-08",
+    readingMinutes: 9,
+    relatedTools: ["jwt-decoder", "hmac"],
+  },
 ];
 
 export function getArticle(
