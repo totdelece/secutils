@@ -177,6 +177,36 @@ export const articles: Article[] = [
     readingMinutes: 6,
     relatedTools: [],
   },
+  {
+    slug: "xss",
+    category: "security",
+    title: "XSS（クロスサイトスクリプティング）の基礎と防御",
+    description:
+      "Web アプリの定番脆弱性 XSS を初学者向けに解説。Reflected / Stored / DOM-based の3種、HTMLエスケープと CSP による多層防御、よくある誤解（input サニタイズ）まで。",
+    date: "2026-05-08",
+    readingMinutes: 7,
+    relatedTools: ["html-entity"],
+  },
+  {
+    slug: "csrf",
+    category: "security",
+    title: "CSRF（クロスサイトリクエストフォージェリ）の仕組みと対策",
+    description:
+      "ログイン中のユーザーを罠サイト経由で意図しない操作に巻き込む CSRF。XSS との違い、SameSite Cookie / CSRF トークン / Origin チェックなど現代的防御を初学者向けに解説。",
+    date: "2026-05-08",
+    readingMinutes: 6,
+    relatedTools: ["cookie-parser"],
+  },
+  {
+    slug: "owasp-top-10",
+    category: "security",
+    title: "OWASP Top 10 入門 - Web アプリの主要リスク10選",
+    description:
+      "Web セキュリティの世界標準ガイドライン OWASP Top 10（2021）を初学者向けに俯瞰。アクセス制御不備、暗号化失敗、インジェクション、識別認証不備など、10カテゴリの要点と実例。",
+    date: "2026-05-08",
+    readingMinutes: 9,
+    relatedTools: ["jwt-decoder", "password-generator", "html-entity", "cookie-parser"],
+  },
 ];
 
 export function getArticle(
