@@ -44,7 +44,7 @@ export default function Page() {
         最初の10日間お試しで決めたい人は<strong>エックスサーバー（無料お試し10日）</strong>、初期費用を抑えたい人は<strong>ConoHa WING（時間単位課金あり）</strong>。本記事ではこの判断軸を、項目別に深掘りします。
       </p>
       <p>
-        公式情報：<Link href="#">エックスサーバー公式サイト</Link> / <Link href="#">ConoHa WING公式サイト</Link>
+        公式情報：<Link href="#">エックスサーバー公式サイト</Link> / <a href="https://px.a8.net/svt/ejp?a8mat=4B3LMV+ALMVJM+50+5SKSCY" rel="nofollow noopener noreferrer" target="_blank">ConoHa WING公式サイト</a>
       </p>
 
       <h2>早見表: 主要スペック・料金</h2>
@@ -309,7 +309,7 @@ export default function Page() {
         管理画面の使いやすさ、WordPress + テーマ同時セットアップ、初期コストの安さで、立ち上がりの速さが圧倒的。「今夜中にブログ開設したい」が叶います。1ヶ月で挫折しても時間課金で安く済む（数百円）のもプラス。
       </p>
       <p>
-        <Link href="#">ConoHa WINGでブログを始める →</Link>
+        <a href="https://px.a8.net/svt/ejp?a8mat=4B3LMV+ALMVJM+50+5SKSCY" rel="nofollow noopener noreferrer" target="_blank">ConoHa WINGでブログを始める →</a>
       </p>
 
       <h3>シーンB: 副業のステップアップ・複数サイト運営</h3>
@@ -414,7 +414,7 @@ export default function Page() {
       </p>
       <ul>
         <li>
-          <strong>初心者・短期決戦・とにかく早く始めたい</strong> → <Link href="#">ConoHa WING</Link>
+          <strong>初心者・短期決戦・とにかく早く始めたい</strong> → <a href="https://px.a8.net/svt/ejp?a8mat=4B3LMV+ALMVJM+50+5SKSCY" rel="nofollow noopener noreferrer" target="_blank">ConoHa WING</a>
         </li>
         <li>
           <strong>長期運用・複数サイト・安定性重視</strong> → <Link href="#">エックスサーバー</Link>
@@ -434,6 +434,26 @@ export default function Page() {
         <li><Link href="/learn/network/vpn-basics">VPN の仕組み</Link> - リモートからサーバーへ安全にアクセス</li>
         <li><Link href="/learn/security/http-security-headers">HTTPセキュリティヘッダ詳解</Link> - サーバー設定のセキュリティ強化</li>
       </ul>
+
+      {/* A8 アフィリエイト計測ピクセル（広告主ごとに1つ、画面外配置） */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          left: "-9999px",
+          width: 0,
+          height: 0,
+          overflow: "hidden",
+        }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://www12.a8.net/0.gif?a8mat=4B3LMV+ALMVJM+50+5SKSCY"
+          width={1}
+          height={1}
+          alt=""
+        />
+      </div>
     </ArticleLayout>
   );
 }
