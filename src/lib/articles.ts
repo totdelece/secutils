@@ -207,6 +207,36 @@ export const articles: Article[] = [
     readingMinutes: 9,
     relatedTools: ["jwt-decoder", "password-generator", "html-entity", "cookie-parser"],
   },
+  {
+    slug: "sql-injection",
+    category: "security",
+    title: "SQL インジェクション入門 - 文字列連結という根本原因",
+    description:
+      "Web脆弱性の代表格 SQLi を初学者向けに解説。なぜ起きるのか、典型的な攻撃パターン（認証回避・UNION・Blind）、プリペアドステートメントによる根本対策、ORM 利用時の注意点まで。",
+    date: "2026-05-08",
+    readingMinutes: 7,
+    relatedTools: [],
+  },
+  {
+    slug: "mfa-totp-fido2",
+    category: "security",
+    title: "多要素認証（MFA）入門 - SMS / TOTP / FIDO2 / Passkey の違い",
+    description:
+      "「2段階認証」と一括りにされがちな MFA の中身を初学者向けに解説。SMS の弱点、TOTP（Google Authenticator）の仕組み、FIDO2/WebAuthn と Passkey の関係、フィッシング耐性の差を整理。",
+    date: "2026-05-08",
+    readingMinutes: 8,
+    relatedTools: ["totp"],
+  },
+  {
+    slug: "password-hashing",
+    category: "security",
+    title: "パスワードハッシュ関数の選び方 - bcrypt / scrypt / Argon2",
+    description:
+      "「SHA-256 で保存」が間違いである理由から、bcrypt / scrypt / Argon2 の選び方まで。レインボーテーブル、ソルト、ペッパー、コストファクター、メモリハード関数の意義を初学者向けに解説。",
+    date: "2026-05-08",
+    readingMinutes: 8,
+    relatedTools: ["bcrypt", "hash-generator"],
+  },
 ];
 
 export function getArticle(
