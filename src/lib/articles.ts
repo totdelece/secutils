@@ -267,6 +267,36 @@ export const articles: Article[] = [
     readingMinutes: 9,
     relatedTools: ["jwt-decoder", "hmac"],
   },
+  {
+    slug: "oauth-oidc",
+    category: "security",
+    title: "OAuth 2.0 と OpenID Connect 入門 - 認可と認証の違い",
+    description:
+      "「Google でログイン」の裏側を初学者向けに解説。OAuth 2.0 が解く問題、Authorization Code フロー、PKCE、OpenID Connect で認証が乗っかる仕組み、ID トークンと access トークンの違いまで。",
+    date: "2026-05-08",
+    readingMinutes: 9,
+    relatedTools: ["jwt-decoder"],
+  },
+  {
+    slug: "http-security-headers",
+    category: "security",
+    title: "HTTP セキュリティヘッダ詳解 - CSP / HSTS / X-Frame-Options",
+    description:
+      "Webサイトを多層防御するレスポンスヘッダ群を初学者向けに解説。Content-Security-Policy / HSTS / X-Frame-Options / Permissions-Policy 等の役割と推奨値、本サイト自身の実装例も含めて整理。",
+    date: "2026-05-08",
+    readingMinutes: 9,
+    relatedTools: ["http-status", "cookie-parser"],
+  },
+  {
+    slug: "secure-randomness",
+    category: "security",
+    title: "安全な乱数とは - Math.random の罠と CSPRNG",
+    description:
+      "「乱数」と一括りにされがちな疑似乱数（PRNG）と暗号学的乱数（CSPRNG）の違いを初学者向けに解説。Math.random で起きる事故、crypto.getRandomValues / randomUUID の使い方、modulo bias の回避まで。",
+    date: "2026-05-08",
+    readingMinutes: 7,
+    relatedTools: ["password-generator", "uuid-generator"],
+  },
 ];
 
 export function getArticle(
