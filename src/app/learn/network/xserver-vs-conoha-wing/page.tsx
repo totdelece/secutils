@@ -1,8 +1,27 @@
 import Link from "next/link";
 import { ArticleLayout } from "../../_components/ArticleLayout";
+import {
+  BannerSlot,
+  CampaignBox,
+  ComparisonTable,
+  ConclusionBox,
+  CtaButton,
+  ProsConsList,
+  ScenarioCard,
+  ScenarioGrid,
+} from "../../_components/AffiliateComponents";
 import { getArticle } from "@/lib/articles";
 
 const article = getArticle("network", "xserver-vs-conoha-wing")!;
+
+const XSERVER_URL =
+  "https://px.a8.net/svt/ejp?a8mat=4B3LMV+C506SY+CO4+61JSI";
+const CONOHA_URL =
+  "https://px.a8.net/svt/ejp?a8mat=4B3LMV+ALMVJM+50+5SKSCY";
+const XSERVER_VPS_URL =
+  "https://px.a8.net/svt/ejp?a8mat=4B3LMV+C5LMEQ+CO4+25EKCY";
+const XSERVER_DOMAIN_URL =
+  "https://px.a8.net/svt/ejp?a8mat=4B3LMV+C3TBLE+CO4+15ORS2";
 
 export default function Page() {
   return (
@@ -11,156 +30,178 @@ export default function Page() {
       <p>
         個人ブログ・副業サイト・ポートフォリオ・小規模ビジネスサイトの用途で、エックスサーバーと ConoHa WING のどちらを選ぶかは、実は<strong>vCPU 6コア / メモリ 8GB という基本構成が共通する</strong>同士の比較になります。性能差はほぼ誤差。決め手は<strong>「あなたが何を重視するか」</strong>です（SSD容量はエックスサーバーが500GB、ConoHa WINGが300GBで、この点はエックスサーバーに分があります）。
       </p>
-      <p>
-        最初に結論を出します：
-      </p>
-      <table>
-        <thead>
-          <tr>
-            <th>あなたのタイプ</th>
-            <th>おすすめ</th>
-            <th>理由</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>初めてサーバー契約する初心者</td>
-            <td><strong>ConoHa WING</strong></td>
-            <td>管理画面が1画面で完結、迷わない</td>
-          </tr>
-          <tr>
-            <td>長期運用・安定性重視</td>
-            <td><strong>エックスサーバー</strong></td>
-            <td>2003年からの運用実績、公式が掲げる稼働率99.99%、設定代行無料</td>
-          </tr>
-          <tr>
-            <td>サイトを複数運営する予定</td>
-            <td><strong>エックスサーバー</strong></td>
-            <td>マルチドメイン無制限、長期運用での実績、SSD容量500GB</td>
-          </tr>
-        </tbody>
-      </table>
+
+      <ConclusionBox title="🎯 タイプ別の結論（最初にこれだけ）">
+        <ScenarioGrid>
+          <ScenarioCard
+            badge="初心者向け"
+            title="Type A"
+            recommended="ConoHa WING"
+            cta={
+              <CtaButton href={CONOHA_URL} size="sm">
+                ConoHa WING を見る →
+              </CtaButton>
+            }
+          >
+            <p>
+              <strong>初めてサーバー契約する人</strong>に最適。管理画面が1画面で完結し、迷いません。
+            </p>
+          </ScenarioCard>
+          <ScenarioCard
+            badge="長期重視"
+            title="Type B"
+            recommended="エックスサーバー"
+            cta={
+              <CtaButton href={XSERVER_URL} size="sm">
+                エックスサーバーを見る →
+              </CtaButton>
+            }
+          >
+            <p>
+              <strong>長期運用・安定性重視</strong>なら老舗。2003年からの運用実績、設定代行月3回無料。
+            </p>
+          </ScenarioCard>
+          <ScenarioCard
+            badge="複数サイト"
+            title="Type C"
+            recommended="エックスサーバー"
+            cta={
+              <CtaButton href={XSERVER_URL} variant="outline" size="sm">
+                プラン詳細を見る →
+              </CtaButton>
+            }
+          >
+            <p>
+              <strong>サイトを複数運営する</strong>予定なら、SSD 500GB と長期運用実績が効きます。
+            </p>
+          </ScenarioCard>
+        </ScenarioGrid>
+      </ConclusionBox>
+
       <p>
         最初の10日間お試しで決めたい人は<strong>エックスサーバー（無料お試し10日）</strong>、初期費用を抑えたい人は<strong>ConoHa WING（時間単位課金あり）</strong>。本記事ではこの判断軸を、項目別に深掘りします。
       </p>
-      <p>
-        公式情報：<a href="https://px.a8.net/svt/ejp?a8mat=4B3LMV+C506SY+CO4+61JSI" rel="nofollow noopener noreferrer" target="_blank">エックスサーバー公式サイト</a> / <a href="https://px.a8.net/svt/ejp?a8mat=4B3LMV+ALMVJM+50+5SKSCY" rel="nofollow noopener noreferrer" target="_blank">ConoHa WING公式サイト</a>
-      </p>
 
       <h2>早見表: 主要スペック・料金</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>項目</th>
-            <th>エックスサーバー（スタンダード）</th>
-            <th>ConoHa WING（ベーシック）</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>運営年数</td>
-            <td>2003年〜（公式が国内シェアNo.1を主張）</td>
-            <td>2018年9月〜（GMOインターネットグループ）</td>
-          </tr>
-          <tr>
-            <td>キャンペーン月額（※）</td>
-            <td>495円〜（通常990円、約50%OFF）</td>
-            <td>678円〜（通常1,452円、53%OFF）</td>
-          </tr>
-          <tr>
-            <td>vCPU / メモリ</td>
-            <td>6コア / 8GB</td>
-            <td>6コア / 8GB</td>
-          </tr>
-          <tr>
-            <td>SSD容量</td>
-            <td><strong>NVMe 500GB</strong></td>
-            <td>NVMe 300GB</td>
-          </tr>
-          <tr>
-            <td>転送量</td>
-            <td>無制限</td>
-            <td>無制限</td>
-          </tr>
-          <tr>
-            <td>稼働率</td>
-            <td>99.99%</td>
-            <td>99.99%</td>
-          </tr>
-          <tr>
-            <td>独自ドメイン</td>
-            <td>2個まで永久無料</td>
-            <td>2個まで永久無料</td>
-          </tr>
-          <tr>
-            <td>無料SSL</td>
-            <td>あり</td>
-            <td>あり</td>
-          </tr>
-          <tr>
-            <td>自動バックアップ</td>
-            <td>14日分無料</td>
-            <td>14日分無料</td>
-          </tr>
-          <tr>
-            <td>無料お試し</td>
-            <td><strong>10日間あり</strong></td>
-            <td>なし（時間課金で始められる）</td>
-          </tr>
-          <tr>
-            <td>WordPress</td>
-            <td>クイックスタート</td>
-            <td>かんたんセットアップ + テーマ同時インストール</td>
-          </tr>
-          <tr>
-            <td>管理画面</td>
-            <td>2画面分離（サーバーパネル + Xserverアカウント）</td>
-            <td><strong>1画面統合</strong></td>
-          </tr>
-          <tr>
-            <td>サポート</td>
-            <td>メール24時間 / 電話・チャット平日10-18時 + <strong>設定代行月3回無料</strong></td>
-            <td>メール24時間 / 電話・チャット平日10-18時</td>
-          </tr>
-        </tbody>
-      </table>
+      <ComparisonTable
+        headers={[
+          "項目",
+          "エックスサーバー（スタンダード）",
+          "ConoHa WING（ベーシック）",
+        ]}
+        rows={[
+          {
+            label: "運営年数",
+            cells: ["2003年〜（公式が国内シェアNo.1を主張）", "2018年9月〜（GMOインターネットグループ）"],
+            winnerIndex: 0,
+          },
+          {
+            label: "キャンペーン月額（※）",
+            cells: ["495円〜（通常990円、約50%OFF）", "678円〜（通常1,452円、53%OFF）"],
+            winnerIndex: 0,
+          },
+          {
+            label: "vCPU / メモリ",
+            cells: ["6コア / 8GB", "6コア / 8GB"],
+          },
+          {
+            label: "SSD容量",
+            cells: ["NVMe 500GB", "NVMe 300GB"],
+            winnerIndex: 0,
+          },
+          {
+            label: "転送量",
+            cells: ["無制限", "無制限"],
+          },
+          {
+            label: "稼働率",
+            cells: ["99.99%", "99.99%"],
+          },
+          {
+            label: "独自ドメイン",
+            cells: ["2個まで永久無料", "2個まで永久無料"],
+          },
+          {
+            label: "無料SSL",
+            cells: ["あり", "あり"],
+          },
+          {
+            label: "自動バックアップ",
+            cells: ["14日分無料", "14日分無料"],
+          },
+          {
+            label: "無料お試し",
+            cells: ["10日間あり", "なし（時間課金で始められる）"],
+            winnerIndex: 0,
+          },
+          {
+            label: "WordPress",
+            cells: ["クイックスタート", "かんたんセットアップ + テーマ同時インストール"],
+            winnerIndex: 1,
+          },
+          {
+            label: "管理画面",
+            cells: [
+              "2画面分離（サーバーパネル + Xserverアカウント）",
+              "1画面統合",
+            ],
+            winnerIndex: 1,
+          },
+          {
+            label: "サポート",
+            cells: [
+              "メール24時間 / 電話・チャット平日 + 設定代行月3回無料",
+              "メール24時間 / 電話・チャット平日",
+            ],
+            winnerIndex: 0,
+          },
+        ]}
+      />
       <p>
-        <strong>vCPU・メモリは同じ8GB / 6コアで、実用上の差はわずか</strong>。違いが出るのは「実績」「使いやすさ」「SSD容量」「サポートの厚み」「キャンペーンの中身」など、付加価値の部分です。
+        <strong>vCPU・メモリは同じ8GB / 6コアで、実用上の差はわずか</strong>。違いが出るのは「実績」「使いやすさ」「SSD容量」「サポートの厚み」「キャンペーンの中身」など、付加価値の部分です。緑色のセルは<strong>項目ごとの優位</strong>を示しています。
       </p>
       <p className="text-xs text-black/50 dark:text-white/50">
         ※ キャンペーン月額・割引率は2026年5月時点の表記。最新情報・終了日は必ず公式サイトでご確認ください。スペック・料金は変動する可能性があります。
       </p>
 
+      <CampaignBox title="🔥 2026年5月時点で実施中のキャンペーン">
+        <ul className="list-disc pl-5 space-y-1.5">
+          <li>
+            <strong>エックスサーバー</strong>: 初期費用無料 + スタンダード月額 <strong>495円〜（約50%OFF）</strong>。10日間無料お試しあり
+          </li>
+          <li>
+            <strong>ConoHa WING</strong>: HappySpringキャンペーン、ベーシック月額 <strong>678円〜（最大53%OFF）</strong>
+          </li>
+        </ul>
+        <p className="text-xs mt-3 text-amber-700/80 dark:text-amber-300/80">
+          キャンペーンは予告なく終了・変更される場合があります。最新情報は公式サイトでご確認ください。
+        </p>
+      </CampaignBox>
+
       <h2>違い①: 表示速度の実測</h2>
       <p>
         両社とも公式に「サーバー速度No.1」「サーバー処理速度国内最速」を主張していますが（ConoHa WING は2025年11月自社調べ・h2load/Apache Bench測定値を根拠として明記）、第三者の実測値で比較すると<strong>差は誤差レベル</strong>です：
       </p>
-      <table>
-        <thead>
-          <tr>
-            <th>指標</th>
-            <th>エックスサーバー</th>
-            <th>ConoHa WING</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>PageSpeed デスクトップ</td>
-            <td>98点</td>
-            <td>99点</td>
-          </tr>
-          <tr>
-            <td>LCP（最大表示時間）</td>
-            <td>1.2秒</td>
-            <td>1.1秒</td>
-          </tr>
-          <tr>
-            <td>読み込み完了</td>
-            <td>1.8秒</td>
-            <td>1.6秒</td>
-          </tr>
-        </tbody>
-      </table>
+      <ComparisonTable
+        headers={["指標", "エックスサーバー", "ConoHa WING"]}
+        rows={[
+          {
+            label: "PageSpeed デスクトップ",
+            cells: ["98点", "99点"],
+            winnerIndex: 1,
+          },
+          {
+            label: "LCP（最大表示時間）",
+            cells: ["1.2秒", "1.1秒"],
+            winnerIndex: 1,
+          },
+          {
+            label: "読み込み完了",
+            cells: ["1.8秒", "1.6秒"],
+            winnerIndex: 1,
+          },
+        ]}
+      />
       <p>
         ConoHa WING は「WEXAL」というAI高速化機能で僅差で先行する傾向ですが、<strong>体感的な違いはほとんどありません</strong>。Core Web Vitals 的にもどちらも合格点です。
       </p>
@@ -193,56 +234,58 @@ export default function Page() {
       <p>
         どちらも「契約と同時にWordPressサイトが立ち上がる」機能を持っていますが、ConoHa WING の方が一歩先を行きます：
       </p>
-      <table>
-        <thead>
-          <tr>
-            <th>機能</th>
-            <th>エックスサーバー</th>
-            <th>ConoHa WING</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>初回セットアップ</td>
-            <td>WordPress クイックスタート</td>
-            <td>WordPress かんたんセットアップ</td>
-          </tr>
-          <tr>
-            <td>テーマ同時インストール</td>
-            <td>不可（後で手動）</td>
-            <td><strong>可能</strong>（JIN:R / GOLDBLOG など複数のWordPressテーマから選択）</td>
-          </tr>
-          <tr>
-            <td>移行ツール</td>
-            <td>WordPress 簡単移行</td>
-            <td>WordPress かんたん移行 + 代行サービス</td>
-          </tr>
-          <tr>
-            <td>有料テーマ割引</td>
-            <td>提携テーマあり</td>
-            <td>JIN:R など提携テーマを割引で購入可</td>
-          </tr>
-        </tbody>
-      </table>
+      <ComparisonTable
+        headers={["機能", "エックスサーバー", "ConoHa WING"]}
+        rows={[
+          {
+            label: "初回セットアップ",
+            cells: ["WordPress クイックスタート", "WordPress かんたんセットアップ"],
+          },
+          {
+            label: "テーマ同時インストール",
+            cells: [
+              "不可（後で手動）",
+              "JIN:R / GOLDBLOG など複数のテーマから選択",
+            ],
+            winnerIndex: 1,
+          },
+          {
+            label: "移行ツール",
+            cells: ["WordPress 簡単移行", "WordPress かんたん移行 + 代行サービス"],
+            winnerIndex: 1,
+          },
+          {
+            label: "有料テーマ割引",
+            cells: ["提携テーマあり", "JIN:R など提携テーマを割引で購入可"],
+          },
+        ]}
+      />
       <p>
         <strong>「ブログを始めるならテーマも一緒に決めたい」</strong>という人は ConoHa WING がワンクリック多く減ります。一方<strong>「テーマは自分で選びたい」「最初は無料テーマで様子を見たい」</strong>人にはエックスサーバーで十分。
       </p>
 
       <h2>違い④: 安定性・実績</h2>
-      <p>
-        運用年数の差では、エックスサーバーに長期実績の安心感があります：
-      </p>
-      <ul>
-        <li>
-          <strong>エックスサーバー: 2003年〜運営開始</strong>: ホスティング業界の老舗。公式が掲げる稼働率は99.99%
-        </li>
-        <li>
-          <strong>ConoHa WING: 2018年9月〜</strong>: 比較的新しいが、GMOインターネットグループの基盤を持つ
-        </li>
-        <li>
-          <strong>リソース割り当ての考え方</strong>: ConoHa WING の標準プラン（WINGパック）は混雑度に応じた共用環境（公式表記）。確実なリソース確保には、ConoHa WING のビジネスプランやリザーブドプランへのアップグレードが必要
-        </li>
-      </ul>
+      <ProsConsList
+        pros={[
+          <>
+            <strong>エックスサーバー: 2003年〜</strong> ホスティング業界の老舗。公式が掲げる稼働率99.99%
+          </>,
+          <>
+            <strong>20年以上の運用実績</strong> 大規模な障害履歴の少なさ
+          </>,
+          <>
+            <strong>明確なリソース割り当て</strong> プランごとのvCPU/メモリ目安が明記
+          </>,
+        ]}
+        cons={[
+          <>
+            <strong>ConoHa WING: 2018年9月〜</strong> まだ約7年で運用実績は蓄積中
+          </>,
+          <>
+            <strong>WINGパックは共用環境</strong> 確実なリソース確保には ビジネス/リザーブドプランへのアップグレードが必要
+          </>,
+        ]}
+      />
       <p>
         ConoHa WING は2018年開始でまだ約7年程度。エックスサーバーほどの長期にわたる運用実績はまだ蓄積中、というフェーズです。利用者数も積み上がっており、サービス品質に大きな問題があるわけではありません。
       </p>
@@ -254,138 +297,164 @@ export default function Page() {
       <p>
         基本的なサポート内容（メール24時間、電話・チャット平日10-18時）は同等ですが、エックスサーバーには見過ごせない強みがあります：
       </p>
-      <ul>
-        <li>
-          <strong>設定代行サービスが月3回まで無料</strong>: SSL設定、ドメイン設定、WordPress移行などをサーバ会社が代わりにやってくれる。初心者には心強い
-        </li>
-        <li>
-          <strong>マニュアル・ナレッジベースの充実度</strong>: 20年以上の運用で蓄積された記事数。Google検索で大抵の問題が解決
-        </li>
-        <li>
-          <strong>ユーザーコミュニティの厚み</strong>: 第三者の解説記事・YouTube動画が豊富
-        </li>
-      </ul>
+      <ProsConsList
+        pros={[
+          <>
+            <strong>設定代行サービスが月3回まで無料（エックスサーバー）</strong>: SSL設定、ドメイン設定、WordPress移行などをサーバ会社が代行。初心者には心強い
+          </>,
+          <>
+            <strong>マニュアル・ナレッジベースの充実度</strong>: 20年以上の運用で蓄積された記事数。Google検索で大抵の問題が解決
+          </>,
+          <>
+            <strong>第三者の解説記事・YouTube動画が豊富</strong>: 困ったときに解決情報にたどり着きやすい
+          </>,
+        ]}
+      />
       <p>
         ConoHa WING も後発で十分なサポートを揃えていますが、ナレッジベースの厚みでは敵いません。「困った時に検索して即解決できる」かどうかは、初心者にとって長期コストに直結します。
       </p>
 
       <h2>違い⑥: キャンペーン・割引の中身</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>項目</th>
-            <th>エックスサーバー</th>
-            <th>ConoHa WING</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>長期割引</td>
-            <td>最大50%OFF（時期による）</td>
-            <td>最大53%OFF（WINGパック）</td>
-          </tr>
-          <tr>
-            <td>紹介プログラム</td>
-            <td>最大10,000円割引</td>
-            <td>最大5,000円割引</td>
-          </tr>
-          <tr>
-            <td>初期費用</td>
-            <td>無料</td>
-            <td>無料</td>
-          </tr>
-          <tr>
-            <td><strong>更新時の割引</strong></td>
-            <td>更新時もキャンペーン適用されることあり</td>
-            <td><strong>更新時はキャンペーン価格適用なし</strong>（要注意）</td>
-          </tr>
-        </tbody>
-      </table>
+      <ComparisonTable
+        headers={["項目", "エックスサーバー", "ConoHa WING"]}
+        rows={[
+          {
+            label: "長期割引",
+            cells: ["最大50%OFF（時期による）", "最大53%OFF（WINGパック）"],
+            winnerIndex: 1,
+          },
+          {
+            label: "紹介プログラム",
+            cells: ["最大10,000円割引", "最大5,000円割引"],
+            winnerIndex: 0,
+          },
+          {
+            label: "初期費用",
+            cells: ["無料", "無料"],
+          },
+          {
+            label: "更新時の割引",
+            cells: [
+              "更新時もキャンペーン適用されることあり",
+              "更新時はキャンペーン価格適用なし（要注意）",
+            ],
+            winnerIndex: 0,
+          },
+        ]}
+      />
       <p>
         <strong>長期コストで見ると、更新時の扱いに差</strong>があります。ConoHa WING は契約初回は最安ですが、更新時に通常料金に戻ることが多い。エックスサーバーは更新キャンペーンが定期的に行われています。
       </p>
 
       <h2>シーン別おすすめ詳細</h2>
 
-      <h3>シーンA: 初めてのブログ・副業ブロガー</h3>
-      <p>
-        →<strong>ConoHa WING</strong>
-      </p>
-      <p>
-        管理画面の使いやすさ、WordPress + テーマ同時セットアップ、初期コストの安さで、立ち上がりの速さが圧倒的。「今夜中にブログ開設したい」が叶います。1ヶ月で挫折しても時間課金で安く済む（数百円）のもプラス。
-      </p>
-      <p>
-        <a href="https://px.a8.net/svt/ejp?a8mat=4B3LMV+ALMVJM+50+5SKSCY" rel="nofollow noopener noreferrer" target="_blank">ConoHa WINGでブログを始める →</a>
-      </p>
-
-      <h3>シーンB: 副業のステップアップ・複数サイト運営</h3>
-      <p>
-        →<strong>エックスサーバー</strong>
-      </p>
-      <p>
-        マルチドメイン無制限、SSD容量500GB、長期運用の実績、設定代行サポートの厚み。「サイトを伸ばす」段階で詰まる頻度が少ない。10日間無料お試しで動作確認できるのも安心材料。
-      </p>
-      <p>
-        <a href="https://px.a8.net/svt/ejp?a8mat=4B3LMV+C506SY+CO4+61JSI" rel="nofollow noopener noreferrer" target="_blank">エックスサーバーを試してみる →</a>
-      </p>
-
-      <h3>シーンC: ポートフォリオサイト・個人開発</h3>
-      <p>
-        →<strong>どちらでも可</strong>（やや ConoHa WING）
-      </p>
-      <p>
-        Web開発者なら管理画面の差は大した問題ではないので、料金とキャンペーンで決めて良い。WordPress 以外（Next.js、Hugo 等）を使うなら、レンタルサーバーよりも <strong>Vercel / Netlify / Cloudflare Pages の無料枠</strong> の方が現代的かつ安いです。
-      </p>
-
-      <h3>シーンD: 中小ビジネスサイト・コーポレートサイト</h3>
-      <p>
-        →<strong>エックスサーバー（場合によりエックスサーバービジネス）</strong>
-      </p>
-      <p>
-        信頼性が事業価値に直結するなら老舗の安心感を選ぶのが定石。サポートの厚みも、運用工数を会社が抱えなくて済む価値があります。
-      </p>
-
-      <h3>シーンE: アクセスの多いサイト・大規模化対応</h3>
-      <p>
-        →<strong>エックスサーバープレミアム</strong>または<strong>VPS（XServer VPS）</strong>
-      </p>
-      <p>
-        共用レンタルサーバーで限界が見えたら、専有リソースの VPS or 専用サーバーへ移行する選択肢もあります。<a href="https://px.a8.net/svt/ejp?a8mat=4B3LMV+C5LMEQ+CO4+25EKCY" rel="nofollow noopener noreferrer" target="_blank">XServer VPS</a> なら同じ管理画面体系なので移行も楽。
-      </p>
+      <ScenarioGrid>
+        <ScenarioCard
+          badge="🌱 はじめての人"
+          title="シーンA"
+          recommended="ConoHa WING"
+          cta={
+            <CtaButton href={CONOHA_URL} size="sm">
+              ブログを始める →
+            </CtaButton>
+          }
+        >
+          <p>
+            初めてのブログ・副業ブロガー。管理画面の使いやすさ、テーマ同時セットアップ、初期コストの安さ。<strong>「今夜中にブログ開設したい」</strong>が叶います。
+          </p>
+        </ScenarioCard>
+        <ScenarioCard
+          badge="📈 ステップアップ"
+          title="シーンB"
+          recommended="エックスサーバー"
+          cta={
+            <CtaButton href={XSERVER_URL} size="sm">
+              10日間お試し →
+            </CtaButton>
+          }
+        >
+          <p>
+            副業のステップアップ・複数サイト運営。マルチドメイン無制限、SSD 500GB、長期運用実績、設定代行サポート。
+          </p>
+        </ScenarioCard>
+        <ScenarioCard
+          badge="💻 開発者向け"
+          title="シーンC"
+          recommended="どちらでも可"
+        >
+          <p>
+            ポートフォリオサイト・個人開発。WordPress 以外なら<strong>Vercel / Cloudflare Pages の無料枠</strong>の方が現代的。
+          </p>
+        </ScenarioCard>
+        <ScenarioCard
+          badge="🏢 ビジネス用"
+          title="シーンD"
+          recommended="エックスサーバー"
+          cta={
+            <CtaButton href={XSERVER_URL} variant="outline" size="sm">
+              プラン詳細 →
+            </CtaButton>
+          }
+        >
+          <p>
+            中小ビジネスサイト・コーポレートサイト。信頼性が事業価値に直結するなら老舗の安心感を選ぶのが定石。
+          </p>
+        </ScenarioCard>
+        <ScenarioCard
+          badge="🚀 大規模化"
+          title="シーンE"
+          recommended="VPS or プレミアム"
+          cta={
+            <CtaButton href={XSERVER_VPS_URL} variant="outline" size="sm">
+              XServer VPS →
+            </CtaButton>
+          }
+        >
+          <p>
+            アクセスの多いサイト・大規模化対応。共用サーバーで限界が見えたら専有リソースの VPS へ。
+          </p>
+        </ScenarioCard>
+      </ScenarioGrid>
 
       <h2>料金以外の落とし穴・注意点</h2>
 
-      <h3>1. 契約期間と返金</h3>
-      <ul>
-        <li>長期契約（36ヶ月）で最大割引が効くが、途中解約しても<strong>残月分の返金はない</strong>（両社共通）</li>
-        <li>初心者は最初は12ヶ月契約で様子を見るのが安全</li>
-      </ul>
-
-      <h3>2. アダルト・違法コンテンツ禁止</h3>
-      <p>
-        どちらもアダルト系コンテンツは利用規約で禁止されています（ConoHa WING の旧プランでは可だったが現在は不可）。アダルト系を運営したい場合は別サービス（mixhost等）を選ぶ必要があります。
-      </p>
-
-      <h3>3. メール配信の制限</h3>
-      <p>
-        共用サーバーは大量メール送信に向きません。メルマガを運営するなら<strong>SendGrid / Mailgun / Amazon SES</strong>等の外部サービスが必要。エックスサーバーはメルマガ機能を提供している分、ConoHa WING より相対的に有利。
-      </p>
-
-      <h3>4. アクセス急増時の挙動</h3>
-      <p>
-        共用サーバーなので、突発的なバズで他ユーザーに影響を与えると一時的にリソース制限がかかります。確実なリソース確保が必要なら<strong>XServer VPS</strong> や <strong>ConoHa WING のリザーブドプラン</strong>へのアップグレードを検討。
-      </p>
+      <ProsConsList
+        pros={[
+          <>
+            <strong>長期契約（36ヶ月）で最大割引が効く</strong>。契約金額一括払いは初期負担が大きいので注意
+          </>,
+          <>
+            <strong>初心者は12ヶ月契約から始める</strong>のが安全。途中解約しても残月分の返金はない
+          </>,
+          <>
+            <strong>無料SSL は Let's Encrypt 系で十分</strong>。EV証明書が必要な金融・法人サイト以外は無料SSLで暗号強度・SEO評価とも問題なし
+          </>,
+        ]}
+        cons={[
+          <>
+            <strong>アダルト・違法コンテンツは禁止</strong>（両社共通）。アダルト系の運営には mixhost 等の別サービス必須
+          </>,
+          <>
+            <strong>大量メール送信には不向き</strong>。メルマガ運営は SendGrid / Mailgun / Amazon SES 等を併用
+          </>,
+          <>
+            <strong>突発的バズではリソース制限</strong>がかかることがある。確実な確保には VPS や リザーブドプランへのアップグレード検討
+          </>,
+        ]}
+      />
 
       <h2>独自ドメインも合わせて取得する</h2>
       <p>
         どちらのサーバーも「独自ドメイン2個まで永久無料」特典がありますが、<strong>3個目以降を取得したい</strong>場合は別途ドメイン取得サービスが必要です。
       </p>
       <p>
-        エックスサーバー系列の <a href="https://px.a8.net/svt/ejp?a8mat=4B3LMV+C3TBLE+CO4+15ORS2" rel="nofollow noopener noreferrer" target="_blank">XServerドメイン</a> なら、サーバーと同じアカウントで管理できて、<code>.com / .net / .jp</code> が初年度0円のキャンペーンが頻繁にあります。お名前.com やムームードメインも選択肢ですが、サーバー管理画面と統一できる利便性は侮れません。
+        エックスサーバー系列の <a href={XSERVER_DOMAIN_URL} rel="nofollow noopener noreferrer" target="_blank">XServerドメイン</a> なら、サーバーと同じアカウントで管理できて、<code>.com / .net / .jp</code> が初年度0円のキャンペーンが頻繁にあります。お名前.com やムームードメインも選択肢ですが、サーバー管理画面と統一できる利便性は侮れません。
       </p>
-      <p>
-        <a href="https://px.a8.net/svt/ejp?a8mat=4B3LMV+C3TBLE+CO4+15ORS2" rel="nofollow noopener noreferrer" target="_blank">XServerドメインで独自ドメインを取得する →</a>
-      </p>
+      <div className="my-6 flex justify-center not-prose">
+        <CtaButton href={XSERVER_DOMAIN_URL} size="md">
+          XServerドメインで独自ドメインを取得 →
+        </CtaButton>
+      </div>
 
       <h2>よくある質問</h2>
 
@@ -414,21 +483,62 @@ export default function Page() {
         Let's Encrypt 系の無料SSL証明書で十分です。EV証明書（緑色のバー）が必要な金融・法人サイトでない限り、無料SSLで暗号強度・SEO評価ともに問題ありません。詳細は <Link href="/learn/network/https-tls">HTTPS と TLS の仕組み</Link> 参照。
       </p>
 
+      {/* バナー画像配置スロット（A8バナー素材を取得後にここに貼る） */}
+      <BannerSlot caption="広告">
+        <div className="flex flex-col sm:flex-row gap-4 items-center justify-center text-xs text-black/40 dark:text-white/40">
+          [ バナー画像配置スロット - A8バナー素材を取得後ここに表示 ]
+        </div>
+      </BannerSlot>
+
       <h2>まとめ - 自分に合う選び方</h2>
       <p>
-        スペックも料金も驚くほど近い両者。決め手は<strong>「あなたが何を重視するか」</strong>だけです：
+        スペックも料金も驚くほど近い両者。決め手は<strong>「あなたが何を重視するか」</strong>だけです。
       </p>
-      <ul>
-        <li>
-          <strong>初心者・短期決戦・とにかく早く始めたい</strong> → <a href="https://px.a8.net/svt/ejp?a8mat=4B3LMV+ALMVJM+50+5SKSCY" rel="nofollow noopener noreferrer" target="_blank">ConoHa WING</a>
-        </li>
-        <li>
-          <strong>長期運用・複数サイト・安定性重視</strong> → <a href="https://px.a8.net/svt/ejp?a8mat=4B3LMV+C506SY+CO4+61JSI" rel="nofollow noopener noreferrer" target="_blank">エックスサーバー</a>
-        </li>
-        <li>
-          <strong>悩むなら無料お試し10日間</strong> → <a href="https://px.a8.net/svt/ejp?a8mat=4B3LMV+C506SY+CO4+61JSI" rel="nofollow noopener noreferrer" target="_blank">エックスサーバーで試して、合わなければConoHa WINGへ</a>
-        </li>
-      </ul>
+
+      <ScenarioGrid>
+        <ScenarioCard
+          badge="🌱 短期・初心者"
+          title="迷ったらこれ"
+          recommended="ConoHa WING"
+          cta={
+            <CtaButton href={CONOHA_URL} size="md">
+              ConoHa WINGで始める →
+            </CtaButton>
+          }
+        >
+          <p>
+            初心者・短期決戦・とにかく早く始めたい人に。管理画面1画面、テーマ同時インストール、初期コスト最小。
+          </p>
+        </ScenarioCard>
+        <ScenarioCard
+          badge="🏆 長期・実績"
+          title="安心の選択"
+          recommended="エックスサーバー"
+          cta={
+            <CtaButton href={XSERVER_URL} size="md">
+              エックスサーバー →
+            </CtaButton>
+          }
+        >
+          <p>
+            長期運用・複数サイト・安定性重視。SSD 500GB、20年以上の実績、設定代行月3回無料。
+          </p>
+        </ScenarioCard>
+      </ScenarioGrid>
+
+      <p className="text-center my-6">
+        <strong>悩むなら → </strong>
+        <a
+          href={XSERVER_URL}
+          rel="nofollow noopener noreferrer"
+          target="_blank"
+          className="text-emerald-600 dark:text-emerald-400 underline font-semibold"
+        >
+          エックスサーバーの10日間無料お試し
+        </a>
+        {" "}で先に確認するのが安全です。
+      </p>
+
       <p>
         どちらも「失敗」と言える選択ではありません。むしろこの2社で迷えるなら、外れを引かない時代になっているということです。<strong>「決めて、立ち上げる」までが勝負</strong>。本記事で違いが見えたなら、悩む時間をサイト運営の時間に変えていきましょう。
       </p>
