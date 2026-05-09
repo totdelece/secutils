@@ -30,6 +30,12 @@ const adsenseImgHosts = [
   "https://*.gstatic.com",
 ].join(" ");
 
+// A8.net アフィリエイト用（バナー画像・計測ピクセル両方）
+const a8ImgHosts = [
+  "https://*.a8.net",
+  "https://*.a8.com",
+].join(" ");
+
 const adsenseFrameHosts = [
   "https://googleads.g.doubleclick.net",
   "https://tpc.googlesyndication.com",
@@ -50,7 +56,7 @@ const cspDirectives = [
   "default-src 'self'",
   `script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com ${adsenseScriptHosts}${isDev ? " 'unsafe-eval'" : ""}`,
   "style-src 'self' 'unsafe-inline'",
-  `img-src 'self' data: blob: ${adsenseImgHosts}`,
+  `img-src 'self' data: blob: ${adsenseImgHosts} ${a8ImgHosts}`,
   "font-src 'self' data:",
   `connect-src 'self' https://vitals.vercel-insights.com ${adsenseConnectHosts}`,
   `frame-src 'self' ${adsenseFrameHosts}`,

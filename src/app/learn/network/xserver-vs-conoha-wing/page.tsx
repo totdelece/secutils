@@ -483,10 +483,35 @@ export default function Page() {
         Let's Encrypt 系の無料SSL証明書で十分です。EV証明書（緑色のバー）が必要な金融・法人サイトでない限り、無料SSLで暗号強度・SEO評価ともに問題ありません。詳細は <Link href="/learn/network/https-tls">HTTPS と TLS の仕組み</Link> 参照。
       </p>
 
-      {/* バナー画像配置スロット（A8バナー素材を取得後にここに貼る） */}
+      {/* バナー画像（A8 300x250） - エックスサーバー & ConoHa WING 並列配置 */}
       <BannerSlot caption="広告">
-        <div className="flex flex-col sm:flex-row gap-4 items-center justify-center text-xs text-black/40 dark:text-white/40">
-          [ バナー画像配置スロット - A8バナー素材を取得後ここに表示 ]
+        <div className="flex flex-col sm:flex-row gap-6 items-center justify-center">
+          <a
+            href="https://px.a8.net/svt/ejp?a8mat=4B3LMV+C506SY+CO4+6Q74X"
+            rel="nofollow noopener noreferrer"
+            target="_blank"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="https://www21.a8.net/svt/bgt?aid=260508487734&wid=001&eno=01&mid=s00000001642001130000&mc=1"
+              alt="エックスサーバー"
+              width={300}
+              height={250}
+            />
+          </a>
+          <a
+            href="https://px.a8.net/svt/ejp?a8mat=4B3LMV+ALMVJM+50+5SMI35"
+            rel="nofollow noopener noreferrer"
+            target="_blank"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="https://www20.a8.net/svt/bgt?aid=260508487641&wid=001&eno=01&mid=s00000000018035041000&mc=1"
+              alt="ConoHa WING"
+              width={300}
+              height={250}
+            />
+          </a>
         </div>
       </BannerSlot>
 
@@ -590,6 +615,22 @@ export default function Page() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="https://www13.a8.net/0.gif?a8mat=4B3LMV+C3TBLE+CO4+15ORS2"
+          width={1}
+          height={1}
+          alt=""
+        />
+        {/* エックスサーバー バナー 300x250 */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://www13.a8.net/0.gif?a8mat=4B3LMV+C506SY+CO4+6Q74X"
+          width={1}
+          height={1}
+          alt=""
+        />
+        {/* ConoHa WING バナー 300x250 */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://www15.a8.net/0.gif?a8mat=4B3LMV+ALMVJM+50+5SMI35"
           width={1}
           height={1}
           alt=""
