@@ -14,6 +14,8 @@ export type Article = {
   readingMinutes: number;
   /** 関連ツールの slug（src/lib/tools.ts と一致） */
   relatedTools?: string[];
+  /** アフィリエイトリンクを含む記事（景品表示法ステマ規制対応のPR表記が自動表示される） */
+  affiliate?: boolean;
 };
 
 export const articles: Article[] = [
@@ -306,6 +308,7 @@ export const articles: Article[] = [
     date: "2026-05-08",
     readingMinutes: 10,
     relatedTools: [],
+    affiliate: true,
   },
 ];
 

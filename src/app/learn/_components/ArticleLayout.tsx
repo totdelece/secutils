@@ -59,6 +59,21 @@ export function ArticleLayout({
         </div>
       </header>
 
+      {article.affiliate && (
+        <aside
+          role="note"
+          aria-label="広告表示"
+          className="mb-8 rounded-lg border border-amber-500/30 bg-amber-500/5 p-4 text-sm"
+        >
+          <p className="font-semibold text-amber-700 dark:text-amber-300 mb-1.5">
+            ⓘ 本記事は広告（PR）を含みます
+          </p>
+          <p className="text-black/70 dark:text-white/70 leading-relaxed text-xs sm:text-sm">
+            本記事内のリンクには広告主のアフィリエイトリンクが含まれます。リンク経由で読者がサービスを契約された場合、当サイト運営者に紹介料が支払われる場合があります。各サービスの評価・比較は独自リサーチに基づき、広告主の意向に左右されない形で行っています。価格・キャンペーン情報等は記事執筆時点のものです。最新情報は必ず公式サイトでご確認ください。
+          </p>
+        </aside>
+      )}
+
       <article
         className="
           [&_h2]:text-xl sm:[&_h2]:text-2xl [&_h2]:font-bold [&_h2]:mt-10 [&_h2]:mb-3 [&_h2]:tracking-tight [&_h2]:scroll-mt-20
