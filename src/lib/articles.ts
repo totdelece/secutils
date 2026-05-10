@@ -300,11 +300,11 @@ export const articles: Article[] = [
   {
     slug: "xserver-vs-conoha-wing",
     category: "network",
-    title: "エックスサーバー vs ConoHa WING 比較 - 後悔しにくい選び方",
+    title: "エックスサーバー vs ConoHa WING 比較 - 初心者向けの選び方",
     description:
-      "料金、無料お試し、WINGパック、容量、WordPress導線、更新時の注意点から、初心者がどちらを選ぶべきかを整理します。",
+      "無料お試し、料金、WordPressの始めやすさ、サポート、更新時の注意点を比較し、初心者が公式サイトで確認すべきポイントを整理します。",
     date: "2026-05-08",
-    readingMinutes: 9,
+    readingMinutes: 10,
     relatedTools: [],
     affiliate: true,
   },

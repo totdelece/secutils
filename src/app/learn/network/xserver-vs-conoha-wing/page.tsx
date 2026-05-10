@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ArticleLayout } from "../../_components/ArticleLayout";
 import { getArticle } from "@/lib/articles";
 
 const article = getArticle("network", "xserver-vs-conoha-wing")!;
@@ -11,683 +10,817 @@ const CONOHA_URL =
 const XSERVER_DOMAIN_URL =
   "https://px.a8.net/svt/ejp?a8mat=4B3LMV+C3TBLE+CO4+15ORS2";
 
+const bannerAds = {
+  hero: [
+    {
+      service: "エックスサーバー",
+      href: "https://px.a8.net/svt/ejp?a8mat=4B3LMV+C506SY+CO4+6Q74X",
+      src: "https://www21.a8.net/svt/bgt?aid=260508487734&wid=001&eno=01&mid=s00000001642001130000&mc=1",
+      width: 300,
+      height: 250,
+    },
+    {
+      service: "ConoHa WING",
+      href: "https://px.a8.net/svt/ejp?a8mat=4B3LMV+ALMVJM+50+5SMI35",
+      src: "https://www20.a8.net/svt/bgt?aid=260508487641&wid=001&eno=01&mid=s00000000018035041000&mc=1",
+      width: 300,
+      height: 250,
+    },
+  ],
+  middle: [
+    {
+      service: "エックスサーバー",
+      href: "https://px.a8.net/svt/ejp?a8mat=4B3LMV+C506SY+CO4+6EU6P",
+      src: "https://www19.a8.net/svt/bgt?aid=260508487734&wid=001&eno=01&mid=s00000001642001130000&mc=1",
+      width: 300,
+      height: 250,
+    },
+    {
+      service: "ConoHa WING",
+      href: "https://px.a8.net/svt/ejp?a8mat=4B3LMV+ALMVJM+50+5SEKLD",
+      src: "https://www15.a8.net/svt/bgt?aid=260508487641&wid=001&eno=01&mid=s00000000018035041000&mc=1",
+      width: 728,
+      height: 90,
+    },
+  ],
+  bottom: [
+    {
+      service: "エックスサーバー",
+      href: "https://px.a8.net/svt/ejp?a8mat=4B3LMV+C506SY+CO4+6CHB5",
+      src: "https://www17.a8.net/svt/bgt?aid=260508487734&wid=001&eno=01&mid=s00000001642001130000&mc=1",
+      width: 350,
+      height: 240,
+    },
+    {
+      service: "ConoHa WING",
+      href: "https://px.a8.net/svt/ejp?a8mat=4B3LMV+ALMVJM+50+5SPXJL",
+      src: "https://www11.a8.net/svt/bgt?aid=260508487641&wid=001&eno=01&mid=s00000000018035041000&mc=1",
+      width: 336,
+      height: 280,
+    },
+  ],
+};
+
+const comparisonRows = [
+  {
+    label: "料金",
+    xserver: "無料お試し後に本契約。長期運用でも見通しを立てやすい。",
+    conoha: "WINGパックの長期前払いで割引が入りやすい。最新条件は公式で確認。",
+    winner: "目的で分かれる",
+  },
+  {
+    label: "無料お試し",
+    xserver: "10日間の無料お試しあり。管理画面やWordPressを触ってから判断しやすい。",
+    conoha: "WINGパックは長期契約型。申し込み前に解約条件を確認したい。",
+    winner: "エックスサーバー",
+  },
+  {
+    label: "WordPressの始めやすさ",
+    xserver: "慣れれば問題ないが、初回は管理画面の役割を理解する必要がある。",
+    conoha: "申し込みからWordPress開設までの導線がまとまっていて初心者向き。",
+    winner: "ConoHa WING",
+  },
+  {
+    label: "表示速度",
+    xserver: "国内の定番サーバーとして十分。実測はテーマや画像にも左右される。",
+    conoha: "高速訴求が強い。体感速度はサイト設計やキャッシュ設定も重要。",
+    winner: "大差なし",
+  },
+  {
+    label: "サポート",
+    xserver: "電話・メール対応あり。長期運用や事業用途でも選びやすい。",
+    conoha: "電話・メール対応あり。個人ブログ用途なら十分に候補になる。",
+    winner: "大差なし",
+  },
+  {
+    label: "独自ドメイン",
+    xserver: "契約条件により特典あり。サーバーと分けて管理したい人にも向く。",
+    conoha: "WINGパックなら独自ドメイン特典が分かりやすい。",
+    winner: "ConoHa WING",
+  },
+  {
+    label: "初心者向け度",
+    xserver: "無料で試せる安心感が強い。迷っている人に向く。",
+    conoha: "ブログを始める前提なら手順が短く、最初の迷いが少ない。",
+    winner: "ConoHa WING",
+  },
+  {
+    label: "注意点",
+    xserver: "無料期間後の支払い、ドメイン特典条件、更新費用を確認。",
+    conoha: "長期前払い、途中解約条件、通常料金への戻り方を確認。",
+    winner: "必ず公式確認",
+  },
+];
+
+const faqs = [
+  {
+    question: "結局、初心者はどちらを選ぶべきですか？",
+    answer:
+      "迷っていて実際に触ってから決めたいならエックスサーバー、ブログを作ることが決まっていて初期設定を短くしたいならConoHa WINGが選びやすいです。",
+  },
+  {
+    question: "料金はどちらが安いですか？",
+    answer:
+      "キャンペーン、契約期間、更新時期で変わります。この記事では断定せず、申し込み前に必ず公式サイトの総支払額と更新料金を確認する前提で比較しています。",
+  },
+  {
+    question: "表示速度だけで選んでいいですか？",
+    answer:
+      "おすすめしません。速度はサーバーだけでなく、WordPressテーマ、画像サイズ、プラグイン、キャッシュ設定でも大きく変わります。初心者は操作性と契約条件も見たほうが失敗しにくいです。",
+  },
+  {
+    question: "無料お試しは重要ですか？",
+    answer:
+      "初めてレンタルサーバーを使う人には重要です。管理画面、WordPress、メール、SSL設定を触ってから判断できるため、失敗しにくくなります。",
+  },
+];
+
+function Badge({
+  children,
+  tone = "emerald",
+}: {
+  children: React.ReactNode;
+  tone?: "emerald" | "blue" | "orange" | "slate";
+}) {
+  const tones = {
+    emerald: "bg-emerald-50 text-emerald-700 ring-emerald-200",
+    blue: "bg-blue-50 text-blue-700 ring-blue-200",
+    orange: "bg-orange-50 text-orange-700 ring-orange-200",
+    slate: "bg-slate-100 text-slate-700 ring-slate-200",
+  };
+
+  return (
+    <span
+      className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-bold ring-1 ${tones[tone]}`}
+    >
+      {children}
+    </span>
+  );
+}
+
 function AffiliateButton({
   href,
   children,
-  tone = "dark",
+  tone = "primary",
 }: {
   href: string;
   children: React.ReactNode;
-  tone?: "dark" | "light";
+  tone?: "primary" | "orange" | "outline";
 }) {
-  const className =
-    tone === "dark"
-      ? "inline-flex w-full items-center justify-center rounded-md bg-slate-950 px-4 py-3 text-sm font-bold text-white no-underline transition hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200 sm:w-auto"
-      : "inline-flex w-full items-center justify-center rounded-md border border-slate-300 bg-white px-4 py-3 text-sm font-bold text-slate-950 no-underline transition hover:border-emerald-500 hover:text-emerald-700 dark:border-white/15 dark:bg-white/5 dark:text-white dark:hover:border-emerald-400 sm:w-auto";
+  const tones = {
+    primary:
+      "bg-emerald-600 text-white shadow-emerald-900/20 hover:bg-emerald-700",
+    orange:
+      "bg-orange-500 text-white shadow-orange-900/20 hover:bg-orange-600",
+    outline:
+      "border border-slate-300 bg-white text-slate-950 hover:border-emerald-500 hover:text-emerald-700",
+  };
 
   return (
     <a
       href={href}
       rel="nofollow noopener noreferrer"
       target="_blank"
-      className={className}
+      className={`inline-flex min-h-12 w-full items-center justify-center rounded-md px-5 py-3 text-center text-sm font-black no-underline shadow-lg transition sm:w-auto ${tones[tone]}`}
     >
       {children}
     </a>
   );
 }
 
-function DecisionCard({
+function SectionTitle({
+  eyebrow,
   title,
-  service,
   children,
-  href,
 }: {
+  eyebrow: string;
   title: string;
-  service: string;
-  children: React.ReactNode;
-  href: string;
+  children?: React.ReactNode;
 }) {
   return (
-    <div className="not-prose rounded-lg border border-slate-200 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-white/[0.04]">
-      <div className="text-xs font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">
+    <div className="mb-6">
+      <div className="text-xs font-black uppercase tracking-wide text-emerald-700">
+        {eyebrow}
+      </div>
+      <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-950 sm:text-3xl">
         {title}
+      </h2>
+      {children && (
+        <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-600 sm:text-base">
+          {children}
+        </p>
+      )}
+    </div>
+  );
+}
+
+function ServiceCard({
+  rank,
+  label,
+  name,
+  lead,
+  points,
+  href,
+  tone,
+}: {
+  rank: string;
+  label: string;
+  name: string;
+  lead: string;
+  points: string[];
+  href: string;
+  tone: "emerald" | "orange";
+}) {
+  const isEmerald = tone === "emerald";
+
+  return (
+    <article
+      className={`relative overflow-hidden rounded-lg border bg-white p-5 shadow-sm ${
+        isEmerald ? "border-emerald-300" : "border-orange-300"
+      }`}
+    >
+      <div
+        className={`absolute right-4 top-4 rounded-full px-3 py-1 text-xs font-black ${
+          isEmerald
+            ? "bg-emerald-100 text-emerald-800"
+            : "bg-orange-100 text-orange-800"
+        }`}
+      >
+        {rank}
       </div>
-      <div className="mt-2 text-xl font-black text-emerald-700 dark:text-emerald-300">
-        {service}
-      </div>
-      <div className="mt-3 text-sm leading-7 text-slate-700 dark:text-slate-300">
-        {children}
-      </div>
-      <div className="mt-4">
-        <AffiliateButton href={href} tone="light">
-          公式サイトで確認する
+      <Badge tone={isEmerald ? "emerald" : "orange"}>{label}</Badge>
+      <h3 className="mt-4 text-2xl font-black tracking-tight text-slate-950">
+        {name}
+      </h3>
+      <p className="mt-3 text-sm leading-7 text-slate-600">{lead}</p>
+      <ul className="mt-4 space-y-2">
+        {points.map((point) => (
+          <li key={point} className="flex gap-2 text-sm leading-6 text-slate-700">
+            <span
+              className={`mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-xs font-black text-white ${
+                isEmerald ? "bg-emerald-600" : "bg-orange-500"
+              }`}
+            >
+              ✓
+            </span>
+            <span>{point}</span>
+          </li>
+        ))}
+      </ul>
+      <div className="mt-5">
+        <AffiliateButton href={href} tone={isEmerald ? "primary" : "orange"}>
+          公式サイトで条件を確認
         </AffiliateButton>
       </div>
-    </div>
+    </article>
   );
 }
 
-function CheckList({ items }: { items: string[] }) {
+function BannerSlot({
+  title,
+  description,
+  ads,
+}: {
+  title: string;
+  description: string;
+  ads: typeof bannerAds.hero;
+}) {
   return (
-    <ul className="not-prose mt-4 space-y-2">
-      {items.map((item) => (
-        <li
-          key={item}
-          className="flex gap-2 rounded-md bg-slate-50 px-3 py-2 text-sm text-slate-700 dark:bg-white/5 dark:text-slate-300"
+    <aside className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+        <div>
+          <div className="text-[11px] font-black uppercase tracking-wide text-slate-400">
+            PR / 広告
+          </div>
+          <div className="mt-1 text-base font-black text-slate-950">{title}</div>
+          <p className="mt-1 text-xs leading-5 text-slate-500">{description}</p>
+        </div>
+        <Badge tone="slate">公式確認</Badge>
+      </div>
+      <div className="grid items-center justify-center gap-4 md:grid-cols-2">
+        {ads.map((ad) => (
+          <a
+            key={`${title}-${ad.service}`}
+            href={ad.href}
+            rel="nofollow noopener noreferrer"
+            target="_blank"
+            className="flex justify-center rounded-md border border-slate-100 bg-slate-50 p-2 transition hover:border-emerald-300 hover:bg-emerald-50"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={ad.src}
+              alt={`${ad.service} 公式キャンペーン`}
+              width={ad.width}
+              height={ad.height}
+              className="h-auto max-w-full rounded"
+            />
+          </a>
+        ))}
+      </div>
+    </aside>
+  );
+}
+
+function ComparisonTable() {
+  return (
+    <div className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
+      <div className="hidden grid-cols-[1.1fr_1fr_1fr] bg-slate-950 text-xs font-black text-white sm:text-sm md:grid">
+        <div className="p-3 sm:p-4">比較項目</div>
+        <div className="border-l border-white/10 p-3 sm:p-4">
+          エックスサーバー
+        </div>
+        <div className="border-l border-white/10 p-3 sm:p-4">ConoHa WING</div>
+      </div>
+      {comparisonRows.map((row, index) => (
+        <div
+          key={row.label}
+          className={`grid grid-cols-1 border-t border-slate-200 md:grid-cols-[1.1fr_1fr_1fr] ${
+            index % 2 === 0 ? "bg-white" : "bg-slate-50/70"
+          }`}
         >
-          <span className="font-bold text-emerald-600 dark:text-emerald-300">
-            ✓
-          </span>
-          <span>{item}</span>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function SimpleTable({
-  rows,
-}: {
-  rows: { label: string; xserver: React.ReactNode; conoha: React.ReactNode }[];
-}) {
-  return (
-    <div className="not-prose my-7 overflow-x-auto rounded-lg border border-slate-200 bg-white dark:border-white/10 dark:bg-white/[0.04]">
-      <table className="w-full min-w-[680px] border-collapse text-sm">
-        <thead>
-          <tr className="border-b border-slate-200 bg-slate-50 dark:border-white/10 dark:bg-white/5">
-            <th className="px-4 py-3 text-left font-bold text-slate-600 dark:text-slate-300">
-              判断軸
-            </th>
-            <th className="px-4 py-3 text-left font-bold text-slate-950 dark:text-white">
+          <div className="p-4">
+            <div className="text-sm font-black text-slate-950">{row.label}</div>
+            <div className="mt-2 inline-flex rounded-full bg-blue-50 px-2 py-1 text-[11px] font-bold text-blue-700">
+              {row.winner}
+            </div>
+          </div>
+          <div className="border-t border-slate-100 p-4 text-sm leading-7 text-slate-700 md:border-l md:border-t-0">
+            <div className="mb-1 text-xs font-black text-emerald-700 md:hidden">
               エックスサーバー
-            </th>
-            <th className="px-4 py-3 text-left font-bold text-slate-950 dark:text-white">
+            </div>
+            {row.xserver}
+          </div>
+          <div className="border-t border-slate-100 p-4 text-sm leading-7 text-slate-700 md:border-l md:border-t-0">
+            <div className="mb-1 text-xs font-black text-orange-700 md:hidden">
               ConoHa WING
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row) => (
-            <tr
-              key={row.label}
-              className="border-b border-slate-100 last:border-b-0 dark:border-white/10"
-            >
-              <td className="px-4 py-3 font-bold text-slate-700 dark:text-slate-200">
-                {row.label}
-              </td>
-              <td className="px-4 py-3 leading-6 text-slate-700 dark:text-slate-300">
-                {row.xserver}
-              </td>
-              <td className="px-4 py-3 leading-6 text-slate-700 dark:text-slate-300">
-                {row.conoha}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+            </div>
+            {row.conoha}
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
 
-function Verdict({
-  children,
-  title = "結論",
+function CtaPanel({
+  title,
+  description,
 }: {
-  title?: string;
-  children: React.ReactNode;
+  title: string;
+  description: string;
 }) {
   return (
-    <div className="not-prose my-8 rounded-lg border border-emerald-500/30 bg-emerald-50 p-5 dark:bg-emerald-400/10">
-      <div className="text-sm font-black text-emerald-800 dark:text-emerald-200">
-        {title}
+    <section className="rounded-lg border border-emerald-200 bg-gradient-to-br from-emerald-50 via-white to-orange-50 p-5 shadow-sm sm:p-6">
+      <div className="grid gap-5 lg:grid-cols-[1fr_auto] lg:items-center">
+        <div>
+          <Badge tone="emerald">迷ったら公式条件を確認</Badge>
+          <h2 className="mt-3 text-2xl font-black tracking-tight text-slate-950">
+            {title}
+          </h2>
+          <p className="mt-3 text-sm leading-7 text-slate-700">{description}</p>
+        </div>
+        <div className="grid gap-3 sm:grid-cols-2 lg:min-w-[430px]">
+          <AffiliateButton href={XSERVER_URL}>
+            エックスサーバーを確認
+          </AffiliateButton>
+          <AffiliateButton href={CONOHA_URL} tone="orange">
+            ConoHa WINGを確認
+          </AffiliateButton>
+        </div>
       </div>
-      <div className="mt-3 text-sm leading-7 text-slate-800 dark:text-slate-200">
-        {children}
-      </div>
-    </div>
+    </section>
   );
 }
 
-function BannerAd({
-  caption,
-  children,
-}: {
-  caption: string;
-  children: React.ReactNode;
-}) {
+function SidebarCard() {
   return (
-    <aside className="not-prose my-9 rounded-lg border border-slate-200 bg-white p-4 text-center shadow-sm dark:border-white/10 dark:bg-white/[0.04]">
-      <div className="mb-3 text-[11px] font-bold uppercase tracking-wide text-slate-400">
-        {caption}
+    <aside className="space-y-4 lg:sticky lg:top-24">
+      <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+        <div className="text-xs font-black text-slate-500">この記事の結論</div>
+        <div className="mt-3 space-y-3">
+          <div className="rounded-md bg-emerald-50 p-3">
+            <div className="text-sm font-black text-emerald-800">
+              迷ったらエックスサーバー
+            </div>
+            <p className="mt-1 text-xs leading-5 text-slate-600">
+              無料お試しで触ってから決めやすい。
+            </p>
+          </div>
+          <div className="rounded-md bg-orange-50 p-3">
+            <div className="text-sm font-black text-orange-800">
+              早く始めるならConoHa WING
+            </div>
+            <p className="mt-1 text-xs leading-5 text-slate-600">
+              WordPress開設までの導線が分かりやすい。
+            </p>
+          </div>
+        </div>
+        <div className="mt-4 grid gap-2">
+          <AffiliateButton href={XSERVER_URL}>公式で確認</AffiliateButton>
+          <AffiliateButton href={CONOHA_URL} tone="orange">
+            公式で確認
+          </AffiliateButton>
+        </div>
       </div>
-      <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-        {children}
-      </div>
+      <BannerSlot
+        title="キャンペーン確認"
+        description="申し込み前に、料金・特典・更新条件を公式サイトで確認してください。"
+        ads={[bannerAds.hero[0]]}
+      />
     </aside>
   );
 }
 
 export default function Page() {
   return (
-    <ArticleLayout article={article}>
-      <p>
-        エックスサーバーと ConoHa WING は、どちらも個人ブログ・小規模サイトの有力候補です。
-        ただし、比較で見るべきなのは「どちらが速いか」だけではありません。
-        本当に重要なのは、契約後に迷わないこと、更新時に驚かないこと、そして自分の運営スタイルに合っていることです。
-      </p>
+    <div className="bg-slate-50">
+      <div className="mx-auto max-w-6xl px-5 py-6 sm:px-6 lg:py-8">
+        <nav className="mb-6 flex items-center gap-2 text-sm text-slate-500">
+          <Link href="/" className="hover:text-slate-950">
+            Tools
+          </Link>
+          <span>/</span>
+          <Link href="/learn" className="hover:text-slate-950">
+            Learn
+          </Link>
+          <span>/</span>
+          <span>レンタルサーバー比較</span>
+        </nav>
 
-      <p>
-        先に結論を書くと、<strong>迷っている人にはエックスサーバー</strong>、
-        <strong>最初からWordPressブログを短時間で立ち上げたい人にはConoHa WING</strong>が向いています。
-        この記事では、初心者が判断しやすいように「契約前の不安」「運営中の手間」「更新時のコスト感」に分けて比較します。
-      </p>
+        <header className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
+          <div className="grid gap-0 lg:grid-cols-[1.1fr_0.9fr]">
+            <div className="p-6 sm:p-8 lg:p-10">
+              <div className="mb-4 flex flex-wrap gap-2">
+                <Badge tone="slate">PR / 広告を含みます</Badge>
+                <Badge tone="blue">2026年5月確認</Badge>
+                <Badge tone="orange">料金は公式で確認</Badge>
+              </div>
+              <h1 className="text-3xl font-black leading-tight tracking-tight text-slate-950 sm:text-5xl">
+                エックスサーバー vs ConoHa WING
+                <span className="block text-2xl text-emerald-700 sm:text-4xl">
+                  初心者向けに違いを比較
+                </span>
+              </h1>
+              <p className="mt-5 max-w-2xl text-base leading-8 text-slate-700">
+                どちらもWordPressブログや小規模サイトで選ばれやすい定番サーバーです。
+                このページでは、料金の見かけだけでなく、無料お試し、始めやすさ、更新時の注意点まで整理します。
+              </p>
+              <div className="mt-6 rounded-lg border border-emerald-200 bg-emerald-50 p-4">
+                <div className="text-sm font-black text-emerald-800">
+                  結論
+                </div>
+                <p className="mt-2 text-sm leading-7 text-slate-700">
+                  <strong>迷っているならエックスサーバー</strong>。
+                  WordPressブログをすぐ始める前提なら
+                  <strong> ConoHa WING</strong>。どちらも申し込み前に公式サイトで料金・特典・更新条件を確認してください。
+                </p>
+              </div>
+              <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                <AffiliateButton href={XSERVER_URL}>
+                  エックスサーバー公式を確認
+                </AffiliateButton>
+                <AffiliateButton href={CONOHA_URL} tone="orange">
+                  ConoHa WING公式を確認
+                </AffiliateButton>
+              </div>
+            </div>
 
-      <div className="not-prose my-8 grid gap-4 md:grid-cols-2">
-        <DecisionCard
-          title="迷ったらこちら"
-          service="エックスサーバー"
-          href={XSERVER_URL}
-        >
-          10日間無料で触れるため、管理画面・WordPress・メール設定を試してから支払えます。
-          長く運営するサイト、複数サイト、ビジネス用途ならこちらが堅い選択です。
-        </DecisionCard>
-        <DecisionCard
-          title="ブログを早く始めたいなら"
-          service="ConoHa WING"
-          href={CONOHA_URL}
-        >
-          WINGパックの割引、独自ドメイン2つ無料、WordPress開設の導線が強いです。
-          最初からブログ一本で始める人には分かりやすい体験です。
-        </DecisionCard>
-      </div>
-
-      <BannerAd caption="公式キャンペーン">
-        <a
-          href="https://px.a8.net/svt/ejp?a8mat=4B3LMV+C506SY+CO4+6Q74X"
-          rel="nofollow noopener noreferrer"
-          target="_blank"
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="https://www21.a8.net/svt/bgt?aid=260508487734&wid=001&eno=01&mid=s00000001642001130000&mc=1"
-            alt="エックスサーバー 公式キャンペーン"
-            width={300}
-            height={250}
-            className="rounded-md"
-          />
-        </a>
-        <a
-          href="https://px.a8.net/svt/ejp?a8mat=4B3LMV+ALMVJM+50+5SMI35"
-          rel="nofollow noopener noreferrer"
-          target="_blank"
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="https://www20.a8.net/svt/bgt?aid=260508487641&wid=001&eno=01&mid=s00000000018035041000&mc=1"
-            alt="ConoHa WING 公式キャンペーン"
-            width={300}
-            height={250}
-            className="rounded-md"
-          />
-        </a>
-      </BannerAd>
-
-      <Verdict title="この記事の判断基準">
-        <p>
-          速度ベンチマークだけでは決めません。共有サーバーは同居ユーザー、キャッシュ、テーマ、画像最適化、アクセス時間帯で体感が変わります。
-          そのためこの記事では、公式スペック、料金体系、試しやすさ、運用時の分かりやすさを重視します。
-        </p>
-      </Verdict>
-
-      <h2>1. まず、どちらを選ぶべきか</h2>
-
-      <SimpleTable
-        rows={[
-          {
-            label: "初めてのレンタルサーバー",
-            xserver: "おすすめ。10日間無料で管理画面とWordPressを試せるため、失敗しにくい。",
-            conoha:
-              "おすすめ。WINGパックとWordPress導線が分かりやすい。ただし前払い契約の理解は必要。",
-          },
-          {
-            label: "副業ブログを今日始めたい",
-            xserver:
-              "十分向いている。少し堅実寄りで、先に試してから決めたい人向け。",
-            conoha:
-              "かなり向いている。申込みからWordPress開設までの流れが直感的。",
-          },
-          {
-            label: "会社・店舗・長期運営",
-            xserver:
-              "向いている。長期運用の安心感、サポート、管理機能を重視するなら強い。",
-            conoha:
-              "小規模サイトなら十分。複数人管理や堅めの運用体制は事前確認したい。",
-          },
-          {
-            label: "複数サイト運営",
-            xserver:
-              "向いている。スタンダードでも500GB NVMeで余裕を取りやすい。",
-            conoha:
-              "サイト数が少ないなら問題なし。ベーシックは300GBなので画像量に注意。",
-          },
-          {
-            label: "短期で試す",
-            xserver:
-              "強い。無料お試しがあるので、契約前に触って判断できる。",
-            conoha:
-              "通常料金は時間課金だが、WINGパックは前払いで途中解約不可。短期検証なら契約形態に注意。",
-          },
-        ]}
-      />
-
-      <h2>2. 料金は「最安値」ではなく「支払い方」で見る</h2>
-
-      <p>
-        レンタルサーバー比較で一番誤解しやすいのが料金です。キャンペーン価格、実質価格、通常価格、長期契約価格が混ざるため、
-        一見すると安い方が毎年ずっと安いように見えます。しかし実際には、<strong>初回の安さ</strong>と
-        <strong>更新時の支払い</strong>を分けて考える必要があります。
-      </p>
-
-      <SimpleTable
-        rows={[
-          {
-            label: "通常の入口価格",
-            xserver:
-              "スタンダードは通常月額990円から。キャンペーン時は割引やキャッシュバックが出る。",
-            conoha:
-              "ベーシックは通常料金だと時間課金・月額上限あり。WINGパックは長期前払いで割引が大きい。",
-          },
-          {
-            label: "初期費用",
-            xserver: "0円。",
-            conoha: "0円。",
-          },
-          {
-            label: "途中解約の考え方",
-            xserver:
-              "無料お試し後に本契約。契約期間分の支払いは必要だが、契約前に試せる。",
-            conoha:
-              "WINGパックは契約期間分を一括前払い。公式注記上、契約期間中の途中解約は不可。",
-          },
-          {
-            label: "追加費用の見え方",
-            xserver:
-              "公式はシンプル料金を打ち出しており、サービス維持調整費のような別建て表示ではない。",
-            conoha:
-              "公式料金ページでは、表示価格にサービス維持調整費10%が含まれると明記されている。",
-          },
-        ]}
-      />
-
-      <Verdict>
-        <p>
-          「まず触ってから決めたい」「支払いの見通しを単純にしたい」ならエックスサーバー。
-          「ブログをやると決めていて、長期前払いで初回費用を下げたい」ならConoHa WINGです。
-        </p>
-      </Verdict>
-
-      <BannerAd caption="料金を公式で確認">
-        <a
-          href="https://px.a8.net/svt/ejp?a8mat=4B3LMV+C506SY+CO4+6EU6P"
-          rel="nofollow noopener noreferrer"
-          target="_blank"
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="https://www19.a8.net/svt/bgt?aid=260508487734&wid=001&eno=01&mid=s00000001642001130000&mc=1"
-            alt="エックスサーバー 料金を確認"
-            width={300}
-            height={250}
-            className="rounded-md"
-          />
-        </a>
-        <a
-          href="https://px.a8.net/svt/ejp?a8mat=4B3LMV+ALMVJM+50+5SEKLD"
-          rel="nofollow noopener noreferrer"
-          target="_blank"
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="https://www15.a8.net/svt/bgt?aid=260508487641&wid=001&eno=01&mid=s00000000018035041000&mc=1"
-            alt="ConoHa WING 料金を確認"
-            width={728}
-            height={90}
-            className="max-w-full rounded-md"
-          />
-        </a>
-      </BannerAd>
-
-      <h2>3. スペック比較は、数字の読み方が大事</h2>
-
-      <p>
-        公式ページ上の見え方では、エックスサーバーのスタンダードは500GB NVMe、
-        ConoHa WINGのベーシックは300GBです。ConoHa WINGは上位プランに上げると400GB、500GBへ増えます。
-        容量だけを見るならエックスサーバーのスタンダードは余裕があります。
-      </p>
-
-      <SimpleTable
-        rows={[
-          {
-            label: "比較する代表プラン",
-            xserver: "スタンダード",
-            conoha: "ベーシック",
-          },
-          {
-            label: "ディスク容量",
-            xserver: "500GB NVMe",
-            conoha: "300GB",
-          },
-          {
-            label: "独自SSL",
-            xserver: "無料",
-            conoha: "無料",
-          },
-          {
-            label: "自動バックアップ",
-            xserver: "あり。公式機能表では過去14日分の説明あり。",
-            conoha: "無料。",
-          },
-          {
-            label: "独自ドメイン特典",
-            xserver:
-              "最大2つ。スタンダードは契約期間によって条件があるため要確認。",
-            conoha:
-              "WINGパックなら2つ無料。通常料金では対象外。",
-          },
-          {
-            label: "サポート",
-            xserver: "電話・メールサポートあり。",
-            conoha: "電話・メールサポートあり。",
-          },
-        ]}
-      />
-
-      <p>
-        ただし、スペック表だけで速度は決まりません。WordPressテーマ、プラグイン、画像サイズ、キャッシュ設定、広告タグの数で体感速度は大きく変わります。
-        レンタルサーバーを変える前に、画像圧縮、不要プラグイン削除、キャッシュ設定を見直す方が効くことも多いです。
-      </p>
-
-      <h2>4. 管理画面の分かりやすさはConoHa WINGが強い</h2>
-
-      <p>
-        はじめてWordPressブログを作る人にとって、サーバー性能よりも大きい壁は「どこを押せばいいか分からない」です。
-        この点で ConoHa WING は、サーバー、ドメイン、WordPress の導線がまとまっていて、初回の迷いが少ない作りです。
-      </p>
-
-      <p>
-        一方、エックスサーバーは「XServerアカウント」と「サーバーパネル」の役割を理解する必要があります。
-        慣れれば問題ありませんが、最初だけ少し業務ツール寄りに感じるかもしれません。
-        ただし、その分、設定項目を探しやすく、長期運用では安心感があります。
-      </p>
-
-      <div className="not-prose my-7 grid gap-4 md:grid-cols-2">
-        <div className="rounded-lg border border-slate-200 bg-white p-5 dark:border-white/10 dark:bg-white/[0.04]">
-          <h3 className="m-0 text-base font-black text-slate-950 dark:text-white">
-            ConoHa WING が向く人
-          </h3>
-          <CheckList
-            items={[
-              "WordPressブログをすぐ立ち上げたい",
-              "管理画面で迷う時間を減らしたい",
-              "ドメインとサーバーを一画面で扱いたい",
-              "長期前払いに抵抗がない",
-            ]}
-          />
-        </div>
-        <div className="rounded-lg border border-slate-200 bg-white p-5 dark:border-white/10 dark:bg-white/[0.04]">
-          <h3 className="m-0 text-base font-black text-slate-950 dark:text-white">
-            エックスサーバーが向く人
-          </h3>
-          <CheckList
-            items={[
-              "契約前に無料で試したい",
-              "複数サイトやメールも含めて長く使いたい",
-              "容量に余裕を持ちたい",
-              "ビジネス用途でも安心できる定番を選びたい",
-            ]}
-          />
-        </div>
-      </div>
-
-      <h2>5. WordPressブログだけなら、どちらも合格</h2>
-
-      <p>
-        WordPressブログを1つ作るだけなら、どちらを選んでも大きな失敗にはなりにくいです。
-        無料SSL、自動バックアップ、WordPressの簡単セットアップ、独自ドメイン特典など、初心者に必要な機能は両方そろっています。
-      </p>
-
-      <p>
-        だからこそ、差が出るのは「自分がどこで不安になるか」です。
-        設定画面で迷うのが嫌ならConoHa WING。契約前に触れないのが不安ならエックスサーバー。
-        この分け方が一番実用的です。
-      </p>
-
-      <h2>6. 逆に、どちらも選ばなくていいケース</h2>
-
-      <p>
-        ここは重要です。すべてのサイトにレンタルサーバーが最適とは限りません。
-      </p>
-
-      <SimpleTable
-        rows={[
-          {
-            label: "Next.js / React のポートフォリオ",
-            xserver:
-              "WordPressやPHP中心なら向く。Next.jsの本格運用なら別候補も検討。",
-            conoha:
-              "同じくWordPress中心。静的サイトならVercelやCloudflare Pagesも候補。",
-          },
-          {
-            label: "APIや常駐アプリを動かしたい",
-            xserver:
-              "共有レンタルサーバーよりVPSの方が向く。",
-            conoha:
-              "共有レンタルサーバーよりVPSの方が向く。",
-          },
-          {
-            label: "アクセス急増前提の大規模サービス",
-            xserver:
-              "まずは上位プランやVPS、クラウド構成を検討。",
-            conoha:
-              "まずは上位プランやVPS、クラウド構成を検討。",
-          },
-        ]}
-      />
-
-      <p>
-        WordPressのブログ・メディア・会社サイトならレンタルサーバーは合理的です。
-        しかし、Webアプリ開発、API、常駐プロセス、特殊なミドルウェアが必要なら、
-        <Link href="/">このサイトのツール群</Link>を使う開発者にはVPSやPaaSの方が合う場合があります。
-      </p>
-
-      <h2>7. 最終結論</h2>
-
-      <BannerAd caption="申し込み前に公式条件を確認">
-        <a
-          href="https://px.a8.net/svt/ejp?a8mat=4B3LMV+C506SY+CO4+6CHB5"
-          rel="nofollow noopener noreferrer"
-          target="_blank"
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="https://www17.a8.net/svt/bgt?aid=260508487734&wid=001&eno=01&mid=s00000001642001130000&mc=1"
-            alt="エックスサーバー 公式サイト"
-            width={350}
-            height={240}
-            className="rounded-md"
-          />
-        </a>
-        <a
-          href="https://px.a8.net/svt/ejp?a8mat=4B3LMV+ALMVJM+50+5SPXJL"
-          rel="nofollow noopener noreferrer"
-          target="_blank"
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="https://www11.a8.net/svt/bgt?aid=260508487641&wid=001&eno=01&mid=s00000000018035041000&mc=1"
-            alt="ConoHa WING 公式サイト"
-            width={336}
-            height={280}
-            className="rounded-md"
-          />
-        </a>
-      </BannerAd>
-
-      <Verdict title="後悔しにくい選び方">
-        <p>
-          <strong>まだ迷っているなら、エックスサーバー。</strong>
-          理由は単純で、10日間無料で触ってから決められるからです。
-          管理画面、WordPress、メール、SSL設定を触って「自分に合うか」を見てから支払えます。
-        </p>
-        <p>
-          <strong>ブログを始めることが決まっていて、すぐ公開したいならConoHa WING。</strong>
-          WINGパックの割引とWordPress導線が強く、初回の立ち上げ体験は分かりやすいです。
-        </p>
-      </Verdict>
-
-      <div className="not-prose my-8 grid gap-4 md:grid-cols-2">
-        <div className="rounded-lg border border-emerald-500/25 bg-emerald-50 p-5 dark:bg-emerald-400/10">
-          <h3 className="m-0 text-lg font-black text-slate-950 dark:text-white">
-            迷ったらエックスサーバー
-          </h3>
-          <p className="mt-2 text-sm leading-7 text-slate-700 dark:text-slate-300">
-            無料お試しで触ってから決めたい人、長期運用・複数サイト・ビジネス用途を見ている人向け。
-          </p>
-          <div className="mt-4">
-            <AffiliateButton href={XSERVER_URL}>
-              エックスサーバーを10日間無料で試す
-            </AffiliateButton>
+            <div className="border-t border-slate-200 bg-slate-950 p-5 text-white lg:border-l lg:border-t-0">
+              <div className="grid gap-4">
+                <ServiceCard
+                  rank="迷ったら"
+                  label="無料お試しで確認しやすい"
+                  name="エックスサーバー"
+                  lead="10日間の無料お試しがあり、管理画面やWordPressを触ってから判断しやすい定番サーバー。"
+                  points={[
+                    "無料お試しで失敗しにくい",
+                    "長期運用・複数サイトにも向く",
+                    "事業用途でも選びやすい安心感",
+                  ]}
+                  href={XSERVER_URL}
+                  tone="emerald"
+                />
+                <ServiceCard
+                  rank="初心者向け"
+                  label="ブログ開始の導線が分かりやすい"
+                  name="ConoHa WING"
+                  lead="WINGパックとWordPress開設の流れがまとまっていて、ブログを始める前提なら選びやすい。"
+                  points={[
+                    "WordPress開設までがスムーズ",
+                    "独自ドメイン特典が分かりやすい",
+                    "長期前払いに納得できる人向き",
+                  ]}
+                  href={CONOHA_URL}
+                  tone="orange"
+                />
+              </div>
+            </div>
           </div>
+        </header>
+
+        <div className="mt-8">
+          <BannerSlot
+            title="Hero下バナー"
+            description="キャンペーンは変わるため、価格は公式サイトで確認してください。"
+            ads={bannerAds.hero}
+          />
         </div>
-        <div className="rounded-lg border border-slate-200 bg-white p-5 dark:border-white/10 dark:bg-white/[0.04]">
-          <h3 className="m-0 text-lg font-black text-slate-950 dark:text-white">
-            ブログをすぐ始めるならConoHa WING
-          </h3>
-          <p className="mt-2 text-sm leading-7 text-slate-700 dark:text-slate-300">
-            WordPress開設の導線を重視し、WINGパックの長期前払いに納得できる人向け。
-          </p>
-          <div className="mt-4">
-            <AffiliateButton href={CONOHA_URL} tone="light">
-              ConoHa WINGの料金を確認する
-            </AffiliateButton>
-          </div>
+
+        <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_320px]">
+          <main className="space-y-12">
+            <section>
+              <SectionTitle
+                eyebrow="Recommendation"
+                title="おすすめは目的で分けると迷いにくい"
+              >
+                「どちらが絶対に上」ではなく、申し込み前に不安を減らしたいのか、ブログ開設を短く済ませたいのかで選ぶのが現実的です。
+              </SectionTitle>
+              <div className="grid gap-5 md:grid-cols-2">
+                <ServiceCard
+                  rank="おすすめ 1"
+                  label="迷ったらこちら"
+                  name="エックスサーバー向きの人"
+                  lead="初めてのサーバー契約で、管理画面やWordPressを触ってから支払うか決めたい人に向いています。"
+                  points={[
+                    "無料お試しで操作感を確認したい",
+                    "長く使うブログや会社サイトを作る",
+                    "複数サイト運用も視野にある",
+                  ]}
+                  href={XSERVER_URL}
+                  tone="emerald"
+                />
+                <ServiceCard
+                  rank="おすすめ 2"
+                  label="初心者におすすめ"
+                  name="ConoHa WING向きの人"
+                  lead="WordPressブログを始めることが決まっていて、申し込みから開設までの迷いを減らしたい人に向いています。"
+                  points={[
+                    "ブログを今日から作りたい",
+                    "サーバーとドメインをまとめたい",
+                    "長期前払いの条件に納得できる",
+                  ]}
+                  href={CONOHA_URL}
+                  tone="orange"
+                />
+              </div>
+            </section>
+
+            <CtaPanel
+              title="申し込み前に、料金とキャンペーン条件だけは公式で確認"
+              description="レンタルサーバーはキャンペーン価格、通常価格、更新料金、解約条件が変わることがあります。この記事では最新価格を断定せず、公式確認を前提にしています。"
+            />
+
+            <section>
+              <SectionTitle
+                eyebrow="Comparison"
+                title="比較表で見るエックスサーバーとConoHa WINGの違い"
+              >
+                スマホでも判断しやすいように、項目ごとに「どちらが向いているか」を添えています。
+              </SectionTitle>
+              <ComparisonTable />
+            </section>
+
+            <BannerSlot
+              title="比較表の後で公式条件を確認"
+              description="気になったサービスは、キャンペーン価格ではなく更新時の条件まで見てください。"
+              ads={bannerAds.middle}
+            />
+
+            <section>
+              <SectionTitle
+                eyebrow="How to choose"
+                title="失敗しにくい選び方"
+              >
+                レンタルサーバー選びで後悔しやすいのは、初月の安さだけで決めることです。
+              </SectionTitle>
+              <div className="grid gap-4 md:grid-cols-3">
+                {[
+                  {
+                    title: "1. 初回支払い",
+                    body: "キャンペーン価格、契約期間、初期費用の有無を確認します。",
+                  },
+                  {
+                    title: "2. 更新料金",
+                    body: "2回目以降の支払いがいくらになるかを必ず見ます。",
+                  },
+                  {
+                    title: "3. 解約条件",
+                    body: "長期前払いの場合、途中解約や返金条件を確認します。",
+                  },
+                ].map((item) => (
+                  <div
+                    key={item.title}
+                    className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm"
+                  >
+                    <h3 className="text-base font-black text-slate-950">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-7 text-slate-600">
+                      {item.body}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            <CtaPanel
+              title="まだ決めきれないなら、無料お試しのある選択肢から確認"
+              description="管理画面やWordPressの操作感は、実際に触ると判断しやすくなります。迷っている人ほど、支払い前に確認できるかを重視してください。"
+            />
+
+            <section>
+              <SectionTitle eyebrow="FAQ" title="よくある質問" />
+              <div className="grid gap-4">
+                {faqs.map((faq) => (
+                  <details
+                    key={faq.question}
+                    className="group rounded-lg border border-slate-200 bg-white p-5 shadow-sm"
+                  >
+                    <summary className="cursor-pointer list-none text-base font-black text-slate-950">
+                      <span className="mr-2 inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-xs text-emerald-700">
+                        Q
+                      </span>
+                      {faq.question}
+                    </summary>
+                    <p className="mt-4 border-t border-slate-100 pt-4 text-sm leading-7 text-slate-600">
+                      {faq.answer}
+                    </p>
+                  </details>
+                ))}
+              </div>
+            </section>
+
+            <BannerSlot
+              title="記事下部バナー"
+              description="最終的な料金・特典・契約条件は公式サイトで確認してください。"
+              ads={bannerAds.bottom}
+            />
+
+            <section className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+              <SectionTitle
+                eyebrow="Checklist"
+                title="申し込み前チェックリスト"
+              />
+              <ul className="grid gap-3 md:grid-cols-2">
+                {[
+                  "キャンペーン価格だけでなく通常料金も確認した",
+                  "更新料金と契約期間を確認した",
+                  "独自ドメイン特典の条件を確認した",
+                  "途中解約や返金条件を確認した",
+                  "WordPress以外の用途がないか確認した",
+                  "メール、バックアップ、SSL、サポートの必要性を確認した",
+                ].map((item) => (
+                  <li
+                    key={item}
+                    className="flex gap-3 rounded-md bg-slate-50 p-3 text-sm leading-6 text-slate-700"
+                  >
+                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-xs font-black text-white">
+                      ✓
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            <section className="rounded-lg bg-slate-950 p-5 text-white shadow-sm sm:p-7">
+              <div className="grid gap-5 lg:grid-cols-[1fr_auto] lg:items-center">
+                <div>
+                  <Badge tone="orange">Final CTA</Badge>
+                  <h2 className="mt-3 text-2xl font-black tracking-tight">
+                    最後は「不安を減らせるほう」を選ぶ
+                  </h2>
+                  <p className="mt-3 text-sm leading-7 text-slate-300">
+                    無料で触ってから決めたいならエックスサーバー。ブログ開始までの手順を短くしたいならConoHa WING。
+                    価格は変動するため、申し込み前に公式サイトで最新条件を確認してください。
+                  </p>
+                </div>
+                <div className="grid gap-3 sm:grid-cols-2 lg:min-w-[430px]">
+                  <AffiliateButton href={XSERVER_URL}>
+                    エックスサーバー公式
+                  </AffiliateButton>
+                  <AffiliateButton href={CONOHA_URL} tone="orange">
+                    ConoHa WING公式
+                  </AffiliateButton>
+                </div>
+              </div>
+            </section>
+
+            <section className="rounded-lg border border-slate-200 bg-white p-5 text-sm leading-7 text-slate-600 shadow-sm">
+              <h2 className="text-lg font-black text-slate-950">
+                参考にした公式情報
+              </h2>
+              <ul className="mt-3 list-disc space-y-2 pl-5">
+                <li>
+                  <a
+                    href="https://www.xserver.ne.jp/price/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-bold text-emerald-700 underline"
+                  >
+                    エックスサーバー 料金プラン
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.xserver.ne.jp/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-bold text-emerald-700 underline"
+                  >
+                    エックスサーバー公式サイト
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.conoha.jp/pricing/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-bold text-emerald-700 underline"
+                  >
+                    ConoHa WING 料金
+                  </a>
+                </li>
+              </ul>
+              <p className="mt-4">
+                価格やキャンペーンは頻繁に変わります。この記事は{article.date}
+                時点の公式情報を確認して作成していますが、申し込み前には必ず各公式サイトで最新条件を確認してください。
+              </p>
+              <p className="mt-3">
+                独自ドメインを別管理したい場合は、
+                <a
+                  href={XSERVER_DOMAIN_URL}
+                  rel="nofollow noopener noreferrer"
+                  target="_blank"
+                  className="font-bold text-emerald-700 underline"
+                >
+                  XServerドメイン
+                </a>
+                の料金も確認しておくと判断しやすくなります。
+              </p>
+            </section>
+
+            <section className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+              <h2 className="text-lg font-black text-slate-950">
+                関連して読むと分かりやすい記事
+              </h2>
+              <div className="mt-4 grid gap-3 sm:grid-cols-3">
+                {[
+                  { href: "/learn/network/dns-basics", title: "DNSの仕組み" },
+                  { href: "/learn/network/https-tls", title: "HTTPSとTLS" },
+                  {
+                    href: "/learn/security/http-security-headers",
+                    title: "HTTPセキュリティヘッダー",
+                  },
+                ].map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="rounded-md border border-slate-200 bg-slate-50 p-3 text-sm font-bold text-slate-700 transition hover:border-emerald-400 hover:text-emerald-700"
+                  >
+                    {item.title}
+                  </Link>
+                ))}
+              </div>
+            </section>
+          </main>
+
+          <SidebarCard />
         </div>
-      </div>
 
-      <h2>契約前チェックリスト</h2>
-
-      <CheckList
-        items={[
-          "キャンペーン価格だけでなく、更新時の通常料金も確認した",
-          "独自ドメイン無料特典の条件を確認した",
-          "WINGパックの場合、途中解約不可であることを理解した",
-          "WordPress以外のアプリを動かす予定がないか確認した",
-          "メール運用、バックアップ、SSL、サポートの必要性を確認した",
-        ]}
-      />
-
-      <h2>参考にした公式情報</h2>
-
-      <ul>
-        <li>
-          <a
-            href="https://www.xserver.ne.jp/price/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            エックスサーバー 料金プラン
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://www.xserver.ne.jp/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            エックスサーバー 公式サイト
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://www.conoha.jp/pricing/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            ConoHa WING 料金
-          </a>
-        </li>
-      </ul>
-
-      <p>
-        価格やキャンペーンは頻繁に変わります。この記事は2026年5月10日時点で公式ページを確認して作成していますが、
-        申し込み前には必ず各公式サイトで最新条件を確認してください。
-      </p>
-
-      <h2>関連して読むと分かりやすい記事</h2>
-
-      <ul>
-        <li>
-          <Link href="/learn/network/dns-basics">
-            DNSの仕組みと名前解決の流れ
-          </Link>
-        </li>
-        <li>
-          <Link href="/learn/network/https-tls">
-            HTTPS と TLS の仕組み
-          </Link>
-        </li>
-        <li>
-          <Link href="/learn/security/http-security-headers">
-            HTTPセキュリティヘッダー詳解
-          </Link>
-        </li>
-      </ul>
-
-      <p>
-        独自ドメインだけ先に整理したい場合は、
-        <a
-          href={XSERVER_DOMAIN_URL}
-          rel="nofollow noopener noreferrer"
-          target="_blank"
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            left: "-9999px",
+            width: 0,
+            height: 0,
+            overflow: "hidden",
+          }}
         >
-          XServerドメイン
-        </a>
-        の料金も確認しておくと、サーバー契約とドメイン取得を分けるべきか判断しやすくなります。
-      </p>
-
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          left: "-9999px",
-          width: 0,
-          height: 0,
-          overflow: "hidden",
-        }}
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="https://www12.a8.net/0.gif?a8mat=4B3LMV+ALMVJM+50+5SKSCY"
-          width={1}
-          height={1}
-          alt=""
-        />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="https://www19.a8.net/0.gif?a8mat=4B3LMV+C506SY+CO4+61JSI"
-          width={1}
-          height={1}
-          alt=""
-        />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="https://www13.a8.net/0.gif?a8mat=4B3LMV+C3TBLE+CO4+15ORS2"
-          width={1}
-          height={1}
-          alt=""
-        />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://www12.a8.net/0.gif?a8mat=4B3LMV+ALMVJM+50+5SKSCY"
+            width={1}
+            height={1}
+            alt=""
+          />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://www19.a8.net/0.gif?a8mat=4B3LMV+C506SY+CO4+61JSI"
+            width={1}
+            height={1}
+            alt=""
+          />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://www13.a8.net/0.gif?a8mat=4B3LMV+C3TBLE+CO4+15ORS2"
+            width={1}
+            height={1}
+            alt=""
+          />
+        </div>
       </div>
-    </ArticleLayout>
+    </div>
   );
 }
