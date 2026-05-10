@@ -14,109 +14,107 @@ export function ArticleLayout({
   children: React.ReactNode;
 }) {
   const relatedTools = (article.relatedTools ?? [])
-    .map((slug) => tools.find((t) => t.slug === slug))
-    .filter((t): t is NonNullable<typeof t> => Boolean(t));
+    .map((slug) => tools.find((tool) => tool.slug === slug))
+    .filter((tool): tool is NonNullable<typeof tool> => Boolean(tool));
 
-  // 同じツールに紐づく他の記事
   const relatedArticles = (article.relatedTools ?? [])
     .flatMap((toolSlug) => getRelatedArticles(toolSlug))
-    .filter((a) => a.slug !== article.slug)
-    // dedupe
+    .filter((item) => item.slug !== article.slug)
     .filter(
-      (a, idx, arr) => arr.findIndex((b) => b.slug === a.slug) === idx,
+      (item, index, array) =>
+        array.findIndex((candidate) => candidate.slug === item.slug) === index,
     );
 
   return (
-    <div className="mx-auto max-w-3xl px-6 py-12">
-      <nav className="text-sm text-black/50 dark:text-white/50 mb-6 flex items-center gap-1.5">
-        <Link href="/" className="hover:text-foreground">
+    <div className="mx-auto max-w-3xl px-5 py-10 sm:px-6 sm:py-14">
+      <nav className="mb-7 flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+        <Link href="/" className="hover:text-slate-950 dark:hover:text-white">
           Tools
         </Link>
-        <span>·</span>
-        <Link href="/learn" className="hover:text-foreground">
+        <span>/</span>
+        <Link href="/learn" className="hover:text-slate-950 dark:hover:text-white">
           Learn
         </Link>
-        <span>·</span>
-        <span className="text-black/40 dark:text-white/40">
-          {articleCategoryLabels[article.category]}
-        </span>
+        <span>/</span>
+        <span>{articleCategoryLabels[article.category]}</span>
       </nav>
 
-      <header className="mb-8">
-        <div className="text-xs font-mono text-emerald-600 dark:text-emerald-400 uppercase tracking-wider mb-3">
-          📖 {articleCategoryLabels[article.category]}
+      <header className="mb-9">
+        <div className="mb-3 text-xs font-bold uppercase tracking-wide text-emerald-700 dark:text-emerald-300">
+          {articleCategoryLabels[article.category]}
         </div>
-        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight mb-4 leading-snug">
+        <h1 className="text-3xl font-bold leading-tight tracking-tight text-slate-950 dark:text-white sm:text-4xl">
           {article.title}
         </h1>
-        <p className="text-base text-black/60 dark:text-white/60 leading-relaxed">
+        <p className="mt-4 text-base leading-8 text-slate-700 dark:text-slate-300">
           {article.description}
         </p>
-        <div className="flex items-center gap-3 text-xs text-black/40 dark:text-white/40 mt-4 font-mono">
+        <div className="mt-4 flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400">
           <time dateTime={article.date}>{article.date}</time>
-          <span>·</span>
-          <span>約 {article.readingMinutes} 分</span>
+          <span>/</span>
+          <span>約{article.readingMinutes}分</span>
         </div>
       </header>
 
       {article.affiliate && (
         <aside
           role="note"
-          aria-label="広告表示"
-          className="mb-8 rounded-lg border border-amber-500/30 bg-amber-500/5 p-4 text-sm"
+          aria-label="広告表記"
+          className="mb-8 rounded-lg border border-amber-300 bg-amber-50 p-4 text-sm text-amber-950 dark:border-amber-400/30 dark:bg-amber-400/10 dark:text-amber-100"
         >
-          <p className="font-semibold text-amber-700 dark:text-amber-300 mb-1.5">
-            ⓘ 本記事は広告（PR）を含みます
-          </p>
-          <p className="text-black/70 dark:text-white/70 leading-relaxed text-xs sm:text-sm">
-            本記事内のリンクには広告主のアフィリエイトリンクが含まれます。リンク経由で読者がサービスを契約された場合、当サイト運営者に紹介料が支払われる場合があります。各サービスの評価・比較は独自リサーチに基づき、広告主の意向に左右されない形で行っています。価格・キャンペーン情報等は記事執筆時点のものです。最新情報は必ず公式サイトでご確認ください。
+          <p className="font-bold">この記事には広告リンクが含まれます。</p>
+          <p className="mt-2 leading-6">
+            リンク経由で申し込みがあった場合、当サイトに紹介料が支払われることがあります。
+            比較内容は編集判断に基づき、価格やキャンペーンは記事執筆時点の情報です。
           </p>
         </aside>
       )}
 
       <article
         className="
-          [&_h2]:text-xl sm:[&_h2]:text-2xl [&_h2]:font-bold [&_h2]:mt-10 [&_h2]:mb-3 [&_h2]:tracking-tight [&_h2]:scroll-mt-20
-          [&_h3]:text-base [&_h3]:font-bold [&_h3]:mt-6 [&_h3]:mb-2
-          [&_p]:leading-relaxed [&_p]:text-sm sm:[&_p]:text-base [&_p]:mb-4 [&_p]:text-black/80 dark:[&_p]:text-white/80
-          [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1 [&_ul]:mb-4 [&_ul]:text-sm sm:[&_ul]:text-base [&_ul]:text-black/80 dark:[&_ul]:text-white/80
-          [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:space-y-1 [&_ol]:mb-4 [&_ol]:text-sm sm:[&_ol]:text-base [&_ol]:text-black/80 dark:[&_ol]:text-white/80
-          [&_li]:leading-relaxed
-          [&_code]:font-mono [&_code]:text-[0.85em] [&_code]:bg-black/5 dark:[&_code]:bg-white/10 [&_code]:rounded [&_code]:px-1.5 [&_code]:py-0.5
-          [&_pre]:bg-black/5 dark:[&_pre]:bg-white/5 [&_pre]:rounded-lg [&_pre]:p-4 [&_pre]:overflow-x-auto [&_pre]:text-xs [&_pre]:my-4 [&_pre]:border [&_pre]:border-black/5 dark:[&_pre]:border-white/10
+          [&_h2]:mt-11 [&_h2]:mb-4 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:tracking-tight [&_h2]:text-slate-950 dark:[&_h2]:text-white
+          [&_h3]:mt-7 [&_h3]:mb-3 [&_h3]:text-lg [&_h3]:font-bold [&_h3]:text-slate-950 dark:[&_h3]:text-white
+          [&_p]:mb-5 [&_p]:text-base [&_p]:leading-8 [&_p]:text-slate-700 dark:[&_p]:text-slate-300
+          [&_ul]:mb-5 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-6 [&_ul]:text-base [&_ul]:leading-8 [&_ul]:text-slate-700 dark:[&_ul]:text-slate-300
+          [&_ol]:mb-5 [&_ol]:list-decimal [&_ol]:space-y-2 [&_ol]:pl-6 [&_ol]:text-base [&_ol]:leading-8 [&_ol]:text-slate-700 dark:[&_ol]:text-slate-300
+          [&_li]:leading-8
+          [&_code]:rounded [&_code]:bg-slate-100 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-[0.88em] dark:[&_code]:bg-white/10
+          [&_pre]:my-5 [&_pre]:overflow-x-auto [&_pre]:rounded-lg [&_pre]:border [&_pre]:border-slate-200 [&_pre]:bg-slate-950 [&_pre]:p-4 [&_pre]:text-xs [&_pre]:text-slate-100 dark:[&_pre]:border-white/10
           [&_pre_code]:bg-transparent [&_pre_code]:p-0 [&_pre_code]:text-[12px]
-          [&_strong]:font-bold [&_strong]:text-foreground
-          [&_blockquote]:border-l-4 [&_blockquote]:border-emerald-500/50 [&_blockquote]:pl-4 [&_blockquote]:py-1 [&_blockquote]:my-4 [&_blockquote]:text-black/70 dark:[&_blockquote]:text-white/70 [&_blockquote]:italic
-          [&_a]:underline [&_a]:text-emerald-600 dark:[&_a]:text-emerald-400 hover:[&_a]:opacity-80
-          [&_table]:w-full [&_table]:my-4 [&_table]:text-sm
-          [&_th]:text-left [&_th]:py-2 [&_th]:px-2 [&_th]:border-b [&_th]:border-black/10 dark:[&_th]:border-white/10 [&_th]:font-semibold
-          [&_td]:py-2 [&_td]:px-2 [&_td]:border-b [&_td]:border-black/5 dark:[&_td]:border-white/5
+          [&_strong]:font-bold [&_strong]:text-slate-950 dark:[&_strong]:text-white
+          [&_blockquote]:my-5 [&_blockquote]:border-l-4 [&_blockquote]:border-emerald-500 [&_blockquote]:bg-emerald-50 [&_blockquote]:py-3 [&_blockquote]:pl-4 [&_blockquote]:text-slate-700 dark:[&_blockquote]:bg-emerald-400/10 dark:[&_blockquote]:text-slate-200
+          [&_a]:text-emerald-700 [&_a]:underline hover:[&_a]:opacity-80 dark:[&_a]:text-emerald-300
+          [&_table]:my-5 [&_table]:w-full [&_table]:text-sm
+          [&_th]:border-b [&_th]:border-slate-200 [&_th]:px-2 [&_th]:py-2 [&_th]:text-left [&_th]:font-bold dark:[&_th]:border-white/10
+          [&_td]:border-b [&_td]:border-slate-100 [&_td]:px-2 [&_td]:py-2 dark:[&_td]:border-white/10
         "
       >
         {children}
       </article>
 
       {relatedTools.length > 0 && (
-        <section className="mt-12 rounded-lg border border-emerald-500/20 bg-emerald-500/5 p-5">
-          <h3 className="font-semibold mb-3 text-sm">
-            🛠 この記事と一緒に使うツール
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <section className="mt-12 rounded-lg border border-emerald-500/20 bg-emerald-50 p-5 dark:bg-emerald-400/10">
+          <h2 className="text-sm font-bold text-slate-950 dark:text-white">
+            この記事と一緒に使えるツール
+          </h2>
+          <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
             {relatedTools.map((tool) => (
               <Link
                 key={tool.slug}
                 href={`/tools/${tool.slug}`}
-                className="rounded-lg border border-black/10 dark:border-white/10 bg-background p-3 hover:border-emerald-500/50 hover:bg-emerald-500/5 transition flex items-center gap-3"
+                className="flex items-center gap-3 rounded-md border border-slate-200 bg-white p-3 transition hover:border-emerald-500 dark:border-white/10 dark:bg-white/5 dark:hover:border-emerald-400"
               >
-                <span className="text-2xl">{tool.icon}</span>
-                <div className="min-w-0">
-                  <div className="font-semibold text-sm truncate">
+                <span className="flex h-10 min-w-10 items-center justify-center rounded-md bg-slate-100 px-2 text-xs font-bold text-slate-700 dark:bg-white/10 dark:text-slate-200">
+                  {tool.icon}
+                </span>
+                <span className="min-w-0">
+                  <span className="block truncate text-sm font-bold text-slate-950 dark:text-white">
                     {tool.title}
-                  </div>
-                  <div className="text-xs text-black/50 dark:text-white/50">
-                    使ってみる →
-                  </div>
-                </div>
+                  </span>
+                  <span className="block truncate text-xs text-slate-500 dark:text-slate-400">
+                    {tool.useCase}
+                  </span>
+                </span>
               </Link>
             ))}
           </div>
@@ -124,19 +122,21 @@ export function ArticleLayout({
       )}
 
       {relatedArticles.length > 0 && (
-        <section className="mt-8 rounded-lg border border-black/10 dark:border-white/10 p-5">
-          <h3 className="font-semibold mb-3 text-sm">📖 関連する記事</h3>
-          <ul className="space-y-2">
-            {relatedArticles.map((a) => (
-              <li key={a.slug}>
+        <section className="mt-8 rounded-lg border border-slate-200 bg-white p-5 dark:border-white/10 dark:bg-white/[0.04]">
+          <h2 className="text-sm font-bold text-slate-950 dark:text-white">
+            関連記事
+          </h2>
+          <ul className="mt-3 space-y-2">
+            {relatedArticles.map((item) => (
+              <li key={item.slug}>
                 <Link
-                  href={`/learn/${a.category}/${a.slug}`}
-                  className="text-sm text-emerald-600 dark:text-emerald-400 hover:underline"
+                  href={`/learn/${item.category}/${item.slug}`}
+                  className="text-sm font-semibold text-emerald-700 hover:underline dark:text-emerald-300"
                 >
-                  {a.title}
+                  {item.title}
                 </Link>
-                <span className="text-xs text-black/40 dark:text-white/40 ml-2">
-                  · 約 {a.readingMinutes} 分
+                <span className="ml-2 text-xs text-slate-500 dark:text-slate-400">
+                  約{item.readingMinutes}分
                 </span>
               </li>
             ))}
@@ -147,9 +147,9 @@ export function ArticleLayout({
       <div className="mt-10 text-sm">
         <Link
           href="/learn"
-          className="text-emerald-600 dark:text-emerald-400 hover:underline"
+          className="font-semibold text-emerald-700 hover:underline dark:text-emerald-300"
         >
-          ← Learn の他の記事を見る
+          Learn の記事一覧へ戻る
         </Link>
       </div>
     </div>

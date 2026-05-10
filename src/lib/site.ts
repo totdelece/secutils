@@ -2,20 +2,16 @@ import type { Metadata } from "next";
 import { tools } from "./tools";
 
 export const siteName = "secutils";
-export const siteTagline =
-  "エンジニア向けセキュリティ＆ユーティリティツール集";
+export const siteTagline = "ブラウザで使える開発者向けセキュリティツール集";
 export const siteDescription =
-  "セキュリティ寄りのWebツール集。パスワード生成、ハッシュ計算、エンコード、ネットワーク調査など、エンジニアの日常作業を高速化します。すべてブラウザ完結でデータ送信なし。";
+  "パスワード生成、JWT解析、ハッシュ計算、JSON整形、CIDR計算などをブラウザ内で完結できる開発者向けWebツール集です。入力データはサーバーに送信しません。";
 
 export function getBaseUrl(): string {
   const explicit = process.env.NEXT_PUBLIC_SITE_URL;
   if (explicit) return explicit.replace(/\/$/, "");
-  // VERCEL_PROJECT_PRODUCTION_URL: プロジェクトの本番固定URL（例: secutils.vercel.app）
-  // sitemap.xml や OG画像URLには Production URL を使うべき。
   if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
     return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
   }
-  // VERCEL_URL: デプロイメント固有URL。Preview デプロイでのフォールバック。
   if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
   return "http://localhost:3000";
 }

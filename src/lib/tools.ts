@@ -6,13 +6,21 @@ export type Tool = {
   description: string;
   category: ToolCategory;
   icon: string;
+  useCase: string;
 };
 
 export const categoryLabels: Record<ToolCategory, string> = {
   security: "Security",
   encoding: "Encoding",
   network: "Network",
-  misc: "Misc",
+  misc: "Productivity",
+};
+
+export const categoryDescriptions: Record<ToolCategory, string> = {
+  security: "認証、署名、ハッシュ、パスワードまわりをブラウザ内で確認できます。",
+  encoding: "JSON、URL、Base64、HTML entity などの変換作業をすばやく片付けます。",
+  network: "CIDR、HTTP ステータス、通信の基礎を調べるための道具です。",
+  misc: "UUID、正規表現、時刻、差分など、日々の開発で使う小道具です。",
 };
 
 export const tools: Tool[] = [
@@ -20,168 +28,189 @@ export const tools: Tool[] = [
     slug: "password-generator",
     title: "Password Generator",
     description:
-      "暗号学的に安全なパスワードを生成。長さ・文字種・記号有無を細かく指定できます。",
+      "暗号学的に安全な乱数でパスワードやパスフレーズを生成します。長さ、文字種、記号の有無を細かく調整できます。",
     category: "security",
     icon: "🔐",
+    useCase: "安全な初期パスワードを作る",
   },
   {
     slug: "hash-generator",
     title: "Hash Generator",
     description:
-      "テキストから MD5 / SHA-1 / SHA-256 / SHA-512 ハッシュを同時計算。コピー対応。",
+      "テキストやファイルから MD5 / SHA-1 / SHA-256 / SHA-512 を計算します。チェックサム確認にも使えます。",
     category: "security",
-    icon: "🔑",
+    icon: "#",
+    useCase: "ファイル改ざんや一致確認",
   },
   {
     slug: "base64",
     title: "Base64 Encode / Decode",
     description:
-      "テキストとBase64の相互変換。標準/URL-safe両対応、UTF-8対応、即時変換。",
+      "通常の Base64 と URL-safe Base64 を相互変換します。UTF-8 テキストの扱いにも対応しています。",
     category: "encoding",
-    icon: "🔁",
+    icon: "B64",
+    useCase: "トークンや設定値の中身を確認",
   },
   {
     slug: "jwt-decoder",
     title: "JWT Decoder",
     description:
-      "JWT（JSON Web Token）をHeader/Payload/Signatureに分解して可視化。標準クレームの説明・有効期限チェック付き。",
+      "JWT を Header / Payload / Signature に分解し、期限やクレームを読みやすく表示します。署名検証にも対応しています。",
     category: "security",
-    icon: "🪪",
+    icon: "JWT",
+    useCase: "ログイン不具合の切り分け",
   },
   {
     slug: "url-encoder",
     title: "URL Encoder / Decoder",
     description:
-      "URLとテキストの相互変換。クエリパラメータ用 encodeURIComponent と URL全体用 encodeURI を切替可能、即時変換。",
+      "URL とクエリ文字列をエンコード/デコードします。encodeURI と encodeURIComponent の違いを選べます。",
     category: "encoding",
-    icon: "🔗",
+    icon: "%20",
+    useCase: "壊れたURLや日本語URLの確認",
   },
   {
     slug: "uuid-generator",
     title: "UUID Generator",
     description:
-      "UUID v4（ランダム）/ v7（時系列ソート可能、RFC 9562）を一括生成。1〜1000個・複数フォーマット・個別コピー対応。",
+      "UUID v4 と時系列ソートしやすい UUID v7 をまとめて生成します。大量生成とコピーに対応しています。",
     category: "misc",
-    icon: "🆔",
+    icon: "ID",
+    useCase: "テストデータのID作成",
   },
   {
     slug: "cidr-calculator",
     title: "CIDR / Subnet Calculator",
     description:
-      "CIDR表記からネットワーク・ブロードキャスト・ホスト範囲・サブネットマスク・ワイルドカードを即時計算。IPv4 / IPv6 両対応。",
+      "IPv4 / IPv6 の CIDR からネットワーク範囲、ホスト数、マスク、ワイルドカードを計算します。",
     category: "network",
-    icon: "🌐",
+    icon: "IP",
+    useCase: "サブネット設計の確認",
   },
   {
     slug: "regex-tester",
     title: "Regex Tester",
     description:
-      "正規表現のテスト・デバッグ。マッチをハイライト、キャプチャグループ表示、置換プレビュー、6フラグ対応。",
+      "正規表現のマッチ、キャプチャグループ、置換結果をその場で確認できます。よく使うフラグも切り替えられます。",
     category: "misc",
-    icon: "🔍",
+    icon: ".*",
+    useCase: "ログ抽出や入力チェックの検証",
   },
   {
     slug: "json-formatter",
     title: "JSON Formatter / Validator",
     description:
-      "JSONの整形・最小化・バリデーション。インデント幅切替、キーソート、エラー位置（行・列）表示。",
+      "JSON の整形、最小化、バリデーションを行います。エラー位置も確認しやすく表示します。",
     category: "encoding",
-    icon: "📋",
+    icon: "{}",
+    useCase: "APIレスポンスの整形",
   },
   {
     slug: "timestamp-converter",
     title: "Timestamp Converter",
     description:
-      "UNIX秒/ミリ秒/マイクロ秒/ナノ秒・ISO 8601・RFC 2822 を相互変換。UTC/JST/ローカル表示・相対時刻・曜日付き。",
+      "UNIX 秒、ミリ秒、ISO 8601、UTC、JST、ローカル時刻を相互変換します。",
     category: "misc",
-    icon: "🕐",
+    icon: "UTC",
+    useCase: "ログ時刻や期限の確認",
   },
   {
     slug: "html-entity",
     title: "HTML Entity Encoder / Decoder",
     description:
-      "HTMLエンティティとテキストの相互変換。XSS対策の最小エスケープ・名前付き・数値参照（10進/16進）切替対応。",
+      "HTML entity と通常テキストを相互変換します。XSS 対策で必要なエスケープ確認にも使えます。",
     category: "encoding",
-    icon: "🏷️",
+    icon: "&;",
+    useCase: "HTML表示崩れの調査",
   },
   {
     slug: "diff-viewer",
     title: "Diff Viewer",
     description:
-      "2つのテキストの差分を行単位で表示。LCSベースで追加・削除をハイライト、空白/大小無視オプション、統計表示。",
+      "2つのテキスト差分を行単位で表示します。追加、削除、変更を色分けして確認できます。",
     category: "misc",
-    icon: "🆚",
+    icon: "+-",
+    useCase: "設定ファイルの差分確認",
   },
   {
     slug: "qr-code",
     title: "QR Code Generator",
     description:
-      "テキスト・URLからQRコードをブラウザで生成。エラー訂正レベル4段階、色カスタム、SVG/PNGダウンロード対応。",
+      "テキストやURLから QR コードを生成します。誤り訂正レベルや色を調整し、SVG/PNGで保存できます。",
     category: "misc",
-    icon: "📱",
+    icon: "QR",
+    useCase: "URL共有用のQR作成",
   },
   {
     slug: "json-yaml",
     title: "JSON ↔ YAML Converter",
     description:
-      "JSONとYAMLの相互変換。Kubernetes / Docker Compose / GitHub Actions 等の設定ファイル形式変換に。インデント幅切替対応。",
+      "JSON と YAML を相互変換します。Kubernetes、Docker Compose、GitHub Actions の設定確認に便利です。",
     category: "encoding",
-    icon: "🔄",
+    icon: "YML",
+    useCase: "設定ファイル形式の変換",
   },
   {
     slug: "hmac",
     title: "HMAC Generator",
     description:
-      "メッセージとシークレットキーから HMAC 署名を生成。SHA-1/256/384/512 対応、hex/base64/base64url 出力切替。Webhook検証・APIシグネチャ生成に。",
+      "メッセージと秘密鍵から HMAC 署名を生成します。SHA-1/256/384/512 と複数の出力形式に対応しています。",
     category: "security",
-    icon: "🔏",
+    icon: "MAC",
+    useCase: "Webhook署名の検証",
   },
   {
     slug: "cron-parser",
     title: "Cron Expression Parser",
     description:
-      "cron 式を人間に読める日本語に変換し、次回実行予定を5件まで表示。`*/5 * * * *` 等の表記検証・デバッグに。",
+      "cron 式を人が読める日本語に変換し、次回実行予定を表示します。定期実行の設定レビューに使えます。",
     category: "misc",
-    icon: "⏱",
+    icon: "CRON",
+    useCase: "ジョブ実行時刻の確認",
   },
   {
     slug: "totp",
     title: "TOTP Generator (2FA)",
     description:
-      "RFC 6238 の TOTP（時間ベースワンタイムパスワード）をブラウザ内で計算。Google Authenticator 互換、SHA-1/256/512、Base32秘密鍵対応。",
+      "RFC 6238 の TOTP をブラウザ内で生成します。Base32 秘密鍵、otpauth URI、QR 連携に対応しています。",
     category: "security",
-    icon: "🔢",
+    icon: "2FA",
+    useCase: "2段階認証の検証",
   },
   {
     slug: "bcrypt",
     title: "Bcrypt Hasher / Verifier",
     description:
-      "パスワード保存の定番 bcrypt をブラウザで生成・検証。コストファクター調整、ソルト自動生成、ハッシュ照合、計算時間の体感に。",
+      "bcrypt ハッシュの生成と照合を行います。コスト係数を変えながら処理時間も確認できます。",
     category: "security",
-    icon: "🧂",
+    icon: "BC",
+    useCase: "パスワード保存方式の確認",
   },
   {
     slug: "http-status",
     title: "HTTP Status Code Reference",
     description:
-      "全HTTPステータスコード（100-599）の意味と用途を日本語で網羅。検索フィルタ、カテゴリ別表示、典型的な使用シーンと注意点。",
+      "HTTP ステータスコードの意味、よくある用途、注意点を検索できます。API設計や障害調査に便利です。",
     category: "network",
-    icon: "📟",
+    icon: "HTTP",
+    useCase: "APIレスポンスの意味確認",
   },
   {
     slug: "cookie-parser",
     title: "HTTP Cookie Parser",
     description:
-      "Set-Cookie / Cookie ヘッダー文字列を解析し、Domain/Path/Secure/HttpOnly/SameSite等の属性を可視化。セキュリティ上の注意点も警告。",
+      "Cookie / Set-Cookie ヘッダーを分解し、Secure、HttpOnly、SameSite などの属性を見やすく表示します。",
     category: "security",
-    icon: "🍪",
+    icon: "CK",
+    useCase: "Cookie設定の安全性確認",
   },
   {
     slug: "color-converter",
     title: "Color Converter",
     description:
-      "色を HEX / RGB / HSL / HSV で相互変換。カラーピッカー、WCAG コントラスト比判定（AA/AAA）対応。",
+      "HEX / RGB / HSL / HSV を相互変換し、WCAG コントラスト比を確認できます。",
     category: "encoding",
-    icon: "🎨",
+    icon: "RGB",
+    useCase: "UIカラーの確認",
   },
 ];

@@ -1,19 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
 type Theme = "light" | "dark";
 
-export function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>("light");
-  const [mounted, setMounted] = useState(false);
+function getTheme(): Theme {
+  if (typeof document === "undefined") return "light";
+  return document.documentElement.classList.contains("dark") ? "dark" : "light";
+}
 
-  useEffect(() => {
-    setMounted(true);
-    setTheme(
-      document.documentElement.classList.contains("dark") ? "dark" : "light",
-    );
-  }, []);
+function subscribe(callback: () => void) {
+  window.addEventListener("storage", callback);
+  return () => window.removeEventListener("storage", callback);
+}
+
+export function ThemeToggle() {
+  const theme = useSyncExternalStore(subscribe, getTheme, () => "light");
 
   const toggle = () => {
     const next: Theme = theme === "dark" ? "light" : "dark";
@@ -22,31 +24,21 @@ export function ThemeToggle() {
     try {
       localStorage.setItem("theme", next);
     } catch {
-      // localStorage が使えない（プライベートブラウジング等）場合は無視
+      // Ignore storage failures in restricted browsing modes.
     }
-    setTheme(next);
-  };
-
-  // SSR時はサイズだけ確保して非表示（FOUC + hydration mismatch防止）
-  if (!mounted) {
-    return (
-      <span
-        aria-hidden="true"
-        className="inline-block w-8 h-8 rounded border border-transparent"
-      />
-    );
+    window.dispatchEvent(new StorageEvent("storage", { key: "theme" }));
   }
 
   return (
     <button
       onClick={toggle}
       aria-label={
-        theme === "dark" ? "ライトモードに切替" : "ダークモードに切替"
+        theme === "dark" ? "ライトモードに切り替え" : "ダークモードに切り替え"
       }
-      title={theme === "dark" ? "ライトモードに切替" : "ダークモードに切替"}
-      className="w-8 h-8 rounded border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 transition flex items-center justify-center text-sm leading-none"
+      title={theme === "dark" ? "ライトモードに切り替え" : "ダークモードに切り替え"}
+      className="flex h-9 w-9 items-center justify-center rounded-md border border-slate-200 bg-white text-sm font-bold text-slate-700 transition hover:border-emerald-500 hover:text-emerald-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:border-emerald-400 dark:hover:text-emerald-300"
     >
-      <span aria-hidden="true">{theme === "dark" ? "☀️" : "🌙"}</span>
+      <span aria-hidden="true">{theme === "dark" ? "☀" : "☾"}</span>
     </button>
   );
 }

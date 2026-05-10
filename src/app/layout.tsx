@@ -1,29 +1,14 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
-import { getBaseUrl, siteDescription, siteName } from "@/lib/site";
+import { getBaseUrl, siteDescription, siteName, siteTagline } from "@/lib/site";
 import { SiteJsonLd } from "@/lib/ld";
 import { ThemeToggle } from "./_components/ThemeToggle";
 
-// FOUC防止: <html> がレンダされる前に同期的に dark/light クラスを付与する。
-// 1) localStorage の保存値を優先
-// 2) なければ prefers-color-scheme に従う
-// CSP は 'unsafe-inline' を許容しているので inline script で問題なし。
 const themeInitScript = `(function(){try{var s=localStorage.getItem('theme');var t=(s==='dark'||s==='light')?s:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.classList.add(t);}catch(e){document.documentElement.classList.add('light');}})();`;
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const defaultTitle = `${siteName} — エンジニア向けセキュリティ＆ユーティリティツール集`;
+const defaultTitle = `${siteName} - ${siteTagline}`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(getBaseUrl()),
@@ -72,7 +57,7 @@ export default function RootLayout({
   return (
     <html
       lang="ja"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className="h-full antialiased"
       suppressHydrationWarning
     >
       <head>
@@ -83,32 +68,37 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
       </head>
-      <body className="min-h-full flex flex-col font-sans">
+      <body className="flex min-h-full flex-col font-sans">
         <SiteJsonLd />
-        <header className="border-b border-black/10 dark:border-white/10">
-          <div className="mx-auto max-w-5xl px-6 py-4 flex items-center justify-between">
-            <Link
-              href="/"
-              className="font-mono text-lg font-bold tracking-tight"
-            >
-              <span className="text-emerald-600 dark:text-emerald-400">
-                sec
+        <header className="sticky top-0 z-20 border-b border-slate-200/80 bg-background/85 backdrop-blur dark:border-white/10">
+          <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3 sm:px-6">
+            <Link href="/" className="flex items-baseline gap-2">
+              <span className="font-mono text-lg font-black tracking-tight text-slate-950 dark:text-white">
+                <span className="text-emerald-600 dark:text-emerald-400">
+                  sec
+                </span>
+                utils
               </span>
-              utils
+              <span className="hidden text-xs text-slate-500 dark:text-slate-400 sm:inline">
+                browser tools
+              </span>
             </Link>
-            <nav className="text-sm text-black/60 dark:text-white/60 flex items-center gap-4">
-              <Link href="/" className="hover:text-foreground transition">
+            <nav className="flex items-center gap-1 text-sm font-semibold text-slate-600 dark:text-slate-300">
+              <Link
+                href="/"
+                className="rounded-md px-3 py-2 transition hover:bg-slate-100 hover:text-slate-950 dark:hover:bg-white/10 dark:hover:text-white"
+              >
                 Tools
               </Link>
               <Link
                 href="/learn"
-                className="hover:text-foreground transition"
+                className="rounded-md px-3 py-2 transition hover:bg-slate-100 hover:text-slate-950 dark:hover:bg-white/10 dark:hover:text-white"
               >
                 Learn
               </Link>
               <Link
                 href="/about"
-                className="hover:text-foreground transition"
+                className="hidden rounded-md px-3 py-2 transition hover:bg-slate-100 hover:text-slate-950 dark:hover:bg-white/10 dark:hover:text-white sm:inline-flex"
               >
                 About
               </Link>
@@ -117,33 +107,27 @@ export default function RootLayout({
           </div>
         </header>
         <main className="flex-1">{children}</main>
-        <footer className="border-t border-black/10 dark:border-white/10 mt-16">
-          <div className="mx-auto max-w-5xl px-6 py-6 text-xs text-black/50 dark:text-white/50 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-            <div>secutils — built for engineers, by engineers.</div>
+        <footer className="mt-16 border-t border-slate-200 dark:border-white/10">
+          <div className="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-6 text-xs text-slate-500 dark:text-slate-400 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+            <div>secutils - private, fast, browser-based developer tools.</div>
             <nav className="flex flex-wrap items-center gap-x-4 gap-y-2">
-              <Link href="/learn" className="hover:text-foreground transition">
+              <Link href="/learn" className="hover:text-slate-950 dark:hover:text-white">
                 Learn
               </Link>
-              <Link href="/about" className="hover:text-foreground transition">
+              <Link href="/about" className="hover:text-slate-950 dark:hover:text-white">
                 About
               </Link>
-              <Link
-                href="/privacy"
-                className="hover:text-foreground transition"
-              >
-                プライバシーポリシー
+              <Link href="/privacy" className="hover:text-slate-950 dark:hover:text-white">
+                Privacy
               </Link>
-              <Link
-                href="/contact"
-                className="hover:text-foreground transition"
-              >
+              <Link href="/contact" className="hover:text-slate-950 dark:hover:text-white">
                 Contact
               </Link>
               <a
                 href="https://github.com/totdelece/secutils"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-foreground transition"
+                className="hover:text-slate-950 dark:hover:text-white"
               >
                 GitHub
               </a>

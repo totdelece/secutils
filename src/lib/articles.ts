@@ -1,8 +1,8 @@
 export type ArticleCategory = "security" | "network";
 
 export const articleCategoryLabels: Record<ArticleCategory, string> = {
-  security: "セキュリティ",
-  network: "ネットワーク",
+  security: "Security",
+  network: "Network",
 };
 
 export type Article = {
@@ -10,11 +10,9 @@ export type Article = {
   category: ArticleCategory;
   title: string;
   description: string;
-  date: string; // ISO 8601 日付
+  date: string;
   readingMinutes: number;
-  /** 関連ツールの slug（src/lib/tools.ts と一致） */
   relatedTools?: string[];
-  /** アフィリエイトリンクを含む記事（景品表示法ステマ規制対応のPR表記が自動表示される） */
   affiliate?: boolean;
 };
 
@@ -24,7 +22,7 @@ export const articles: Article[] = [
     category: "security",
     title: "JWT のよくあるセキュリティ問題",
     description:
-      "JWT は便利だが落とし穴も多い。alg=none攻撃、アルゴリズム混同、弱い秘密鍵、Payloadの過信など、実務で遭遇する典型問題を初学者向けに解説。",
+      "alg=none、アルゴリズム混同、弱い秘密鍵、payloadの過信など、JWTで起きがちな事故を実務目線で整理します。",
     date: "2026-05-02",
     readingMinutes: 6,
     relatedTools: ["jwt-decoder", "hmac"],
@@ -32,19 +30,139 @@ export const articles: Article[] = [
   {
     slug: "password-strength",
     category: "security",
-    title: "パスワード強度はどう決まるか - エントロピーと総当たり攻撃",
+    title: "パスワード強度はどう決まるか",
     description:
-      "「16文字以上」と言われる根拠は？ エントロピー(bit)の意味、総当たり攻撃の所要時間、パスフレーズが強い理由を初学者向けに解説。",
+      "文字数だけではなく、エントロピー、総当たり時間、パスフレーズの考え方から安全なパスワードを説明します。",
     date: "2026-05-02",
     readingMinutes: 5,
     relatedTools: ["password-generator"],
   },
   {
+    slug: "xss",
+    category: "security",
+    title: "XSS の基本と防ぎ方",
+    description:
+      "Reflected / Stored / DOM XSS の違い、出力エスケープ、CSP、危険な実装パターンを整理します。",
+    date: "2026-05-08",
+    readingMinutes: 8,
+    relatedTools: ["html-entity"],
+  },
+  {
+    slug: "csrf",
+    category: "security",
+    title: "CSRF の仕組みと対策",
+    description:
+      "SameSite Cookie、CSRFトークン、Origin検証を中心に、ログイン済みユーザーを狙う攻撃を理解します。",
+    date: "2026-05-08",
+    readingMinutes: 7,
+    relatedTools: ["cookie-parser"],
+  },
+  {
+    slug: "sql-injection",
+    category: "security",
+    title: "SQLインジェクション入門",
+    description:
+      "文字列連結が危険な理由、プレースホルダ、ORM利用時の注意点、Blind SQLi の考え方を解説します。",
+    date: "2026-05-08",
+    readingMinutes: 7,
+    relatedTools: [],
+  },
+  {
+    slug: "owasp-top-10",
+    category: "security",
+    title: "OWASP Top 10 入門",
+    description:
+      "Webアプリの代表的なリスクを、A01からA10まで実装者が押さえるべき観点で読み解きます。",
+    date: "2026-05-08",
+    readingMinutes: 9,
+    relatedTools: [],
+  },
+  {
+    slug: "mfa-totp-fido2",
+    category: "security",
+    title: "MFA、TOTP、FIDO2、Passkey の違い",
+    description:
+      "多要素認証の方式ごとの強み、フィッシング耐性、復旧手段を比較して選び方を整理します。",
+    date: "2026-05-08",
+    readingMinutes: 7,
+    relatedTools: ["totp"],
+  },
+  {
+    slug: "password-hashing",
+    category: "security",
+    title: "パスワードハッシュの選び方",
+    description:
+      "平文保存が危険な理由、salt、pepper、bcrypt / scrypt / Argon2 の位置づけを説明します。",
+    date: "2026-05-08",
+    readingMinutes: 7,
+    relatedTools: ["bcrypt", "hash-generator"],
+  },
+  {
+    slug: "cors-same-origin",
+    category: "security",
+    title: "CORS と Same-Origin Policy",
+    description:
+      "ブラウザの同一オリジン制約、プリフライト、credentials、危険なCORS設定を整理します。",
+    date: "2026-05-08",
+    readingMinutes: 8,
+    relatedTools: [],
+  },
+  {
+    slug: "session-vs-jwt",
+    category: "security",
+    title: "セッション認証とJWT認証の違い",
+    description:
+      "保存場所、失効、リフレッシュトークン、用途別の選び方を比較します。",
+    date: "2026-05-08",
+    readingMinutes: 7,
+    relatedTools: ["jwt-decoder", "cookie-parser"],
+  },
+  {
+    slug: "public-key-crypto",
+    category: "security",
+    title: "公開鍵暗号の基本",
+    description:
+      "RSA、ECDSA、Ed25519、鍵交換、署名、証明書の役割を開発者向けに整理します。",
+    date: "2026-05-08",
+    readingMinutes: 8,
+    relatedTools: ["hmac"],
+  },
+  {
+    slug: "oauth-oidc",
+    category: "security",
+    title: "OAuth 2.0 と OpenID Connect 入門",
+    description:
+      "認可と認証の違い、Authorization Code + PKCE、id_token と access_token の役割を説明します。",
+    date: "2026-05-08",
+    readingMinutes: 8,
+    relatedTools: ["jwt-decoder"],
+  },
+  {
+    slug: "http-security-headers",
+    category: "security",
+    title: "HTTPセキュリティヘッダー詳解",
+    description:
+      "CSP、HSTS、X-Frame-Options、Permissions-Policy など、ブラウザ防御に効くヘッダーを整理します。",
+    date: "2026-05-08",
+    readingMinutes: 8,
+    relatedTools: ["http-status"],
+  },
+  {
+    slug: "secure-randomness",
+    category: "security",
+    title: "安全な乱数の基本",
+    description:
+      "CSPRNG と Math.random の違い、modulo bias、rejection sampling を実装者視点で説明します。",
+    date: "2026-05-08",
+    readingMinutes: 6,
+    relatedTools: ["password-generator", "uuid-generator"],
+  },
+  {
     slug: "cidr-notation",
     category: "network",
-    title: "CIDR 記法の読み方と仕組み",
+    title: "CIDR記法の読み方と仕組み",
     description:
-      "「/24」とは何を意味するのか。サブネットマスクとの関係、ホスト数の計算方法、なぜ /31 が特別なのかを初学者向けに解説。",
+      "/24 の意味、サブネットマスク、ホスト数、/31 の扱いなどをネットワーク初学者向けに解説します。",
     date: "2026-05-02",
     readingMinutes: 5,
     relatedTools: ["cidr-calculator"],
@@ -52,9 +170,9 @@ export const articles: Article[] = [
   {
     slug: "tcp-vs-udp",
     category: "network",
-    title: "TCP と UDP の違い - 信頼性 vs 速度のトレードオフ",
+    title: "TCP と UDP の違い",
     description:
-      "L4 プロトコルの代表 TCP と UDP は何が違うのか。コネクション、再送、順序保証、用途別の選び方（HTTP/DNS/動画/ゲーム）を初学者向けに解説。",
+      "信頼性と速度のトレードオフ、HTTP、DNS、動画配信、QUICなど用途別の選び方を説明します。",
     date: "2026-05-02",
     readingMinutes: 6,
     relatedTools: [],
@@ -62,9 +180,9 @@ export const articles: Article[] = [
   {
     slug: "dns-basics",
     category: "network",
-    title: "DNS の仕組みと名前解決の流れ",
+    title: "DNSの仕組みと名前解決の流れ",
     description:
-      "ブラウザに URL を入れてから IP アドレスが解決されるまで。ルート/TLD/権威/フルリゾルバ・キャッシュ・代表的レコード（A/AAAA/MX/CNAME/TXT）を初学者向けに解説。",
+      "ブラウザにURLを入力してからIPアドレスが見つかるまでを、レコード種別とキャッシュ込みで追います。",
     date: "2026-05-02",
     readingMinutes: 7,
     relatedTools: [],
@@ -72,9 +190,9 @@ export const articles: Article[] = [
   {
     slug: "https-tls",
     category: "network",
-    title: "HTTPS と TLS の仕組み - 暗号化と認証の基本",
+    title: "HTTPS と TLS の仕組み",
     description:
-      "HTTP と HTTPS の違い、TLS ハンドシェイクで何をしているか、証明書がなぜ信頼できるのか、HSTS / 中間者攻撃の話まで初学者向けに解説。",
+      "TLSハンドシェイク、証明書チェーン、HSTS、MITM対策など、HTTPSの基本を整理します。",
     date: "2026-05-02",
     readingMinutes: 7,
     relatedTools: ["hmac"],
@@ -82,9 +200,9 @@ export const articles: Article[] = [
   {
     slug: "osi-tcpip-model",
     category: "network",
-    title: "OSI参照モデルと TCP/IP モデル - L1 から L7 まで",
+    title: "OSI参照モデルとTCP/IPモデル",
     description:
-      "ネットワーク学習の入口となる OSI 7 層モデルと、実際に使われる TCP/IP 4 層モデル。各層の役割とプロトコル例（Ethernet / IP / TCP / HTTP）を初学者向けに整理。",
+      "L1からL7までの役割、カプセル化、代表プロトコル、障害切り分けへの使い方を説明します。",
     date: "2026-05-02",
     readingMinutes: 6,
     relatedTools: [],
@@ -92,9 +210,9 @@ export const articles: Article[] = [
   {
     slug: "port-numbers",
     category: "network",
-    title: "ポート番号の話 - well-known / registered / dynamic",
+    title: "ポート番号の基本",
     description:
-      "ポート番号とは何か、80・443・22 はなぜ決まっているのか。0-65535 の範囲、IANA の3区分、よく使われるポート一覧、ポートスキャンの基本を初学者向けに解説。",
+      "well-known、registered、dynamic/private の違いと、80、443、22など代表的な番号を整理します。",
     date: "2026-05-02",
     readingMinutes: 5,
     relatedTools: [],
@@ -102,9 +220,9 @@ export const articles: Article[] = [
   {
     slug: "nat-port-forwarding",
     category: "network",
-    title: "NAT とポートフォワーディング - 家庭ルーターから理解する",
+    title: "NAT とポートフォワーディング",
     description:
-      "なぜ家庭の PC 全部から外に出られるのか。NAT / NAPT の仕組み、ポートフォワーディング、CGNAT、IPv6 で NAT が要らない理由を初学者向けに解説。",
+      "家庭用ルーターで何が起きているか、NAPT、UPnP、CGNAT、IPv6との関係を説明します。",
     date: "2026-05-02",
     readingMinutes: 6,
     relatedTools: ["cidr-calculator"],
@@ -112,9 +230,9 @@ export const articles: Article[] = [
   {
     slug: "icmp-ping-traceroute",
     category: "network",
-    title: "ICMP / ping / traceroute - ネットワーク調査の基本",
+    title: "ICMP / ping / traceroute の基本",
     description:
-      "「サーバーに繋がらない」を切り分けるための基本3点セット。ICMP プロトコルとは何か、ping と traceroute の仕組み、結果の読み方、パケット落とされたときの判断材料を初学者向けに解説。",
+      "疎通確認、TTL、経路調査、パケットロスの読み方など、ネットワーク調査の入口を説明します。",
     date: "2026-05-02",
     readingMinutes: 6,
     relatedTools: [],
@@ -122,9 +240,9 @@ export const articles: Article[] = [
   {
     slug: "mac-arp",
     category: "network",
-    title: "MAC アドレスと ARP の仕組み - L2 で何が起きているのか",
+    title: "MACアドレスとARPの仕組み",
     description:
-      "IP アドレスだけではパケットは届かない？ Ethernet/Wi-Fi で必要な MAC アドレスと、IP→MAC を解決する ARP の動き、ARP スプーフィングの危険性まで初学者向けに解説。",
+      "L2でパケットが届く仕組み、ARP Request/Reply、ARP spoofing、IPv6のNDPとの違いを整理します。",
     date: "2026-05-03",
     readingMinutes: 6,
     relatedTools: [],
@@ -132,19 +250,19 @@ export const articles: Article[] = [
   {
     slug: "http-versions",
     category: "network",
-    title: "HTTP/1.1 / HTTP/2 / HTTP/3 の違い - Web の進化を追う",
+    title: "HTTP/1.1、HTTP/2、HTTP/3 の違い",
     description:
-      "なぜ HTTP に複数バージョンが存在するのか。Keep-Alive、多重化、ヘッダー圧縮、Head-of-Line Blocking、QUIC ベースの HTTP/3 まで、各バージョンの改善点を初学者向けに解説。",
+      "Keep-Alive、多重化、Head-of-Line Blocking、QUICなど、Web通信の進化を比較します。",
     date: "2026-05-03",
     readingMinutes: 7,
-    relatedTools: [],
+    relatedTools: ["http-status"],
   },
   {
     slug: "vpn-basics",
     category: "network",
-    title: "VPN の仕組み - トンネルと暗号化の基本",
+    title: "VPNの仕組み",
     description:
-      "VPN とは何か、なぜ「会社のネットワークに繋がる」「IP アドレスを変えられる」が両立するのか。IPsec / OpenVPN / WireGuard の違い、ゼロトラスト時代の VPN 観も含めて初学者向けに解説。",
+      "IPsec、OpenVPN、WireGuard、リモートアクセス、プライバシー面の誤解を整理します。",
     date: "2026-05-03",
     readingMinutes: 7,
     relatedTools: [],
@@ -152,9 +270,9 @@ export const articles: Article[] = [
   {
     slug: "ipv4-vs-ipv6",
     category: "network",
-    title: "IPv4 と IPv6 の違い - アドレス枯渇と次世代インターネット",
+    title: "IPv4 と IPv6 の違い",
     description:
-      "IPv4 が枯渇したから IPv6 へ、と聞くが何が違うのか。アドレス長、表記法、グローバル前提の設計、NAT 不要、自動構成（SLAAC）など初学者向けに解説。",
+      "アドレス長、表記、SLAAC、NDP、デュアルスタック、NAT不要という設計思想を解説します。",
     date: "2026-05-03",
     readingMinutes: 6,
     relatedTools: ["cidr-calculator"],
@@ -162,9 +280,9 @@ export const articles: Article[] = [
   {
     slug: "firewall-basics",
     category: "network",
-    title: "ファイアウォールの基本 - パケットフィルタからWAFまで",
+    title: "ファイアウォールの基本",
     description:
-      "ステートレス / ステートフル / アプリケーション層の3世代。L3-L4 ACL、L7 WAF、ホストベース vs ネットワークベースの違い、クラウド時代のセキュリティグループまで初学者向けに解説。",
+      "ステートレス、ステートフル、L7、WAF、クラウドのセキュリティグループまで整理します。",
     date: "2026-05-03",
     readingMinutes: 7,
     relatedTools: [],
@@ -172,139 +290,19 @@ export const articles: Article[] = [
   {
     slug: "dhcp-basics",
     category: "network",
-    title: "DHCP の仕組み - IP アドレス自動割当の DORA 4ステップ",
+    title: "DHCP の仕組み",
     description:
-      "PC を Wi-Fi に繋ぐと自動で IP アドレスが割り振られる仕組み。Discover / Offer / Request / Ack の 4 ステップ、リース期間、ローグ DHCP の脅威まで初学者向けに解説。",
+      "Discover / Offer / Request / Ack の流れ、リース、DHCPリレー、トラブルシュートを説明します。",
     date: "2026-05-03",
     readingMinutes: 6,
     relatedTools: [],
   },
   {
-    slug: "xss",
-    category: "security",
-    title: "XSS（クロスサイトスクリプティング）の基礎と防御",
-    description:
-      "Web アプリの定番脆弱性 XSS を初学者向けに解説。Reflected / Stored / DOM-based の3種、HTMLエスケープと CSP による多層防御、よくある誤解（input サニタイズ）まで。",
-    date: "2026-05-08",
-    readingMinutes: 7,
-    relatedTools: ["html-entity"],
-  },
-  {
-    slug: "csrf",
-    category: "security",
-    title: "CSRF（クロスサイトリクエストフォージェリ）の仕組みと対策",
-    description:
-      "ログイン中のユーザーを罠サイト経由で意図しない操作に巻き込む CSRF。XSS との違い、SameSite Cookie / CSRF トークン / Origin チェックなど現代的防御を初学者向けに解説。",
-    date: "2026-05-08",
-    readingMinutes: 6,
-    relatedTools: ["cookie-parser"],
-  },
-  {
-    slug: "owasp-top-10",
-    category: "security",
-    title: "OWASP Top 10 入門 - Web アプリの主要リスク10選",
-    description:
-      "Web セキュリティの世界標準ガイドライン OWASP Top 10（2021）を初学者向けに俯瞰。アクセス制御不備、暗号化失敗、インジェクション、識別認証不備など、10カテゴリの要点と実例。",
-    date: "2026-05-08",
-    readingMinutes: 9,
-    relatedTools: ["jwt-decoder", "password-generator", "html-entity", "cookie-parser"],
-  },
-  {
-    slug: "sql-injection",
-    category: "security",
-    title: "SQL インジェクション入門 - 文字列連結という根本原因",
-    description:
-      "Web脆弱性の代表格 SQLi を初学者向けに解説。なぜ起きるのか、典型的な攻撃パターン（認証回避・UNION・Blind）、プリペアドステートメントによる根本対策、ORM 利用時の注意点まで。",
-    date: "2026-05-08",
-    readingMinutes: 7,
-    relatedTools: [],
-  },
-  {
-    slug: "mfa-totp-fido2",
-    category: "security",
-    title: "多要素認証（MFA）入門 - SMS / TOTP / FIDO2 / Passkey の違い",
-    description:
-      "「2段階認証」と一括りにされがちな MFA の中身を初学者向けに解説。SMS の弱点、TOTP（Google Authenticator）の仕組み、FIDO2/WebAuthn と Passkey の関係、フィッシング耐性の差を整理。",
-    date: "2026-05-08",
-    readingMinutes: 8,
-    relatedTools: ["totp"],
-  },
-  {
-    slug: "password-hashing",
-    category: "security",
-    title: "パスワードハッシュ関数の選び方 - bcrypt / scrypt / Argon2",
-    description:
-      "「SHA-256 で保存」が間違いである理由から、bcrypt / scrypt / Argon2 の選び方まで。レインボーテーブル、ソルト、ペッパー、コストファクター、メモリハード関数の意義を初学者向けに解説。",
-    date: "2026-05-08",
-    readingMinutes: 8,
-    relatedTools: ["bcrypt", "hash-generator"],
-  },
-  {
-    slug: "cors-same-origin",
-    category: "security",
-    title: "CORS と Same-Origin Policy 入門 - なぜブラウザに弾かれるのか",
-    description:
-      "「Access-Control-Allow-Origin が無い」エラーで詰まる初学者向けに、Same-Origin Policy の歴史、なぜ存在するのか、CORS でどう穴を開けるのか、プリフライト・credentials・ワイルドカード制限まで実装目線で解説。",
-    date: "2026-05-08",
-    readingMinutes: 8,
-    relatedTools: ["http-status", "cookie-parser"],
-  },
-  {
-    slug: "session-vs-jwt",
-    category: "security",
-    title: "セッション認証 vs JWT 認証 - どちらを選ぶべきか",
-    description:
-      "Web認証の二大方式を初学者向けに比較。サーバ状態 vs ステートレス、Cookie vs localStorage、トークンの失効、リフレッシュトークン、サイズ、CSRF/XSS耐性の違いを実務目線で整理。",
-    date: "2026-05-08",
-    readingMinutes: 9,
-    relatedTools: ["jwt-decoder", "cookie-parser"],
-  },
-  {
-    slug: "public-key-crypto",
-    category: "security",
-    title: "公開鍵暗号の基本 - RSA / ECDSA / 鍵交換のしくみ",
-    description:
-      "「公開鍵」と「秘密鍵」が結局何なのか、初学者向けに整理。共通鍵暗号との違い、デジタル署名、RSA/ECDSA/Ed25519 の使い分け、Diffie-Hellman 鍵交換、量子耐性まで。",
-    date: "2026-05-08",
-    readingMinutes: 9,
-    relatedTools: ["jwt-decoder", "hmac"],
-  },
-  {
-    slug: "oauth-oidc",
-    category: "security",
-    title: "OAuth 2.0 と OpenID Connect 入門 - 認可と認証の違い",
-    description:
-      "「Google でログイン」の裏側を初学者向けに解説。OAuth 2.0 が解く問題、Authorization Code フロー、PKCE、OpenID Connect で認証が乗っかる仕組み、ID トークンと access トークンの違いまで。",
-    date: "2026-05-08",
-    readingMinutes: 9,
-    relatedTools: ["jwt-decoder"],
-  },
-  {
-    slug: "http-security-headers",
-    category: "security",
-    title: "HTTP セキュリティヘッダ詳解 - CSP / HSTS / X-Frame-Options",
-    description:
-      "Webサイトを多層防御するレスポンスヘッダ群を初学者向けに解説。Content-Security-Policy / HSTS / X-Frame-Options / Permissions-Policy 等の役割と推奨値、本サイト自身の実装例も含めて整理。",
-    date: "2026-05-08",
-    readingMinutes: 9,
-    relatedTools: ["http-status", "cookie-parser"],
-  },
-  {
-    slug: "secure-randomness",
-    category: "security",
-    title: "安全な乱数とは - Math.random の罠と CSPRNG",
-    description:
-      "「乱数」と一括りにされがちな疑似乱数（PRNG）と暗号学的乱数（CSPRNG）の違いを初学者向けに解説。Math.random で起きる事故、crypto.getRandomValues / randomUUID の使い方、modulo bias の回避まで。",
-    date: "2026-05-08",
-    readingMinutes: 7,
-    relatedTools: ["password-generator", "uuid-generator"],
-  },
-  {
     slug: "xserver-vs-conoha-wing",
     category: "network",
-    title: "エックスサーバー vs ConoHa WING - 個人開発者・副業ブロガーのレンタルサーバー選び",
+    title: "エックスサーバー vs ConoHa WING 比較",
     description:
-      "国内シェアNo.1のエックスサーバーと、後発で勢いのあるConoHa WINGを実用目線で比較。料金・速度・管理画面・WordPress機能・サポート・安定性まで、選ぶ前に知っておくべき違いを整理。",
+      "個人サイトやブログ向けに、料金、速度、使いやすさ、サポート、向いている人を比較します。",
     date: "2026-05-08",
     readingMinutes: 10,
     relatedTools: [],
@@ -316,9 +314,9 @@ export function getArticle(
   category: ArticleCategory,
   slug: string,
 ): Article | undefined {
-  return articles.find((a) => a.category === category && a.slug === slug);
+  return articles.find((article) => article.category === category && article.slug === slug);
 }
 
 export function getRelatedArticles(toolSlug: string): Article[] {
-  return articles.filter((a) => a.relatedTools?.includes(toolSlug));
+  return articles.filter((article) => article.relatedTools?.includes(toolSlug));
 }
