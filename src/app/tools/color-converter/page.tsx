@@ -63,28 +63,6 @@ function rgbToHsl({ r, g, b }: RGB): HSL {
   };
 }
 
-function hslToRgb({ h, s, l }: HSL): RGB {
-  const sN = s / 100;
-  const lN = l / 100;
-  const c = (1 - Math.abs(2 * lN - 1)) * sN;
-  const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
-  const m = lN - c / 2;
-  let rN = 0;
-  let gN = 0;
-  let bN = 0;
-  if (h < 60) [rN, gN, bN] = [c, x, 0];
-  else if (h < 120) [rN, gN, bN] = [x, c, 0];
-  else if (h < 180) [rN, gN, bN] = [0, c, x];
-  else if (h < 240) [rN, gN, bN] = [0, x, c];
-  else if (h < 300) [rN, gN, bN] = [x, 0, c];
-  else [rN, gN, bN] = [c, 0, x];
-  return {
-    r: Math.round((rN + m) * 255),
-    g: Math.round((gN + m) * 255),
-    b: Math.round((bN + m) * 255),
-  };
-}
-
 function rgbToHsv({ r, g, b }: RGB): HSV {
   const rN = r / 255;
   const gN = g / 255;

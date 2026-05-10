@@ -58,18 +58,12 @@ function parseInput(input: string): { parsed: Parsed | null; error: string | nul
   };
 }
 
-const DAY_JA = ["日", "月", "火", "水", "木", "金", "土"];
-
 function formatTz(d: Date, timeZone: string): string {
   // sv-SE は YYYY-MM-DD HH:mm:ss 形式に近い
   return d.toLocaleString("sv-SE", { timeZone, hour12: false });
 }
 
 function dayOfWeek(d: Date, timeZone: string): string {
-  const idx = parseInt(
-    d.toLocaleString("en-US", { timeZone, weekday: "narrow" }),
-    10,
-  );
   // narrowが数字を返すロケールはあるので別アプローチ
   const wd = new Intl.DateTimeFormat("en-US", {
     timeZone,
