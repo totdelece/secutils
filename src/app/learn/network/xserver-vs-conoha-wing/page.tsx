@@ -149,6 +149,25 @@ function Verdict({
   );
 }
 
+function BannerAd({
+  caption,
+  children,
+}: {
+  caption: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <aside className="not-prose my-9 rounded-lg border border-slate-200 bg-white p-4 text-center shadow-sm dark:border-white/10 dark:bg-white/[0.04]">
+      <div className="mb-3 text-[11px] font-bold uppercase tracking-wide text-slate-400">
+        {caption}
+      </div>
+      <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+        {children}
+      </div>
+    </aside>
+  );
+}
+
 export default function Page() {
   return (
     <ArticleLayout article={article}>
@@ -182,6 +201,37 @@ export default function Page() {
           最初からブログ一本で始める人には分かりやすい体験です。
         </DecisionCard>
       </div>
+
+      <BannerAd caption="公式キャンペーン">
+        <a
+          href="https://px.a8.net/svt/ejp?a8mat=4B3LMV+C506SY+CO4+6Q74X"
+          rel="nofollow noopener noreferrer"
+          target="_blank"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://www21.a8.net/svt/bgt?aid=260508487734&wid=001&eno=01&mid=s00000001642001130000&mc=1"
+            alt="エックスサーバー 公式キャンペーン"
+            width={300}
+            height={250}
+            className="rounded-md"
+          />
+        </a>
+        <a
+          href="https://px.a8.net/svt/ejp?a8mat=4B3LMV+ALMVJM+50+5SMI35"
+          rel="nofollow noopener noreferrer"
+          target="_blank"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://www20.a8.net/svt/bgt?aid=260508487641&wid=001&eno=01&mid=s00000000018035041000&mc=1"
+            alt="ConoHa WING 公式キャンペーン"
+            width={300}
+            height={250}
+            className="rounded-md"
+          />
+        </a>
+      </BannerAd>
 
       <Verdict title="この記事の判断基準">
         <p>
@@ -276,6 +326,37 @@ export default function Page() {
           「ブログをやると決めていて、長期前払いで初回費用を下げたい」ならConoHa WINGです。
         </p>
       </Verdict>
+
+      <BannerAd caption="料金を公式で確認">
+        <a
+          href="https://px.a8.net/svt/ejp?a8mat=4B3LMV+C506SY+CO4+6EU6P"
+          rel="nofollow noopener noreferrer"
+          target="_blank"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://www19.a8.net/svt/bgt?aid=260508487734&wid=001&eno=01&mid=s00000001642001130000&mc=1"
+            alt="エックスサーバー 料金を確認"
+            width={300}
+            height={250}
+            className="rounded-md"
+          />
+        </a>
+        <a
+          href="https://px.a8.net/svt/ejp?a8mat=4B3LMV+ALMVJM+50+5SEKLD"
+          rel="nofollow noopener noreferrer"
+          target="_blank"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://www15.a8.net/svt/bgt?aid=260508487641&wid=001&eno=01&mid=s00000000018035041000&mc=1"
+            alt="ConoHa WING 料金を確認"
+            width={728}
+            height={90}
+            className="max-w-full rounded-md"
+          />
+        </a>
+      </BannerAd>
 
       <h2>3. スペック比較は、数字の読み方が大事</h2>
 
@@ -421,6 +502,37 @@ export default function Page() {
       </p>
 
       <h2>7. 最終結論</h2>
+
+      <BannerAd caption="申し込み前に公式条件を確認">
+        <a
+          href="https://px.a8.net/svt/ejp?a8mat=4B3LMV+C506SY+CO4+6CHB5"
+          rel="nofollow noopener noreferrer"
+          target="_blank"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://www17.a8.net/svt/bgt?aid=260508487734&wid=001&eno=01&mid=s00000001642001130000&mc=1"
+            alt="エックスサーバー 公式サイト"
+            width={350}
+            height={240}
+            className="rounded-md"
+          />
+        </a>
+        <a
+          href="https://px.a8.net/svt/ejp?a8mat=4B3LMV+ALMVJM+50+5SPXJL"
+          rel="nofollow noopener noreferrer"
+          target="_blank"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://www11.a8.net/svt/bgt?aid=260508487641&wid=001&eno=01&mid=s00000000018035041000&mc=1"
+            alt="ConoHa WING 公式サイト"
+            width={336}
+            height={280}
+            className="rounded-md"
+          />
+        </a>
+      </BannerAd>
 
       <Verdict title="後悔しにくい選び方">
         <p>
