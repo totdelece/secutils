@@ -99,6 +99,28 @@ export default function Home() {
         ))}
       </section>
 
+      <section className="mt-10 rounded-lg border border-emerald-200 bg-white p-5 shadow-sm dark:border-emerald-400/30 dark:bg-white/[0.04] sm:p-6">
+        <div className="grid gap-5 lg:grid-cols-[1fr_auto] lg:items-center">
+          <div>
+            <div className="text-xs font-bold uppercase tracking-wide text-emerald-700 dark:text-emerald-300">
+              Server comparison
+            </div>
+            <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-950 dark:text-white">
+              初心者向けレンタルサーバー比較
+            </h2>
+            <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-600 dark:text-slate-300">
+              エックスサーバーとConoHa WINGを、無料お試し、WordPressの始めやすさ、更新料金の確認ポイントから整理しています。
+            </p>
+          </div>
+          <Link
+            href="/learn/network/xserver-vs-conoha-wing"
+            className="inline-flex min-h-11 items-center justify-center rounded-md bg-emerald-600 px-5 text-sm font-bold text-white transition hover:bg-emerald-700"
+          >
+            サーバー比較を見る
+          </Link>
+        </div>
+      </section>
+
       <section id="tools" className="mt-12 scroll-mt-8">
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>

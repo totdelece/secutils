@@ -103,7 +103,14 @@ export default function LearnPage() {
                       >
                         <div className="mb-3 flex items-center justify-between gap-3 text-xs text-slate-500 dark:text-slate-400">
                           <time dateTime={article.date}>{article.date}</time>
-                          <span>約{article.readingMinutes}分</span>
+                          <div className="flex items-center gap-2">
+                            {article.affiliate && (
+                              <span className="rounded-full bg-orange-100 px-2 py-0.5 font-semibold text-orange-700 dark:bg-orange-400/15 dark:text-orange-200">
+                                PR
+                              </span>
+                            )}
+                            <span>約{article.readingMinutes}分</span>
+                          </div>
                         </div>
                         <h3 className="text-base font-bold leading-7 text-slate-950 transition group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">
                           {article.title}
