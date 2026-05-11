@@ -1044,17 +1044,17 @@ function CampaignPanel() {
       id="campaign"
       className="scroll-mt-24 rounded-xl border border-blue-200 bg-white p-6 shadow-sm sm:p-8"
     >
-      <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
-        <div>
+      <div className="grid min-w-0 gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(280px,420px)] lg:items-center">
+        <div className="min-w-0">
           <Badge tone="blue">公式確認が前提</Badge>
-          <h2 className="mt-4 text-3xl font-black tracking-tight text-slate-950">
+          <h2 className="mt-4 max-w-3xl text-3xl font-black leading-tight tracking-tight text-slate-950">
             方向性が決まったら、公式サイトで最新条件を確認
           </h2>
-          <p className="mt-4 text-base leading-8 text-slate-600">
+          <p className="mt-4 max-w-3xl text-base leading-8 text-slate-600">
             レンタルサーバーはキャンペーン価格、契約期間、更新料金、独自ドメイン特典の条件が変わります。比較で候補を絞ったら、申し込み前に公式ページで総支払額と条件を確認してください。
           </p>
         </div>
-        <div className="grid gap-3 sm:grid-cols-2 lg:min-w-[440px]">
+        <div className="grid min-w-0 w-full gap-3 sm:grid-cols-2 lg:grid-cols-1">
           <AffiliateButton href={XSERVER_URL} tone="emerald" full>
             無料で試してから決める
           </AffiliateButton>
@@ -1275,17 +1275,17 @@ export default function Page() {
             />
 
             <section className="rounded-lg bg-slate-950 p-5 text-white shadow-sm sm:p-7">
-              <div className="grid gap-5 lg:grid-cols-[1fr_auto] lg:items-center">
-                <div>
+              <div className="grid min-w-0 gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(280px,420px)] lg:items-center">
+                <div className="min-w-0">
                   <Badge tone="orange">Final CTA</Badge>
-                  <h2 className="mt-3 text-2xl font-black tracking-tight">
+                  <h2 className="mt-3 max-w-3xl text-2xl font-black leading-tight tracking-tight">
                     最後は「不安を減らせるほう」を選ぶ
                   </h2>
-                  <p className="mt-3 text-sm leading-7 text-slate-300">
+                  <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-300">
                     触ってから決めたいならエックスサーバー。WordPressブログをすぐ始めたいならConoHa WING。方向性が決まったら、公式サイトで最新条件を確認してください。
                   </p>
                 </div>
-                <div className="grid gap-3 sm:grid-cols-2 lg:min-w-[430px]">
+                <div className="grid min-w-0 w-full gap-3 sm:grid-cols-2 lg:grid-cols-1">
                   <AffiliateButton href={XSERVER_URL} tone="emerald" full>
                     Xserver公式で確認
                   </AffiliateButton>
