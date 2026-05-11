@@ -34,3 +34,9 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Maintenance Notes
+
+- `learn/network/xserver-vs-conoha-wing` is being redesigned as a rental-server comparison LP and affiliate media page.
+- Official logo SVGs are not required for the current layout. If they are unavailable, use service-name text in compact UI and place official A8 banners only in clearly labeled PR/banner sections.
+- OGP is a pending priority: create a dedicated `1200x630` image for the Xserver vs ConoHa WING comparison page. Recommended direction: blue, trustworthy comparison-media design with the message "迷ったらXserver / すぐブログ開始ならConoHa WING".
