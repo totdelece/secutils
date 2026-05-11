@@ -112,6 +112,81 @@ const services = [
   },
 ];
 
+const audienceItems = [
+  "初めてWordPressブログを作る人",
+  "副業ブログを始めたい人",
+  "サーバー選びで失敗したくない人",
+  "料金と更新条件を落ち着いて比較したい人",
+];
+
+const trustSignals = [
+  {
+    label: "Xserver",
+    value: "国内シェアNo.1",
+    note: "公式サイト掲載のシェア訴求。運用実績も公式で確認可能。",
+  },
+  {
+    label: "Xserver",
+    value: "10日間無料お試し",
+    note: "申し込み後に管理画面やWordPressを触って判断しやすい。",
+  },
+  {
+    label: "ConoHa WING",
+    value: "電話・メールサポートあり",
+    note: "料金ページ上の各プラン情報に掲載。",
+  },
+  {
+    label: "ConoHa WING",
+    value: "独自ドメイン特典",
+    note: "WINGパック契約時の特典。対象条件は公式確認が必要。",
+  },
+];
+
+const quickComparison = [
+  {
+    label: "初心者向け",
+    xserver: 88,
+    conoha: 92,
+    winner: "ConoHa",
+    reason: "WordPress開始までの導線が短い",
+  },
+  {
+    label: "表示速度",
+    xserver: 88,
+    conoha: 90,
+    winner: "互角",
+    reason: "体感速度はテーマや画像最適化にも左右される",
+  },
+  {
+    label: "安定性",
+    xserver: 92,
+    conoha: 88,
+    winner: "Xserver",
+    reason: "長期運用・事業用途でも候補にしやすい",
+  },
+  {
+    label: "WordPress簡単さ",
+    xserver: 86,
+    conoha: 94,
+    winner: "ConoHa",
+    reason: "ブログ開設前提なら手順を短くしやすい",
+  },
+  {
+    label: "サポート",
+    xserver: 88,
+    conoha: 86,
+    winner: "互角",
+    reason: "どちらも公式サポート情報を確認可能",
+  },
+  {
+    label: "コスパ",
+    xserver: 89,
+    conoha: 87,
+    winner: "目的次第",
+    reason: "初回価格より更新後の総額で判断",
+  },
+];
+
 const comparisonRows = [
   {
     label: "料金・契約",
@@ -218,11 +293,11 @@ const faqs = [
 ];
 
 const tocItems = [
+  { href: "#quick", label: "3秒比較" },
   { href: "#ranking", label: "おすすめ" },
   { href: "#comparison", label: "比較表" },
   { href: "#criteria", label: "選び方" },
   { href: "#campaign", label: "公式確認" },
-  { href: "#faq", label: "FAQ" },
 ];
 
 function toneClasses(tone: "emerald" | "orange") {
@@ -311,15 +386,15 @@ function SectionTitle({
   children?: React.ReactNode;
 }) {
   return (
-    <div className="mb-6">
+    <div className="mb-8">
       <div className="text-xs font-black uppercase tracking-wide text-emerald-700">
         {eyebrow}
       </div>
-      <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-950 sm:text-3xl">
+      <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
         {title}
       </h2>
       {children && (
-        <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-600 sm:text-base">
+        <p className="mt-4 max-w-3xl text-base leading-8 text-slate-600">
           {children}
         </p>
       )}
@@ -358,21 +433,21 @@ function ServiceCard({ service }: { service: (typeof services)[number] }) {
   const tone = toneClasses(service.tone);
 
   return (
-    <article className={`rounded-lg border ${tone.border} bg-white p-5 shadow-sm`}>
+    <article className={`rounded-xl border ${tone.border} bg-white p-6 shadow-sm sm:p-7`}>
       <div className="flex flex-wrap items-center justify-between gap-3">
         <Badge tone={service.tone}>{service.rank}</Badge>
         <div className="rounded-full bg-slate-950 px-3 py-1 text-xs font-black text-white">
           score {service.score}
         </div>
       </div>
-      <h3 className="mt-4 text-2xl font-black tracking-tight text-slate-950">
+      <h3 className="mt-5 text-3xl font-black tracking-tight text-slate-950">
         {service.name}
       </h3>
-      <p className="mt-2 min-h-14 text-sm leading-7 text-slate-600">
+      <p className="mt-3 min-h-14 text-base leading-8 text-slate-600">
         {service.tagline}
       </p>
 
-      <div className="mt-5 space-y-3">
+      <div className="mt-6 space-y-4">
         {service.metrics.map((metric) => (
           <MetricBar
             key={metric.label}
@@ -383,22 +458,22 @@ function ServiceCard({ service }: { service: (typeof services)[number] }) {
         ))}
       </div>
 
-      <dl className="mt-5 grid gap-3 border-t border-slate-100 pt-5">
+      <dl className="mt-6 grid gap-4 border-t border-slate-100 pt-6">
         <div>
           <dt className={`text-xs font-black ${tone.text}`}>向いている人</dt>
-          <dd className="mt-1 text-sm leading-6 text-slate-700">
+          <dd className="mt-2 text-sm leading-7 text-slate-700">
             {service.bestFor}
           </dd>
         </div>
         <div>
           <dt className="text-xs font-black text-slate-500">注意点</dt>
-          <dd className="mt-1 text-sm leading-6 text-slate-700">
+          <dd className="mt-2 text-sm leading-7 text-slate-700">
             {service.caution}
           </dd>
         </div>
       </dl>
 
-      <ul className="mt-5 grid gap-2">
+      <ul className="mt-6 grid gap-3">
         {service.points.map((point) => (
           <li key={point} className="flex gap-2 text-sm leading-6 text-slate-700">
             <span
@@ -411,7 +486,7 @@ function ServiceCard({ service }: { service: (typeof services)[number] }) {
         ))}
       </ul>
 
-      <div className="mt-6 grid gap-2">
+      <div className="mt-7 grid gap-3">
         <AffiliateButton href={service.href} tone={service.tone} full>
           {service.primaryCta}
         </AffiliateButton>
@@ -478,20 +553,147 @@ function TableOfContents() {
   return (
     <nav
       aria-label="記事内メニュー"
-      className="rounded-lg border border-slate-200 bg-white p-3 shadow-sm"
+      className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm"
     >
       <div className="grid gap-2 sm:grid-cols-5">
         {tocItems.map((item) => (
           <a
             key={item.href}
             href={item.href}
-            className="rounded-md border border-slate-200 bg-slate-50 px-3 py-2 text-center text-sm font-bold text-slate-700 transition hover:border-emerald-400 hover:bg-emerald-50 hover:text-emerald-700"
+            className="rounded-md border border-slate-200 bg-slate-50 px-4 py-3 text-center text-sm font-bold text-slate-700 transition hover:border-blue-400 hover:bg-blue-50 hover:text-blue-700"
           >
             {item.label}
           </a>
         ))}
       </div>
     </nav>
+  );
+}
+
+function AudienceStrip() {
+  return (
+    <section className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+        <div>
+          <div className="text-xs font-black uppercase tracking-wide text-blue-700">
+            For beginners
+          </div>
+          <h2 className="mt-2 text-xl font-black tracking-tight text-slate-950">
+            この比較は、こんな人向けです
+          </h2>
+        </div>
+        <div className="grid flex-1 gap-2 sm:grid-cols-2 lg:max-w-3xl">
+          {audienceItems.map((item) => (
+            <div
+              key={item}
+              className="rounded-md border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-bold text-slate-700"
+            >
+              {item}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function TrustSignals() {
+  return (
+    <section className="grid gap-3 md:grid-cols-4">
+      {trustSignals.map((signal) => (
+        <article
+          key={`${signal.label}-${signal.value}`}
+          className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm"
+        >
+          <div className="text-[11px] font-black uppercase tracking-wide text-slate-400">
+            {signal.label}
+          </div>
+          <div className="mt-2 text-xl font-black tracking-tight text-slate-950">
+            {signal.value}
+          </div>
+          <p className="mt-2 text-xs leading-5 text-slate-500">{signal.note}</p>
+        </article>
+      ))}
+    </section>
+  );
+}
+
+function ScorePill({
+  value,
+  tone,
+}: {
+  value: number;
+  tone: "emerald" | "orange";
+}) {
+  const toneClass = toneClasses(tone);
+
+  return (
+    <div className="flex items-center gap-2">
+      <div className="h-2 w-20 overflow-hidden rounded-full bg-slate-100">
+        <div
+          className={`h-full rounded-full ${toneClass.bar}`}
+          style={{ width: `${value}%` }}
+        />
+      </div>
+      <span className="w-8 text-right text-xs font-black text-slate-600">
+        {value}
+      </span>
+    </div>
+  );
+}
+
+function QuickComparison() {
+  return (
+    <section id="quick" className="scroll-mt-24">
+      <SectionTitle
+        eyebrow="3-second comparison"
+        title="3秒で違いが分かる比較"
+      >
+        長文を読む前に、まずは自分に関係する項目だけ確認してください。数値は公式スペックと初心者の選びやすさをもとにした比較目安です。
+      </SectionTitle>
+      <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+        <div className="grid grid-cols-[1.15fr_0.85fr_0.85fr_0.9fr] bg-slate-950 px-5 py-4 text-xs font-black uppercase tracking-wide text-white max-md:hidden">
+          <div>比較項目</div>
+          <div>Xserver</div>
+          <div>ConoHa WING</div>
+          <div>判断</div>
+        </div>
+        <div className="divide-y divide-slate-100">
+          {quickComparison.map((row) => (
+            <div
+              key={row.label}
+              className="grid gap-4 px-5 py-5 md:grid-cols-[1.15fr_0.85fr_0.85fr_0.9fr] md:items-center"
+            >
+              <div>
+                <div className="text-base font-black text-slate-950">
+                  {row.label}
+                </div>
+                <p className="mt-1 text-xs leading-5 text-slate-500">
+                  {row.reason}
+                </p>
+              </div>
+              <div>
+                <div className="mb-1 text-xs font-black text-emerald-700 md:hidden">
+                  Xserver
+                </div>
+                <ScorePill value={row.xserver} tone="emerald" />
+              </div>
+              <div>
+                <div className="mb-1 text-xs font-black text-orange-700 md:hidden">
+                  ConoHa WING
+                </div>
+                <ScorePill value={row.conoha} tone="orange" />
+              </div>
+              <div>
+                <span className="inline-flex rounded-full bg-blue-50 px-3 py-1 text-xs font-black text-blue-700">
+                  {row.winner}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -621,24 +823,24 @@ function CampaignPanel() {
   return (
     <section
       id="campaign"
-      className="scroll-mt-24 rounded-lg border border-emerald-200 bg-white p-5 shadow-sm sm:p-6"
+      className="scroll-mt-24 rounded-xl border border-blue-200 bg-white p-6 shadow-sm sm:p-8"
     >
-      <div className="grid gap-5 lg:grid-cols-[1fr_auto] lg:items-center">
+      <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
         <div>
-          <Badge tone="emerald">公式確認が前提</Badge>
-          <h2 className="mt-3 text-2xl font-black tracking-tight text-slate-950">
-            申し込み前にキャンペーンと更新条件を確認
+          <Badge tone="blue">公式確認が前提</Badge>
+          <h2 className="mt-4 text-3xl font-black tracking-tight text-slate-950">
+            方向性が決まったら、公式サイトで最新条件を確認
           </h2>
-          <p className="mt-3 text-sm leading-7 text-slate-600">
-            レンタルサーバーはキャンペーン価格、契約期間、更新料金、独自ドメイン特典の条件が変わります。本文で方向性を決めたら、最後は公式サイトで最新条件を確認してください。
+          <p className="mt-4 text-base leading-8 text-slate-600">
+            レンタルサーバーはキャンペーン価格、契約期間、更新料金、独自ドメイン特典の条件が変わります。比較で候補を絞ったら、申し込み前に公式ページで総支払額と条件を確認してください。
           </p>
         </div>
         <div className="grid gap-3 sm:grid-cols-2 lg:min-w-[440px]">
           <AffiliateButton href={XSERVER_URL} tone="emerald" full>
-            Xserverの無料お試しを見る
+            無料で試してから決める
           </AffiliateButton>
           <AffiliateButton href={CONOHA_URL} tone="orange" full>
-            ConoHaのWINGパックを見る
+            WordPress簡単セットアップを見る
           </AffiliateButton>
         </div>
       </div>
@@ -656,7 +858,7 @@ function BannerSlot({
   ads: typeof bannerAds.hero;
 }) {
   return (
-    <aside className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+    <aside className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
       <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
         <div>
           <div className="text-[11px] font-black uppercase tracking-wide text-slate-400">
@@ -693,13 +895,13 @@ function BannerSlot({
 
 function Sidebar() {
   return (
-    <aside className="space-y-4 lg:sticky lg:top-24">
-      <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+    <aside className="space-y-5 lg:sticky lg:top-24">
+      <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
         <div className="text-xs font-black uppercase tracking-wide text-slate-400">
           Quick decision
         </div>
-        <div className="mt-3 space-y-3">
-          <div className="rounded-md bg-emerald-50 p-3">
+        <div className="mt-4 space-y-3">
+          <div className="rounded-md border border-emerald-100 bg-emerald-50 p-4">
             <div className="text-sm font-black text-emerald-800">
               迷ったらXserver
             </div>
@@ -707,7 +909,7 @@ function Sidebar() {
               まず無料お試しで操作感を確認。
             </p>
           </div>
-          <div className="rounded-md bg-orange-50 p-3">
+          <div className="rounded-md border border-orange-100 bg-orange-50 p-4">
             <div className="text-sm font-black text-orange-800">
               ブログ開始ならConoHa
             </div>
@@ -716,12 +918,12 @@ function Sidebar() {
             </p>
           </div>
         </div>
-        <div className="mt-4 grid gap-2">
+        <div className="mt-5 grid gap-3">
           <AffiliateButton href={XSERVER_URL} tone="emerald" full>
-            無料お試しを見る
+            Xserverを無料で試す
           </AffiliateButton>
           <AffiliateButton href={CONOHA_URL} tone="orange" full>
-            WINGパックを見る
+            ConoHaの条件を見る
           </AffiliateButton>
         </div>
       </div>
@@ -738,8 +940,8 @@ export default function Page() {
   return (
     <div className="bg-[#f5f7fb] text-slate-950">
       <section className="bg-slate-950 text-white">
-        <div className="mx-auto max-w-6xl px-5 py-6 sm:px-6 lg:py-8">
-          <nav className="mb-8 flex flex-wrap items-center gap-2 text-sm text-slate-300">
+        <div className="mx-auto max-w-7xl px-5 py-8 sm:px-6 lg:py-12">
+          <nav className="mb-10 flex flex-wrap items-center gap-2 text-sm text-slate-300">
             <Link href="/" className="hover:text-white">
               Tools
             </Link>
@@ -751,28 +953,30 @@ export default function Page() {
             <span>レンタルサーバー比較</span>
           </nav>
 
-          <div className="grid gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
+          <div className="grid gap-10 lg:grid-cols-[1.06fr_0.94fr] lg:items-center">
             <div>
               <div className="mb-5 flex flex-wrap gap-2">
                 <Badge tone="slate">PR / 広告を含みます</Badge>
                 <Badge tone="blue">2026年5月11日確認</Badge>
                 <Badge tone="orange">料金は公式で確認</Badge>
               </div>
-              <h1 className="max-w-4xl text-4xl font-black leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-                レンタルサーバー選びで迷う初心者へ。
+              <h1 className="max-w-4xl text-4xl font-black leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
+                どっちを選ぶべきか、
+                <br className="hidden sm:block" />
+                3秒で分かる。
                 <span className="block text-emerald-300">
-                  XserverとConoHa WINGをやさしく比較。
+                  XserverとConoHa WING比較
                 </span>
               </h1>
-              <p className="mt-6 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
-                無料お試し、WordPressの始めやすさ、料金の見方、更新時の注意点まで整理。初めてでも納得して公式サイトを確認できる比較ページです。
+              <p className="mt-7 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
+                初めてのブログ・副業サイト向けに、無料お試し、WordPressの始めやすさ、料金の見方、更新時の注意点を視覚的に比較します。
               </p>
-              <div className="mt-7 grid gap-3 sm:grid-cols-2">
+              <div className="mt-8 grid gap-3 sm:grid-cols-2">
                 <AffiliateButton href={XSERVER_URL} tone="emerald" full>
-                  Xserverの無料お試しを見る
+                  迷うならXserverを無料で試す
                 </AffiliateButton>
                 <AffiliateButton href={CONOHA_URL} tone="orange" full>
-                  ConoHa WINGの条件を見る
+                  初心者向けプランを見る
                 </AffiliateButton>
               </div>
               <p className="mt-4 text-xs leading-5 text-slate-400">
@@ -785,10 +989,22 @@ export default function Page() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl px-5 py-8 sm:px-6">
+      <div className="mx-auto max-w-7xl px-5 py-10 sm:px-6 lg:py-14">
         <TableOfContents />
 
-        <div className="mt-8">
+        <div className="mt-10">
+          <AudienceStrip />
+        </div>
+
+        <div className="mt-6">
+          <TrustSignals />
+        </div>
+
+        <div className="mt-12">
+          <QuickComparison />
+        </div>
+
+        <div className="mt-12">
           <BannerSlot
             title="公式キャンペーンを確認"
             description="気になるサービスは、初回価格だけでなく更新時の条件まで見てください。"
@@ -796,8 +1012,8 @@ export default function Page() {
           />
         </div>
 
-        <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_320px]">
-          <main className="space-y-12">
+        <div className="mt-14 grid gap-10 lg:grid-cols-[minmax(0,1fr)_340px]">
+          <main className="space-y-16">
             <RankingSection />
             <CampaignPanel />
             <ComparisonTable />
