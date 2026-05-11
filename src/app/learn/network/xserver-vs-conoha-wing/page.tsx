@@ -142,8 +142,36 @@ const trustSignals = [
   },
 ];
 
+const verdictCards = [
+  {
+    label: "初めてブログを作る",
+    answer: "ConoHa WING",
+    reason: "WordPressかんたんセットアップの導線が短く、初期設定で迷いにくい。",
+    tone: "orange" as const,
+  },
+  {
+    label: "長期運営・安定性重視",
+    answer: "Xserver",
+    reason: "無料お試しで管理画面を確認でき、長期運用の候補にしやすい。",
+    tone: "emerald" as const,
+  },
+  {
+    label: "まだ決めきれない",
+    answer: "Xserver",
+    reason: "支払い前に10日間試せるため、初心者が失敗しにくい。",
+    tone: "emerald" as const,
+  },
+  {
+    label: "副業ブログを早く始める",
+    answer: "ConoHa WING",
+    reason: "サーバーとドメインをまとめて進めたい人に向く。",
+    tone: "orange" as const,
+  },
+];
+
 const quickComparison = [
   {
+    icon: "初",
     label: "初心者向け",
     xserver: 88,
     conoha: 92,
@@ -151,6 +179,7 @@ const quickComparison = [
     reason: "WordPress開始までの導線が短い",
   },
   {
+    icon: "速",
     label: "表示速度",
     xserver: 88,
     conoha: 90,
@@ -158,6 +187,7 @@ const quickComparison = [
     reason: "体感速度はテーマや画像最適化にも左右される",
   },
   {
+    icon: "安",
     label: "安定性",
     xserver: 92,
     conoha: 88,
@@ -165,6 +195,7 @@ const quickComparison = [
     reason: "長期運用・事業用途でも候補にしやすい",
   },
   {
+    icon: "WP",
     label: "WordPress簡単さ",
     xserver: 86,
     conoha: 94,
@@ -172,6 +203,7 @@ const quickComparison = [
     reason: "ブログ開設前提なら手順を短くしやすい",
   },
   {
+    icon: "支",
     label: "サポート",
     xserver: 88,
     conoha: 86,
@@ -179,11 +211,68 @@ const quickComparison = [
     reason: "どちらも公式サポート情報を確認可能",
   },
   {
+    icon: "¥",
     label: "コスパ",
     xserver: 89,
     conoha: 87,
     winner: "目的次第",
     reason: "初回価格より更新後の総額で判断",
+  },
+];
+
+const ratingMatrix = [
+  {
+    label: "初心者向け",
+    icon: "初",
+    xserver: "○",
+    conoha: "◎",
+    note: "迷わずWordPressまで進めるならConoHaが分かりやすい。",
+  },
+  {
+    label: "無料で試せる",
+    icon: "試",
+    xserver: "◎",
+    conoha: "△",
+    note: "支払い前に触って判断したいならXserverが安心。",
+  },
+  {
+    label: "長期運営",
+    icon: "長",
+    xserver: "◎",
+    conoha: "○",
+    note: "複数サイトや事業用途まで見据えるならXserverを候補にしやすい。",
+  },
+  {
+    label: "副業ブログ",
+    icon: "副",
+    xserver: "○",
+    conoha: "◎",
+    note: "ブログ開始までの短さを重視するならConoHaが向く。",
+  },
+  {
+    label: "契約の柔軟性",
+    icon: "契",
+    xserver: "○",
+    conoha: "△",
+    note: "WINGパックは前払い条件と途中解約条件を必ず確認。",
+  },
+];
+
+const experienceNotes = [
+  {
+    title: "初期設定の印象",
+    xserver: "管理画面の項目は多め。最初は少し確認が必要だが、無料期間中に触って慣れられる。",
+    conoha: "WordPressを始める導線がまとまっていて、ブログ開設前提なら迷いにくい。",
+  },
+  {
+    title: "運用時の見え方",
+    xserver: "長く使うサイト、複数サイト、会社サイトまで広げても候補に残しやすい。",
+    conoha: "個人ブログや副業ブログの初期構築では、ドメイン込みで進めやすい。",
+  },
+  {
+    title: "初心者が迷いやすい点",
+    xserver: "無料期間後の支払いとドメイン特典条件を先に確認したい。",
+    conoha: "WINGパックの前払い、途中解約、更新時の料金を先に確認したい。",
   },
 ];
 
@@ -359,19 +448,20 @@ function AffiliateButton({
   const toneClass = toneClasses(tone);
   const style =
     variant === "solid"
-      ? `${toneClass.bg} text-white shadow-lg shadow-slate-950/10`
-      : "border border-slate-300 bg-white text-slate-900 hover:border-slate-500";
+      ? `${toneClass.bg} text-white shadow-xl shadow-slate-950/15 hover:-translate-y-0.5`
+      : "border border-slate-300 bg-white text-slate-900 hover:-translate-y-0.5 hover:border-slate-500 hover:bg-slate-50";
 
   return (
     <a
       href={href}
       rel="nofollow noopener noreferrer"
       target="_blank"
-      className={`inline-flex min-h-12 items-center justify-center rounded-md px-5 py-3 text-center text-sm font-black no-underline transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${style} ${
+      className={`inline-flex min-h-14 items-center justify-center gap-2 rounded-lg px-6 py-4 text-center text-base font-black no-underline transition duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${style} ${
         full ? "w-full" : "w-full sm:w-auto"
       }`}
     >
-      {children}
+      <span>{children}</span>
+      <span aria-hidden="true">→</span>
     </a>
   );
 }
@@ -549,6 +639,32 @@ function HeroSummary() {
   );
 }
 
+function VerdictGrid() {
+  return (
+    <div className="mt-8 grid gap-3 sm:grid-cols-2">
+      {verdictCards.map((card) => {
+        const tone = toneClasses(card.tone);
+        return (
+          <div
+            key={card.label}
+            className="rounded-lg border border-white/15 bg-white/10 p-4 backdrop-blur"
+          >
+            <div className="text-xs font-black uppercase tracking-wide text-slate-300">
+              {card.label}
+            </div>
+            <div className={`mt-2 text-2xl font-black ${tone.text}`}>
+              {card.answer}
+            </div>
+            <p className="mt-2 text-xs leading-5 text-slate-300">
+              {card.reason}
+            </p>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 function TableOfContents() {
   return (
     <nav
@@ -662,13 +778,18 @@ function QuickComparison() {
           {quickComparison.map((row) => (
             <div
               key={row.label}
-              className="grid gap-4 px-5 py-5 md:grid-cols-[1.15fr_0.85fr_0.85fr_0.9fr] md:items-center"
+              className="grid gap-5 px-5 py-6 md:grid-cols-[1.15fr_0.85fr_0.85fr_0.9fr] md:items-center md:px-7"
             >
               <div>
-                <div className="text-base font-black text-slate-950">
-                  {row.label}
+                <div className="flex items-center gap-3">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-md bg-blue-50 text-xs font-black text-blue-700 ring-1 ring-blue-100">
+                    {row.icon}
+                  </span>
+                  <div className="text-base font-black text-slate-950">
+                    {row.label}
+                  </div>
                 </div>
-                <p className="mt-1 text-xs leading-5 text-slate-500">
+                <p className="mt-2 text-xs leading-5 text-slate-500">
                   {row.reason}
                 </p>
               </div>
@@ -692,6 +813,58 @@ function QuickComparison() {
             </div>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+function RatingMatrix() {
+  return (
+    <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7">
+      <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <div className="text-xs font-black uppercase tracking-wide text-blue-700">
+            Rating
+          </div>
+          <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-950 sm:text-3xl">
+            ◎○△で見る向き・不向き
+          </h2>
+        </div>
+        <p className="max-w-md text-sm leading-6 text-slate-500">
+          細かい数値よりも、最初に判断しやすい相性を優先して整理しています。
+        </p>
+      </div>
+      <div className="grid gap-3">
+        {ratingMatrix.map((row) => (
+          <div
+            key={row.label}
+            className="grid gap-4 rounded-lg border border-slate-100 bg-slate-50 p-4 md:grid-cols-[1fr_90px_90px_1.5fr] md:items-center"
+          >
+            <div className="flex items-center gap-3">
+              <span className="flex h-9 w-9 items-center justify-center rounded-md bg-white text-xs font-black text-slate-700 ring-1 ring-slate-200">
+                {row.icon}
+              </span>
+              <span className="font-black text-slate-950">{row.label}</span>
+            </div>
+            <div className="flex items-center justify-between md:block">
+              <span className="text-xs font-black text-emerald-700 md:hidden">
+                Xserver
+              </span>
+              <span className="text-2xl font-black text-emerald-700">
+                {row.xserver}
+              </span>
+            </div>
+            <div className="flex items-center justify-between md:block">
+              <span className="text-xs font-black text-orange-700 md:hidden">
+                ConoHa
+              </span>
+              <span className="text-2xl font-black text-orange-600">
+                {row.conoha}
+              </span>
+            </div>
+            <p className="text-sm leading-6 text-slate-600">{row.note}</p>
+          </div>
+        ))}
       </div>
     </section>
   );
@@ -812,6 +985,52 @@ function CriteriaSection() {
             <p className="mt-2 text-sm leading-7 text-slate-600">
               {item.text}
             </p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function ExperienceSection() {
+  return (
+    <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7">
+      <div className="mb-6">
+        <div className="text-xs font-black uppercase tracking-wide text-emerald-700">
+          Practical notes
+        </div>
+        <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-950 sm:text-3xl">
+          実際に運用する目線で見る違い
+        </h2>
+        <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-600">
+          スペック表だけでは分かりにくい、初期設定・管理画面・運用時の迷いやすさを比較メモとして整理しました。
+        </p>
+      </div>
+      <div className="grid gap-4">
+        {experienceNotes.map((note) => (
+          <article
+            key={note.title}
+            className="grid gap-4 rounded-lg border border-slate-100 bg-slate-50 p-4 lg:grid-cols-[0.8fr_1fr_1fr]"
+          >
+            <h3 className="text-base font-black text-slate-950">
+              {note.title}
+            </h3>
+            <div className="rounded-md bg-white p-4">
+              <div className="text-xs font-black text-emerald-700">
+                Xserver
+              </div>
+              <p className="mt-2 text-sm leading-7 text-slate-600">
+                {note.xserver}
+              </p>
+            </div>
+            <div className="rounded-md bg-white p-4">
+              <div className="text-xs font-black text-orange-700">
+                ConoHa WING
+              </div>
+              <p className="mt-2 text-sm leading-7 text-slate-600">
+                {note.conoha}
+              </p>
+            </div>
           </article>
         ))}
       </div>
@@ -971,6 +1190,7 @@ export default function Page() {
               <p className="mt-7 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
                 初めてのブログ・副業サイト向けに、無料お試し、WordPressの始めやすさ、料金の見方、更新時の注意点を視覚的に比較します。
               </p>
+              <VerdictGrid />
               <div className="mt-8 grid gap-3 sm:grid-cols-2">
                 <AffiliateButton href={XSERVER_URL} tone="emerald" full>
                   迷うならXserverを無料で試す
@@ -1017,11 +1237,13 @@ export default function Page() {
             <RankingSection />
             <CampaignPanel />
             <ComparisonTable />
+            <RatingMatrix />
             <BannerSlot
               title="比較後に公式条件を見る"
               description="契約期間、更新料金、独自ドメイン特典の条件を確認しましょう。"
               ads={bannerAds.middle}
             />
+            <ExperienceSection />
             <CriteriaSection />
 
             <section id="faq" className="scroll-mt-24">
