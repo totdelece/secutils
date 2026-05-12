@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${article.title} | secutils`,
     description: article.description,
-    images: [`/learn/network/${article.slug}/opengraph-image`],
+    images: [`/learn/network/${article.slug}/opengraph-image.png`],
   },
 };
 
