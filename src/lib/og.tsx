@@ -183,6 +183,268 @@ export function renderArticleOg(slug: string) {
   );
 }
 
+export function renderServerComparisonOg() {
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          background: "linear-gradient(135deg, #eef6ff 0%, #ffffff 50%, #fff7ed 100%)",
+          padding: "48px 58px",
+          fontFamily: "system-ui, -apple-system, sans-serif",
+          color: "#0f172a",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            right: -130,
+            top: -150,
+            width: 430,
+            height: 430,
+            borderRadius: 430,
+            background: "rgba(37, 99, 235, 0.12)",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            left: -120,
+            bottom: -160,
+            width: 400,
+            height: 400,
+            borderRadius: 400,
+            background: "rgba(249, 115, 22, 0.14)",
+          }}
+        />
+
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 14,
+              fontSize: 28,
+              fontWeight: 800,
+            }}
+          >
+            <span style={{ color: "#059669" }}>sec</span>
+            <span>utils</span>
+            <span
+              style={{
+                fontSize: 18,
+                color: "#64748b",
+                fontWeight: 700,
+                marginLeft: 4,
+              }}
+            >
+              レンタルサーバー比較
+            </span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              borderRadius: 999,
+              background: "#ffffff",
+              border: "1px solid #dbeafe",
+              padding: "10px 18px",
+              color: "#1d4ed8",
+              fontSize: 20,
+              fontWeight: 800,
+            }}
+          >
+            PR / 2026年版
+          </div>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            flex: 1,
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 18,
+              marginBottom: 30,
+            }}
+          >
+            <ServicePill label="Xserver" color="#059669" bg="#ecfdf5" />
+            <div
+              style={{
+                color: "#94a3b8",
+                fontSize: 34,
+                fontWeight: 900,
+              }}
+            >
+              vs
+            </div>
+            <ServicePill label="ConoHa WING" color="#ea580c" bg="#fff7ed" />
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 12,
+              fontSize: 70,
+              lineHeight: 1.08,
+              fontWeight: 900,
+              letterSpacing: "-0.03em",
+              maxWidth: 980,
+            }}
+          >
+            <div>迷ったらXserver。</div>
+            <div style={{ color: "#1d4ed8" }}>
+              すぐブログ開始ならConoHa WING。
+            </div>
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              marginTop: 34,
+              gap: 14,
+            }}
+          >
+            <DecisionCard
+              title="無料で試して判断"
+              service="Xserver"
+              color="#059669"
+              bg="#ecfdf5"
+            />
+            <DecisionCard
+              title="WordPressを早く始める"
+              service="ConoHa WING"
+              color="#ea580c"
+              bg="#fff7ed"
+            />
+            <DecisionCard
+              title="料金と更新条件を確認"
+              service="公式サイトで比較"
+              color="#2563eb"
+              bg="#eff6ff"
+            />
+          </div>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            color: "#64748b",
+            fontSize: 21,
+            fontWeight: 700,
+          }}
+        >
+          <div>料金・無料お試し・WordPressの始めやすさ・サポートを整理</div>
+          <div>secutils.dev</div>
+        </div>
+      </div>
+    ),
+    ogImageSize,
+  );
+}
+
+function ServicePill({
+  label,
+  color,
+  bg,
+}: {
+  label: string;
+  color: string;
+  bg: string;
+}) {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        borderRadius: 18,
+        background: bg,
+        border: `2px solid ${color}`,
+        color,
+        padding: "16px 24px",
+        fontSize: 34,
+        fontWeight: 900,
+      }}
+    >
+      {label}
+    </div>
+  );
+}
+
+function DecisionCard({
+  title,
+  service,
+  color,
+  bg,
+}: {
+  title: string;
+  service: string;
+  color: string;
+  bg: string;
+}) {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        width: 315,
+        borderRadius: 18,
+        background: "#ffffff",
+        border: "1px solid #dbe3ef",
+        padding: "18px 20px",
+        boxShadow: "0 18px 45px rgba(15, 23, 42, 0.08)",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          color: "#64748b",
+          fontSize: 18,
+          fontWeight: 800,
+          marginBottom: 9,
+        }}
+      >
+        {title}
+      </div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          alignSelf: "flex-start",
+          borderRadius: 999,
+          background: bg,
+          color,
+          padding: "8px 14px",
+          fontSize: 21,
+          fontWeight: 900,
+        }}
+      >
+        {service}
+      </div>
+    </div>
+  );
+}
+
 export function renderToolOg(slug: string) {
   const tool = tools.find((t) => t.slug === slug);
   if (!tool) {

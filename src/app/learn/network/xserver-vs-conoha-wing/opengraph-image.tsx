@@ -1,14 +1,13 @@
 import {
-  getArticleOgAlt,
   ogImageContentType,
   ogImageSize,
-  renderArticleOg,
+  renderServerComparisonOg,
 } from "@/lib/og";
 
 export const size = ogImageSize;
 export const contentType = ogImageContentType;
-export const alt = getArticleOgAlt("xserver-vs-conoha-wing");
+export const alt = "Xserver vs ConoHa WING 比較 | secutils";
 
 export default function Image() {
-  return renderArticleOg("xserver-vs-conoha-wing");
+  return renderServerComparisonOg();
 }
