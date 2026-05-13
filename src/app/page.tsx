@@ -1,139 +1,118 @@
 import Link from "next/link";
 import { articles } from "@/lib/articles";
 import { tools } from "@/lib/tools";
-import { ToolGrid } from "./_components/ToolGrid";
-
-const featuredSlugs = [
-  "password-generator",
-  "jwt-decoder",
-  "json-formatter",
-  "cidr-calculator",
-];
+import { HomeHero } from "./_components/HomeHero";
+import { SpotlightJWT } from "./_components/SpotlightJWT";
+import { ToolUniverse } from "./_components/ToolUniverse";
+import { LearningPath } from "./_components/LearningPath";
+import { ClosingCta } from "./_components/ClosingCta";
 
 export default function Home() {
-  const featuredTools = featuredSlugs
-    .map((slug) => tools.find((tool) => tool.slug === slug))
-    .filter((tool): tool is NonNullable<typeof tool> => Boolean(tool));
-
   return (
-    <div className="mx-auto max-w-6xl px-5 py-10 sm:px-6 sm:py-14">
-      <section className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-        <div>
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-700 dark:text-emerald-300">
-            すべてブラウザ内で処理
-          </div>
-          <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-slate-950 dark:text-white sm:text-5xl">
-            セキュリティと開発作業を、迷わず片付ける。
-          </h1>
-          <p className="mt-5 max-w-2xl text-base leading-8 text-slate-700 dark:text-slate-300 sm:text-lg">
-            secutils は、JWT解析、ハッシュ計算、JSON整形、CIDR計算などをまとめた
-            開発者向けツール集です。入力したパスワード、トークン、設定値はサーバーへ送信せず、
-            手元のブラウザで処理します。
-          </p>
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-            <a
-              href="#tools"
-              className="inline-flex h-11 items-center justify-center rounded-md bg-slate-950 px-5 text-sm font-semibold text-white transition hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200"
-            >
-              ツールを探す
-            </a>
+    <>
+      <HomeHero toolCount={tools.length} articleCount={articles.length} />
+
+      <SectionDivider />
+
+      <SpotlightJWT />
+
+      <SectionDivider />
+
+      <ToolUniverse />
+
+      <SectionDivider />
+
+      <LearningPath />
+
+      <SectionDivider />
+
+      <ServerComparisonPromo />
+
+      <ClosingCta />
+    </>
+  );
+}
+
+function SectionDivider() {
+  return (
+    <div className="mx-auto h-px max-w-6xl bg-gradient-to-r from-transparent via-border-subtle to-transparent" />
+  );
+}
+
+function ServerComparisonPromo() {
+  return (
+    <section className="relative py-20 sm:py-24">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="shine-border relative overflow-hidden rounded-3xl bg-bg-elevated ring-1 ring-border-subtle">
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full opacity-50 blur-3xl"
+            style={{
+              background:
+                "radial-gradient(closest-side, rgba(var(--aurora-a),0.40), transparent 70%)",
+            }}
+          />
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute -bottom-24 -right-24 h-80 w-80 rounded-full opacity-40 blur-3xl"
+            style={{
+              background:
+                "radial-gradient(closest-side, rgba(var(--aurora-b),0.30), transparent 70%)",
+            }}
+          />
+          <div className="relative grid gap-8 p-8 sm:p-12 lg:grid-cols-[1.4fr_auto] lg:items-center lg:gap-10 lg:p-16">
+            <div>
+              <div className="inline-flex items-center gap-2 rounded-full border border-border-subtle bg-bg-base/60 px-3 py-1 text-[10.5px] font-semibold uppercase tracking-[0.16em] text-fg-muted backdrop-blur">
+                <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                Editorial · Sponsored
+              </div>
+              <h2 className="mt-5 max-w-2xl text-[30px] font-semibold leading-[1.08] tracking-tight text-fg-primary sm:text-[40px]">
+                <span className="text-gradient">エックスサーバー vs ConoHa WING、</span>
+                <br />
+                <span className="text-gradient-accent">3 秒で判断する。</span>
+              </h2>
+              <p className="mt-4 max-w-xl text-[14.5px] leading-7 text-fg-muted">
+                無料お試し、WordPress 開設、長期運用、料金の見方まで 6 軸で比較。条件付きで「合わないケース」も明記しています。
+              </p>
+              <div className="mt-6 flex flex-wrap gap-2 text-[11px]">
+                {["10日間お試し", "WordPress導線", "更新料金の確認", "サポート"].map((t) => (
+                  <span
+                    key={t}
+                    className="inline-flex items-center rounded-full border border-border-subtle bg-bg-sunken px-2.5 py-1 text-fg-muted"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
             <Link
-              href="/learn"
-              className="inline-flex h-11 items-center justify-center rounded-md border border-slate-300 bg-white/70 px-5 text-sm font-semibold text-slate-900 transition hover:border-emerald-500 hover:text-emerald-700 dark:border-white/15 dark:bg-white/5 dark:text-white dark:hover:border-emerald-400"
+              href="/learn/network/xserver-vs-conoha-wing"
+              className="group inline-flex h-12 items-center justify-center gap-2 self-start rounded-xl bg-fg-primary px-6 text-[14px] font-semibold text-bg-base shadow-[0_1px_0_0_rgba(255,255,255,0.18)_inset,0_18px_40px_-20px_rgba(0,0,0,0.6)] transition hover:opacity-90 lg:self-auto"
             >
-              基礎記事を読む
+              比較記事を読む
+              <Arrow />
             </Link>
           </div>
         </div>
+      </div>
+    </section>
+  );
+}
 
-        <div className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-white/[0.04]">
-          <div className="mb-4 flex items-center justify-between">
-            <h2 className="text-sm font-bold text-slate-950 dark:text-white">
-              よく使われる入口
-            </h2>
-            <span className="text-xs text-slate-500 dark:text-slate-400">
-              {tools.length} tools
-            </span>
-          </div>
-          <div className="grid gap-3">
-            {featuredTools.map((tool) => (
-              <Link
-                key={tool.slug}
-                href={`/tools/${tool.slug}`}
-                className="group flex items-start gap-3 rounded-md border border-slate-200 p-3 transition hover:border-emerald-500 hover:bg-emerald-50/60 dark:border-white/10 dark:hover:border-emerald-400 dark:hover:bg-emerald-400/10"
-              >
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-slate-100 text-xs font-bold text-slate-700 dark:bg-white/10 dark:text-slate-200">
-                  {tool.icon}
-                </span>
-                <span className="min-w-0">
-                  <span className="block text-sm font-semibold text-slate-950 group-hover:text-emerald-700 dark:text-white dark:group-hover:text-emerald-300">
-                    {tool.title}
-                  </span>
-                  <span className="mt-1 block text-xs leading-5 text-slate-600 dark:text-slate-400">
-                    {tool.useCase}
-                  </span>
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="mt-10 grid gap-3 sm:grid-cols-3">
-        {[
-          ["Privacy first", "入力データはサーバーに送信しない設計"],
-          ["Fast utility", "検索、カテゴリ、用途からすぐ見つかる"],
-          ["Learn linked", `${articles.length}本の記事から背景知識も確認`],
-        ].map(([title, text]) => (
-          <div
-            key={title}
-            className="rounded-lg border border-slate-200 bg-white/75 p-4 dark:border-white/10 dark:bg-white/[0.04]"
-          >
-            <div className="text-sm font-bold text-slate-950 dark:text-white">
-              {title}
-            </div>
-            <p className="mt-1 text-sm leading-6 text-slate-600 dark:text-slate-400">
-              {text}
-            </p>
-          </div>
-        ))}
-      </section>
-
-      <section className="mt-10 rounded-lg border border-emerald-200 bg-white p-5 shadow-sm dark:border-emerald-400/30 dark:bg-white/[0.04] sm:p-6">
-        <div className="grid gap-5 lg:grid-cols-[1fr_auto] lg:items-center">
-          <div>
-            <div className="text-xs font-bold uppercase tracking-wide text-emerald-700 dark:text-emerald-300">
-              Server comparison
-            </div>
-            <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-950 dark:text-white">
-              初心者向けレンタルサーバー比較
-            </h2>
-            <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-600 dark:text-slate-300">
-              エックスサーバーとConoHa WINGを、無料お試し、WordPressの始めやすさ、更新料金の確認ポイントから整理しています。
-            </p>
-          </div>
-          <Link
-            href="/learn/network/xserver-vs-conoha-wing"
-            className="inline-flex min-h-11 items-center justify-center rounded-md bg-emerald-600 px-5 text-sm font-bold text-white transition hover:bg-emerald-700"
-          >
-            サーバー比較を見る
-          </Link>
-        </div>
-      </section>
-
-      <section id="tools" className="mt-12 scroll-mt-8">
-        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight text-slate-950 dark:text-white">
-              ツール一覧
-            </h2>
-            <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
-              やりたい作業名、技術名、用途で検索できます。
-            </p>
-          </div>
-        </div>
-        <ToolGrid tools={tools} />
-      </section>
-    </div>
+function Arrow() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      className="h-3.5 w-3.5"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2.25}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M5 12h14" />
+      <path d="m13 5 7 7-7 7" />
+    </svg>
   );
 }

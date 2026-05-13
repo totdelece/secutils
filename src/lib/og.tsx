@@ -100,7 +100,7 @@ export function renderRootOg() {
               fontWeight: 600,
             }}
           >
-            🛡 ブラウザ完結 · データ送信なし
+            ブラウザ完結 · データ送信なし
           </div>
         </div>
       </Frame>
@@ -137,7 +137,7 @@ export function renderArticleOg(slug: string) {
               marginBottom: 16,
             }}
           >
-            📖 LEARN · {categoryLabel}
+            LEARN · {categoryLabel}
           </div>
           <div
             style={{
@@ -175,7 +175,7 @@ export function renderArticleOg(slug: string) {
             letterSpacing: "0.02em",
           }}
         >
-          🛡 secutils
+          secutils
         </div>
       </Frame>
     ),
@@ -188,6 +188,8 @@ export function renderToolOg(slug: string) {
   if (!tool) {
     throw new Error(`Unknown tool: ${slug}`);
   }
+  const asciiOnly = /^[\x20-\x7E]+$/.test(tool.icon);
+  const iconLabel = asciiOnly ? tool.icon : tool.title.charAt(0).toUpperCase();
   return new ImageResponse(
     (
       <Frame>
@@ -202,12 +204,15 @@ export function renderToolOg(slug: string) {
           <div
             style={{
               display: "flex",
-              fontSize: 140,
+              fontSize: 110,
+              fontWeight: 800,
+              letterSpacing: "-0.04em",
               lineHeight: 1,
               marginBottom: 28,
+              color: COLORS.accent,
             }}
           >
-            {tool.icon}
+            {iconLabel}
           </div>
           <div
             style={{
@@ -243,7 +248,7 @@ export function renderToolOg(slug: string) {
             letterSpacing: "0.02em",
           }}
         >
-          🛡 ブラウザ完結
+          ブラウザ完結
         </div>
       </Frame>
     ),
