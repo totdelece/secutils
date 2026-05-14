@@ -1,319 +1,174 @@
 import Link from "next/link";
-import {
-  categoryDescriptions,
-  categoryLabels,
-  tools,
-  type Tool,
-  type ToolCategory,
-} from "@/lib/tools";
+import { tools, type Tool, type ToolCategory } from "@/lib/tools";
 
-const FEATURED_SLUGS = [
-  "password-generator",
-  "jwt-decoder",
-  "regex-tester",
-  "hash-generator",
-  "hmac",
+const FEATURED: [string, string][] = [
+  ["jwt-decoder", "認証トークンの中身を、ブラウザから出さずに確認できます。"],
+  ["password-generator", "安全なパスワードやパスフレーズを手元で生成できます。"],
+  ["hash-generator", "テキストやファイルの指紋をすばやく確認できます。"],
+  ["cidr-calculator", "ネットワーク範囲やホスト数を数秒で把握できます。"],
 ];
 
-const BEGINNER_SLUGS = [
-  "base64",
-  "url-encoder",
-  "html-entity",
-  "json-formatter",
-  "color-converter",
-  "timestamp-converter",
+const CATEGORIES: { key: ToolCategory; label: string; copy: string }[] = [
+  { key: "security", label: "Security", copy: "トークン、ハッシュ、署名、Cookie、認証まわりの確認に。" },
+  { key: "encoding", label: "Encoding", copy: "JSON、YAML、URL、Base64、HTML entity、色変換まで。" },
+  { key: "network", label: "Network", copy: "CIDR、HTTP ステータス、ネットワーク範囲の整理に。" },
+  { key: "misc", label: "Workflow", copy: "正規表現、UUID、cron、時刻、差分、QR コードを素早く。" },
 ];
 
-const ORDERED: ToolCategory[] = ["security", "encoding", "network", "misc"];
-
-function pick(slugs: string[]): Tool[] {
-  return slugs
-    .map((slug) => tools.find((t) => t.slug === slug))
-    .filter((t): t is Tool => Boolean(t));
+function bySlug(slug: string): Tool | undefined {
+  return tools.find((tool) => tool.slug === slug);
 }
 
-function toneVar(c: ToolCategory) {
-  return `var(--tone-${c})`;
+function tone(category: ToolCategory) {
+  return `var(--tone-${category})`;
 }
 
 export function ToolUniverse() {
-  const featured = pick(FEATURED_SLUGS);
-  const beginner = pick(BEGINNER_SLUGS);
+  const featured = FEATURED.map(([slug, copy]) => {
+    const tool = bySlug(slug);
+    return tool ? { tool, copy } : null;
+  }).filter((item): item is { tool: Tool; copy: string } => Boolean(item));
 
   return (
-    <section id="universe" className="relative scroll-mt-20 py-20 sm:py-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <header className="mb-10">
-          <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-accent">
-            Tool universe
+    <section id="universe" className="relative scroll-mt-20 py-20 sm:py-28">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="grid gap-10 lg:grid-cols-[0.86fr_1.14fr] lg:items-start">
+          <div className="lg:sticky lg:top-24">
+            <div className="text-[11px] font-semibold uppercase text-accent">
+              Tool universe
+            </div>
+            <h2 className="mt-4 max-w-2xl text-[44px] font-semibold leading-[0.96] text-fg-primary sm:text-[64px]">
+              A compact lab for the work between commits.
+            </h2>
+            <p className="mt-5 max-w-xl text-[15px] leading-8 text-fg-muted">
+              よく使うツールを大きく見せ、用途別の作業導線をその下に整理しました。
+              「何をしたいか」から迷わず入れて、必要なツールへすぐ到達できます。
+            </p>
+            <div className="mt-8 grid max-w-md grid-cols-2 gap-2">
+              <Stat value={tools.length} label="tools" />
+              <Stat value="0" label="uploads" />
+            </div>
           </div>
-          <h2 className="mt-2 max-w-3xl text-[34px] font-semibold leading-[1.05] tracking-tight text-fg-primary sm:text-[44px]">
-            <span className="text-gradient">21 ツール、</span>
-            <span className="text-gradient-accent">用途で素早く。</span>
-          </h2>
-          <p className="mt-3 max-w-2xl text-[15px] leading-7 text-fg-muted">
-            やりたい作業から逆引きできるよう、編集部の推薦 / カテゴリ別レーン / 初学者向けの3レイヤーに整理しています。
-          </p>
-        </header>
 
-        {/* EDITOR'S PICKS */}
-        <Lane
-          eyebrow="Editor's picks"
-          title="まず触れてほしい5つ"
-          subtitle="毎日エンジニアが何度も呼ぶ、使用頻度の高いツール。"
-        >
-          <div className="rail flex gap-3 overflow-x-auto pb-2 sm:gap-4">
-            {featured.map((tool, i) => (
-              <FeaturedCard key={tool.slug} tool={tool} index={i + 1} />
-            ))}
+          <div className="space-y-4">
+            <div className="grid gap-4 sm:grid-cols-2">
+              {featured.map(({ tool, copy }, index) => (
+                <FeaturedCard key={tool.slug} tool={tool} copy={copy} index={index + 1} />
+              ))}
+            </div>
+
+            <div className="glass-panel rounded-[28px] p-3">
+              <div className="grid gap-2 md:grid-cols-2">
+                {CATEGORIES.map((category) => {
+                  const list = tools.filter((tool) => tool.category === category.key).slice(0, 6);
+                  return (
+                    <CategoryBlock
+                      key={category.key}
+                      category={category}
+                      tools={list}
+                    />
+                  );
+                })}
+              </div>
+            </div>
           </div>
-        </Lane>
-      </div>
-
-      {/* CATEGORY LANES */}
-      <div className="mt-16 space-y-14">
-        {ORDERED.map((cat) => {
-          const list = tools.filter((t) => t.category === cat);
-          if (!list.length) return null;
-          return (
-            <CategoryLane key={cat} category={cat} tools={list} />
-          );
-        })}
-      </div>
-
-      {/* BEGINNER */}
-      <div className="mx-auto mt-16 max-w-6xl px-4 sm:px-6">
-        <Lane
-          eyebrow="Beginner friendly"
-          title="今日からブラウザでできること"
-          subtitle="技術書を開く前に、まずブラウザで触れる入口たち。"
-        >
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-            {beginner.map((tool) => (
-              <SmallCard key={tool.slug} tool={tool} />
-            ))}
-          </div>
-        </Lane>
+        </div>
       </div>
     </section>
   );
 }
 
-function Lane({
-  eyebrow,
-  title,
-  subtitle,
-  children,
-  href,
+function FeaturedCard({
+  tool,
+  copy,
+  index,
 }: {
-  eyebrow: string;
-  title: string;
-  subtitle: string;
-  children: React.ReactNode;
-  href?: string;
+  tool: Tool;
+  copy: string;
+  index: number;
 }) {
+  const color = tone(tool.category);
   return (
-    <div>
-      <div className="mb-5 flex items-end justify-between gap-4">
-        <div>
-          <div className="text-[10.5px] font-semibold uppercase tracking-[0.18em] text-fg-subtle">
-            {eyebrow}
-          </div>
-          <h3 className="mt-1.5 text-[22px] font-semibold tracking-tight text-fg-primary sm:text-2xl">
-            {title}
-          </h3>
-          <p className="mt-1 max-w-2xl text-[13px] text-fg-muted">{subtitle}</p>
-        </div>
-        {href && (
-          <Link
-            href={href}
-            className="hidden text-[12.5px] font-medium text-fg-muted transition hover:text-fg-primary sm:inline-flex sm:items-center sm:gap-1"
-          >
-            すべて見る
-            <Arrow />
-          </Link>
-        )}
+    <Link
+      href={`/tools/${tool.slug}`}
+      className="premium-card group relative min-h-[220px] overflow-hidden rounded-[26px] p-5"
+      style={{ ["--premium-tone" as unknown as string]: color }}
+    >
+      <div className="relative flex items-center justify-between">
+        <span className="flex h-12 min-w-12 items-center justify-center rounded-2xl bg-bg-base/70 px-2 text-[13px] font-bold text-fg-primary ring-1 ring-border-subtle">
+          {tool.icon}
+        </span>
+        <span className="rounded-full border border-border-subtle bg-bg-sunken/70 px-2.5 py-1 text-[10px] font-semibold uppercase text-fg-subtle">
+          #{index} pick
+        </span>
       </div>
-      {children}
-    </div>
+      <div className="relative mt-8 text-[21px] font-semibold leading-tight text-fg-primary">
+        {tool.title}
+      </div>
+      <p className="relative mt-3 max-w-sm text-[13.5px] leading-7 text-fg-muted">
+        {copy}
+      </p>
+      <div className="relative mt-6 inline-flex items-center gap-1.5 text-[13px] font-semibold" style={{ color }}>
+        ツールを開く
+        <Arrow />
+      </div>
+    </Link>
   );
 }
 
-function CategoryLane({
+function CategoryBlock({
   category,
-  tools,
+  tools: list,
 }: {
-  category: ToolCategory;
+  category: { key: ToolCategory; label: string; copy: string };
   tools: Tool[];
 }) {
-  const tone = toneVar(category);
+  const color = tone(category.key);
   return (
-    <div className="mx-auto max-w-6xl px-4 sm:px-6">
-      <div className="mb-4 flex items-end justify-between gap-4">
-        <div className="flex items-center gap-3">
-          <span
-            aria-hidden="true"
-            className="h-7 w-1 rounded-full"
-            style={{ backgroundColor: tone }}
-          />
-          <div>
-            <div className="flex items-baseline gap-2">
-              <h3 className="text-[20px] font-semibold tracking-tight text-fg-primary">
-                {categoryLabels[category]}
-              </h3>
-              <span className="text-[11px] font-medium text-fg-subtle tabular-nums">
-                {tools.length} tools
-              </span>
-            </div>
-            <p className="mt-1 max-w-2xl text-[12.5px] text-fg-muted">
-              {categoryDescriptions[category]}
-            </p>
-          </div>
+    <div className="rounded-3xl border border-border-subtle bg-bg-sunken/35 p-4">
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <div className="text-[17px] font-semibold text-fg-primary">{category.label}</div>
+          <p className="mt-1 text-[12.5px] leading-6 text-fg-muted">{category.copy}</p>
         </div>
+        <span
+          className="h-2.5 w-2.5 rounded-full shadow-[0_0_24px_currentColor]"
+          style={{ backgroundColor: color, color }}
+        />
       </div>
-      <div className="rail flex gap-3 overflow-x-auto pb-2 sm:gap-4">
-        {tools.map((tool) => (
-          <RailCard key={tool.slug} tool={tool} tone={tone} />
+      <div className="mt-4 grid gap-2">
+        {list.map((tool) => (
+          <Link
+            key={tool.slug}
+            href={`/tools/${tool.slug}`}
+            className="group flex items-center gap-3 rounded-2xl px-3 py-2.5 transition hover:bg-bg-elevated/65"
+          >
+            <span className="flex h-8 min-w-8 items-center justify-center rounded-xl bg-bg-base px-1.5 text-[10.5px] font-bold text-fg-secondary ring-1 ring-border-subtle">
+              {tool.icon}
+            </span>
+            <span className="flex-1 truncate text-[13.5px] font-medium text-fg-primary">
+              {tool.title}
+            </span>
+            <Arrow />
+          </Link>
         ))}
       </div>
     </div>
   );
 }
 
-function FeaturedCard({ tool, index }: { tool: Tool; index: number }) {
-  const tone = toneVar(tool.category);
+function Stat({ value, label }: { value: string | number; label: string }) {
   return (
-    <Link
-      href={`/tools/${tool.slug}`}
-      className="shine-border lift group relative flex w-[280px] shrink-0 flex-col overflow-hidden rounded-2xl bg-bg-elevated p-5 ring-1 ring-border-subtle sm:w-[320px]"
-    >
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full opacity-30 blur-3xl transition-opacity duration-300 group-hover:opacity-60"
-        style={{ backgroundColor: tone }}
-      />
-      <div className="relative flex items-center justify-between">
-        <span
-          className="inline-flex h-12 min-w-12 items-center justify-center rounded-xl px-2.5 text-[13px] font-semibold tracking-tight ring-1 ring-border-subtle"
-          style={{
-            color: tone,
-            boxShadow: `inset 0 0 0 1px color-mix(in oklab, ${tone} 22%, transparent)`,
-          }}
-        >
-          {tool.icon}
-        </span>
-        <span
-          className="rounded-full bg-bg-sunken px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-fg-subtle ring-1 ring-border-subtle tabular-nums"
-        >
-          #{index} pick
-        </span>
-      </div>
-      <div className="relative mt-5 text-[16px] font-semibold tracking-tight text-fg-primary">
-        {tool.title}
-      </div>
-      <p className="relative mt-1.5 line-clamp-2 text-[13px] leading-6 text-fg-muted">
-        {tool.description}
-      </p>
-      <div className="relative mt-5 flex items-center justify-between text-[12.5px]">
-        <span
-          className="inline-flex items-center gap-1.5 font-medium"
-          style={{ color: tone }}
-        >
-          <Dot tone={tone} />
-          {tool.useCase}
-        </span>
-        <span className="inline-flex items-center gap-1 font-medium text-fg-primary transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none">
-          Open
-          <Arrow />
-        </span>
-      </div>
-    </Link>
-  );
-}
-
-function RailCard({ tool, tone }: { tool: Tool; tone: string }) {
-  return (
-    <Link
-      href={`/tools/${tool.slug}`}
-      className="shine-border lift group relative flex w-[240px] shrink-0 flex-col rounded-xl bg-bg-elevated p-4 ring-1 ring-border-subtle sm:w-[260px]"
-    >
-      <div className="flex items-center justify-between">
-        <span
-          className="inline-flex h-9 min-w-9 items-center justify-center rounded-md px-1.5 text-[11.5px] font-semibold tracking-tight ring-1 ring-border-subtle"
-          style={{
-            color: tone,
-            boxShadow: `inset 0 0 0 1px color-mix(in oklab, ${tone} 22%, transparent)`,
-          }}
-        >
-          {tool.icon}
-        </span>
-        <ArrowSmall />
-      </div>
-      <div className="mt-4 text-[14px] font-semibold tracking-tight text-fg-primary">
-        {tool.title}
-      </div>
-      <p className="mt-1.5 line-clamp-2 text-[12px] leading-5 text-fg-muted">
-        {tool.useCase}
-      </p>
-    </Link>
-  );
-}
-
-function SmallCard({ tool }: { tool: Tool }) {
-  const tone = toneVar(tool.category);
-  return (
-    <Link
-      href={`/tools/${tool.slug}`}
-      className="lift group flex items-center gap-3 rounded-xl bg-bg-elevated px-4 py-3.5 ring-1 ring-border-subtle transition hover:ring-border-strong"
-    >
-      <span
-        className="inline-flex h-9 min-w-9 items-center justify-center rounded-md px-1.5 text-[11px] font-semibold ring-1 ring-border-subtle"
-        style={{
-          color: tone,
-          boxShadow: `inset 0 0 0 1px color-mix(in oklab, ${tone} 20%, transparent)`,
-        }}
-      >
-        {tool.icon}
-      </span>
-      <span className="flex-1 truncate text-[13.5px] font-medium text-fg-primary">
-        {tool.title}
-      </span>
-      <ArrowSmall />
-    </Link>
-  );
-}
-
-function Dot({ tone }: { tone: string }) {
-  return (
-    <span
-      aria-hidden="true"
-      className="h-1.5 w-1.5 rounded-full"
-      style={{ backgroundColor: tone }}
-    />
+    <div className="rounded-2xl border border-border-subtle bg-bg-elevated/55 px-4 py-3 backdrop-blur">
+      <div className="numeric-xl text-[30px] font-semibold text-fg-primary">{value}</div>
+      <div className="text-[10px] font-semibold uppercase text-fg-subtle">{label}</div>
+    </div>
   );
 }
 
 function Arrow() {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth={2.25} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M5 12h14" />
-      <path d="m13 5 7 7-7 7" />
-    </svg>
-  );
-}
-
-function ArrowSmall() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-      className="h-3 w-3 text-fg-subtle transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={2.25}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none" fill="none" stroke="currentColor" strokeWidth={2.25} strokeLinecap="round" strokeLinejoin="round">
       <path d="M5 12h14" />
       <path d="m13 5 7 7-7 7" />
     </svg>

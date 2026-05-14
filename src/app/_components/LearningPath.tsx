@@ -1,85 +1,75 @@
 import Link from "next/link";
 import { articles, type Article } from "@/lib/articles";
 
-const PATH_SLUGS = [
-  "https-tls",
-  "owasp-top-10",
-  "password-hashing",
-  "xss",
-  "csrf",
-  "jwt-security-issues",
+const PATH: [string, string][] = [
+  ["https-tls", "通信の信頼を理解する"],
+  ["owasp-top-10", "Web リスクの全体像をつかむ"],
+  ["password-hashing", "秘密情報を安全に保存する"],
+  ["xss", "ブラウザへの注入を防ぐ"],
+  ["csrf", "状態変更リクエストを守る"],
+  ["jwt-security-issues", "トークン設計を点検する"],
 ];
 
 function find(slug: string): Article | undefined {
-  return articles.find((a) => a.slug === slug);
+  return articles.find((article) => article.slug === slug);
 }
 
 export function LearningPath() {
-  const steps = PATH_SLUGS.map(find).filter(
-    (a): a is Article => Boolean(a),
+  const steps = PATH.map(([slug, copy]) => {
+    const article = find(slug);
+    return article ? { article, copy } : null;
+  }).filter((item): item is { article: Article; copy: string } => Boolean(item));
+
+  if (!steps.length) return null;
+
+  const totalMinutes = steps.reduce(
+    (acc, item) => acc + (item.article.readingMinutes ?? 5),
+    0,
   );
 
-  if (steps.length === 0) return null;
-
   return (
-    <section className="relative py-20 sm:py-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <header className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+    <section className="relative py-20 sm:py-28">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="mb-10 grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
           <div>
-            <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-accent">
-              Security learning path
+            <div className="text-[11px] font-semibold uppercase text-accent">
+              Beginner path
             </div>
-            <h2 className="mt-2 max-w-3xl text-[34px] font-semibold leading-[1.05] tracking-tight text-fg-primary sm:text-[44px]">
-              <span className="text-gradient">基礎から実務まで、</span>
-              <br />
-              <span className="text-gradient-accent">6 ステップで読む。</span>
+            <h2 className="mt-4 max-w-3xl text-[42px] font-semibold leading-[0.98] text-fg-primary sm:text-[60px]">
+              Build security intuition in one focused route.
             </h2>
-            <p className="mt-3 max-w-2xl text-[15px] leading-7 text-fg-muted">
-              ネットワークの土台 → Web の脅威 → 認証と暗号 → 実装上の注意点まで、約 40 分で全体像が掴めるカリキュラムです。
+            <p className="mt-5 max-w-2xl text-[15px] leading-8 text-fg-muted">
+              プロトコルの基礎から、実際の攻撃パターン、認証・トークン設計まで。
+              ツールを使うだけでなく、背景にある仕組みも順番に理解できる
+              学習ルートです。
             </p>
           </div>
           <Link
             href="/learn"
-            className="inline-flex h-10 items-center gap-1.5 self-start rounded-lg border border-border-subtle bg-bg-elevated px-4 text-sm font-medium text-fg-primary transition hover:border-border-strong"
+            className="glass-button inline-flex h-[48px] items-center justify-center gap-2 rounded-2xl px-5 text-[14px] font-semibold text-fg-primary"
           >
-            記事一覧へ
+            記事一覧を見る
             <Arrow />
           </Link>
-        </header>
+        </div>
 
-        <div className="relative">
-          <div className="absolute left-0 right-0 top-[34px] hidden h-px lg:block">
-            <div
-              className="h-full"
-              style={{
-                background:
-                  "linear-gradient(90deg, transparent 0%, var(--border-strong) 12%, var(--border-strong) 88%, transparent 100%)",
-              }}
-            />
-          </div>
-
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-6 lg:gap-4">
-            {steps.map((article, i) => (
+        <div className="learning-ribbon relative overflow-hidden rounded-[32px] p-4 sm:p-5">
+          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-6">
+            {steps.map(({ article, copy }, index) => (
               <Step
                 key={article.slug}
                 article={article}
-                index={i + 1}
-                total={steps.length}
+                copy={copy}
+                index={index + 1}
               />
             ))}
           </div>
-        </div>
-
-        <div className="mt-10 flex items-center justify-center text-[12px] text-fg-subtle">
-          <span className="inline-flex items-center gap-2">
-            <span className="h-px w-12 bg-border-strong" />
-            合計
-            <span className="tabular-nums text-fg-secondary">
-              {steps.reduce((acc, a) => acc + (a.readingMinutes ?? 5), 0)}
-            </span>{" "}
-            分で読破
-            <span className="h-px w-12 bg-border-strong" />
-          </span>
+          <div className="mt-5 flex items-center justify-between rounded-2xl border border-border-subtle bg-bg-sunken/45 px-4 py-3 text-[12px] text-fg-muted">
+            <span>週末に一気読みしやすい構成</span>
+            <span className="font-semibold text-fg-primary tabular-nums">
+              {totalMinutes} min
+            </span>
+          </div>
         </div>
       </div>
     </section>
@@ -88,56 +78,44 @@ export function LearningPath() {
 
 function Step({
   article,
+  copy,
   index,
-  total,
 }: {
   article: Article;
+  copy: string;
   index: number;
-  total: number;
 }) {
   return (
     <Link
       href={`/learn/${article.category}/${article.slug}`}
-      className="shine-border lift group relative flex flex-col rounded-xl bg-bg-elevated p-4 ring-1 ring-border-subtle"
+      className="premium-card group relative min-h-[210px] rounded-[24px] p-4"
+      style={{ ["--premium-tone" as unknown as string]: index % 2 ? "var(--tone-security)" : "var(--tone-network)" }}
     >
-      <div className="relative flex items-center justify-between">
-        <span
-          aria-hidden="true"
-          className="relative inline-flex h-[28px] w-[28px] items-center justify-center rounded-full bg-bg-base text-[12px] font-semibold tabular-nums text-fg-secondary ring-1 ring-border-strong"
-        >
+      <div className="flex items-center justify-between">
+        <span className="flex h-9 w-9 items-center justify-center rounded-2xl bg-bg-base/75 text-[12px] font-semibold text-fg-primary ring-1 ring-border-subtle tabular-nums">
           {String(index).padStart(2, "0")}
         </span>
-        <span className="text-[10.5px] font-medium uppercase tracking-[0.16em] text-fg-subtle">
-          step
-        </span>
-      </div>
-      <div className="mt-3 line-clamp-2 text-[13.5px] font-semibold leading-snug tracking-tight text-fg-primary">
-        {article.title}
-      </div>
-      <p className="mt-1.5 line-clamp-3 flex-1 text-[11.5px] leading-5 text-fg-muted">
-        {article.description}
-      </p>
-      <div className="mt-4 flex items-center justify-between text-[11px]">
-        <span className="font-medium text-accent">
-          {article.category}
-        </span>
-        <span className="tabular-nums text-fg-subtle">
+        <span className="text-[10px] font-semibold uppercase text-fg-subtle">
           {article.readingMinutes ?? 5} min
         </span>
       </div>
-      {index < total && (
-        <span
-          aria-hidden="true"
-          className="absolute right-[-10px] top-[28px] hidden h-px w-[20px] bg-border-strong lg:block"
-        />
-      )}
+      <div className="mt-8 text-[17px] font-semibold leading-tight text-fg-primary">
+        {copy}
+      </div>
+      <div className="mt-3 line-clamp-2 text-[12.5px] leading-6 text-fg-muted">
+        {article.title}
+      </div>
+      <div className="mt-5 inline-flex items-center gap-1 text-[12.5px] font-semibold text-accent">
+        読む
+        <Arrow />
+      </div>
     </Link>
   );
 }
 
 function Arrow() {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth={2.25} strokeLinecap="round" strokeLinejoin="round">
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none" fill="none" stroke="currentColor" strokeWidth={2.25} strokeLinecap="round" strokeLinejoin="round">
       <path d="M5 12h14" />
       <path d="m13 5 7 7-7 7" />
     </svg>

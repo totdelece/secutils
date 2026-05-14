@@ -3,15 +3,17 @@
 import Link from "next/link";
 import { useCallback, useRef } from "react";
 
-const TAGS = [
-  { label: "JWT", slug: "jwt-decoder" },
-  { label: "Hash", slug: "hash-generator" },
-  { label: "Password", slug: "password-generator" },
-  { label: "Regex", slug: "regex-tester" },
-  { label: "CIDR", slug: "cidr-calculator" },
-  { label: "JSON", slug: "json-formatter" },
-  { label: "Cron", slug: "cron-parser" },
-  { label: "UUID", slug: "uuid-generator" },
+const QUICK_ACTIONS = [
+  { label: "JWT をデコード", slug: "jwt-decoder", tone: "var(--tone-security)" },
+  { label: "パスワードを生成", slug: "password-generator", tone: "var(--tone-security)" },
+  { label: "JSON を整形", slug: "json-formatter", tone: "var(--tone-encoding)" },
+  { label: "CIDR を計算", slug: "cidr-calculator", tone: "var(--tone-network)" },
+];
+
+const TRUST_SIGNALS = [
+  ["Local first", "すべての処理はブラウザ内で完結"],
+  ["Zero tracking", "入力データをサーバーへ送信しない設計"],
+  ["Instant", "キーボードからすぐ呼び出せる作業面"],
 ];
 
 export function HomeHero({
@@ -34,7 +36,6 @@ export function HomeHero({
   }, []);
 
   const openPalette = useCallback(() => {
-    if (typeof window === "undefined") return;
     window.dispatchEvent(new CustomEvent("secutils:open-palette"));
   }, []);
 
@@ -42,132 +43,148 @@ export function HomeHero({
     <section
       ref={containerRef}
       onMouseMove={onMove}
-      className="cursor-glow relative overflow-hidden"
-      style={{ ["--mx" as unknown as string]: "50%", ["--my" as unknown as string]: "30%" }}
+      className="hero-stage relative isolate overflow-hidden"
+      style={{ ["--mx" as unknown as string]: "50%", ["--my" as unknown as string]: "32%" }}
     >
-      {/* aurora orbs */}
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute -left-32 -top-32 h-96 w-96 rounded-full opacity-60 blur-3xl"
-        style={{
-          background:
-            "radial-gradient(closest-side, rgba(var(--aurora-a),0.45), transparent 70%)",
-        }}
-      />
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-40 top-20 h-[28rem] w-[28rem] rounded-full opacity-40 blur-3xl"
-        style={{
-          background:
-            "radial-gradient(closest-side, rgba(var(--aurora-c),0.40), transparent 70%)",
-        }}
-      />
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-[70%] h-[24rem] w-[40rem] -translate-x-1/2 rounded-full opacity-30 blur-3xl"
-        style={{
-          background:
-            "radial-gradient(closest-side, rgba(var(--aurora-b),0.30), transparent 70%)",
-        }}
-      />
+      <div className="hero-grid" aria-hidden="true" />
+      <div className="hero-noise" aria-hidden="true" />
+      <div className="hero-vignette" aria-hidden="true" />
 
-      <div className="relative mx-auto flex max-w-6xl flex-col items-center px-4 pt-20 pb-24 text-center sm:px-6 sm:pt-28 sm:pb-32 lg:pt-32 lg:pb-40">
-        <div className="rise-in inline-flex items-center gap-2 rounded-full border border-border-subtle bg-bg-overlay px-3.5 py-1.5 text-[11px] font-medium text-fg-secondary backdrop-blur">
-          <span className="relative inline-flex h-1.5 w-1.5">
-            <span className="absolute inset-0 rounded-full bg-accent ring-pulse" />
-            <span className="absolute inset-0 rounded-full bg-accent" />
-          </span>
-          The developer&apos;s privacy-first toolkit
-        </div>
+      <div className="relative mx-auto grid min-h-[760px] max-w-7xl items-center gap-12 px-4 pb-20 pt-16 sm:min-h-[820px] sm:px-6 sm:pb-24 sm:pt-20 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10 lg:pt-16">
+        <div className="relative z-10 max-w-4xl">
+          <div className="rise-in inline-flex items-center gap-2 rounded-full border border-white/12 bg-bg-overlay/65 px-3.5 py-1.5 text-[11px] font-semibold uppercase text-fg-secondary shadow-[0_12px_40px_-24px_rgba(0,0,0,0.55)] backdrop-blur-2xl">
+            <span className="h-1.5 w-1.5 rounded-full bg-accent ring-pulse" />
+            Privacy-first developer toolkit
+          </div>
 
-        <h1 className="rise-in rise-in-d1 mt-8 max-w-[18ch] text-[clamp(44px,8vw,96px)] font-semibold leading-[0.98] tracking-[-0.04em] text-fg-primary">
-          <span className="text-gradient">Everything you need.</span>
-          <br />
-          <span className="text-gradient-accent">Nothing leaves your browser.</span>
-        </h1>
+          <h1 className="rise-in rise-in-d1 mt-8 max-w-[10ch] text-[64px] font-semibold leading-[0.88] text-fg-primary sm:text-[88px] lg:text-[116px]">
+            Tools with
+            <span className="block text-gradient-accent">zero residue.</span>
+          </h1>
 
-        <p className="rise-in rise-in-d2 mt-7 max-w-[58ch] text-pretty text-[15px] leading-7 text-fg-muted sm:text-[16px] sm:leading-8">
-          JWT、ハッシュ、CIDR、JSON、Regex、TOTP、Bcrypt——
-          エンジニアが毎日触れる {toolCount} のツールと、その仕組みを 5 分で読める {articleCount} 本の解説を、ひとつのキーボードショートカットの向こうに。
-        </p>
+          <p className="rise-in rise-in-d2 mt-7 max-w-2xl text-[16px] leading-8 text-fg-muted sm:text-[18px] sm:leading-9">
+            secutils は、JWT の確認、パスワード生成、ハッシュ計算、
+            CIDR 計算などをひとつの静かな作業面にまとめた
+            ブラウザ完結型の開発者ツールです。機密データを外へ出さず、
+            必要な確認だけをすばやく終わらせられます。
+          </p>
 
-        <button
-          type="button"
-          onClick={openPalette}
-          className="rise-in rise-in-d3 group mt-10 flex w-full max-w-xl items-center gap-3 rounded-2xl border border-border-subtle bg-bg-elevated/85 px-4 py-3.5 text-left shadow-[0_30px_80px_-30px_rgba(0,0,0,0.5)] backdrop-blur-xl transition hover:border-border-strong hover:bg-bg-elevated motion-reduce:transform-none"
-        >
-          <SearchIcon />
-          <span className="flex-1 text-[15px] text-fg-subtle">
-            ツールを検索…
-            <span className="hidden text-fg-subtle/70 sm:inline">
-              {" "}
-              例: JWT, 強いパスワード, ハッシュ
-            </span>
-          </span>
-          <span className="hidden items-center gap-1 sm:flex">
-            <span className="kbd">⌘</span>
-            <span className="kbd">K</span>
-          </span>
-        </button>
-
-        <div className="rise-in rise-in-d4 mt-6 flex flex-wrap items-center justify-center gap-1.5">
-          <span className="mr-1 text-[11px] font-medium uppercase tracking-[0.16em] text-fg-subtle">
-            Quick
-          </span>
-          {TAGS.map((tag) => (
-            <Link
-              key={tag.slug}
-              href={`/tools/${tag.slug}`}
-              className="inline-flex h-7 items-center rounded-full border border-border-subtle bg-bg-elevated/70 px-3 text-[12px] font-medium text-fg-muted transition hover:border-border-strong hover:text-fg-primary"
+          <div className="rise-in rise-in-d3 mt-9 flex flex-col gap-3 sm:flex-row">
+            <button
+              type="button"
+              onClick={openPalette}
+              className="magnetic-button group inline-flex h-[52px] items-center justify-center gap-2 rounded-2xl bg-fg-primary px-6 text-[14px] font-semibold text-bg-base shadow-[0_1px_0_rgba(255,255,255,0.22)_inset,0_24px_70px_-28px_rgba(0,0,0,0.75)] transition"
             >
-              {tag.label}
+              <SearchIcon />
+              コマンドセンターを開く
+              <span className="ml-2 hidden items-center gap-1 sm:inline-flex">
+                <span className="rounded-md border border-white/15 bg-white/10 px-1.5 py-0.5 text-[10px]">Ctrl</span>
+                <span className="rounded-md border border-white/15 bg-white/10 px-1.5 py-0.5 text-[10px]">K</span>
+              </span>
+            </button>
+            <Link
+              href="#universe"
+              className="glass-button group inline-flex h-[52px] items-center justify-center gap-2 rounded-2xl px-6 text-[14px] font-semibold text-fg-primary"
+            >
+              {toolCount} 個のツールを見る
+              <Arrow />
             </Link>
-          ))}
+          </div>
+
+          <div className="rise-in rise-in-d4 mt-10 grid max-w-2xl gap-2 sm:grid-cols-3">
+            {TRUST_SIGNALS.map(([title, detail]) => (
+              <div key={title} className="hero-proof rounded-2xl px-4 py-3">
+                <div className="text-[13px] font-semibold text-fg-primary">{title}</div>
+                <div className="mt-1 text-[11.5px] leading-5 text-fg-subtle">{detail}</div>
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div className="rise-in rise-in-d5 mt-14 grid w-full max-w-3xl grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border-subtle bg-border-subtle sm:grid-cols-4">
-          <Cell value={toolCount} label="tools" />
-          <Cell value={articleCount} label="guides" />
-          <Cell value="100%" label="browser-only" />
-          <Cell value="0" label="trackers" />
+        <div className="rise-in rise-in-d3 relative z-10 lg:translate-y-8">
+          <div className="orbit-shell relative mx-auto w-full max-w-[520px]">
+            <div className="command-card glass-panel relative overflow-hidden rounded-[28px] p-4 shadow-[0_42px_120px_-50px_rgba(0,0,0,0.8)]">
+              <div className="mb-4 flex items-center justify-between border-b border-border-subtle pb-3">
+                <div className="flex items-center gap-2">
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
+                </div>
+                <span className="text-[10px] font-semibold uppercase text-fg-subtle">
+                  ローカルセッション
+                </span>
+              </div>
+
+              <button
+                type="button"
+                onClick={openPalette}
+                className="group flex w-full items-center gap-3 rounded-2xl border border-border-subtle bg-bg-sunken/70 px-4 py-3.5 text-left transition hover:border-border-strong hover:bg-bg-elevated/70"
+              >
+                <SearchIcon />
+                <span className="flex-1 text-[14px] text-fg-muted">ツール、記事、作業を検索...</span>
+                <span className="kbd">K</span>
+              </button>
+
+              <div className="mt-4 space-y-2">
+                {QUICK_ACTIONS.map((item, index) => (
+                  <Link
+                    key={item.slug}
+                    href={`/tools/${item.slug}`}
+                    className="tool-row group flex items-center gap-3 rounded-2xl px-3 py-3 transition"
+                    style={{ ["--row-tone" as unknown as string]: item.tone }}
+                  >
+                    <span className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-bg-base text-[12px] font-bold text-fg-primary ring-1 ring-border-subtle">
+                      <span className="absolute inset-0 rounded-xl opacity-20" style={{ backgroundColor: item.tone }} />
+                      <span className="relative">{String(index + 1).padStart(2, "0")}</span>
+                    </span>
+                    <span className="flex-1">
+                      <span className="block text-[14px] font-semibold text-fg-primary">{item.label}</span>
+                      <span className="block text-[11.5px] text-fg-subtle">ブラウザ内だけで完結</span>
+                    </span>
+                    <Arrow />
+                  </Link>
+                ))}
+              </div>
+
+              <div className="mt-5 grid grid-cols-2 gap-2">
+                <Metric value={toolCount} label="tools" />
+                <Metric value={articleCount} label="guides" />
+              </div>
+            </div>
+
+            <div className="floating-chip chip-a">JWT decoded</div>
+            <div className="floating-chip chip-b">通信なし</div>
+            <div className="floating-chip chip-c">SHA-256 ready</div>
+          </div>
         </div>
       </div>
-
-      <div
-        aria-hidden="true"
-        className="path-line absolute bottom-0 left-0 right-0"
-      />
     </section>
   );
 }
 
-function Cell({ value, label }: { value: string | number; label: string }) {
+function Metric({ value, label }: { value: number; label: string }) {
   return (
-    <div className="flex flex-col items-center justify-center bg-bg-base/80 px-4 py-5 backdrop-blur">
-      <span className="numeric-xl text-[28px] font-semibold text-fg-primary sm:text-[32px]">
-        {value}
-      </span>
-      <span className="mt-1 text-[10.5px] font-medium uppercase tracking-[0.16em] text-fg-subtle">
-        {label}
-      </span>
+    <div className="rounded-2xl border border-border-subtle bg-bg-sunken/50 px-4 py-3">
+      <div className="numeric-xl text-[28px] font-semibold text-fg-primary">{value}</div>
+      <div className="text-[10px] font-semibold uppercase text-fg-subtle">{label}</div>
     </div>
   );
 }
 
 function SearchIcon() {
   return (
-    <svg
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-      className="h-[18px] w-[18px] text-fg-subtle transition group-hover:text-fg-secondary"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={2}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
       <circle cx="11" cy="11" r="7" />
       <path d="m20 20-3.5-3.5" />
+    </svg>
+  );
+}
+
+function Arrow() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none" fill="none" stroke="currentColor" strokeWidth={2.25} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M5 12h14" />
+      <path d="m13 5 7 7-7 7" />
     </svg>
   );
 }
