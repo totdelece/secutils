@@ -2,7 +2,7 @@ import Link from "next/link";
 import { tools, type Tool, type ToolCategory } from "@/lib/tools";
 
 const FEATURED: [string, string][] = [
-  ["jwt-decoder", "認証トークンの中身を、ブラウザから出さずに確認できます。"],
+  ["jwt-decoder", "認証トークンの Header / Payload / 期限を、ブラウザから出さずに確認できます。"],
   ["password-generator", "安全なパスワードやパスフレーズを手元で生成できます。"],
   ["hash-generator", "テキストやファイルの指紋をすばやく確認できます。"],
   ["cidr-calculator", "ネットワーク範囲やホスト数を数秒で把握できます。"],
@@ -32,12 +32,12 @@ export function ToolUniverse() {
   return (
     <section id="universe" className="relative scroll-mt-20 py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <div className="grid gap-10 lg:grid-cols-[0.86fr_1.14fr] lg:items-start">
+        <div className="grid gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
           <div className="lg:sticky lg:top-24">
             <div className="text-[11px] font-semibold uppercase text-accent">
               Tool universe
             </div>
-            <h2 className="mt-4 max-w-2xl text-[44px] font-semibold leading-[0.96] text-fg-primary sm:text-[64px]">
+            <h2 className="mt-5 max-w-2xl text-[48px] font-semibold leading-[0.92] text-fg-primary sm:text-[70px]">
               A compact lab for the work between commits.
             </h2>
             <p className="mt-5 max-w-xl text-[15px] leading-8 text-fg-muted">
@@ -53,7 +53,13 @@ export function ToolUniverse() {
           <div className="space-y-4">
             <div className="grid gap-4 sm:grid-cols-2">
               {featured.map(({ tool, copy }, index) => (
-                <FeaturedCard key={tool.slug} tool={tool} copy={copy} index={index + 1} />
+                <FeaturedCard
+                  key={tool.slug}
+                  tool={tool}
+                  copy={copy}
+                  index={index + 1}
+                  primary={index === 0}
+                />
               ))}
             </div>
 
@@ -82,33 +88,52 @@ function FeaturedCard({
   tool,
   copy,
   index,
+  primary,
 }: {
   tool: Tool;
   copy: string;
   index: number;
+  primary?: boolean;
 }) {
   const color = tone(tool.category);
   return (
     <Link
       href={`/tools/${tool.slug}`}
-      className="premium-card group relative min-h-[220px] overflow-hidden rounded-[26px] p-5"
+      className={[
+        "premium-card group relative overflow-hidden rounded-[26px] p-5",
+        primary ? "min-h-[300px] sm:col-span-2 sm:p-7" : "min-h-[220px]",
+      ].join(" ")}
       style={{ ["--premium-tone" as unknown as string]: color }}
     >
+      {primary && (
+        <div className="absolute right-5 top-5 hidden rounded-full border border-border-subtle bg-bg-sunken/70 px-3 py-1 text-[10px] font-semibold uppercase text-fg-subtle sm:block">
+          recommended
+        </div>
+      )}
       <div className="relative flex items-center justify-between">
-        <span className="flex h-12 min-w-12 items-center justify-center rounded-2xl bg-bg-base/70 px-2 text-[13px] font-bold text-fg-primary ring-1 ring-border-subtle">
+        <span className={primary ? "flex h-16 min-w-16 items-center justify-center rounded-3xl bg-bg-base/70 px-3 text-[16px] font-bold text-fg-primary ring-1 ring-border-subtle" : "flex h-12 min-w-12 items-center justify-center rounded-2xl bg-bg-base/70 px-2 text-[13px] font-bold text-fg-primary ring-1 ring-border-subtle"}>
           {tool.icon}
         </span>
-        <span className="rounded-full border border-border-subtle bg-bg-sunken/70 px-2.5 py-1 text-[10px] font-semibold uppercase text-fg-subtle">
+        <span className={primary ? "mr-28 rounded-full border border-border-subtle bg-bg-sunken/70 px-2.5 py-1 text-[10px] font-semibold uppercase text-fg-subtle sm:mr-32" : "rounded-full border border-border-subtle bg-bg-sunken/70 px-2.5 py-1 text-[10px] font-semibold uppercase text-fg-subtle"}>
           #{index} pick
         </span>
       </div>
-      <div className="relative mt-8 text-[21px] font-semibold leading-tight text-fg-primary">
+      <div className={primary ? "relative mt-10 max-w-xl text-[34px] font-semibold leading-[0.98] text-fg-primary sm:text-[44px]" : "relative mt-8 text-[21px] font-semibold leading-tight text-fg-primary"}>
         {tool.title}
       </div>
-      <p className="relative mt-3 max-w-sm text-[13.5px] leading-7 text-fg-muted">
+      <p className={primary ? "relative mt-4 max-w-2xl text-[15px] leading-8 text-fg-muted" : "relative mt-3 max-w-sm text-[13.5px] leading-7 text-fg-muted"}>
         {copy}
       </p>
-      <div className="relative mt-6 inline-flex items-center gap-1.5 text-[13px] font-semibold" style={{ color }}>
+      {primary && (
+        <div className="relative mt-7 grid gap-2 text-[11px] text-fg-subtle sm:grid-cols-3">
+          {["payload local", "zero upload", "instant decode"].map((label) => (
+            <span key={label} className="rounded-2xl border border-border-subtle bg-bg-sunken/55 px-3 py-2">
+              {label}
+            </span>
+          ))}
+        </div>
+      )}
+      <div className={primary ? "relative mt-8 inline-flex items-center gap-1.5 text-[14px] font-semibold" : "relative mt-6 inline-flex items-center gap-1.5 text-[13px] font-semibold"} style={{ color }}>
         ツールを開く
         <Arrow />
       </div>

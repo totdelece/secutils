@@ -46,24 +46,24 @@
 
 :root.dark {
   /* dark theme — deep indigo near-black with hint of blue */
-  --bg-base: #05060a;
-  --bg-elevated: #0a0d16;
-  --bg-overlay: rgba(7, 8, 14, 0.72);
-  --bg-sunken: #04050a;
+  --bg-base: #010205;
+  --bg-elevated: #070a10;
+  --bg-overlay: rgba(5, 7, 12, 0.78);
+  --bg-sunken: #020307;
 
   --border-subtle: rgba(255, 255, 255, 0.07);
   --border-strong: rgba(255, 255, 255, 0.18);
   --border-glow: rgba(52, 211, 153, 0.5);
 
-  --fg-primary: #f5f7fb;
-  --fg-secondary: #cbd5e1;
-  --fg-muted: #8a94a8;
-  --fg-subtle: #545d72;
+  --fg-primary: #f7f9ff;
+  --fg-secondary: #d5dce8;
+  --fg-muted: #919bad;
+  --fg-subtle: #4f5869;
 
   --accent: #34d399;
   --accent-strong: #6ee7b7;
   --accent-soft: rgba(52, 211, 153, 0.13);
-  --accent-glow: rgba(52, 211, 153, 0.35);
+  --accent-glow: rgba(52, 211, 153, 0.42);
 
   --aurora-a: 52, 211, 153;
   --aurora-b: 56, 189, 248;
@@ -371,7 +371,9 @@ body::after {
   .rise-in,
   .rise-in-d1, .rise-in-d2, .rise-in-d3, .rise-in-d4, .rise-in-d5,
   .ring-pulse, .shimmer, .marquee-track,
-  .hero-grid, .floating-chip {
+  .hero-grid, .floating-chip,
+  .packet-line::after, .command-card, .secure-halo, .console-scan,
+  .flow-beam::after, .flow-node::before, .typing-query::after {
     animation: none;
   }
   .glass-button:hover,
@@ -421,10 +423,11 @@ body::after {
 /* Home brand stage */
 .hero-stage {
   background:
-    radial-gradient(62rem 44rem at 50% -12%, rgba(var(--aurora-b), 0.22), transparent 68%),
-    radial-gradient(54rem 34rem at 12% 22%, rgba(var(--aurora-a), 0.20), transparent 62%),
-    radial-gradient(46rem 34rem at 86% 18%, rgba(var(--aurora-c), 0.18), transparent 64%),
-    linear-gradient(180deg, color-mix(in oklab, var(--bg-base) 86%, #000 14%) 0%, var(--bg-base) 100%);
+    radial-gradient(56rem 38rem at 50% -18%, rgba(var(--aurora-b), 0.28), transparent 68%),
+    radial-gradient(48rem 34rem at 8% 28%, rgba(var(--aurora-a), 0.20), transparent 62%),
+    radial-gradient(42rem 32rem at 92% 18%, rgba(var(--aurora-c), 0.20), transparent 64%),
+    radial-gradient(82rem 40rem at 50% 110%, rgba(0, 0, 0, 0.60), transparent 68%),
+    linear-gradient(180deg, color-mix(in oklab, var(--bg-base) 72%, #000 28%) 0%, var(--bg-base) 100%);
 }
 
 :root:not(.dark) .hero-stage {
@@ -441,8 +444,9 @@ body::after {
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(520px circle at var(--mx) var(--my), rgba(var(--aurora-a), 0.22), transparent 64%),
-    linear-gradient(110deg, transparent 0%, rgba(255, 255, 255, 0.08) 46%, transparent 58%);
+    radial-gradient(620px circle at var(--mx) var(--my), rgba(var(--aurora-a), 0.30), transparent 64%),
+    radial-gradient(360px circle at calc(var(--mx) + 18%) calc(var(--my) - 12%), rgba(var(--aurora-b), 0.16), transparent 70%),
+    linear-gradient(110deg, transparent 0%, rgba(255, 255, 255, 0.10) 46%, transparent 58%);
   mix-blend-mode: screen;
   opacity: 0.82;
   transition: opacity 180ms ease;
@@ -454,8 +458,10 @@ body::after {
   inset: auto 8% 8% 8%;
   height: 28%;
   pointer-events: none;
-  background: radial-gradient(ellipse at center, rgba(var(--aurora-a), 0.12), transparent 70%);
-  filter: blur(18px);
+  background:
+    radial-gradient(ellipse at center, rgba(var(--aurora-a), 0.16), transparent 66%),
+    linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.10), transparent);
+  filter: blur(22px);
 }
 
 .hero-grid {
@@ -489,10 +495,50 @@ body::after {
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(180deg, rgba(0, 0, 0, 0.16), transparent 22%, transparent 68%, rgba(0, 0, 0, 0.16)),
-    radial-gradient(ellipse at center, transparent 42%, rgba(0, 0, 0, 0.26) 100%);
-  opacity: 0.72;
+    linear-gradient(180deg, rgba(0, 0, 0, 0.30), transparent 20%, transparent 62%, rgba(0, 0, 0, 0.36)),
+    radial-gradient(ellipse at center, transparent 34%, rgba(0, 0, 0, 0.46) 100%);
+  opacity: 0.86;
 }
+
+.packet-field {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0.72;
+  mask-image: radial-gradient(ellipse 72% 56% at 50% 34%, black 0%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse 72% 56% at 50% 34%, black 0%, transparent 78%);
+}
+
+.packet-line {
+  position: absolute;
+  left: -12%;
+  width: 124%;
+  height: 1px;
+  background:
+    linear-gradient(90deg, transparent, rgba(var(--aurora-a), 0.0) 18%, rgba(var(--aurora-a), 0.64) 48%, rgba(var(--aurora-b), 0.34) 58%, transparent 78%);
+  transform-origin: center;
+  filter: drop-shadow(0 0 12px rgba(var(--aurora-a), 0.45));
+}
+
+.packet-line::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 72px;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(var(--aurora-a), 0.86);
+  box-shadow: 0 0 28px rgba(var(--aurora-a), 0.64);
+  animation: packet-travel 7s ease-in-out infinite;
+}
+
+.packet-line-a { top: 26%; transform: rotate(-8deg); }
+.packet-line-b { top: 42%; transform: rotate(5deg); opacity: 0.62; }
+.packet-line-c { top: 62%; transform: rotate(-3deg); opacity: 0.46; }
+.packet-line-b::after { animation-delay: 1.8s; }
+.packet-line-c::after { animation-delay: 3.1s; }
 
 :root:not(.dark) .hero-vignette {
   opacity: 0.24;
@@ -500,13 +546,14 @@ body::after {
 
 .glass-panel {
   background:
-    linear-gradient(180deg, color-mix(in oklab, var(--bg-elevated) 76%, transparent) 0%, color-mix(in oklab, var(--bg-sunken) 62%, transparent) 100%);
+    linear-gradient(180deg, color-mix(in oklab, var(--bg-elevated) 82%, transparent) 0%, color-mix(in oklab, var(--bg-sunken) 70%, transparent) 100%);
   border: 1px solid var(--border-subtle);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.16) inset,
-    0 -1px 0 rgba(0, 0, 0, 0.10) inset;
-  backdrop-filter: blur(24px) saturate(150%);
-  -webkit-backdrop-filter: blur(24px) saturate(150%);
+    0 1px 0 rgba(255, 255, 255, 0.18) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.30) inset,
+    0 28px 110px -78px rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
 }
 
 .glass-button {
@@ -524,7 +571,12 @@ body::after {
 
 .glass-button:hover,
 .magnetic-button:hover {
-  transform: translateY(-2px) scale(1.01);
+  transform: translateY(-3px) scale(1.012);
+}
+
+.glass-button:active,
+.magnetic-button:active {
+  transform: translateY(1px) scale(0.992);
 }
 
 .magnetic-button {
@@ -543,6 +595,22 @@ body::after {
   background: linear-gradient(110deg, transparent 20%, rgba(255, 255, 255, 0.22) 48%, transparent 76%);
   transform: translateX(-120%);
   transition: transform 680ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.cta-bloom {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.22) inset,
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 24px 70px -28px rgba(0, 0, 0, 0.75),
+    0 0 42px rgba(var(--aurora-a), 0.18);
+}
+
+.cta-bloom:hover {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.26) inset,
+    0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 30px 82px -32px rgba(0, 0, 0, 0.92),
+    0 0 58px rgba(var(--aurora-a), 0.28);
 }
 
 .magnetic-button:hover::before {
@@ -588,11 +656,114 @@ body::after {
 
 .command-card {
   transform: rotateX(2deg) rotateY(-4deg);
+  animation: console-breathe 8s ease-in-out infinite;
   transition: transform 360ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .orbit-shell:hover .command-card {
   transform: rotateX(0deg) rotateY(0deg) translateY(-4px);
+}
+
+.secure-halo {
+  position: absolute;
+  inset: 12% -4% 8% -4%;
+  border-radius: 40px;
+  background:
+    radial-gradient(closest-side, rgba(var(--aurora-a), 0.18), transparent 70%),
+    radial-gradient(closest-side at 70% 35%, rgba(var(--aurora-b), 0.15), transparent 66%);
+  filter: blur(24px);
+  animation: halo-breathe 7s ease-in-out infinite;
+}
+
+.live-console::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.10), transparent 16%),
+    radial-gradient(38rem 20rem at 82% 0%, rgba(var(--aurora-a), 0.16), transparent 62%);
+  opacity: 0.75;
+}
+
+.console-scan {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent, rgba(var(--aurora-a), 0.10), transparent);
+  height: 38%;
+  transform: translateY(-120%);
+  animation: console-scan 5.6s ease-in-out infinite;
+}
+
+.secure-flow {
+  position: relative;
+  overflow: hidden;
+}
+
+.flow-beam {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(var(--aurora-a), 0.15), rgba(var(--aurora-a), 0.9), rgba(var(--aurora-b), 0.45), rgba(var(--aurora-a), 0.15));
+  box-shadow: 0 0 22px rgba(var(--aurora-a), 0.35);
+}
+
+.flow-beam::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: 0;
+  width: 34px;
+  height: 7px;
+  border-radius: 999px;
+  background: rgb(var(--aurora-a));
+  box-shadow: 0 0 24px rgba(var(--aurora-a), 0.70);
+  animation: flow-pulse 2.8s ease-in-out infinite;
+}
+
+.flow-node {
+  position: relative;
+  display: inline-flex;
+  width: 30px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: color-mix(in oklab, var(--bg-base) 76%, transparent);
+  color: var(--fg-muted);
+  font-size: 11px;
+  font-weight: 700;
+  box-shadow: 0 0 22px rgba(var(--aurora-a), 0.10);
+}
+
+.flow-node::before {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border-radius: inherit;
+  border: 1px solid rgba(var(--aurora-a), 0.16);
+  opacity: 0;
+  animation: node-pulse 3.2s ease-in-out infinite;
+}
+
+.flow-node:nth-child(3)::before { animation-delay: 0.4s; }
+.flow-node:nth-child(4)::before { animation-delay: 0.8s; }
+.flow-node:nth-child(5)::before { animation-delay: 1.2s; }
+
+.typing-query::after {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 1.1em;
+  margin-left: 3px;
+  vertical-align: -0.15em;
+  background: var(--accent);
+  box-shadow: 0 0 18px var(--accent);
+  animation: cursor-blink 1s steps(2, end) infinite;
 }
 
 .floating-chip {
@@ -625,7 +796,8 @@ body::after {
 .premium-card {
   border: 1px solid var(--border-subtle);
   background:
-    radial-gradient(22rem 16rem at 100% 0%, color-mix(in oklab, var(--premium-tone) 22%, transparent), transparent 62%),
+    radial-gradient(26rem 18rem at 100% 0%, color-mix(in oklab, var(--premium-tone) 28%, transparent), transparent 62%),
+    radial-gradient(18rem 12rem at 0% 100%, rgba(255, 255, 255, 0.07), transparent 68%),
     linear-gradient(180deg, color-mix(in oklab, var(--bg-elevated) 74%, transparent), color-mix(in oklab, var(--bg-sunken) 54%, transparent));
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.12) inset,
@@ -675,6 +847,47 @@ body::after {
 @keyframes grid-drift {
   from { background-position: 0 0; }
   to { background-position: 48px 48px; }
+}
+
+@keyframes packet-travel {
+  0% { transform: translateX(-8%) scaleX(0.55); opacity: 0; }
+  14% { opacity: 1; }
+  72% { opacity: 1; }
+  100% { transform: translateX(128vw) scaleX(1); opacity: 0; }
+}
+
+@keyframes console-breathe {
+  0%, 100% { transform: rotateX(2deg) rotateY(-4deg) translateY(0); }
+  50% { transform: rotateX(1deg) rotateY(-3deg) translateY(-5px); }
+}
+
+@keyframes halo-breathe {
+  0%, 100% { opacity: 0.62; transform: scale(0.98); }
+  50% { opacity: 0.92; transform: scale(1.04); }
+}
+
+@keyframes console-scan {
+  0%, 22% { transform: translateY(-130%); opacity: 0; }
+  34% { opacity: 1; }
+  72% { opacity: 0.55; }
+  100% { transform: translateY(310%); opacity: 0; }
+}
+
+@keyframes flow-pulse {
+  0% { transform: translateX(0); opacity: 0; }
+  18% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateX(340px); opacity: 0; }
+}
+
+@keyframes node-pulse {
+  0%, 100% { opacity: 0; transform: scale(0.92); }
+  45% { opacity: 1; transform: scale(1.08); }
+}
+
+@keyframes cursor-blink {
+  0%, 45% { opacity: 1; }
+  46%, 100% { opacity: 0; }
 }
 
 @keyframes float-chip {
