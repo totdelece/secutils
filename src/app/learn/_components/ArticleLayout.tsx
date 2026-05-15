@@ -26,132 +26,216 @@ export function ArticleLayout({
     );
 
   return (
-    <div className="mx-auto max-w-3xl px-5 py-10 sm:px-6 sm:py-14">
-      <nav className="mb-7 flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
-        <Link href="/" className="hover:text-slate-950 dark:hover:text-white">
-          Tools
-        </Link>
-        <span>/</span>
-        <Link href="/learn" className="hover:text-slate-950 dark:hover:text-white">
-          Learn
-        </Link>
-        <span>/</span>
-        <span>{articleCategoryLabels[article.category]}</span>
-      </nav>
+    <div className="article-stage relative isolate overflow-hidden">
+      <div className="article-progress" aria-hidden="true" />
+      <div className="article-orbit" aria-hidden="true" />
 
-      <header className="mb-9">
-        <div className="mb-3 text-xs font-bold uppercase tracking-wide text-emerald-700 dark:text-emerald-300">
-          {articleCategoryLabels[article.category]}
-        </div>
-        <h1 className="text-3xl font-bold leading-tight tracking-tight text-slate-950 dark:text-white sm:text-4xl">
-          {article.title}
-        </h1>
-        <p className="mt-4 text-base leading-8 text-slate-700 dark:text-slate-300">
-          {article.description}
-        </p>
-        <div className="mt-4 flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400">
-          <time dateTime={article.date}>{article.date}</time>
-          <span>/</span>
-          <span>約{article.readingMinutes}分</span>
-        </div>
-      </header>
-
-      {article.affiliate && (
-        <aside
-          role="note"
-          aria-label="広告表記"
-          className="mb-8 rounded-lg border border-amber-300 bg-amber-50 p-4 text-sm text-amber-950 dark:border-amber-400/30 dark:bg-amber-400/10 dark:text-amber-100"
-        >
-          <p className="font-bold">この記事には広告リンクが含まれます。</p>
-          <p className="mt-2 leading-6">
-            リンク経由で申し込みがあった場合、当サイトに紹介料が支払われることがあります。
-            比較内容は編集判断に基づき、価格やキャンペーンは記事執筆時点の情報です。
-          </p>
-        </aside>
-      )}
-
-      <article
-        className="
-          [&_h2]:mt-11 [&_h2]:mb-4 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:tracking-tight [&_h2]:text-slate-950 dark:[&_h2]:text-white
-          [&_h3]:mt-7 [&_h3]:mb-3 [&_h3]:text-lg [&_h3]:font-bold [&_h3]:text-slate-950 dark:[&_h3]:text-white
-          [&_p]:mb-5 [&_p]:text-base [&_p]:leading-8 [&_p]:text-slate-700 dark:[&_p]:text-slate-300
-          [&_ul]:mb-5 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-6 [&_ul]:text-base [&_ul]:leading-8 [&_ul]:text-slate-700 dark:[&_ul]:text-slate-300
-          [&_ol]:mb-5 [&_ol]:list-decimal [&_ol]:space-y-2 [&_ol]:pl-6 [&_ol]:text-base [&_ol]:leading-8 [&_ol]:text-slate-700 dark:[&_ol]:text-slate-300
-          [&_li]:leading-8
-          [&_code]:rounded [&_code]:bg-slate-100 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-[0.88em] dark:[&_code]:bg-white/10
-          [&_pre]:my-5 [&_pre]:overflow-x-auto [&_pre]:rounded-lg [&_pre]:border [&_pre]:border-slate-200 [&_pre]:bg-slate-950 [&_pre]:p-4 [&_pre]:text-xs [&_pre]:text-slate-100 dark:[&_pre]:border-white/10
-          [&_pre_code]:bg-transparent [&_pre_code]:p-0 [&_pre_code]:text-[12px]
-          [&_strong]:font-bold [&_strong]:text-slate-950 dark:[&_strong]:text-white
-          [&_blockquote]:my-5 [&_blockquote]:border-l-4 [&_blockquote]:border-emerald-500 [&_blockquote]:bg-emerald-50 [&_blockquote]:py-3 [&_blockquote]:pl-4 [&_blockquote]:text-slate-700 dark:[&_blockquote]:bg-emerald-400/10 dark:[&_blockquote]:text-slate-200
-          [&_a]:text-emerald-700 [&_a]:underline hover:[&_a]:opacity-80 dark:[&_a]:text-emerald-300
-          [&_table]:my-5 [&_table]:w-full [&_table]:text-sm
-          [&_th]:border-b [&_th]:border-slate-200 [&_th]:px-2 [&_th]:py-2 [&_th]:text-left [&_th]:font-bold dark:[&_th]:border-white/10
-          [&_td]:border-b [&_td]:border-slate-100 [&_td]:px-2 [&_td]:py-2 dark:[&_td]:border-white/10
-        "
-      >
-        {children}
-      </article>
-
-      {relatedTools.length > 0 && (
-        <section className="mt-12 rounded-lg border border-emerald-500/20 bg-emerald-50 p-5 dark:bg-emerald-400/10">
-          <h2 className="text-sm font-bold text-slate-950 dark:text-white">
-            この記事と一緒に使えるツール
-          </h2>
-          <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
-            {relatedTools.map((tool) => (
-              <Link
-                key={tool.slug}
-                href={`/tools/${tool.slug}`}
-                className="flex items-center gap-3 rounded-md border border-slate-200 bg-white p-3 transition hover:border-emerald-500 dark:border-white/10 dark:bg-white/5 dark:hover:border-emerald-400"
-              >
-                <span className="flex h-10 min-w-10 items-center justify-center rounded-md bg-slate-100 px-2 text-xs font-bold text-slate-700 dark:bg-white/10 dark:text-slate-200">
-                  {tool.icon}
-                </span>
-                <span className="min-w-0">
-                  <span className="block truncate text-sm font-bold text-slate-950 dark:text-white">
-                    {tool.title}
-                  </span>
-                  <span className="block truncate text-xs text-slate-500 dark:text-slate-400">
-                    {tool.useCase}
-                  </span>
-                </span>
-              </Link>
-            ))}
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-10 sm:px-6 sm:py-14 lg:grid-cols-[220px_minmax(0,780px)_220px] lg:gap-8">
+        <aside className="hidden lg:block">
+          <div className="sticky top-24 space-y-4">
+            <Link
+              href="/learn"
+              className="inline-flex items-center gap-2 text-[12px] font-semibold text-fg-muted transition hover:text-fg-primary"
+            >
+              <ArrowLeft />
+              Learn
+            </Link>
+            <div className="article-side-panel rounded-3xl p-4">
+              <div className="text-[10px] font-semibold uppercase text-fg-subtle">
+                Reading state
+              </div>
+              <div className="mt-4 space-y-3">
+                <Metric label="Category" value={articleCategoryLabels[article.category]} />
+                <Metric label="Read" value={`${article.readingMinutes} min`} />
+                <Metric label="Mode" value="Local" />
+              </div>
+              <div className="mt-5 rounded-2xl border border-border-subtle bg-bg-sunken/55 p-3">
+                <div className="mb-2 flex items-center justify-between text-[10px] font-semibold uppercase text-fg-subtle">
+                  <span>secure flow</span>
+                  <span className="text-accent">sealed</span>
+                </div>
+                <div className="article-mini-flow">
+                  <span />
+                  <span />
+                  <span />
+                </div>
+              </div>
+            </div>
           </div>
-        </section>
-      )}
+        </aside>
 
-      {relatedArticles.length > 0 && (
-        <section className="mt-8 rounded-lg border border-slate-200 bg-white p-5 dark:border-white/10 dark:bg-white/[0.04]">
-          <h2 className="text-sm font-bold text-slate-950 dark:text-white">
-            関連記事
-          </h2>
-          <ul className="mt-3 space-y-2">
-            {relatedArticles.map((item) => (
-              <li key={item.slug}>
-                <Link
-                  href={`/learn/${item.category}/${item.slug}`}
-                  className="text-sm font-semibold text-emerald-700 hover:underline dark:text-emerald-300"
-                >
-                  {item.title}
-                </Link>
-                <span className="ml-2 text-xs text-slate-500 dark:text-slate-400">
-                  約{item.readingMinutes}分
-                </span>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
+        <main className="min-w-0">
+          <nav className="mb-8 flex flex-wrap items-center gap-2 text-[13px] text-fg-subtle">
+            <Link href="/" className="transition hover:text-fg-primary">
+              Tools
+            </Link>
+            <span>/</span>
+            <Link href="/learn" className="transition hover:text-fg-primary">
+              Learn
+            </Link>
+            <span>/</span>
+            <span>{articleCategoryLabels[article.category]}</span>
+          </nav>
 
-      <div className="mt-10 text-sm">
-        <Link
-          href="/learn"
-          className="font-semibold text-emerald-700 hover:underline dark:text-emerald-300"
-        >
-          Learn の記事一覧へ戻る
-        </Link>
+          <header className="article-hero relative overflow-hidden rounded-[34px] p-6 sm:p-9">
+            <div className="relative">
+              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-border-subtle bg-bg-sunken/50 px-3 py-1 text-[10px] font-semibold uppercase text-fg-subtle backdrop-blur">
+                <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_18px_currentColor]" />
+                {articleCategoryLabels[article.category]} / Browser-native guide
+              </div>
+              <h1 className="max-w-4xl text-[40px] font-semibold leading-[0.96] text-fg-primary sm:text-[58px]">
+                {article.title}
+              </h1>
+              <p className="mt-6 max-w-3xl text-[16px] leading-8 text-fg-muted sm:text-[17px] sm:leading-9">
+                {article.description}
+              </p>
+              <div className="mt-7 flex flex-wrap items-center gap-3 text-[12px] text-fg-subtle">
+                <time dateTime={article.date}>{article.date}</time>
+                <span className="h-1 w-1 rounded-full bg-fg-subtle/60" />
+                <span>約{article.readingMinutes}分</span>
+                <span className="h-1 w-1 rounded-full bg-fg-subtle/60" />
+                <span>Zero tracking reading surface</span>
+              </div>
+            </div>
+          </header>
+
+          {article.affiliate && (
+            <aside
+              role="note"
+              aria-label="広告表記"
+              className="mt-8 rounded-3xl border border-amber-400/30 bg-amber-300/10 p-5 text-sm text-amber-950 shadow-[0_24px_80px_-60px_rgba(245,158,11,0.8)] dark:text-amber-100"
+            >
+              <p className="font-bold">この記事には広告リンクが含まれます。</p>
+              <p className="mt-2 leading-7">
+                リンク経由で申し込みがあった場合、当サイトに紹介料が支払われることがあります。
+                比較内容は編集判断に基づき、価格やキャンペーンは記事執筆時点の情報です。
+              </p>
+            </aside>
+          )}
+
+          <article className="article-prose mt-10">{children}</article>
+
+          {relatedTools.length > 0 && (
+            <section className="article-related mt-14 rounded-[30px] p-5 sm:p-6">
+              <div className="flex items-end justify-between gap-4">
+                <div>
+                  <div className="text-[10px] font-semibold uppercase text-accent">
+                    Tool companion
+                  </div>
+                  <h2 className="mt-2 text-[24px] font-semibold text-fg-primary">
+                    この記事と一緒に使えるツール
+                  </h2>
+                </div>
+              </div>
+              <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                {relatedTools.map((tool) => (
+                  <Link
+                    key={tool.slug}
+                    href={`/tools/${tool.slug}`}
+                    className="article-tool-card group flex items-center gap-3 rounded-2xl p-3"
+                  >
+                    <span className="flex h-11 min-w-11 items-center justify-center rounded-2xl bg-bg-base px-2 text-xs font-bold text-fg-primary ring-1 ring-border-subtle">
+                      {tool.icon}
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block truncate text-sm font-bold text-fg-primary">
+                        {tool.title}
+                      </span>
+                      <span className="block truncate text-xs text-fg-muted">
+                        {tool.useCase}
+                      </span>
+                    </span>
+                    <Arrow />
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {relatedArticles.length > 0 && (
+            <section className="article-related mt-8 rounded-[30px] p-5 sm:p-6">
+              <div className="text-[10px] font-semibold uppercase text-accent">
+                Related reading
+              </div>
+              <h2 className="mt-2 text-[24px] font-semibold text-fg-primary">
+                関連記事
+              </h2>
+              <ul className="mt-4 space-y-2">
+                {relatedArticles.map((item) => (
+                  <li key={item.slug}>
+                    <Link
+                      href={`/learn/${item.category}/${item.slug}`}
+                      className="group flex items-center justify-between gap-4 rounded-2xl border border-border-subtle bg-bg-sunken/35 px-4 py-3 transition hover:border-border-strong hover:bg-bg-elevated/55"
+                    >
+                      <span className="min-w-0 truncate text-sm font-semibold text-fg-primary">
+                        {item.title}
+                      </span>
+                      <span className="shrink-0 text-xs text-fg-subtle">
+                        約{item.readingMinutes}分
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          <div className="mt-10">
+            <Link
+              href="/learn"
+              className="glass-button inline-flex h-[48px] items-center gap-2 rounded-2xl px-5 text-sm font-semibold text-fg-primary"
+            >
+              <ArrowLeft />
+              Learn の記事一覧へ戻る
+            </Link>
+          </div>
+        </main>
+
+        <aside className="hidden xl:block">
+          <div className="sticky top-24">
+            <div className="article-side-panel rounded-3xl p-4">
+              <div className="text-[10px] font-semibold uppercase text-fg-subtle">
+                On this page
+              </div>
+              <div className="mt-4 space-y-2 text-[12px] text-fg-muted">
+                <div className="rounded-2xl bg-bg-sunken/45 px-3 py-2 text-fg-primary">
+                  Overview
+                </div>
+                <div className="rounded-2xl px-3 py-2">Key concepts</div>
+                <div className="rounded-2xl px-3 py-2">Defensive patterns</div>
+                <div className="rounded-2xl px-3 py-2">Related tools</div>
+              </div>
+            </div>
+          </div>
+        </aside>
       </div>
     </div>
+  );
+}
+
+function Metric({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <div className="text-[10px] font-semibold uppercase text-fg-subtle">{label}</div>
+      <div className="mt-1 text-[13px] font-semibold text-fg-primary">{value}</div>
+    </div>
+  );
+}
+
+function Arrow() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none" fill="none" stroke="currentColor" strokeWidth={2.25} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M5 12h14" />
+      <path d="m13 5 7 7-7 7" />
+    </svg>
+  );
+}
+
+function ArrowLeft() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth={2.25} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M19 12H5" />
+      <path d="m11 5-7 7 7 7" />
+    </svg>
   );
 }

@@ -54,6 +54,12 @@ export function HomeHero({
         <span className="packet-line packet-line-b" />
         <span className="packet-line packet-line-c" />
       </div>
+      <div className="security-constellation" aria-hidden="true">
+        <span className="constellation-node node-a" />
+        <span className="constellation-node node-b" />
+        <span className="constellation-node node-c" />
+        <span className="constellation-node node-d" />
+      </div>
       <div className="hero-noise" aria-hidden="true" />
       <div className="hero-vignette" aria-hidden="true" />
 
@@ -174,6 +180,18 @@ export function HomeHero({
               <div className="mt-5 grid grid-cols-2 gap-2">
                 <Metric value={toolCount} label="tools" />
                 <Metric value={articleCount} label="guides" />
+              </div>
+
+              <div className="decode-activity mt-3 rounded-2xl border border-border-subtle bg-bg-sunken/45 p-3">
+                <div className="mb-2 flex items-center justify-between text-[10px] font-semibold uppercase text-fg-subtle">
+                  <span>decode activity</span>
+                  <span className="text-accent">live</span>
+                </div>
+                <div className="space-y-1.5">
+                  <span className="activity-bar activity-a" />
+                  <span className="activity-bar activity-b" />
+                  <span className="activity-bar activity-c" />
+                </div>
               </div>
 
               <div className="mt-3 grid grid-cols-[1fr_auto] items-center gap-3 rounded-2xl border border-border-subtle bg-bg-sunken/45 px-3.5 py-3 text-[11px] text-fg-subtle">
