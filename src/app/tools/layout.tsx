@@ -1,3 +1,5 @@
+import { ToolChrome } from "./ToolChrome";
+
 export default function ToolsLayout({
   children,
 }: {
@@ -11,7 +13,9 @@ export default function ToolsLayout({
         <span />
         <span />
       </div>
-      <div className="relative">{children}</div>
+      <div className="relative">
+        <ToolChrome>{children}</ToolChrome>
+      </div>
     </div>
   );
 }

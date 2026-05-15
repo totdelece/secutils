@@ -1314,6 +1314,86 @@ body::after {
   max-width: 72rem;
 }
 
+.tool-chrome > nav {
+  position: relative;
+  z-index: 1;
+}
+
+.tool-hero,
+.tool-hero-panel {
+  border: 1px solid var(--border-subtle);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--bg-elevated) 72%, transparent), color-mix(in oklab, var(--bg-sunken) 58%, transparent));
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.12) inset,
+    0 34px 110px -88px rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+}
+
+.tool-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(36rem 20rem at 12% 0%, rgba(var(--aurora-a), 0.18), transparent 66%),
+    radial-gradient(28rem 16rem at 100% 8%, rgba(var(--aurora-b), 0.13), transparent 70%),
+    linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.07), transparent);
+}
+
+.tool-pipeline {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tool-pipeline::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(var(--aurora-a), 0.18), rgba(var(--aurora-a), 0.86), rgba(var(--aurora-b), 0.28));
+  box-shadow: 0 0 22px rgba(var(--aurora-a), 0.28);
+}
+
+.tool-pipeline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: calc(50% - 3px);
+  width: 34px;
+  height: 7px;
+  border-radius: 999px;
+  background: rgb(var(--aurora-a));
+  box-shadow: 0 0 24px rgba(var(--aurora-a), 0.66);
+  animation: flow-pulse 3.2s ease-in-out infinite;
+}
+
+.tool-pipeline span {
+  position: relative;
+  z-index: 1;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-base);
+  box-shadow: 0 0 20px rgba(var(--aurora-a), 0.14);
+}
+
+.tool-native > div[class*="mx-auto"] {
+  max-width: 72rem;
+  padding: 0;
+}
+
+.tool-native > div > nav:first-child,
+.tool-native > div > h1:first-of-type,
+.tool-native > div > h1:first-of-type + p {
+  display: none;
+}
+
 .tools-stage nav a {
   color: var(--fg-muted);
   transition: color 180ms ease;
