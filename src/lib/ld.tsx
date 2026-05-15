@@ -1,6 +1,11 @@
-import { getBaseUrl, siteDescription, siteName } from "./site";
+import { getBaseUrl, getToolSeo, siteDescription, siteName } from "./site";
 import { tools } from "./tools";
-import { articleCategoryLabels, articles } from "./articles";
+import {
+  articleCategoryLabels,
+  articles,
+  getArticleSeoDescription,
+  getArticleSeoTitle,
+} from "./articles";
 
 function jsonLdScript(data: object) {
   return (
@@ -39,8 +44,8 @@ export function ArticleJsonLd({ slug }: { slug: string }) {
   return jsonLdScript({
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: article.title,
-    description: article.description,
+    headline: getArticleSeoTitle(article),
+    description: getArticleSeoDescription(article),
     url,
     inLanguage: "ja",
     datePublished: article.date,
@@ -65,11 +70,12 @@ export function ToolJsonLd({ slug }: { slug: string }) {
   if (!tool) return null;
   const base = getBaseUrl();
   const url = `${base}/tools/${tool.slug}`;
+  const seo = getToolSeo(slug);
   return jsonLdScript({
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    name: tool.title,
-    description: tool.description,
+    name: seo?.title ?? tool.title,
+    description: seo?.description ?? tool.description,
     applicationCategory: "DeveloperApplication",
     operatingSystem: "Any (Web Browser)",
     url,
