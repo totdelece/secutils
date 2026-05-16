@@ -1,0 +1,131 @@
+import { articles } from "./articles";
+import { tools, type Tool, type ToolCategory } from "./tools";
+
+export const RECENT_STORAGE_KEY = "secutils:recent";
+export const FAVORITE_TOOLS_STORAGE_KEY = "secutils:favorite-tools";
+export const RECENT_MAX = 8;
+
+export type WorkspaceTool = Tool & {
+  href: string;
+};
+
+export const popularToolSlugs = [
+  "jwt-decoder",
+  "json-formatter",
+  "base64",
+  "url-encoder",
+  "password-generator",
+  "hash-generator",
+  "cidr-calculator",
+  "regex-tester",
+];
+
+export const relatedToolSlugs: Record<string, string[]> = {
+  "jwt-decoder": ["base64", "json-formatter", "url-encoder", "hmac"],
+  base64: ["jwt-decoder", "url-encoder", "json-formatter", "html-entity"],
+  "json-formatter": ["json-yaml", "base64", "jwt-decoder", "diff-viewer"],
+  "url-encoder": ["base64", "html-entity", "jwt-decoder", "qr-code"],
+  "password-generator": ["bcrypt", "hash-generator", "uuid-generator", "totp"],
+  "hash-generator": ["hmac", "bcrypt", "password-generator", "diff-viewer"],
+  hmac: ["hash-generator", "jwt-decoder", "base64", "json-formatter"],
+  bcrypt: ["password-generator", "hash-generator", "hmac", "totp"],
+  totp: ["qr-code", "jwt-decoder", "base64", "password-generator"],
+  "cookie-parser": ["jwt-decoder", "url-encoder", "http-status", "html-entity"],
+  "html-entity": ["url-encoder", "json-formatter", "cookie-parser", "regex-tester"],
+  "cidr-calculator": ["http-status", "timestamp-converter", "regex-tester", "diff-viewer"],
+  "http-status": ["cookie-parser", "url-encoder", "cidr-calculator", "json-formatter"],
+  "uuid-generator": ["timestamp-converter", "password-generator", "json-formatter", "qr-code"],
+  "regex-tester": ["diff-viewer", "json-formatter", "html-entity", "url-encoder"],
+  "timestamp-converter": ["uuid-generator", "json-formatter", "cron-parser", "diff-viewer"],
+  "diff-viewer": ["json-formatter", "json-yaml", "regex-tester", "hash-generator"],
+  "qr-code": ["url-encoder", "totp", "base64", "uuid-generator"],
+  "json-yaml": ["json-formatter", "diff-viewer", "base64", "regex-tester"],
+  "cron-parser": ["timestamp-converter", "regex-tester", "json-formatter", "diff-viewer"],
+  "color-converter": ["json-formatter", "diff-viewer", "regex-tester", "qr-code"],
+};
+
+export const shortcutActions: Record<
+  string,
+  { label: string; href: string; hint: string }[]
+> = {
+  "jwt-decoder": [
+    { label: "Base64を確認", href: "/tools/base64", hint: "Header/Payloadの中身" },
+    { label: "JSON整形", href: "/tools/json-formatter", hint: "Payloadを読みやすく" },
+    { label: "HMAC署名", href: "/tools/hmac", hint: "HS256の検証補助" },
+  ],
+  base64: [
+    { label: "JWTへ移動", href: "/tools/jwt-decoder", hint: "Base64URLトークンを読む" },
+    { label: "URL変換", href: "/tools/url-encoder", hint: "URL-safe値を確認" },
+    { label: "JSON整形", href: "/tools/json-formatter", hint: "デコード後を整える" },
+  ],
+  "json-formatter": [
+    { label: "YAML変換", href: "/tools/json-yaml", hint: "設定形式を変換" },
+    { label: "差分比較", href: "/tools/diff-viewer", hint: "整形前後を確認" },
+    { label: "JWTへ移動", href: "/tools/jwt-decoder", hint: "Payload調査" },
+  ],
+  "url-encoder": [
+    { label: "Base64変換", href: "/tools/base64", hint: "トークン値を確認" },
+    { label: "QR作成", href: "/tools/qr-code", hint: "URL共有" },
+    { label: "HTML Entity", href: "/tools/html-entity", hint: "表示文字を確認" },
+  ],
+};
+
+export function toolHref(slug: string) {
+  return `/tools/${slug}`;
+}
+
+export function entryIdForTool(slug: string) {
+  return `tool:${slug}`;
+}
+
+export function resolveTool(slug: string): WorkspaceTool | undefined {
+  const tool = tools.find((item) => item.slug === slug);
+  return tool ? { ...tool, href: toolHref(tool.slug) } : undefined;
+}
+
+export function resolveTools(slugs: string[]): WorkspaceTool[] {
+  return slugs
+    .map((slug) => resolveTool(slug))
+    .filter((tool): tool is WorkspaceTool => Boolean(tool));
+}
+
+export function getPopularTools(): WorkspaceTool[] {
+  return resolveTools(popularToolSlugs);
+}
+
+export function getRelatedTools(slug: string): WorkspaceTool[] {
+  const explicit = relatedToolSlugs[slug] ?? [];
+  const current = resolveTool(slug);
+  const fallback = current
+    ? tools
+        .filter((tool) => tool.category === current.category && tool.slug !== slug)
+        .map((tool) => tool.slug)
+    : [];
+  return resolveTools([...explicit, ...fallback]).slice(0, 5);
+}
+
+export function getToolGuideLinks(slug: string) {
+  return articles
+    .filter((article) => article.relatedTools?.includes(slug))
+    .slice(0, 3)
+    .map((article) => ({
+      href: `/learn/${article.category}/${article.slug}`,
+      title: article.title,
+      meta: `${article.readingMinutes} min`,
+    }));
+}
+
+export function toolsByCategory(): Record<ToolCategory, WorkspaceTool[]> {
+  return tools.reduce<Record<ToolCategory, WorkspaceTool[]>>(
+    (acc, tool) => {
+      acc[tool.category].push({ ...tool, href: toolHref(tool.slug) });
+      return acc;
+    },
+    {
+      security: [],
+      encoding: [],
+      network: [],
+      misc: [],
+    } satisfies Record<ToolCategory, WorkspaceTool[]>,
+  );
+}

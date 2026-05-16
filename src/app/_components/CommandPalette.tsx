@@ -10,13 +10,15 @@ import {
 import { useRouter } from "next/navigation";
 import { articleCategoryLabels, articles, type Article } from "@/lib/articles";
 import { categoryLabels, tools, type Tool } from "@/lib/tools";
+import {
+  FAVORITE_TOOLS_STORAGE_KEY,
+  RECENT_MAX,
+  RECENT_STORAGE_KEY,
+} from "@/lib/tool-workspace";
 
 type Entry =
   | { kind: "tool"; ref: Tool }
   | { kind: "article"; ref: Article };
-
-const RECENT_KEY = "secutils:recent";
-const RECENT_MAX = 6;
 
 function entryHref(entry: Entry) {
   return entry.kind === "tool"
@@ -62,7 +64,7 @@ const allEntries: Entry[] = [
 function loadRecent(): string[] {
   if (typeof window === "undefined") return [];
   try {
-    const raw = window.localStorage.getItem(RECENT_KEY);
+    const raw = window.localStorage.getItem(RECENT_STORAGE_KEY);
     if (!raw) return [];
     const parsed = JSON.parse(raw);
     if (Array.isArray(parsed)) return parsed.filter((x) => typeof x === "string");
@@ -78,11 +80,26 @@ function saveRecent(id: string) {
     const cur = loadRecent().filter((x) => x !== id);
     cur.unshift(id);
     window.localStorage.setItem(
-      RECENT_KEY,
+      RECENT_STORAGE_KEY,
       JSON.stringify(cur.slice(0, RECENT_MAX)),
     );
+    window.dispatchEvent(new Event("secutils:workspace-sync"));
   } catch {
     /* ignore */
+  }
+}
+
+function loadFavorites(): string[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const parsed = JSON.parse(
+      window.localStorage.getItem(FAVORITE_TOOLS_STORAGE_KEY) ?? "[]",
+    );
+    return Array.isArray(parsed)
+      ? parsed.filter((value) => typeof value === "string")
+      : [];
+  } catch {
+    return [];
   }
 }
 
@@ -92,6 +109,7 @@ export function CommandPalette() {
   const [query, setQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
   const [recent, setRecent] = useState<string[]>([]);
+  const [favorites, setFavorites] = useState<string[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
 
@@ -135,6 +153,7 @@ export function CommandPalette() {
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     setRecent(loadRecent());
+    setFavorites(loadFavorites());
     setQuery("");
     setActiveIndex(0);
     requestAnimationFrame(() => inputRef.current?.focus());
@@ -173,12 +192,23 @@ export function CommandPalette() {
       .filter((e): e is Entry => Boolean(e));
   }, [recent]);
 
+  const favoriteEntries: Entry[] = useMemo(() => {
+    return favorites
+      .map((slug) => allEntries.find((e) => e.kind === "tool" && e.ref.slug === slug))
+      .filter((e): e is Entry => Boolean(e));
+  }, [favorites]);
+
   // Linearized list for keyboard nav
   const list: Entry[] = useMemo(() => {
     if (query.trim()) return results;
-    if (recentEntries.length) return recentEntries;
-    return tools.slice(0, 8).map((t): Entry => ({ kind: "tool", ref: t }));
-  }, [query, results, recentEntries]);
+    const fallback = tools.slice(0, 8).map((t): Entry => ({ kind: "tool", ref: t }));
+    const merged = [...favoriteEntries, ...recentEntries, ...fallback];
+    return merged.filter(
+      (entry, index, array) =>
+        array.findIndex((candidate) => entryId(candidate) === entryId(entry)) ===
+        index,
+    );
+  }, [query, results, favoriteEntries, recentEntries]);
 
   const go = useCallback(
     (entry: Entry) => {
@@ -260,10 +290,13 @@ export function CommandPalette() {
           ref={listRef}
           className="max-h-[60vh] overflow-y-auto px-2 py-2"
         >
-          {!query.trim() && recentEntries.length > 0 && (
-            <SectionHeader>Recent</SectionHeader>
+          {!query.trim() && favoriteEntries.length > 0 && (
+            <SectionHeader>Favorites / Recent / Popular</SectionHeader>
           )}
-          {!query.trim() && recentEntries.length === 0 && (
+          {!query.trim() && favoriteEntries.length === 0 && recentEntries.length > 0 && (
+            <SectionHeader>Recent / Popular</SectionHeader>
+          )}
+          {!query.trim() && favoriteEntries.length === 0 && recentEntries.length === 0 && (
             <SectionHeader>Popular</SectionHeader>
           )}
           {query.trim() && (
