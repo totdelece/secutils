@@ -1186,6 +1186,122 @@ body::after {
   border-bottom: 0;
 }
 
+.hosting-compare {
+  background: var(--bg-base);
+  color: var(--fg-primary);
+}
+
+:root.dark .hosting-compare {
+  background:
+    radial-gradient(54rem 34rem at 50% -8%, rgba(var(--aurora-a), 0.13), transparent 70%),
+    radial-gradient(44rem 30rem at 92% 12%, rgba(var(--aurora-b), 0.10), transparent 72%),
+    linear-gradient(180deg, #010205 0%, var(--bg-base) 48rem);
+  color: var(--fg-primary);
+}
+
+:root.dark .hosting-compare .bg-white,
+:root.dark .hosting-compare .bg-white\/85 {
+  background-color: color-mix(in oklab, var(--bg-elevated) 82%, transparent);
+}
+
+:root.dark .hosting-compare .bg-slate-50,
+:root.dark .hosting-compare .bg-\[\#f3f7fb\] {
+  background-color: color-mix(in oklab, var(--bg-base) 88%, #0f172a 12%);
+}
+
+:root.dark .hosting-compare .bg-\[linear-gradient\(180deg\2c \#eef6ff_0\%\2c \#f8fafc_72\%\2c \#ffffff_100\%\)\] {
+  background:
+    radial-gradient(48rem 26rem at 50% 0%, rgba(var(--aurora-b), 0.16), transparent 68%),
+    linear-gradient(180deg, #02040a 0%, var(--bg-base) 100%);
+}
+
+:root.dark .hosting-compare .bg-slate-950 {
+  background-color: #020307;
+}
+
+:root.dark .hosting-compare .bg-slate-900 {
+  background-color: color-mix(in oklab, var(--bg-elevated) 74%, #0f172a 26%);
+}
+
+:root.dark .hosting-compare .bg-blue-50,
+:root.dark .hosting-compare .bg-slate-100,
+:root.dark .hosting-compare .bg-emerald-50,
+:root.dark .hosting-compare .bg-orange-50,
+:root.dark .hosting-compare .bg-amber-50 {
+  background-color: color-mix(in oklab, var(--bg-sunken) 72%, transparent);
+}
+
+:root.dark .hosting-compare .border-slate-100,
+:root.dark .hosting-compare .border-slate-200,
+:root.dark .hosting-compare .border-slate-300,
+:root.dark .hosting-compare .border-blue-100,
+:root.dark .hosting-compare .border-blue-200,
+:root.dark .hosting-compare .border-amber-200,
+:root.dark .hosting-compare .border-emerald-200,
+:root.dark .hosting-compare .border-orange-200 {
+  border-color: var(--border-subtle);
+}
+
+:root.dark .hosting-compare .shadow-sm {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.05) inset,
+    0 24px 80px -62px rgba(0, 0, 0, 0.92);
+}
+
+:root.dark .hosting-compare .text-slate-950 {
+  color: var(--fg-primary);
+}
+
+:root.dark .hosting-compare .text-slate-900,
+:root.dark .hosting-compare .text-slate-800,
+:root.dark .hosting-compare .text-slate-700 {
+  color: var(--fg-secondary);
+}
+
+:root.dark .hosting-compare .text-slate-600,
+:root.dark .hosting-compare .text-slate-500,
+:root.dark .hosting-compare .text-slate-400 {
+  color: var(--fg-muted);
+}
+
+:root.dark .hosting-compare .text-blue-700 {
+  color: #7dd3fc;
+}
+
+:root.dark .hosting-compare .text-emerald-700,
+:root.dark .hosting-compare .text-emerald-800 {
+  color: #6ee7b7;
+}
+
+:root.dark .hosting-compare .text-orange-600,
+:root.dark .hosting-compare .text-orange-700 {
+  color: #fdba74;
+}
+
+:root.dark .hosting-compare .text-amber-800,
+:root.dark .hosting-compare .text-amber-900 {
+  color: #fde68a;
+}
+
+:root.dark .hosting-compare .ring-slate-200,
+:root.dark .hosting-compare .ring-blue-200,
+:root.dark .hosting-compare .ring-emerald-100,
+:root.dark .hosting-compare .ring-emerald-200,
+:root.dark .hosting-compare .ring-orange-100,
+:root.dark .hosting-compare .ring-orange-200,
+:root.dark .hosting-compare .ring-amber-200 {
+  --tw-ring-color: var(--border-subtle);
+}
+
+:root.dark .hosting-compare a.hover\:text-slate-950:hover,
+:root.dark .hosting-compare .hover\:text-blue-700:hover {
+  color: var(--accent-strong);
+}
+
+:root.dark .hosting-compare .hover\:bg-blue-50:hover {
+  background-color: color-mix(in oklab, var(--accent) 12%, var(--bg-elevated));
+}
+
 .article-tool-card {
   border: 1px solid var(--border-subtle);
   background: color-mix(in oklab, var(--bg-sunken) 44%, transparent);

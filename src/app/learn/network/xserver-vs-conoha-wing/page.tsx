@@ -924,7 +924,7 @@ function RelatedLinks() {
 
 export default function Page() {
   return (
-    <div className="bg-white text-slate-950">
+    <div className="hosting-compare bg-white text-slate-950">
       <Hero />
       <ComparisonTable />
       <CtaBand
