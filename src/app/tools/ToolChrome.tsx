@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { tools } from "@/lib/tools";
+import { ToolSeoSection } from "./ToolSeoSection";
 
 export function ToolChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -55,6 +56,7 @@ export function ToolChrome({ children }: { children: React.ReactNode }) {
       </section>
 
       <div className="tool-native mt-8">{children}</div>
+      <ToolSeoSection slug={slug} />
     </div>
   );
 }
