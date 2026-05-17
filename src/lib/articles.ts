@@ -169,6 +169,11 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "エックスサーバーとConoHa WINGを料金、無料お試し、WordPressの始めやすさ、表示速度、サポート、更新時の注意点で比較します。",
   },
+  "xserver-vps-guide": {
+    title: "XServer VPSとは？初心者向けの始め方とレンタルサーバーとの違い",
+    description:
+      "VPSとは何かを初心者向けに解説。共有レンタルサーバーとの違い、マイクラサーバーやDiscord Botなどの代表的な用途、XServer VPSを選ぶ判断材料を整理します。",
+  },
 };
 
 export const articles: Article[] = [
@@ -461,6 +466,17 @@ export const articles: Article[] = [
     date: "2026-05-11",
     readingMinutes: 10,
     relatedTools: [],
+    affiliate: true,
+  },
+  {
+    slug: "xserver-vps-guide",
+    category: "network",
+    title: "XServer VPSとは？初心者向けの始め方とレンタルサーバーとの違い",
+    description:
+      "VPSと共有レンタルサーバーの違い、マイクラサーバーやDiscord Botなど代表的な用途、XServer VPSを選ぶときの判断材料を初心者向けに整理します。",
+    date: "2026-05-17",
+    readingMinutes: 11,
+    relatedTools: ["cidr-calculator"],
     affiliate: true,
   },
 ];
