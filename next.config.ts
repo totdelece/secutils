@@ -108,6 +108,16 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "secutils.vercel.app" }],
+        destination: "https://secutils.jp/:path*",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

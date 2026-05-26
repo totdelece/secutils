@@ -69,7 +69,7 @@ export default function AboutPage() {
           <li>
             HTTP セキュリティヘッダー（CSP、HSTS、X-Frame-Options、Permissions-Policy 他）を全ページに適用。{" "}
             <a
-              href="https://securityheaders.com/?q=secutils.vercel.app"
+              href="https://securityheaders.com/?q=secutils.jp"
               target="_blank"
               rel="noopener noreferrer"
               className="underline hover:text-emerald-600 dark:hover:text-emerald-400"

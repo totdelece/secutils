@@ -18,7 +18,7 @@ const ERROR_LEVELS: {
 ];
 
 export default function QrCodePage() {
-  const [text, setText] = useState("https://secutils.vercel.app/");
+  const [text, setText] = useState("https://secutils.jp/");
   const [errorLevel, setErrorLevel] = useState<ErrorLevel>("M");
   const [foreground, setForeground] = useState("#000000");
   const [background, setBackground] = useState("#ffffff");

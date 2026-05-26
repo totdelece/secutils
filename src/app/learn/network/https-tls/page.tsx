@@ -132,7 +132,7 @@ export default function Page() {
         HTTPS / TLS は<strong>「鍵マークが出てれば OK」</strong>と思いがちですが、その裏では複数の暗号アルゴリズム・PKI（公開鍵基盤）・CA の信頼チェーンが動いています。仕組みを理解しておくと、自前サーバーの設定（Let&apos;s Encrypt、Nginx の SSL 設定）や、企業環境のプロキシ証明書を信頼させる場面で迷わなくなります。
       </p>
       <p>
-        本サイトも HSTS / 厳格な CSP / 強い暗号スイート前提で配信されています。<a href="https://securityheaders.com/?q=secutils.vercel.app" target="_blank" rel="noopener noreferrer">securityheaders.com</a> で実際の評価を確認できます。
+        本サイトも HSTS / 厳格な CSP / 強い暗号スイート前提で配信されています。<a href="https://securityheaders.com/?q=secutils.jp" target="_blank" rel="noopener noreferrer">securityheaders.com</a> で実際の評価を確認できます。
       </p>
     </ArticleLayout>
   );
