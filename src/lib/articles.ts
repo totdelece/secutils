@@ -174,6 +174,21 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "VPSとは何かを初心者向けに解説。共有レンタルサーバーとの違い、マイクラサーバーやDiscord Botなどの代表的な用途、XServer VPSを選ぶ判断材料を整理します。",
   },
+  clickjacking: {
+    title: "クリックジャッキング詳解 - 透明iframe攻撃とX-Frame-Options/CSP対策",
+    description:
+      "クリックジャッキングの仕組み、透明iframeによる典型攻撃、UIリドレッシング全般、X-Frame-OptionsとCSP frame-ancestorsによる防御、フレームバスティングの限界を日本語で解説します。",
+  },
+  ssrf: {
+    title: "SSRF 詳解 - クラウドIMDS狙いとCapital One事件・IMDSv2の防御",
+    description:
+      "SSRF（Server-Side Request Forgery）の仕組み、クラウドメタデータサービス（IMDS 169.254.169.254）を狙う攻撃、Capital One事件の解説、許可リスト方式とIMDSv2による防御を日本語で整理します。",
+  },
+  "path-traversal": {
+    title: "パストラバーサル詳解 - ../攻撃・URLエンコード回避・正規化後の許可リスト",
+    description:
+      "パストラバーサル攻撃の仕組み、../ や %2e%2e%2f によるディレクトリ脱出、Null Byte挿入、ZipSlip、防御策としての正規化後の許可リスト・抽象化APIを日本語で解説します。",
+  },
 };
 
 export const articles: Article[] = [
@@ -478,6 +493,36 @@ export const articles: Article[] = [
     readingMinutes: 11,
     relatedTools: ["cidr-calculator"],
     affiliate: true,
+  },
+  {
+    slug: "clickjacking",
+    category: "security",
+    title: "クリックジャッキング詳解 - 透明iframeとX-Frame-Options/CSPで防ぐ",
+    description:
+      "透明iframeでUIを重ねて意図しないクリックを誘発する攻撃の仕組み、likejacking/cursorjackingなどUIリドレッシング全般、X-Frame-Options と CSP frame-ancestors による防御を解説します。",
+    date: "2026-05-27",
+    readingMinutes: 8,
+    relatedTools: ["cookie-parser"],
+  },
+  {
+    slug: "ssrf",
+    category: "security",
+    title: "SSRF 詳解 - クラウドメタデータ狙いとCapital One事件・IMDSv2",
+    description:
+      "SSRFの仕組みと典型攻撃、AWS IMDS (169.254.169.254) を狙うクラウドAPI悪用、Capital One 1億件流出事件、許可リスト方式・IMDSv2・SSRFガード設計を日本語で解説します。",
+    date: "2026-05-27",
+    readingMinutes: 10,
+    relatedTools: ["cidr-calculator"],
+  },
+  {
+    slug: "path-traversal",
+    category: "security",
+    title: "パストラバーサル詳解 - ../攻撃・URLエンコード回避・防御の基本",
+    description:
+      "パストラバーサル（ディレクトリトラバーサル）の仕組み、../ や URLエンコードを使った検査回避、Null Byte挿入、ZipSlip、防御策としての正規化後の許可リスト・抽象化APIを解説します。",
+    date: "2026-05-27",
+    readingMinutes: 9,
+    relatedTools: ["url-encoder"],
   },
 ];
 
