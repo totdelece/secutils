@@ -174,6 +174,11 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "VPSとは何かを初心者向けに解説。共有レンタルサーバーとの違い、マイクラサーバーやDiscord Botなどの代表的な用途、XServer VPSを選ぶ判断材料を整理します。",
   },
+  "xserver-domain-guide": {
+    title: "独自ドメインの取得方法 - XServerドメインで.jp/.com/.devを選ぶ判断と設定手順",
+    description:
+      "独自ドメインのメリット、.jp/.com/.devなどTLDの違い、XServerドメインでの取得手順、Vercel・レンタルサーバーとのDNS連携設定、AdSense承認との関係を実体験ベースで日本語で解説します。",
+  },
   clickjacking: {
     title: "クリックジャッキング詳解 - 透明iframe攻撃とX-Frame-Options/CSP対策",
     description:
@@ -492,6 +497,17 @@ export const articles: Article[] = [
     date: "2026-05-17",
     readingMinutes: 11,
     relatedTools: ["cidr-calculator"],
+    affiliate: true,
+  },
+  {
+    slug: "xserver-domain-guide",
+    category: "network",
+    title: "独自ドメイン取得ガイド - XServerドメインで .jp / .com / .dev を選ぶ判断",
+    description:
+      "独自ドメインのメリット、TLDの選び方、XServerドメインでの取得手順、Vercelとの連携、AdSense承認との関係を実体験ベースで整理します。",
+    date: "2026-05-26",
+    readingMinutes: 10,
+    relatedTools: [],
     affiliate: true,
   },
   {
