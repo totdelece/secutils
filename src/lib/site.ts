@@ -122,6 +122,16 @@ const toolSeo: Record<string, { title: string; description: string }> = {
     description:
       "HEX、RGB、HSL、HSVを相互変換し、WCAGコントラスト比を確認できます。UIカラーの検証に使えるブラウザ内ツールです。",
   },
+  "ulid-generator": {
+    title: "ULID Generator - 26文字Crockford Base32の時系列IDを生成",
+    description:
+      "Crockford Base32エンコードの26文字ULIDをブラウザ内で生成します。先頭48bitがミリ秒タイムスタンプなので文字列ソートで時系列に並びます。",
+  },
+  "lorem-ipsum": {
+    title: "Lorem Ipsum Generator - ダミーテキスト生成（日本語対応）",
+    description:
+      "段落数、単語数、Lorem ipsum で始めるかを指定してダミーテキストをブラウザ内で生成します。日本語ダミー文章にも対応し、デザイン検証やワイヤーフレーム作成に使えます。",
+  },
 };
 
 export function getToolSeo(slug: string) {

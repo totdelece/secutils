@@ -213,4 +213,22 @@ export const tools: Tool[] = [
     icon: "RGB",
     useCase: "UIカラーの確認",
   },
+  {
+    slug: "ulid-generator",
+    title: "ULID Generator",
+    description:
+      "Crockford Base32 でエンコードされた 26 文字の ULID を生成します。先頭がタイムスタンプなので文字列ソートで時系列に並びます。",
+    category: "misc",
+    icon: "ULID",
+    useCase: "時系列ソートできるID生成",
+  },
+  {
+    slug: "lorem-ipsum",
+    title: "Lorem Ipsum Generator",
+    description:
+      "段落数や単語数を指定して Lorem Ipsum のダミーテキストを生成します。日本語ダミーテキストにも対応しています。",
+    category: "misc",
+    icon: "L¶",
+    useCase: "デザイン検証用ダミー文章作成",
+  },
 ];
