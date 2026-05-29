@@ -17,8 +17,8 @@
 
   --fg-primary: #07090f;
   --fg-secondary: #2a3142;
-  --fg-muted: #5a6275;
-  --fg-subtle: #8a93a6;
+  --fg-muted: #515a6b;
+  --fg-subtle: #6b7382;
 
   --accent: #059669;
   --accent-strong: #047857;
@@ -45,20 +45,20 @@
 }
 
 :root.dark {
-  /* dark theme — deep indigo near-black with hint of blue */
-  --bg-base: #010205;
-  --bg-elevated: #070a10;
-  --bg-overlay: rgba(5, 7, 12, 0.78);
-  --bg-sunken: #020307;
+  /* dark theme — dark slate with separated surface levels for readability */
+  --bg-base: #0a0c12;
+  --bg-elevated: #141821;
+  --bg-overlay: rgba(10, 12, 18, 0.85);
+  --bg-sunken: #070910;
 
-  --border-subtle: rgba(255, 255, 255, 0.07);
-  --border-strong: rgba(255, 255, 255, 0.18);
+  --border-subtle: rgba(255, 255, 255, 0.10);
+  --border-strong: rgba(255, 255, 255, 0.22);
   --border-glow: rgba(52, 211, 153, 0.5);
 
   --fg-primary: #f7f9ff;
   --fg-secondary: #d5dce8;
-  --fg-muted: #919bad;
-  --fg-subtle: #4f5869;
+  --fg-muted: #9aa4b6;
+  --fg-subtle: #7c8698;
 
   --accent: #34d399;
   --accent-strong: #6ee7b7;
@@ -129,23 +129,20 @@ body {
   overflow-x: clip;
 }
 
-/* ─── Aurora — slow drifting color field ───────────────── */
+/* ─── Faint static brand tint at the top (no animation, low intensity) ─── */
 body::before {
   content: "";
   position: fixed;
-  inset: -20%;
+  inset: 0;
   z-index: -3;
   pointer-events: none;
   background:
-    radial-gradient(48rem 38rem at 12% 8%, rgba(var(--aurora-a), 0.30), transparent 60%),
-    radial-gradient(46rem 36rem at 88% 4%, rgba(var(--aurora-b), 0.22), transparent 65%),
-    radial-gradient(60rem 44rem at 50% 112%, rgba(var(--aurora-c), 0.20), transparent 70%);
-  filter: blur(0.5px);
-  animation: aurora-shift 24s ease-in-out infinite alternate;
+    radial-gradient(64rem 40rem at 50% -14%, rgba(var(--aurora-a), 0.10), transparent 62%);
+  opacity: 0.7;
 }
 
 :root:not(.dark) body::before {
-  opacity: 0.55;
+  opacity: 0.5;
 }
 
 @keyframes aurora-shift {
@@ -166,13 +163,13 @@ body::after {
   background-size: 28px 28px;
   mask-image: radial-gradient(ellipse 75% 55% at 50% 30%, black 0%, transparent 85%);
   -webkit-mask-image: radial-gradient(ellipse 75% 55% at 50% 30%, black 0%, transparent 85%);
-  opacity: 0.5;
+  opacity: 0.32;
 }
 
 :root.dark body::after {
   background-image:
-    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.07) 1px, transparent 0);
-  opacity: 0.55;
+    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.06) 1px, transparent 0);
+  opacity: 0.3;
 }
 
 @media (prefers-reduced-motion: reduce) {
