@@ -194,6 +194,11 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "パストラバーサル攻撃の仕組み、../ や %2e%2e%2f によるディレクトリ脱出、Null Byte挿入、ZipSlip、防御策としての正規化後の許可リスト・抽象化APIを日本語で解説します。",
   },
+  react2shell: {
+    title: "React2Shell（CVE-2025-55182）とは - RSC/Next.jsの事前認証RCEと対策",
+    description:
+      "2025年12月にMeta/Vercelが公表したReact Server Componentsの致命的脆弱性 React2Shell（CVE-2025-55182、CVSS 10.0）を日本語で解説。安全でないデシリアライズによる事前認証RCEの仕組み、影響バージョンと修正版、Next.jsアプリの確認・対策手順を整理します。",
+  },
 };
 
 export const articles: Article[] = [
@@ -539,6 +544,16 @@ export const articles: Article[] = [
     date: "2026-05-27",
     readingMinutes: 9,
     relatedTools: ["url-encoder"],
+  },
+  {
+    slug: "react2shell",
+    category: "security",
+    title: "React2Shell（CVE-2025-55182）詳解 - RSC/Next.jsの事前認証RCE",
+    description:
+      "2025年12月公表のReact Server Components脆弱性 React2Shell（CVE-2025-55182、CVSS 10.0）の仕組み、安全でないデシリアライズによる事前認証RCE、影響バージョンと修正版、Next.jsアプリの確認と対策を日本語で解説します。",
+    date: "2026-05-29",
+    readingMinutes: 9,
+    relatedTools: [],
   },
 ];
 
