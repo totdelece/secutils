@@ -199,6 +199,11 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "2025年12月にMeta/Vercelが公表したReact Server Componentsの致命的脆弱性 React2Shell（CVE-2025-55182、CVSS 10.0）を日本語で解説。安全でないデシリアライズによる事前認証RCEの仕組み、影響バージョンと修正版、Next.jsアプリの確認・対策手順を整理します。",
   },
+  "shai-hulud": {
+    title: "Shai-Hulud詳解 - npm史上初の自己増殖ワームとサプライチェーン対策",
+    description:
+      "2025年に出現したnpm史上初の自己増殖型サプライチェーンワーム Shai-Hulud を日本語で解説。postinstall等のライフサイクルスクリプトでトークンを窃取し感染を連鎖させる仕組み、被害規模、--ignore-scriptsやlockfile・2FA・短命トークンによる開発者/CIの対策を整理します。",
+  },
 };
 
 export const articles: Article[] = [
@@ -553,6 +558,16 @@ export const articles: Article[] = [
       "2025年12月公表のReact Server Components脆弱性 React2Shell（CVE-2025-55182、CVSS 10.0）の仕組み、安全でないデシリアライズによる事前認証RCE、影響バージョンと修正版、Next.jsアプリの確認と対策を日本語で解説します。",
     date: "2026-05-29",
     readingMinutes: 9,
+    relatedTools: [],
+  },
+  {
+    slug: "shai-hulud",
+    category: "security",
+    title: "Shai-Hulud詳解 - npm史上初の自己増殖ワームとサプライチェーン対策",
+    description:
+      "npm史上初の自己増殖型サプライチェーンワーム Shai-Hulud の仕組み。postinstall等のライフサイクルスクリプトでトークンを窃取し感染を連鎖させる流れ、被害規模、--ignore-scripts・lockfile・2FA・短命トークンによる開発者/CIの対策を日本語で解説します。",
+    date: "2026-05-29",
+    readingMinutes: 10,
     relatedTools: [],
   },
 ];
