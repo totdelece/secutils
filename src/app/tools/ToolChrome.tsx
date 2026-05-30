@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { tools } from "@/lib/tools";
 import { RelatedToolsPanel } from "./RelatedToolsPanel";
+import { RelatedArticlesPanel } from "./RelatedArticlesPanel";
 import { ToolSeoSection } from "./ToolSeoSection";
 import { ToolWorkspaceSidebar } from "./ToolWorkspaceSidebar";
 
@@ -63,6 +64,7 @@ export function ToolChrome({ children }: { children: React.ReactNode }) {
 
           <div className="tool-native mt-8">{children}</div>
           <RelatedToolsPanel slug={slug} />
+          <RelatedArticlesPanel slug={slug} />
           <ToolSeoSection slug={slug} />
         </div>
       </div>

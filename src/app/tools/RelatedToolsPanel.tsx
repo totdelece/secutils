@@ -1,10 +1,9 @@
 import Link from "next/link";
-import { getRelatedTools, getToolGuideLinks } from "@/lib/tool-workspace";
+import { getRelatedTools } from "@/lib/tool-workspace";
 
 export function RelatedToolsPanel({ slug }: { slug: string }) {
   const related = getRelatedTools(slug);
-  const guides = getToolGuideLinks(slug);
-  if (related.length === 0 && guides.length === 0) return null;
+  if (related.length === 0) return null;
 
   return (
     <section className="mt-10 rounded-[30px] border border-border-subtle bg-bg-elevated/68 p-5 backdrop-blur-xl sm:p-6">
@@ -45,28 +44,6 @@ export function RelatedToolsPanel({ slug }: { slug: string }) {
               </div>
             </Link>
           ))}
-        </div>
-      )}
-
-      {guides.length > 0 && (
-        <div className="mt-5 border-t border-border-subtle pt-5">
-          <div className="text-[10px] font-semibold uppercase tracking-[0.16em] text-fg-subtle">
-            Related guides
-          </div>
-          <div className="mt-3 grid gap-2 sm:grid-cols-2">
-            {guides.map((guide) => (
-              <Link
-                key={guide.href}
-                href={guide.href}
-                className="rounded-2xl border border-border-subtle bg-bg-sunken/32 px-4 py-3 text-sm font-semibold text-fg-muted transition hover:border-border-strong hover:text-fg-primary"
-              >
-                {guide.title}
-                <span className="ml-2 text-xs font-normal text-fg-subtle">
-                  {guide.meta}
-                </span>
-              </Link>
-            ))}
-          </div>
         </div>
       )}
     </section>

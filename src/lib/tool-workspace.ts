@@ -1,4 +1,4 @@
-import { articles } from "./articles";
+import { articles, type Article } from "./articles";
 import { tools, type Tool, type ToolCategory } from "./tools";
 
 export const RECENT_STORAGE_KEY = "secutils:recent";
@@ -104,15 +104,46 @@ export function getRelatedTools(slug: string): WorkspaceTool[] {
   return resolveTools([...explicit, ...fallback]).slice(0, 5);
 }
 
-export function getToolGuideLinks(slug: string) {
-  return articles
-    .filter((article) => article.relatedTools?.includes(slug))
-    .slice(0, 3)
-    .map((article) => ({
-      href: `/learn/${article.category}/${article.slug}`,
-      title: article.title,
-      meta: `${article.readingMinutes} min`,
-    }));
+// ツール → 解説記事のフォールバック。明示の relatedTools が無い／少ない
+// ツールでも Learn へ自然に橋渡しできるよう、関連の深い記事を手当てする。
+const toolArticleFallback: Record<string, string[]> = {
+  "password-generator": ["password-strength", "password-hashing", "secure-randomness"],
+  "hash-generator": ["password-hashing", "public-key-crypto", "https-tls"],
+  "jwt-decoder": ["jwt-security-issues", "session-vs-jwt", "oauth-oidc"],
+  hmac: ["public-key-crypto", "jwt-security-issues", "https-tls"],
+  bcrypt: ["password-hashing", "password-strength", "secure-randomness"],
+  totp: ["mfa-totp-fido2", "oauth-oidc", "jwt-security-issues"],
+  "cookie-parser": ["csrf", "session-vs-jwt", "http-security-headers"],
+  base64: ["jwt-security-issues", "public-key-crypto"],
+  "url-encoder": ["xss", "path-traversal", "ssrf"],
+  "html-entity": ["xss", "csrf", "http-security-headers"],
+  "json-formatter": ["http-security-headers", "owasp-top-10"],
+  "json-yaml": ["http-security-headers", "supply-chain-attacks"],
+  "regex-tester": ["xss", "sql-injection"],
+  "diff-viewer": ["owasp-top-10", "supply-chain-attacks"],
+  "cidr-calculator": ["cidr-notation", "ipv4-vs-ipv6", "nat-port-forwarding"],
+  "http-status": ["http-security-headers", "http-versions", "cors-same-origin"],
+  "uuid-generator": ["secure-randomness", "public-key-crypto"],
+  "ulid-generator": ["secure-randomness"],
+  "timestamp-converter": ["jwt-security-issues", "session-vs-jwt"],
+  "qr-code": ["quishing", "mfa-totp-fido2"],
+};
+
+// ツールページ下部に出す「関連解説記事」。明示の relatedTools を優先し、
+// 足りなければフォールバックで補完して最大 limit 件返す。
+export function getToolArticles(slug: string, limit = 4): Article[] {
+  const explicit = articles.filter((article) =>
+    article.relatedTools?.includes(slug),
+  );
+  const fallback = (toolArticleFallback[slug] ?? [])
+    .map((s) => articles.find((article) => article.slug === s))
+    .filter((article): article is Article => Boolean(article));
+
+  const merged: Article[] = [];
+  for (const article of [...explicit, ...fallback]) {
+    if (!merged.some((m) => m.slug === article.slug)) merged.push(article);
+  }
+  return merged.slice(0, limit);
 }
 
 export function toolsByCategory(): Record<ToolCategory, WorkspaceTool[]> {
