@@ -214,6 +214,11 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "2026年5月のPatch Tuesdayで修正されたWindows Netlogonの重大脆弱性 CVE-2026-41089（CVSS 9.8）を日本語で解説。未認証の遠隔攻撃でドメインコントローラ上にSYSTEM権限のコード実行を許す仕組み（MS-NRPCのバッファオーバーフロー）、影響範囲、Zerologon（CVE-2020-1472）との類似と教訓、AD管理者の確認/対策手順を整理します。",
   },
+  "apex-one-cve-2026-34926": {
+    title: "Trend Micro Apex One脆弱性（CVE-2026-34926）とは - EDRが攻撃経路に変わる悪用とCVSSの落とし穴",
+    description:
+      "2026年5月にCISA KEV入りした Trend Micro Apex One の悪用中脆弱性 CVE-2026-34926（CVSS 6.7・パストラバーサル）を日本語で解説。EDRサーバの信頼された配信チャネルを全端末へのマルウェア配布路に変える仕組み、影響範囲と修正版、CVSSの数値より「悪用中か」を優先すべき理由、管理者の確認/対策手順を整理します。",
+  },
 };
 
 export const articles: Article[] = [
@@ -598,6 +603,16 @@ export const articles: Article[] = [
       "2026年5月公表のWindows Netlogon脆弱性 CVE-2026-41089（CVSS 9.8）の仕組み。未認証の遠隔攻撃でドメインコントローラ上にSYSTEM権限のコード実行を許すMS-NRPCのバッファオーバーフロー、影響範囲、Zerologon（CVE-2020-1472）との類似と教訓、AD管理者の確認と対策を日本語で解説します。",
     date: "2026-05-29",
     readingMinutes: 9,
+    relatedTools: [],
+  },
+  {
+    slug: "apex-one-cve-2026-34926",
+    category: "security",
+    title: "Trend Micro Apex One脆弱性（CVE-2026-34926）詳解 - EDRが攻撃経路に変わる悪用",
+    description:
+      "2026年5月にCISA KEV入りしたTrend Micro Apex Oneの悪用中脆弱性 CVE-2026-34926（CVSS 6.7・パストラバーサル）の仕組み。EDRサーバの信頼された配信チャネルを全端末へのマルウェア配布路に変える流れ、影響範囲と修正版、CVSSより悪用中かを優先すべき理由、管理者の確認と対策を日本語で解説します。",
+    date: "2026-05-29",
+    readingMinutes: 8,
     relatedTools: [],
   },
 ];
