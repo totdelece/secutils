@@ -254,6 +254,11 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "2026年Q1に四半期で146%増と最速で伸びるメール攻撃 Quishing（QRコードフィッシング）を日本語で解説。URLをQR画像に隠してメールフィルタを回避し、利用者を管理外のスマホへ誘導する仕組み、ロゴ埋め込み・ASCIIアートQR・PDF添付・分割QRなどの検知回避、AitMによるセッション窃取とMFA回避、北朝鮮Kimsukyの標的型事例、Passkey/FIDO2・画像対応メールセキュリティ・利用者教育による多層防御を整理します。",
   },
+  "lolbins-living-off-the-land": {
+    title: "LOLBins・環境寄生型攻撃（Living off the Land）とは - 正規ツール悪用の手口と検知",
+    description:
+      "PowerShell・certutil・mshta・rundll32・MSBuildなどWindows標準の正規ツールを悪用するLOLBins／環境寄生型（Living off the Land, LOTL）攻撃を日本語で解説。検出の79%がマルウェアを伴わない実態、MITRE ATT&CK技法との対応、Flax TyphoonやTA505など実際のキャンペーン、複数バイナリのチェイン、BYOVDによるEDR無効化、プロセス系譜・Sysmon・アプリ制御（WDAC/AppLocker）・ASR・PowerShellロギングによる検知と防御を整理します。",
+  },
 };
 
 export const articles: Article[] = [
@@ -719,6 +724,16 @@ export const articles: Article[] = [
     date: "2026-05-30",
     readingMinutes: 10,
     relatedTools: ["qr-code"],
+  },
+  {
+    slug: "lolbins-living-off-the-land",
+    category: "security",
+    title: "LOLBins・環境寄生型攻撃（Living off the Land）とは - 正規ツール悪用の手口と検知",
+    description:
+      "PowerShell・certutil・mshta・rundll32・MSBuildなどWindows標準ツールを悪用するLOLBins／環境寄生型（LOTL）攻撃を解説。検出の79%がマルウェア無しという実態、MITRE ATT&CK技法との対応、Flax TyphoonやTA505の実例、複数バイナリのチェイン、BYOVDによるEDR無効化、プロセス系譜・Sysmon・アプリ制御・ASR・PowerShellロギングによる検知と防御を日本語で整理します。",
+    date: "2026-05-30",
+    readingMinutes: 10,
+    relatedTools: [],
   },
 ];
 
