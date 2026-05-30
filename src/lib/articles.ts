@@ -274,6 +274,11 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "攻撃者の実際の振る舞いを体系化した知識ベース MITRE ATT&CK を日本語で入門解説。Tactics（戦術）/Techniques（技術）/Procedures（手順）の3層構造、TxxxxなどのID体系、14のEnterprise戦術、Groups/Software/Campaigns/Mitigations、v18のDetection Strategies刷新やv19（2026年4月）でのDefense Evasion分割、検知エンジニアリング・脅威インテリジェンス・カバレッジ可視化（Navigator）といった実務での使い方、Cyber Kill Chainとの違いを整理します。",
   },
+  "ransomware-2026": {
+    title: "ランサムウェア2026の最新動向 - 暗号化なし恐喝・RaaS・初期アクセスブローカーと対策",
+    description:
+      "2026年のランサムウェアの実態を実務者向けに解説。インシデントの約35%が暗号化を伴わない「データ窃取のみの恐喝」へ移行した理由、RaaS（サービス型）と初期アクセスブローカー（IAB）による分業エコシステム、Qilin・Cl0p・Akiraなど主要グループの動き、Oracle EBSの大量悪用やBYOVDによるEDR無効化、二重〜四重恐喝の進化、攻撃ライフサイクル（初期アクセス→横展開→持ち出し→影響）の各段で効く防御を整理します。",
+  },
 };
 
 export const articles: Article[] = [
@@ -778,6 +783,16 @@ export const articles: Article[] = [
       "攻撃者の実際の振る舞いを体系化した知識ベース MITRE ATT&CK を入門解説。Tactics/Techniques/Proceduresの3層構造、TxxxxのID体系、14のEnterprise戦術、Groups/Software/Campaigns、v18のDetection Strategies刷新やv19（2026年4月）の変更、検知エンジニアリング・脅威インテリジェンス・カバレッジ可視化での使い方、Cyber Kill Chainとの違いを日本語で整理します。",
     date: "2026-05-30",
     readingMinutes: 10,
+    relatedTools: [],
+  },
+  {
+    slug: "ransomware-2026",
+    category: "security",
+    title: "ランサムウェア2026の最新動向 - 暗号化なし恐喝・RaaS・初期アクセスブローカー",
+    description:
+      "2026年のランサムウェアの実態を実務者向けに解説。約35%が暗号化を伴わない「データ窃取のみの恐喝」へ移行した理由、RaaSと初期アクセスブローカー（IAB）の分業、Qilin・Cl0p・Akiraの動き、Oracle EBS大量悪用やBYOVDによるEDR無効化、二重〜四重恐喝の進化、攻撃ライフサイクル各段で効く防御を日本語で整理します。",
+    date: "2026-05-30",
+    readingMinutes: 11,
     relatedTools: [],
   },
 ];
