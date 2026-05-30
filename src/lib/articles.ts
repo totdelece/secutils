@@ -234,6 +234,11 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "AIエージェントの標準プロトコルMCPのセキュリティを日本語で体系解説。ツール説明文に悪意の指示を仕込むTool Poisoning、承認後に定義を差し替えるRug Pull（MCPoison/CVE-2025-54136）、偽MCPサーバのサプライチェーン攻撃、過剰権限トークン、MCP Inspector RCE（CVE-2025-49596）など2025〜26年の実インシデントと、最小権限・人間による承認・ゲートウェイ検証・サーバ検証といった防御策を整理します。",
   },
+  clickfix: {
+    title: "ClickFix攻撃とは - 偽CAPTCHAで「自分で感染させる」手口とFileFix亜種・対策",
+    description:
+      "2025〜26年に急増したソーシャルエンジニアリング攻撃 ClickFix を日本語で解説。偽CAPTCHA・偽エラーで利用者にWin+R／PowerShellへコマンドを貼り付け実行させ、LummaやStealCなどのインフォスティーラーを「自分で感染させる」手口、Run無効化を回避するFileFix亜種、700サイト改ざん（Ghost CMS・CVE-2026-26980）などの実例、利用者教育・GPO/Intune・ASR・PowerShellロギングによる多層防御を整理します。",
+  },
 };
 
 export const articles: Article[] = [
@@ -656,6 +661,16 @@ export const articles: Article[] = [
     title: "MCPのセキュリティ - Tool Poisoning・Rug Pull・サプライチェーンの実例と対策",
     description:
       "AIエージェントの標準プロトコルMCPの攻撃面を体系整理。ツール説明文に指示を仕込むTool Poisoning、承認後に定義を差し替えるRug Pull（CVE-2025-54136）、偽MCPサーバのサプライチェーン、過剰権限トークン、MCP Inspector RCEなど2025〜26年の実例と、最小権限・人間による承認・サーバ検証の防御を日本語で解説します。",
+    date: "2026-05-30",
+    readingMinutes: 11,
+    relatedTools: [],
+  },
+  {
+    slug: "clickfix",
+    category: "security",
+    title: "ClickFix攻撃とは - 偽CAPTCHAで「自分で感染させる」手口とFileFix亜種・対策",
+    description:
+      "偽CAPTCHA・偽エラーでWin+RやPowerShellにコマンドを貼り付け実行させ、Lumma/StealCなどを自分で感染させるClickFix攻撃を解説。Run無効化を回避するFileFix亜種、700サイト改ざん（CVE-2026-26980）などの実例、利用者教育・GPO・ASR・ログ監視による多層防御を日本語で整理します。",
     date: "2026-05-30",
     readingMinutes: 11,
     relatedTools: [],
