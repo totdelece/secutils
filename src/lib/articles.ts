@@ -239,6 +239,11 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "2025〜26年に急増したソーシャルエンジニアリング攻撃 ClickFix を日本語で解説。偽CAPTCHA・偽エラーで利用者にWin+R／PowerShellへコマンドを貼り付け実行させ、LummaやStealCなどのインフォスティーラーを「自分で感染させる」手口、Run無効化を回避するFileFix亜種、700サイト改ざん（Ghost CMS・CVE-2026-26980）などの実例、利用者教育・GPO/Intune・ASR・PowerShellロギングによる多層防御を整理します。",
   },
+  "ai-browser-prompt-injection": {
+    title: "AIブラウザの危険性 - Comet/Atlasを乗っ取る間接プロンプトインジェクション",
+    description:
+      "Perplexity CometやChatGPT AtlasなどのAIブラウザ（エージェントブラウザ）を狙う間接プロンプトインジェクションを日本語で解説。Webページに隠した指示でAIを操り、ログイン中のGmailや1Passwordを横断悪用してOTP・認証情報を窃取するBraveのPoC、Zenityのゼロクリック乗っ取り（PleaseFix/CometJacking）、Same-Origin Policy/CORSが無力化される理由、Braveが示す入力分離・出力検証・操作ゲート・モード分離などの対策を整理します。",
+  },
 };
 
 export const articles: Article[] = [
@@ -671,6 +676,16 @@ export const articles: Article[] = [
     title: "ClickFix攻撃とは - 偽CAPTCHAで「自分で感染させる」手口とFileFix亜種・対策",
     description:
       "偽CAPTCHA・偽エラーでWin+RやPowerShellにコマンドを貼り付け実行させ、Lumma/StealCなどを自分で感染させるClickFix攻撃を解説。Run無効化を回避するFileFix亜種、700サイト改ざん（CVE-2026-26980）などの実例、利用者教育・GPO・ASR・ログ監視による多層防御を日本語で整理します。",
+    date: "2026-05-30",
+    readingMinutes: 11,
+    relatedTools: [],
+  },
+  {
+    slug: "ai-browser-prompt-injection",
+    category: "security",
+    title: "AIブラウザの危険性 - Comet/Atlasを乗っ取る間接プロンプトインジェクション",
+    description:
+      "Perplexity CometやChatGPT AtlasなどのAIブラウザを狙う間接プロンプトインジェクションを解説。Webページに隠した指示でAIを操り、ログイン中のGmailや1Passwordを横断悪用してOTPを盗むBraveのPoC、Zenityのゼロクリック乗っ取り、Same-Origin Policyが無力化される理由、入力分離・操作ゲート・モード分離による対策を日本語で整理します。",
     date: "2026-05-30",
     readingMinutes: 11,
     relatedTools: [],
