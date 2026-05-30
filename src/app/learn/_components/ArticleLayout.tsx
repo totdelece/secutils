@@ -2,9 +2,11 @@ import Link from "next/link";
 import {
   articleCategoryLabels,
   type Article,
+  articles,
   getRelatedArticles,
 } from "@/lib/articles";
 import { tools } from "@/lib/tools";
+import { ArticleTocDesktop, ArticleTocMobile } from "./ArticleToc";
 
 export function ArticleLayout({
   article,
@@ -17,13 +19,23 @@ export function ArticleLayout({
     .map((slug) => tools.find((tool) => tool.slug === slug))
     .filter((tool): tool is NonNullable<typeof tool> => Boolean(tool));
 
-  const relatedArticles = (article.relatedTools ?? [])
+  // ツール経由の関連記事を優先し、同カテゴリの新しい記事で 4 件まで埋める
+  const relatedByTool = (article.relatedTools ?? [])
     .flatMap((toolSlug) => getRelatedArticles(toolSlug))
     .filter((item) => item.slug !== article.slug)
     .filter(
       (item, index, array) =>
         array.findIndex((candidate) => candidate.slug === item.slug) === index,
     );
+  const sameCategory = articles
+    .filter(
+      (item) =>
+        item.category === article.category &&
+        item.slug !== article.slug &&
+        !relatedByTool.some((r) => r.slug === item.slug),
+    )
+    .sort((a, b) => b.date.localeCompare(a.date));
+  const relatedArticles = [...relatedByTool, ...sameCategory].slice(0, 4);
 
   return (
     <div className="article-stage relative isolate overflow-hidden">
@@ -160,23 +172,28 @@ export function ArticleLayout({
               <h2 className="mt-2 text-[24px] font-semibold text-fg-primary">
                 関連記事
               </h2>
-              <ul className="mt-4 space-y-2">
+              <div className="mt-4 grid gap-3 sm:grid-cols-2">
                 {relatedArticles.map((item) => (
-                  <li key={item.slug}>
-                    <Link
-                      href={`/learn/${item.category}/${item.slug}`}
-                      className="group flex items-center justify-between gap-4 rounded-2xl border border-border-subtle bg-bg-sunken/35 px-4 py-3 transition hover:border-border-strong hover:bg-bg-elevated/55"
-                    >
-                      <span className="min-w-0 truncate text-sm font-semibold text-fg-primary">
-                        {item.title}
+                  <Link
+                    key={item.slug}
+                    href={`/learn/${item.category}/${item.slug}`}
+                    className="group flex flex-col gap-2 rounded-2xl border border-border-subtle bg-bg-sunken/35 p-4 transition hover:border-border-strong hover:bg-bg-elevated/55"
+                  >
+                    <div className="flex items-center gap-2 text-[11px] text-fg-subtle">
+                      <span className="rounded-md border border-border-subtle bg-bg-base/60 px-1.5 py-0.5 font-semibold text-fg-muted">
+                        {articleCategoryLabels[item.category]}
                       </span>
-                      <span className="shrink-0 text-xs text-fg-subtle">
-                        約{item.readingMinutes}分
-                      </span>
-                    </Link>
-                  </li>
+                      <span>約{item.readingMinutes}分</span>
+                    </div>
+                    <span className="text-sm font-bold leading-snug text-fg-primary transition group-hover:text-accent">
+                      {item.title}
+                    </span>
+                    <span className="line-clamp-2 text-[12.5px] leading-6 text-fg-muted">
+                      {item.description}
+                    </span>
+                  </Link>
                 ))}
-              </ul>
+              </div>
             </section>
           )}
 
@@ -193,22 +210,12 @@ export function ArticleLayout({
 
         <aside className="hidden xl:block">
           <div className="sticky top-24">
-            <div className="article-side-panel rounded-3xl p-4">
-              <div className="text-[10px] font-semibold uppercase text-fg-subtle">
-                On this page
-              </div>
-              <div className="mt-4 space-y-2 text-[12px] text-fg-muted">
-                <div className="rounded-2xl bg-bg-sunken/45 px-3 py-2 text-fg-primary">
-                  Overview
-                </div>
-                <div className="rounded-2xl px-3 py-2">Key concepts</div>
-                <div className="rounded-2xl px-3 py-2">Defensive patterns</div>
-                <div className="rounded-2xl px-3 py-2">Related tools</div>
-              </div>
-            </div>
+            <ArticleTocDesktop />
           </div>
         </aside>
       </div>
+
+      <ArticleTocMobile />
     </div>
   );
 }

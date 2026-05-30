@@ -859,3 +859,180 @@ export function getArticleMetadata(article: Article): Metadata {
 export function getRelatedArticles(toolSlug: string): Article[] {
   return articles.filter((article) => article.relatedTools?.includes(toolSlug));
 }
+
+export function getArticleBySlug(slug: string): Article | undefined {
+  return articles.find((article) => article.slug === slug);
+}
+
+/* ------------------------------------------------------------------ *
+ * トピックタグ（カテゴリ横断のフィルタ）
+ * security / network という大分類に加え、記事を主題で横串にする。
+ * 記事側を 1 件ずつ編集せず、ここの slug 集合だけで管理する。
+ * ------------------------------------------------------------------ */
+
+export type TopicId = "auth" | "webdef" | "crypto" | "threat" | "ai" | "netbasics";
+
+export const topicLabels: Record<TopicId, string> = {
+  auth: "認証・認可",
+  webdef: "Web防御",
+  crypto: "暗号",
+  threat: "脅威・CVE",
+  ai: "AI・LLM",
+  netbasics: "ネットワーク基礎",
+};
+
+export const orderedTopics: TopicId[] = [
+  "webdef",
+  "auth",
+  "crypto",
+  "threat",
+  "ai",
+  "netbasics",
+];
+
+const topicSlugs: Record<TopicId, string[]> = {
+  auth: [
+    "jwt-security-issues",
+    "session-vs-jwt",
+    "oauth-oidc",
+    "mfa-totp-fido2",
+    "password-hashing",
+    "password-strength",
+    "device-code-phishing",
+  ],
+  webdef: [
+    "xss",
+    "csrf",
+    "sql-injection",
+    "cors-same-origin",
+    "clickjacking",
+    "ssrf",
+    "path-traversal",
+    "http-security-headers",
+    "owasp-top-10",
+  ],
+  crypto: [
+    "public-key-crypto",
+    "password-hashing",
+    "secure-randomness",
+    "https-tls",
+  ],
+  threat: [
+    "react2shell",
+    "shai-hulud",
+    "cpanel-cve-2026-41940",
+    "netlogon-cve-2026-41089",
+    "apex-one-cve-2026-34926",
+    "langflow-cve-2025-34291",
+    "clickfix",
+    "ai-browser-prompt-injection",
+    "infostealer-session-hijacking",
+    "quishing",
+    "lolbins-living-off-the-land",
+    "supply-chain-attacks",
+    "mitre-attack",
+    "ransomware-2026",
+    "prompt-injection",
+    "device-code-phishing",
+  ],
+  ai: [
+    "claude-mythos",
+    "mcp-security",
+    "ai-browser-prompt-injection",
+    "prompt-injection",
+    "langflow-cve-2025-34291",
+  ],
+  netbasics: [
+    "cidr-notation",
+    "tcp-vs-udp",
+    "dns-basics",
+    "https-tls",
+    "osi-tcpip-model",
+    "port-numbers",
+    "nat-port-forwarding",
+    "icmp-ping-traceroute",
+    "mac-arp",
+    "http-versions",
+    "vpn-basics",
+    "ipv4-vs-ipv6",
+    "firewall-basics",
+    "dhcp-basics",
+  ],
+};
+
+export function getArticleTopics(slug: string): TopicId[] {
+  return orderedTopics.filter((topic) => topicSlugs[topic].includes(slug));
+}
+
+/* ------------------------------------------------------------------ *
+ * 学習パス（初心者が「何から読むか」を示すロードマップ）
+ * steps は既存記事の slug。順番に読む想定。
+ * ------------------------------------------------------------------ */
+
+export type LearningPath = {
+  id: string;
+  title: string;
+  description: string;
+  level: "入門" | "基礎" | "実務";
+  steps: string[];
+};
+
+export const learningPaths: LearningPath[] = [
+  {
+    id: "web-security",
+    title: "Webセキュリティ入門",
+    description:
+      "Webアプリで最初に押さえるべき攻撃と防御。OWASP Top 10 から主要な脆弱性を順に理解します。",
+    level: "入門",
+    steps: [
+      "owasp-top-10",
+      "xss",
+      "csrf",
+      "sql-injection",
+      "cors-same-origin",
+      "http-security-headers",
+    ],
+  },
+  {
+    id: "auth",
+    title: "認証と認可の基礎",
+    description:
+      "ログインの仕組みからトークン、多要素認証まで。セッションと JWT の使い分けを身につけます。",
+    level: "基礎",
+    steps: [
+      "session-vs-jwt",
+      "jwt-security-issues",
+      "oauth-oidc",
+      "mfa-totp-fido2",
+      "password-hashing",
+    ],
+  },
+  {
+    id: "network",
+    title: "ネットワーク基礎",
+    description:
+      "TCP/IP から DNS・TLS まで。通信の流れを階層で理解し、障害調査の土台を作ります。",
+    level: "入門",
+    steps: [
+      "osi-tcpip-model",
+      "tcp-vs-udp",
+      "dns-basics",
+      "https-tls",
+      "cidr-notation",
+      "http-versions",
+    ],
+  },
+  {
+    id: "crypto",
+    title: "暗号の基礎",
+    description:
+      "公開鍵暗号・ハッシュ・乱数。安全な実装判断に必要な暗号の最低限を整理します。",
+    level: "基礎",
+    steps: [
+      "public-key-crypto",
+      "https-tls",
+      "password-hashing",
+      "secure-randomness",
+    ],
+  },
+];

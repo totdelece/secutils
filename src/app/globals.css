@@ -852,6 +852,13 @@ body::after {
     0 44px 130px -90px rgba(0, 0, 0, 0.96);
 }
 
+.learn-thumb {
+  border: 1px solid var(--border-subtle);
+  background:
+    radial-gradient(18rem 9rem at 28% 0%, var(--accent-soft), transparent 72%),
+    linear-gradient(135deg, color-mix(in oklab, var(--bg-sunken) 82%, transparent), color-mix(in oklab, var(--bg-elevated) 62%, transparent));
+}
+
 .tools-routing {
   position: absolute;
   inset: 0;
