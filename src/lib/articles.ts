@@ -259,6 +259,11 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "PowerShell・certutil・mshta・rundll32・MSBuildなどWindows標準の正規ツールを悪用するLOLBins／環境寄生型（Living off the Land, LOTL）攻撃を日本語で解説。検出の79%がマルウェアを伴わない実態、MITRE ATT&CK技法との対応、Flax TyphoonやTA505など実際のキャンペーン、複数バイナリのチェイン、BYOVDによるEDR無効化、プロセス系譜・Sysmon・アプリ制御（WDAC/AppLocker）・ASR・PowerShellロギングによる検知と防御を整理します。",
   },
+  "device-code-phishing": {
+    title: "デバイスコードフィッシングとは - MFAを回避するEntra ID乗っ取りの手口と対策",
+    description:
+      "正規のOAuthデバイスコードフローを悪用してMicrosoft Entra ID／Microsoft 365アカウントを乗っ取るデバイスコードフィッシングを日本語で解説。被害者本人がMFAを完了してしまうためMFAが効かない仕組み、リフレッシュトークンやPrimary Refresh Token（PRT）の悪用、ロシア系Storm-2372の標的型キャンペーン、PhaaS（EvilTokens）による商品化と37倍増の実態、条件付きアクセスでのフロー遮断・サインインログ監視・新規デバイス登録検知・トークン失効による対策を整理します。",
+  },
 };
 
 export const articles: Article[] = [
@@ -733,6 +738,16 @@ export const articles: Article[] = [
       "PowerShell・certutil・mshta・rundll32・MSBuildなどWindows標準ツールを悪用するLOLBins／環境寄生型（LOTL）攻撃を解説。検出の79%がマルウェア無しという実態、MITRE ATT&CK技法との対応、Flax TyphoonやTA505の実例、複数バイナリのチェイン、BYOVDによるEDR無効化、プロセス系譜・Sysmon・アプリ制御・ASR・PowerShellロギングによる検知と防御を日本語で整理します。",
     date: "2026-05-30",
     readingMinutes: 10,
+    relatedTools: [],
+  },
+  {
+    slug: "device-code-phishing",
+    category: "security",
+    title: "デバイスコードフィッシングとは - MFAを回避するEntra ID乗っ取りの手口と対策",
+    description:
+      "正規のOAuthデバイスコードフローを悪用してMicrosoft Entra ID／M365アカウントを乗っ取る手口を解説。被害者本人がMFAを完了するためMFAが効かない仕組み、リフレッシュトークン/PRTの悪用、ロシア系Storm-2372の標的型、PhaaS（EvilTokens）による商品化と37倍増、条件付きアクセスでのフロー遮断・ログ監視・デバイス登録検知・トークン失効による対策を日本語で整理します。",
+    date: "2026-05-30",
+    readingMinutes: 9,
     relatedTools: [],
   },
 ];
