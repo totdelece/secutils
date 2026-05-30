@@ -264,6 +264,11 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "正規のOAuthデバイスコードフローを悪用してMicrosoft Entra ID／Microsoft 365アカウントを乗っ取るデバイスコードフィッシングを日本語で解説。被害者本人がMFAを完了してしまうためMFAが効かない仕組み、リフレッシュトークンやPrimary Refresh Token（PRT）の悪用、ロシア系Storm-2372の標的型キャンペーン、PhaaS（EvilTokens）による商品化と37倍増の実態、条件付きアクセスでのフロー遮断・サインインログ監視・新規デバイス登録検知・トークン失効による対策を整理します。",
   },
+  "supply-chain-attacks": {
+    title: "ソフトウェアサプライチェーン攻撃2026 - npm/PyPIの6類型と防御（タイポスクワッティング〜自己増殖ワーム）",
+    description:
+      "npm/PyPIを狙うソフトウェアサプライチェーン攻撃を6類型（タイポスクワッティング・依存関係混同・slopsquatting・メンテナ乗っ取り・悪意あるインストールスクリプト・自己増殖ワーム）で体系整理。Mini Shai-Hulud（170超パッケージ）やTrapDoor、AIが幻覚した存在しないパッケージ名の悪用、累計120万超の悪性パッケージという実態と、lockfile・--ignore-scripts・Trusted Publishing・リポジトリファイアウォール・SBOM・環境分離による防御を日本語で解説します。",
+  },
 };
 
 export const articles: Article[] = [
@@ -748,6 +753,16 @@ export const articles: Article[] = [
       "正規のOAuthデバイスコードフローを悪用してMicrosoft Entra ID／M365アカウントを乗っ取る手口を解説。被害者本人がMFAを完了するためMFAが効かない仕組み、リフレッシュトークン/PRTの悪用、ロシア系Storm-2372の標的型、PhaaS（EvilTokens）による商品化と37倍増、条件付きアクセスでのフロー遮断・ログ監視・デバイス登録検知・トークン失効による対策を日本語で整理します。",
     date: "2026-05-30",
     readingMinutes: 9,
+    relatedTools: [],
+  },
+  {
+    slug: "supply-chain-attacks",
+    category: "security",
+    title: "ソフトウェアサプライチェーン攻撃2026 - npm/PyPIの6類型と防御",
+    description:
+      "npm/PyPIを狙うサプライチェーン攻撃を6類型（タイポスクワッティング・依存関係混同・slopsquatting・メンテナ乗っ取り・悪意あるインストールスクリプト・自己増殖ワーム）で体系整理。Mini Shai-HuludやTrapDoor、AIが幻覚した存在しないパッケージ名の悪用、累計120万超の悪性パッケージの実態と、lockfile・Trusted Publishing・リポジトリファイアウォール・SBOM・環境分離による防御を日本語で解説します。",
+    date: "2026-05-30",
+    readingMinutes: 11,
     relatedTools: [],
   },
 ];
