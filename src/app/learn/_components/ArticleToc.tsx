@@ -94,7 +94,7 @@ export function ArticleTocDesktop() {
   const { headings, activeId } = useHeadings();
   if (headings.length === 0) return null;
   return (
-    <div className="article-side-panel rounded-2xl p-4">
+    <div className="article-side-panel rounded-xl p-5">
       <div className="mb-3 text-[10px] font-semibold uppercase tracking-wider text-fg-subtle">
         On this page
       </div>

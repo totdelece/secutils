@@ -20,8 +20,7 @@ const X_HANDLE = "";
 export default function LearnPage() {
   return (
     <div className="learn-stage relative isolate overflow-hidden">
-      <div className="learn-mesh" aria-hidden="true" />
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
+      <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
         {/* Hero */}
         <header className="text-center">
           <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-border-subtle bg-bg-elevated/60 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-fg-subtle">
@@ -31,7 +30,7 @@ export default function LearnPage() {
           <h1 className="mx-auto mt-6 max-w-3xl text-[40px] font-bold leading-[1.05] tracking-tight text-fg-primary sm:text-[58px]">
             Learn Cybersecurity
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-[16px] leading-7 text-fg-muted sm:text-[17px]">
+          <p className="mx-auto mt-4 max-w-2xl text-[16px] leading-7 text-fg-secondary sm:text-[17px]">
             ガイド・チュートリアル・実務で使えるセキュリティの知識を、
             読んだその場でブラウザ上のツールで確かめられる学習ハブ。
           </p>
@@ -43,7 +42,7 @@ export default function LearnPage() {
         </div>
 
         {/* Learning Paths */}
-        <section className="mt-16">
+        <section className="mt-24">
           <div className="text-[11px] font-semibold uppercase tracking-wider text-accent">
             Learning Paths
           </div>
@@ -62,14 +61,14 @@ export default function LearnPage() {
               return (
                 <div
                   key={path.id}
-                  className="learn-card flex flex-col gap-4 rounded-xl p-5"
+                  className="learn-card flex flex-col gap-4 rounded-xl p-6"
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div>
                       <h3 className="text-[17px] font-bold text-fg-primary">
                         {path.title}
                       </h3>
-                      <p className="mt-1.5 text-[13px] leading-6 text-fg-muted">
+                      <p className="mt-1.5 text-[13px] leading-6 text-fg-secondary">
                         {path.description}
                       </p>
                     </div>
@@ -104,13 +103,13 @@ export default function LearnPage() {
         </section>
 
         {/* 購読（RSS / X / GitHub） */}
-        <section className="mt-16">
+        <section className="mt-24">
           <div className="learn-panel flex flex-col items-center gap-5 rounded-2xl px-6 py-10 text-center">
             <div>
               <h2 className="text-[22px] font-bold text-fg-primary sm:text-[26px]">
                 新着記事を受け取る
               </h2>
-              <p className="mx-auto mt-2 max-w-xl text-[14px] leading-7 text-fg-muted">
+              <p className="mx-auto mt-2 max-w-xl text-[14px] leading-7 text-fg-secondary">
                 メールアドレスの登録は不要です。RSS を購読するか GitHub をウォッチすると、
                 新しいツールや解説記事の追加を追えます。
               </p>

@@ -40,9 +40,8 @@ export function ArticleLayout({
   return (
     <div className="article-stage relative isolate overflow-hidden">
       <div className="article-progress" aria-hidden="true" />
-      <div className="article-orbit" aria-hidden="true" />
 
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-10 sm:px-6 sm:py-14 lg:grid-cols-[220px_minmax(0,780px)_220px] lg:gap-8">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[220px_minmax(0,780px)_220px] lg:gap-8">
         <aside className="hidden lg:block">
           <div className="sticky top-24 space-y-4">
             <Link
@@ -52,25 +51,14 @@ export function ArticleLayout({
               <ArrowLeft />
               Learn
             </Link>
-            <div className="article-side-panel rounded-3xl p-4">
-              <div className="text-[10px] font-semibold uppercase text-fg-subtle">
+            <div className="article-side-panel rounded-xl p-5">
+              <div className="text-[10px] font-semibold uppercase tracking-wider text-fg-subtle">
                 Reading state
               </div>
               <div className="mt-4 space-y-3">
                 <Metric label="Category" value={articleCategoryLabels[article.category]} />
                 <Metric label="Read" value={`${article.readingMinutes} min`} />
                 <Metric label="Mode" value="Local" />
-              </div>
-              <div className="mt-5 rounded-2xl border border-border-subtle bg-bg-sunken/55 p-3">
-                <div className="mb-2 flex items-center justify-between text-[10px] font-semibold uppercase text-fg-subtle">
-                  <span>secure flow</span>
-                  <span className="text-accent">sealed</span>
-                </div>
-                <div className="article-mini-flow">
-                  <span />
-                  <span />
-                  <span />
-                </div>
               </div>
             </div>
           </div>
@@ -89,16 +77,16 @@ export function ArticleLayout({
             <span>{articleCategoryLabels[article.category]}</span>
           </nav>
 
-          <header className="article-hero relative overflow-hidden rounded-[34px] p-6 sm:p-9">
+          <header className="article-hero relative overflow-hidden rounded-xl p-6 sm:p-9">
             <div className="relative">
-              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-border-subtle bg-bg-sunken/50 px-3 py-1 text-[10px] font-semibold uppercase text-fg-subtle backdrop-blur">
-                <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_18px_currentColor]" />
+              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-border-subtle bg-bg-sunken/50 px-3 py-1 text-[10px] font-semibold uppercase text-fg-subtle">
+                <span className="h-1.5 w-1.5 rounded-full bg-accent" />
                 {articleCategoryLabels[article.category]} / Browser-native guide
               </div>
-              <h1 className="max-w-4xl text-[40px] font-semibold leading-[0.96] text-fg-primary sm:text-[58px]">
+              <h1 className="max-w-4xl text-[36px] font-bold leading-[1.05] text-fg-primary sm:text-[52px]">
                 {article.title}
               </h1>
-              <p className="mt-6 max-w-3xl text-[16px] leading-8 text-fg-muted sm:text-[17px] sm:leading-9">
+              <p className="mt-6 max-w-3xl text-[16px] leading-8 text-fg-secondary sm:text-[17px] sm:leading-9">
                 {article.description}
               </p>
               <div className="mt-7 flex flex-wrap items-center gap-3 text-[12px] text-fg-subtle">
@@ -115,7 +103,7 @@ export function ArticleLayout({
             <aside
               role="note"
               aria-label="広告表記"
-              className="mt-8 rounded-3xl border border-amber-400/30 bg-amber-300/10 p-5 text-sm text-amber-950 shadow-[0_24px_80px_-60px_rgba(245,158,11,0.8)] dark:text-amber-100"
+              className="mt-8 rounded-xl border border-amber-400/30 bg-amber-300/10 p-5 text-sm text-amber-950 dark:text-amber-100"
             >
               <p className="font-bold">この記事には広告リンクが含まれます。</p>
               <p className="mt-2 leading-7">
@@ -128,7 +116,7 @@ export function ArticleLayout({
           <article className="article-prose mt-10">{children}</article>
 
           {relatedTools.length > 0 && (
-            <section className="article-related mt-14 rounded-[30px] p-5 sm:p-6">
+            <section className="article-related mt-16 rounded-xl p-6">
               <div className="flex items-end justify-between gap-4">
                 <div>
                   <div className="text-[10px] font-semibold uppercase text-accent">
@@ -165,7 +153,7 @@ export function ArticleLayout({
           )}
 
           {relatedArticles.length > 0 && (
-            <section className="article-related mt-8 rounded-[30px] p-5 sm:p-6">
+            <section className="article-related mt-8 rounded-xl p-6">
               <div className="text-[10px] font-semibold uppercase text-accent">
                 Related reading
               </div>

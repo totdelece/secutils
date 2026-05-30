@@ -86,7 +86,7 @@ function ArticleCard({ article }: { article: Article }) {
   return (
     <Link
       href={`/learn/${article.category}/${article.slug}`}
-      className="learn-card group flex flex-col gap-3 rounded-xl p-4"
+      className="learn-card group flex flex-col gap-3 rounded-xl p-5"
     >
       <Thumb article={article} />
       <div className="flex items-center justify-between gap-2">
@@ -96,7 +96,7 @@ function ArticleCard({ article }: { article: Article }) {
       <h3 className="text-[16px] font-bold leading-snug text-fg-primary transition group-hover:text-accent">
         {article.title}
       </h3>
-      <p className="line-clamp-2 text-[13.5px] leading-6 text-fg-muted">
+      <p className="line-clamp-2 text-[13.5px] leading-6 text-fg-secondary">
         {article.description}
       </p>
     </Link>
@@ -203,16 +203,16 @@ export function LearnBrowser() {
 
       {/* Featured */}
       {showFeatured && featuredBig && (
-        <section className="mt-12">
+        <section className="mt-16">
           <SectionHeading
             eyebrow="Featured"
             title="注目の記事"
             sub="最近追加・更新された記事をピックアップ。"
           />
-          <div className="mt-5 grid gap-4 lg:grid-cols-2">
+          <div className="mt-6 grid gap-4 lg:grid-cols-2">
             <Link
               href={`/learn/${featuredBig.category}/${featuredBig.slug}`}
-              className="learn-card group flex flex-col gap-4 rounded-xl p-5"
+              className="learn-card group flex flex-col gap-4 rounded-xl p-6"
             >
               <Thumb article={featuredBig} large />
               <div className="flex items-center justify-between gap-2">
@@ -222,7 +222,7 @@ export function LearnBrowser() {
               <h3 className="text-[22px] font-bold leading-snug text-fg-primary transition group-hover:text-accent sm:text-[26px]">
                 {featuredBig.title}
               </h3>
-              <p className="line-clamp-2 text-[14px] leading-7 text-fg-muted">
+              <p className="line-clamp-2 text-[14px] leading-7 text-fg-secondary">
                 {featuredBig.description}
               </p>
             </Link>
@@ -231,7 +231,7 @@ export function LearnBrowser() {
                 <Link
                   key={article.slug}
                   href={`/learn/${article.category}/${article.slug}`}
-                  className="learn-card group flex flex-1 flex-col justify-center gap-2 rounded-xl p-4"
+                  className="learn-card group flex flex-1 flex-col justify-center gap-2 rounded-xl p-5"
                 >
                   <div className="flex items-center justify-between gap-2">
                     <Badge article={article} />
@@ -240,7 +240,7 @@ export function LearnBrowser() {
                   <h3 className="text-[15.5px] font-bold leading-snug text-fg-primary transition group-hover:text-accent">
                     {article.title}
                   </h3>
-                  <p className="line-clamp-1 text-[13px] leading-6 text-fg-muted">
+                  <p className="line-clamp-1 text-[13px] leading-6 text-fg-secondary">
                     {article.description}
                   </p>
                 </Link>
@@ -251,7 +251,7 @@ export function LearnBrowser() {
       )}
 
       {/* Latest / 検索結果 */}
-      <section className="mt-12">
+      <section className="mt-16">
         <SectionHeading
           eyebrow={searching ? "Search" : "Latest"}
           title={searching ? `「${query.trim()}」の検索結果` : "最新の記事"}
