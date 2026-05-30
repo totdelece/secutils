@@ -219,6 +219,11 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "2026年5月にCISA KEV入りした Trend Micro Apex One の悪用中脆弱性 CVE-2026-34926（CVSS 6.7・パストラバーサル）を日本語で解説。EDRサーバの信頼された配信チャネルを全端末へのマルウェア配布路に変える仕組み、影響範囲と修正版、CVSSの数値より「悪用中か」を優先すべき理由、管理者の確認/対策手順を整理します。",
   },
+  "langflow-cve-2025-34291": {
+    title: "Langflow脆弱性（CVE-2025-34291）とは - AIエージェント基盤のRCEとCORS/CSRFの教訓",
+    description:
+      "2026年5月にCISA KEV入りした AIエージェント構築基盤 Langflow の悪用中脆弱性 CVE-2025-34291（CVSS 9.4）を日本語で解説。寛容なCORS・弱いCSRF・コード実行エンドポイントの連鎖で未認証RCEとアカウント乗っ取り・全APIキー露出に至る仕組み、影響範囲と修正版、AIフレームワーク特有の攻撃面と対策を整理します。",
+  },
 };
 
 export const articles: Article[] = [
@@ -613,6 +618,16 @@ export const articles: Article[] = [
       "2026年5月にCISA KEV入りしたTrend Micro Apex Oneの悪用中脆弱性 CVE-2026-34926（CVSS 6.7・パストラバーサル）の仕組み。EDRサーバの信頼された配信チャネルを全端末へのマルウェア配布路に変える流れ、影響範囲と修正版、CVSSより悪用中かを優先すべき理由、管理者の確認と対策を日本語で解説します。",
     date: "2026-05-29",
     readingMinutes: 8,
+    relatedTools: [],
+  },
+  {
+    slug: "langflow-cve-2025-34291",
+    category: "security",
+    title: "Langflow脆弱性（CVE-2025-34291）詳解 - AIエージェント基盤のRCEとCORS/CSRF",
+    description:
+      "2026年5月にCISA KEV入りしたAIエージェント構築基盤 Langflow の悪用中脆弱性 CVE-2025-34291（CVSS 9.4）の仕組み。寛容なCORS・弱いCSRF・コード実行エンドポイントの連鎖で未認証RCEとアカウント乗っ取り・全APIキー露出に至る流れ、影響範囲と修正版、AIフレームワーク特有の攻撃面と対策を日本語で解説します。",
+    date: "2026-05-29",
+    readingMinutes: 9,
     relatedTools: [],
   },
 ];
