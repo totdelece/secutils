@@ -209,6 +209,11 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "2026年4月に公表されたcPanel & WHMの認証バイパス脆弱性 CVE-2026-41940（CVSS 9.8）を日本語で解説。セッションCookieへのCRLFインジェクションでrootとして管理画面を乗っ取る仕組み、影響範囲と修正版、約2か月先行したゼロデイ悪用の経緯、レンタルサーバー利用者・管理者の確認/対策手順を整理します。",
   },
+  "netlogon-cve-2026-41089": {
+    title: "Netlogon RCE（CVE-2026-41089）とは - ドメインコントローラ乗っ取りとZerologonの教訓",
+    description:
+      "2026年5月のPatch Tuesdayで修正されたWindows Netlogonの重大脆弱性 CVE-2026-41089（CVSS 9.8）を日本語で解説。未認証の遠隔攻撃でドメインコントローラ上にSYSTEM権限のコード実行を許す仕組み（MS-NRPCのバッファオーバーフロー）、影響範囲、Zerologon（CVE-2020-1472）との類似と教訓、AD管理者の確認/対策手順を整理します。",
+  },
 };
 
 export const articles: Article[] = [
@@ -581,6 +586,16 @@ export const articles: Article[] = [
     title: "cPanel認証バイパス（CVE-2026-41940）詳解 - WHM乗っ取りの仕組みと対策",
     description:
       "2026年4月公表のcPanel & WHM認証バイパス CVE-2026-41940（CVSS 9.8）の仕組み。セッションCookieへのCRLFインジェクションでrootとして管理画面を乗っ取る流れ、影響範囲と修正版、約2か月先行したゼロデイ悪用の経緯、レンタルサーバー利用者・管理者の確認と対策を日本語で解説します。",
+    date: "2026-05-29",
+    readingMinutes: 9,
+    relatedTools: [],
+  },
+  {
+    slug: "netlogon-cve-2026-41089",
+    category: "security",
+    title: "Netlogon RCE（CVE-2026-41089）詳解 - DC乗っ取りとZerologonの教訓",
+    description:
+      "2026年5月公表のWindows Netlogon脆弱性 CVE-2026-41089（CVSS 9.8）の仕組み。未認証の遠隔攻撃でドメインコントローラ上にSYSTEM権限のコード実行を許すMS-NRPCのバッファオーバーフロー、影響範囲、Zerologon（CVE-2020-1472）との類似と教訓、AD管理者の確認と対策を日本語で解説します。",
     date: "2026-05-29",
     readingMinutes: 9,
     relatedTools: [],
