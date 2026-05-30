@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { learningPaths, getArticleBySlug, articles } from "@/lib/articles";
+import { articles } from "@/lib/articles";
 import { tools } from "@/lib/tools";
 import { LearnBrowser } from "./_components/LearnBrowser";
+import { LearningPaths } from "./_components/LearningPaths";
 
 export const metadata: Metadata = {
   title: "Learn - セキュリティとネットワークの学習ハブ",
@@ -27,80 +28,19 @@ export default function LearnPage() {
             <span className="h-1.5 w-1.5 rounded-full bg-accent" />
             {articles.length} guides · browser-native
           </div>
-          <h1 className="mx-auto mt-6 max-w-3xl text-[40px] font-bold leading-[1.05] tracking-tight text-fg-primary sm:text-[58px]">
+          <h1 className="mx-auto mt-6 max-w-3xl text-[42px] font-extrabold leading-[1.04] tracking-tight text-fg-primary sm:text-[60px]">
             Learn Cybersecurity
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-[16px] leading-7 text-fg-secondary sm:text-[17px]">
-            ガイド・チュートリアル・実務で使えるセキュリティの知識を、
-            読んだその場でブラウザ上のツールで確かめられる学習ハブ。
+            Practical security knowledge, tutorials, and tools for learners and
+            professionals.
           </p>
         </header>
 
-        {/* 検索・タブ・Featured・Latest */}
+        {/* 検索 → カテゴリ → Featured → 学習パス → Latest → All */}
         <div className="mt-10">
-          <LearnBrowser />
+          <LearnBrowser learningPathsSlot={<LearningPaths />} />
         </div>
-
-        {/* Learning Paths */}
-        <section className="mt-24">
-          <div className="text-[11px] font-semibold uppercase tracking-wider text-accent">
-            Learning Paths
-          </div>
-          <h2 className="mt-1.5 text-[24px] font-bold leading-tight text-fg-primary sm:text-[28px]">
-            学習ロードマップ
-          </h2>
-          <p className="mt-1.5 max-w-2xl text-[13.5px] leading-6 text-fg-muted">
-            何から読めばいいか迷ったらここから。番号順に読むと一つのテーマを通して理解できます。
-          </p>
-
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            {learningPaths.map((path) => {
-              const steps = path.steps
-                .map((slug) => getArticleBySlug(slug))
-                .filter((a): a is NonNullable<typeof a> => Boolean(a));
-              return (
-                <div
-                  key={path.id}
-                  className="learn-card flex flex-col gap-4 rounded-xl p-6"
-                >
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <h3 className="text-[17px] font-bold text-fg-primary">
-                        {path.title}
-                      </h3>
-                      <p className="mt-1.5 text-[13px] leading-6 text-fg-secondary">
-                        {path.description}
-                      </p>
-                    </div>
-                    <span className="shrink-0 rounded-md border border-accent/30 bg-accent-soft px-2 py-0.5 text-[11px] font-semibold text-accent">
-                      {path.level}
-                    </span>
-                  </div>
-                  <ol className="flex flex-col gap-1.5">
-                    {steps.map((article, i) => (
-                      <li key={article.slug}>
-                        <Link
-                          href={`/learn/${article.category}/${article.slug}`}
-                          className="group flex items-center gap-3 rounded-lg border border-transparent px-2.5 py-2 transition hover:border-border-subtle hover:bg-bg-sunken/50"
-                        >
-                          <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-bg-sunken text-[12px] font-bold tabular-nums text-fg-muted ring-1 ring-border-subtle group-hover:text-accent">
-                            {i + 1}
-                          </span>
-                          <span className="min-w-0 flex-1 truncate text-[13.5px] font-medium text-fg-secondary transition group-hover:text-fg-primary">
-                            {article.title}
-                          </span>
-                          <span className="shrink-0 text-[11px] text-fg-subtle">
-                            約{article.readingMinutes}分
-                          </span>
-                        </Link>
-                      </li>
-                    ))}
-                  </ol>
-                </div>
-              );
-            })}
-          </div>
-        </section>
 
         {/* 購読（RSS / X / GitHub） */}
         <section className="mt-24">

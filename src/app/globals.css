@@ -318,7 +318,7 @@ body::after {
 }
 
 .article-stage {
-  background: var(--bg-base);
+  background: var(--bg-sunken);
 }
 
 .article-progress {
@@ -337,9 +337,9 @@ body::after {
 .article-side-panel,
 .article-hero,
 .article-related {
-  border: 1px solid var(--border-subtle);
-  background: var(--bg-elevated);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  border: 1px solid color-mix(in oklab, var(--border-subtle) 55%, var(--border-strong) 45%);
+  background: color-mix(in oklab, var(--bg-elevated) 93%, #fff 7%);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .article-mini-flow {
@@ -405,7 +405,7 @@ body::after {
 .article-prose p,
 .article-prose li {
   font-size: 1rem;
-  line-height: 2;
+  line-height: 1.8;
 }
 
 .article-prose p {
@@ -759,10 +759,10 @@ body::after {
     linear-gradient(180deg, color-mix(in oklab, var(--bg-base) 86%, #000 14%), var(--bg-base) 38rem);
 }
 
-/* Learn は静かな読み物面: 背景装飾なしのフラットなベース */
+/* Learn は静かな読み物面: 背景装飾なし。カードが浮くよう一段暗いベース */
 .learn-stage {
   min-height: 100%;
-  background: var(--bg-base);
+  background: var(--bg-sunken);
 }
 
 .tools-mesh {
@@ -782,9 +782,10 @@ body::after {
 .learn-panel,
 .learn-feature,
 .learn-card {
-  border: 1px solid var(--border-subtle);
-  background: var(--bg-elevated);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  /* 背景より一段明るく + 視認できる程度のボーダーで「面の上のオブジェクト」に */
+  border: 1px solid color-mix(in oklab, var(--border-subtle) 55%, var(--border-strong) 45%);
+  background: color-mix(in oklab, var(--bg-elevated) 93%, #fff 7%);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .learn-feature,

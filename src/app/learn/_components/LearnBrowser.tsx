@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import Link from "next/link";
 import {
   articles as allArticles,
@@ -103,7 +103,11 @@ function ArticleCard({ article }: { article: Article }) {
   );
 }
 
-export function LearnBrowser() {
+export function LearnBrowser({
+  learningPathsSlot,
+}: {
+  learningPathsSlot?: ReactNode;
+}) {
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<Filter>({ kind: "all" });
 
@@ -145,14 +149,14 @@ export function LearnBrowser() {
     });
   }, [sorted, filter, q]);
 
-  const showFeatured = !searching && filter.kind === "all";
-  const featured = showFeatured ? sorted.slice(0, 4) : [];
+  // アイドル時（検索なし・全カテゴリ）は Featured → 学習パス → Latest → All の構成。
+  // 検索／タブ絞り込み時は単一の結果グリッドに切り替える。
+  const idle = !searching && filter.kind === "all";
+  const featured = idle ? sorted.slice(0, 4) : [];
   const featuredBig = featured[0];
   const featuredSmall = featured.slice(1);
-  const featuredSlugs = new Set(featured.map((a) => a.slug));
-  const latest = showFeatured
-    ? results.filter((a) => !featuredSlugs.has(a.slug))
-    : results;
+  const latestList = idle ? sorted.slice(4, 10) : [];
+  const allList = idle ? sorted.slice(10) : [];
 
   return (
     <div>
@@ -165,8 +169,8 @@ export function LearnBrowser() {
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="記事・キーワードで検索…"
-            className="h-12 w-full rounded-xl border border-border-subtle bg-bg-elevated/80 pl-11 pr-4 text-[15px] text-fg-primary shadow-sm outline-none transition placeholder:text-fg-subtle focus:border-accent focus:ring-2 focus:ring-accent/25"
+            placeholder="Search articles, concepts, tools..."
+            className="h-14 w-full rounded-xl border border-border-strong bg-bg-elevated pl-12 pr-4 text-[16px] text-fg-primary shadow-sm outline-none transition placeholder:text-fg-subtle focus:border-accent focus:ring-2 focus:ring-accent/30"
           />
         </label>
       </div>
@@ -201,78 +205,115 @@ export function LearnBrowser() {
         })}
       </div>
 
-      {/* Featured */}
-      {showFeatured && featuredBig && (
-        <section className="mt-16">
-          <SectionHeading
-            eyebrow="Featured"
-            title="注目の記事"
-            sub="最近追加・更新された記事をピックアップ。"
-          />
-          <div className="mt-6 grid gap-4 lg:grid-cols-2">
-            <Link
-              href={`/learn/${featuredBig.category}/${featuredBig.slug}`}
-              className="learn-card group flex flex-col gap-4 rounded-xl p-6"
-            >
-              <Thumb article={featuredBig} large />
-              <div className="flex items-center justify-between gap-2">
-                <Badge article={featuredBig} />
-                <Meta article={featuredBig} />
-              </div>
-              <h3 className="text-[22px] font-bold leading-snug text-fg-primary transition group-hover:text-accent sm:text-[26px]">
-                {featuredBig.title}
-              </h3>
-              <p className="line-clamp-2 text-[14px] leading-7 text-fg-secondary">
-                {featuredBig.description}
-              </p>
-            </Link>
-            <div className="flex flex-col gap-3">
-              {featuredSmall.map((article) => (
+      {idle ? (
+        <>
+          {/* Featured */}
+          {featuredBig && (
+            <section className="mt-16">
+              <SectionHeading
+                eyebrow="Featured"
+                title="注目の記事"
+                sub="最近追加・更新された記事をピックアップ。"
+              />
+              <div className="mt-6 grid gap-4 lg:grid-cols-2">
                 <Link
-                  key={article.slug}
-                  href={`/learn/${article.category}/${article.slug}`}
-                  className="learn-card group flex flex-1 flex-col justify-center gap-2 rounded-xl p-5"
+                  href={`/learn/${featuredBig.category}/${featuredBig.slug}`}
+                  className="learn-card group flex flex-col gap-4 rounded-xl p-6"
                 >
+                  <Thumb article={featuredBig} large />
                   <div className="flex items-center justify-between gap-2">
-                    <Badge article={article} />
-                    <Meta article={article} />
+                    <Badge article={featuredBig} />
+                    <Meta article={featuredBig} />
                   </div>
-                  <h3 className="text-[15.5px] font-bold leading-snug text-fg-primary transition group-hover:text-accent">
-                    {article.title}
+                  <h3 className="text-[22px] font-bold leading-snug text-fg-primary transition group-hover:text-accent sm:text-[26px]">
+                    {featuredBig.title}
                   </h3>
-                  <p className="line-clamp-1 text-[13px] leading-6 text-fg-secondary">
-                    {article.description}
+                  <p className="line-clamp-2 text-[14px] leading-7 text-fg-secondary">
+                    {featuredBig.description}
                   </p>
                 </Link>
+                <div className="flex flex-col gap-3">
+                  {featuredSmall.map((article) => (
+                    <Link
+                      key={article.slug}
+                      href={`/learn/${article.category}/${article.slug}`}
+                      className="learn-card group flex flex-1 flex-col justify-center gap-2 rounded-xl p-5"
+                    >
+                      <div className="flex items-center justify-between gap-2">
+                        <Badge article={article} />
+                        <Meta article={article} />
+                      </div>
+                      <h3 className="text-[15.5px] font-bold leading-snug text-fg-primary transition group-hover:text-accent">
+                        {article.title}
+                      </h3>
+                      <p className="line-clamp-1 text-[13px] leading-6 text-fg-secondary">
+                        {article.description}
+                      </p>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </section>
+          )}
+
+          {/* Learning Paths（Featured と Latest の間） */}
+          {learningPathsSlot}
+
+          {/* Latest */}
+          {latestList.length > 0 && (
+            <section className="mt-24">
+              <SectionHeading
+                eyebrow="Latest"
+                title="新着の記事"
+                sub="最近公開された記事から。"
+              />
+              <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {latestList.map((article) => (
+                  <ArticleCard key={article.slug} article={article} />
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* All Articles */}
+          {allList.length > 0 && (
+            <section className="mt-24">
+              <SectionHeading
+                eyebrow="All articles"
+                title="すべての記事"
+                sub="タブで分野を絞り込めます。"
+              />
+              <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {allList.map((article) => (
+                  <ArticleCard key={article.slug} article={article} />
+                ))}
+              </div>
+            </section>
+          )}
+        </>
+      ) : (
+        /* 検索／絞り込み結果 */
+        <section className="mt-12">
+          <SectionHeading
+            eyebrow={searching ? "Search" : "Filter"}
+            title={
+              searching ? `「${query.trim()}」の検索結果` : "絞り込み結果"
+            }
+            sub={`${results.length} 件`}
+          />
+          {results.length > 0 ? (
+            <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {results.map((article) => (
+                <ArticleCard key={article.slug} article={article} />
               ))}
             </div>
-          </div>
+          ) : (
+            <div className="mt-6 rounded-xl border border-border-subtle bg-bg-elevated/50 p-10 text-center text-sm text-fg-muted">
+              該当する記事が見つかりませんでした。キーワードやタブを変えてお試しください。
+            </div>
+          )}
         </section>
       )}
-
-      {/* Latest / 検索結果 */}
-      <section className="mt-16">
-        <SectionHeading
-          eyebrow={searching ? "Search" : "Latest"}
-          title={searching ? `「${query.trim()}」の検索結果` : "最新の記事"}
-          sub={
-            searching
-              ? `${latest.length} 件ヒットしました。`
-              : "新しい順。タブで分野を絞り込めます。"
-          }
-        />
-        {latest.length > 0 ? (
-          <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {latest.map((article) => (
-              <ArticleCard key={article.slug} article={article} />
-            ))}
-          </div>
-        ) : (
-          <div className="mt-5 rounded-xl border border-border-subtle bg-bg-elevated/50 p-10 text-center text-sm text-fg-muted">
-            該当する記事が見つかりませんでした。キーワードやタブを変えてお試しください。
-          </div>
-        )}
-      </section>
     </div>
   );
 }

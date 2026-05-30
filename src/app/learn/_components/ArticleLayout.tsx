@@ -7,6 +7,7 @@ import {
 } from "@/lib/articles";
 import { tools } from "@/lib/tools";
 import { ArticleTocDesktop, ArticleTocMobile } from "./ArticleToc";
+import { MarkArticleRead } from "./MarkArticleRead";
 
 export function ArticleLayout({
   article,
@@ -40,6 +41,7 @@ export function ArticleLayout({
   return (
     <div className="article-stage relative isolate overflow-hidden">
       <div className="article-progress" aria-hidden="true" />
+      <MarkArticleRead slug={article.slug} />
 
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[220px_minmax(0,780px)_220px] lg:gap-8">
         <aside className="hidden lg:block">
