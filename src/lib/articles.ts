@@ -279,6 +279,11 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "2026年のランサムウェアの実態を実務者向けに解説。インシデントの約35%が暗号化を伴わない「データ窃取のみの恐喝」へ移行した理由、RaaS（サービス型）と初期アクセスブローカー（IAB）による分業エコシステム、Qilin・Cl0p・Akiraなど主要グループの動き、Oracle EBSの大量悪用やBYOVDによるEDR無効化、二重〜四重恐喝の進化、攻撃ライフサイクル（初期アクセス→横展開→持ち出し→影響）の各段で効く防御を整理します。",
   },
+  "prompt-injection": {
+    title: "プロンプトインジェクション総論 - 直接/間接の違い・Lethal Trifecta・実例と対策",
+    description:
+      "OWASP LLM Top 10の第1位 プロンプトインジェクション（LLM01）を日本語で体系解説。LLMが「指示」と「データ」を区別できないという根本原因、直接（ジェイルブレイク）と間接（外部コンテンツ由来、2026年は55%超）の違い、EchoLeak（CVE-2025-32711）やMCP経由のゼロクリックRCE・KYC文書からのPII漏えいといった実例、危険な組み合わせ「Lethal Trifecta」、Spotlighting・ガードレール・CaMeL・最小権限・人間による承認といった多層防御とその限界を整理します。",
+  },
 };
 
 export const articles: Article[] = [
@@ -791,6 +796,16 @@ export const articles: Article[] = [
     title: "ランサムウェア2026の最新動向 - 暗号化なし恐喝・RaaS・初期アクセスブローカー",
     description:
       "2026年のランサムウェアの実態を実務者向けに解説。約35%が暗号化を伴わない「データ窃取のみの恐喝」へ移行した理由、RaaSと初期アクセスブローカー（IAB）の分業、Qilin・Cl0p・Akiraの動き、Oracle EBS大量悪用やBYOVDによるEDR無効化、二重〜四重恐喝の進化、攻撃ライフサイクル各段で効く防御を日本語で整理します。",
+    date: "2026-05-30",
+    readingMinutes: 11,
+    relatedTools: [],
+  },
+  {
+    slug: "prompt-injection",
+    category: "security",
+    title: "プロンプトインジェクション総論 - 直接/間接の違い・Lethal Trifecta・実例と対策",
+    description:
+      "OWASP LLM Top 10第1位のプロンプトインジェクション（LLM01）を体系解説。LLMが指示とデータを区別できない根本原因、直接（ジェイルブレイク）と間接（外部コンテンツ由来・2026年は55%超）の違い、EchoLeak（CVE-2025-32711）やMCP経由のゼロクリックRCEなどの実例、危険な組み合わせLethal Trifecta、Spotlighting・ガードレール・CaMeL・最小権限・人間による承認といった多層防御とその限界を日本語で整理します。",
     date: "2026-05-30",
     readingMinutes: 11,
     relatedTools: [],
