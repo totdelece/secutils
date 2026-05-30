@@ -249,6 +249,11 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "インフォスティーラー（情報窃取マルウェア）がMFAを「突破」ではなく「迂回」する仕組みを日本語で解説。Lumma/StealC/RedLineが数十秒で全ブラウザのセッションCookieと保存パスワードを盗み、攻撃者がpass-the-cookie（セッションリプレイ）で本人になりすます流れ、3.9億件規模の被害、ClickFix等の感染経路、Chromeのデバイスバインドセッション認証（DBSC）やFIDO2・短命セッション・条件付きアクセス・異常検知による多層防御を整理します。",
   },
+  quishing: {
+    title: "Quishing（QRコードフィッシング）とは - 急増する手口と回避テクニック・対策",
+    description:
+      "2026年Q1に四半期で146%増と最速で伸びるメール攻撃 Quishing（QRコードフィッシング）を日本語で解説。URLをQR画像に隠してメールフィルタを回避し、利用者を管理外のスマホへ誘導する仕組み、ロゴ埋め込み・ASCIIアートQR・PDF添付・分割QRなどの検知回避、AitMによるセッション窃取とMFA回避、北朝鮮Kimsukyの標的型事例、Passkey/FIDO2・画像対応メールセキュリティ・利用者教育による多層防御を整理します。",
+  },
 };
 
 export const articles: Article[] = [
@@ -704,6 +709,16 @@ export const articles: Article[] = [
     date: "2026-05-30",
     readingMinutes: 11,
     relatedTools: ["cookie-parser"],
+  },
+  {
+    slug: "quishing",
+    category: "security",
+    title: "Quishing（QRコードフィッシング）とは - 急増する手口と回避テク・対策",
+    description:
+      "2026年Q1に四半期で146%増と最速で伸びるQuishing（QRコードフィッシング）を解説。URLをQR画像に隠してメールフィルタを回避し利用者を管理外スマホへ誘導する仕組み、ASCIIアートQRやPDF添付などの検知回避、AitMによるセッション窃取とMFA回避、北朝鮮Kimsukyの事例、Passkey・画像対応メールセキュリティ・教育による多層防御を日本語で整理します。",
+    date: "2026-05-30",
+    readingMinutes: 10,
+    relatedTools: ["qr-code"],
   },
 ];
 
