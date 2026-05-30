@@ -244,6 +244,11 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "Perplexity CometやChatGPT AtlasなどのAIブラウザ（エージェントブラウザ）を狙う間接プロンプトインジェクションを日本語で解説。Webページに隠した指示でAIを操り、ログイン中のGmailや1Passwordを横断悪用してOTP・認証情報を窃取するBraveのPoC、Zenityのゼロクリック乗っ取り（PleaseFix/CometJacking）、Same-Origin Policy/CORSが無力化される理由、Braveが示す入力分離・出力検証・操作ゲート・モード分離などの対策を整理します。",
   },
+  "infostealer-session-hijacking": {
+    title: "インフォスティーラーとセッションCookie窃取 - MFAを回避するpass-the-cookieと対策",
+    description:
+      "インフォスティーラー（情報窃取マルウェア）がMFAを「突破」ではなく「迂回」する仕組みを日本語で解説。Lumma/StealC/RedLineが数十秒で全ブラウザのセッションCookieと保存パスワードを盗み、攻撃者がpass-the-cookie（セッションリプレイ）で本人になりすます流れ、3.9億件規模の被害、ClickFix等の感染経路、Chromeのデバイスバインドセッション認証（DBSC）やFIDO2・短命セッション・条件付きアクセス・異常検知による多層防御を整理します。",
+  },
 };
 
 export const articles: Article[] = [
@@ -689,6 +694,16 @@ export const articles: Article[] = [
     date: "2026-05-30",
     readingMinutes: 11,
     relatedTools: [],
+  },
+  {
+    slug: "infostealer-session-hijacking",
+    category: "security",
+    title: "インフォスティーラーとセッションCookie窃取 - MFAを回避するpass-the-cookie",
+    description:
+      "情報窃取マルウェアがMFAを突破ではなく迂回する仕組みを解説。Lumma/StealCが数十秒で全ブラウザのCookieと保存パスワードを盗み、攻撃者がpass-the-cookieで本人になりすます流れ、3.9億件規模の被害、ClickFix等の感染経路、ChromeのDBSC・FIDO2・短命セッション・条件付きアクセス・異常検知による多層防御を日本語で整理します。",
+    date: "2026-05-30",
+    readingMinutes: 11,
+    relatedTools: ["cookie-parser"],
   },
 ];
 
