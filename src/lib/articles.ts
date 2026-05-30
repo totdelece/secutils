@@ -229,6 +229,11 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "Anthropicが2026年4月に公表したフロンティアモデル Claude Mythos Preview を、AIによる自律的な脆弱性発見という観点から日本語で解説。FreeBSDの17年もの・OpenBSDの27年もののバグ発見などAnthropic公表の事実、二段刃（攻撃にも転用可能）の本質、誤検知やプロンプトインジェクションの注意点、防御側（パッチ速度・SBOM・人間によるレビュー）の備えを整理します。",
   },
+  "mcp-security": {
+    title: "MCP（Model Context Protocol）のセキュリティ - Tool Poisoning・Rug Pull・実例と対策",
+    description:
+      "AIエージェントの標準プロトコルMCPのセキュリティを日本語で体系解説。ツール説明文に悪意の指示を仕込むTool Poisoning、承認後に定義を差し替えるRug Pull（MCPoison/CVE-2025-54136）、偽MCPサーバのサプライチェーン攻撃、過剰権限トークン、MCP Inspector RCE（CVE-2025-49596）など2025〜26年の実インシデントと、最小権限・人間による承認・ゲートウェイ検証・サーバ検証といった防御策を整理します。",
+  },
 };
 
 export const articles: Article[] = [
@@ -643,6 +648,16 @@ export const articles: Article[] = [
       "Anthropicが2026年4月に公表したフロンティアモデル Claude Mythos Preview を、AIによる自律的な脆弱性発見の観点から解説。FreeBSDの17年もの・OpenBSDの27年もののバグ発見などAnthropic公表の事実、攻撃にも転用可能な二段刃の本質、誤検知やプロンプトインジェクションの注意点、防御側（パッチ速度・SBOM・人間のレビュー）の備えを日本語で整理します。",
     date: "2026-05-29",
     readingMinutes: 9,
+    relatedTools: [],
+  },
+  {
+    slug: "mcp-security",
+    category: "security",
+    title: "MCPのセキュリティ - Tool Poisoning・Rug Pull・サプライチェーンの実例と対策",
+    description:
+      "AIエージェントの標準プロトコルMCPの攻撃面を体系整理。ツール説明文に指示を仕込むTool Poisoning、承認後に定義を差し替えるRug Pull（CVE-2025-54136）、偽MCPサーバのサプライチェーン、過剰権限トークン、MCP Inspector RCEなど2025〜26年の実例と、最小権限・人間による承認・サーバ検証の防御を日本語で解説します。",
+    date: "2026-05-30",
+    readingMinutes: 11,
     relatedTools: [],
   },
 ];
