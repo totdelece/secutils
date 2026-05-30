@@ -269,6 +269,11 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "npm/PyPIを狙うソフトウェアサプライチェーン攻撃を6類型（タイポスクワッティング・依存関係混同・slopsquatting・メンテナ乗っ取り・悪意あるインストールスクリプト・自己増殖ワーム）で体系整理。Mini Shai-Hulud（170超パッケージ）やTrapDoor、AIが幻覚した存在しないパッケージ名の悪用、累計120万超の悪性パッケージという実態と、lockfile・--ignore-scripts・Trusted Publishing・リポジトリファイアウォール・SBOM・環境分離による防御を日本語で解説します。",
   },
+  "mitre-attack": {
+    title: "MITRE ATT&CK入門 - 戦術・技術・手順とID体系、実務での使い方をわかりやすく",
+    description:
+      "攻撃者の実際の振る舞いを体系化した知識ベース MITRE ATT&CK を日本語で入門解説。Tactics（戦術）/Techniques（技術）/Procedures（手順）の3層構造、TxxxxなどのID体系、14のEnterprise戦術、Groups/Software/Campaigns/Mitigations、v18のDetection Strategies刷新やv19（2026年4月）でのDefense Evasion分割、検知エンジニアリング・脅威インテリジェンス・カバレッジ可視化（Navigator）といった実務での使い方、Cyber Kill Chainとの違いを整理します。",
+  },
 };
 
 export const articles: Article[] = [
@@ -763,6 +768,16 @@ export const articles: Article[] = [
       "npm/PyPIを狙うサプライチェーン攻撃を6類型（タイポスクワッティング・依存関係混同・slopsquatting・メンテナ乗っ取り・悪意あるインストールスクリプト・自己増殖ワーム）で体系整理。Mini Shai-HuludやTrapDoor、AIが幻覚した存在しないパッケージ名の悪用、累計120万超の悪性パッケージの実態と、lockfile・Trusted Publishing・リポジトリファイアウォール・SBOM・環境分離による防御を日本語で解説します。",
     date: "2026-05-30",
     readingMinutes: 11,
+    relatedTools: [],
+  },
+  {
+    slug: "mitre-attack",
+    category: "security",
+    title: "MITRE ATT&CK入門 - 戦術・技術・手順とID体系、実務での使い方",
+    description:
+      "攻撃者の実際の振る舞いを体系化した知識ベース MITRE ATT&CK を入門解説。Tactics/Techniques/Proceduresの3層構造、TxxxxのID体系、14のEnterprise戦術、Groups/Software/Campaigns、v18のDetection Strategies刷新やv19（2026年4月）の変更、検知エンジニアリング・脅威インテリジェンス・カバレッジ可視化での使い方、Cyber Kill Chainとの違いを日本語で整理します。",
+    date: "2026-05-30",
+    readingMinutes: 10,
     relatedTools: [],
   },
 ];
