@@ -13,7 +13,7 @@ export function RelatedArticlesPanel({ slug }: { slug: string }) {
           <div className="text-[10px] font-semibold uppercase tracking-[0.16em] text-accent">
             Learn
           </div>
-          <h2 className="mt-2 text-[24px] font-semibold text-fg-primary">
+          <h2 className="mt-2 text-[18px] font-bold text-fg-primary">
             このツールに関連する解説記事
           </h2>
         </div>

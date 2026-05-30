@@ -12,6 +12,7 @@ const groups: FooterGroup[] = [
       { href: "/", label: "Tools" },
       { href: "/learn", label: "Learn" },
       { href: "/about", label: "About" },
+      { href: "/feed.xml", label: "RSS", external: true },
     ],
   },
   {

@@ -13,7 +13,7 @@ export function ToolSeoSection({ slug }: { slug: string }) {
           <div className="inline-flex items-center gap-2 rounded-full border border-border-subtle bg-bg-sunken/55 px-3 py-1 text-[10px] font-semibold uppercase text-fg-subtle">
             Search guide
           </div>
-          <h2 className="mt-5 text-[30px] font-semibold leading-[1.02] text-fg-primary sm:text-[42px]">
+          <h2 className="mt-5 text-[22px] font-bold leading-[1.2] text-fg-primary sm:text-[26px]">
             {content.heading}
           </h2>
           <p className="mt-5 text-[15px] leading-8 text-fg-muted">

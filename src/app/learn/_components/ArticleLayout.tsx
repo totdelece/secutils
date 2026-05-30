@@ -7,7 +7,6 @@ import {
 } from "@/lib/articles";
 import { tools } from "@/lib/tools";
 import { ArticleTocDesktop, ArticleTocMobile } from "./ArticleToc";
-import { MarkArticleRead } from "./MarkArticleRead";
 
 export function ArticleLayout({
   article,
@@ -41,7 +40,6 @@ export function ArticleLayout({
   return (
     <div className="article-stage relative isolate overflow-hidden">
       <div className="article-progress" aria-hidden="true" />
-      <MarkArticleRead slug={article.slug} />
 
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[220px_minmax(0,780px)_220px] lg:gap-8">
         <aside className="hidden lg:block">
@@ -85,13 +83,10 @@ export function ArticleLayout({
                 <span className="h-1.5 w-1.5 rounded-full bg-accent" />
                 {articleCategoryLabels[article.category]} / Browser-native guide
               </div>
-              <h1 className="max-w-4xl text-[36px] font-bold leading-[1.05] text-fg-primary sm:text-[52px]">
+              <h1 className="max-w-4xl text-[26px] font-bold leading-[1.2] text-fg-primary sm:text-[34px]">
                 {article.title}
               </h1>
-              <p className="mt-6 max-w-3xl text-[16px] leading-8 text-fg-secondary sm:text-[17px] sm:leading-9">
-                {article.description}
-              </p>
-              <div className="mt-7 flex flex-wrap items-center gap-3 text-[12px] text-fg-subtle">
+              <div className="mt-5 flex flex-wrap items-center gap-3 text-[12px] text-fg-subtle">
                 <time dateTime={article.date}>{article.date}</time>
                 <span className="h-1 w-1 rounded-full bg-fg-subtle/60" />
                 <span>約{article.readingMinutes}分</span>
@@ -124,7 +119,7 @@ export function ArticleLayout({
                   <div className="text-[10px] font-semibold uppercase text-accent">
                     Tool companion
                   </div>
-                  <h2 className="mt-2 text-[24px] font-semibold text-fg-primary">
+                  <h2 className="mt-2 text-[18px] font-bold text-fg-primary">
                     この記事と一緒に使えるツール
                   </h2>
                 </div>
@@ -159,7 +154,7 @@ export function ArticleLayout({
               <div className="text-[10px] font-semibold uppercase text-accent">
                 Related reading
               </div>
-              <h2 className="mt-2 text-[24px] font-semibold text-fg-primary">
+              <h2 className="mt-2 text-[18px] font-bold text-fg-primary">
                 関連記事
               </h2>
               <div className="mt-4 grid gap-3 sm:grid-cols-2">

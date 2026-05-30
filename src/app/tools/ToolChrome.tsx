@@ -34,10 +34,10 @@ export function ToolChrome({ children }: { children: React.ReactNode }) {
                   <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_18px_currentColor]" />
                   Browser-native / zero upload
                 </div>
-                <h1 className="mt-7 max-w-4xl text-[44px] font-semibold leading-[0.92] text-fg-primary sm:text-[70px]">
+                <h1 className="mt-6 max-w-4xl text-[28px] font-bold leading-[1.15] text-fg-primary sm:text-[40px]">
                   {tool?.title ?? "secutils tool"}
                 </h1>
-                <p className="mt-5 max-w-3xl text-[15px] leading-8 text-fg-muted sm:text-[16px] sm:leading-8">
+                <p className="mt-4 max-w-3xl text-[15px] leading-7 text-fg-muted sm:text-[16px] sm:leading-8">
                   {tool?.description ??
                     "入力データを外へ出さず、ブラウザ内だけで処理する開発者向けツールです。"}
                 </p>

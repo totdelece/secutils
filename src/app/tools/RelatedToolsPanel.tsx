@@ -12,7 +12,7 @@ export function RelatedToolsPanel({ slug }: { slug: string }) {
           <div className="text-[10px] font-semibold uppercase tracking-[0.16em] text-accent">
             Next workflow
           </div>
-          <h2 className="mt-2 text-[24px] font-semibold text-fg-primary">
+          <h2 className="mt-2 text-[18px] font-bold text-fg-primary">
             次に使うツール
           </h2>
         </div>
