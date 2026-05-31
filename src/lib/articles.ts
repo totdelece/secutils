@@ -204,6 +204,11 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "2025年に出現したnpm史上初の自己増殖型サプライチェーンワーム Shai-Hulud を日本語で解説。postinstall等のライフサイクルスクリプトでトークンを窃取し感染を連鎖させる仕組み、被害規模、--ignore-scriptsやlockfile・2FA・短命トークンによる開発者/CIの対策を整理します。",
   },
+  "support-scam": {
+    title: "サポート詐欺（偽警告詐欺）の手口と対処法 - 偽セキュリティ警告・遠隔操作・電話詐欺",
+    description:
+      "ブラウザに突然表示される偽のウイルス警告や、Microsoftをかたる電話で遠隔操作ソフトをインストールさせる「サポート詐欺」の手口を日本語で解説。IPA・警察庁の被害統計、画面が閉じられない時の具体的対処、AnyDesk/Quick Assistを使った詐取の流れ、スマートフォン版の新手口、遠隔操作を許してしまった後の対応を整理します。",
+  },
   "github-actions-supply-chain": {
     title: "GitHub Actions サプライチェーン攻撃 - tj-actions/GhostAction/Megalodon の手口と対策",
     description:
@@ -661,6 +666,16 @@ export const articles: Article[] = [
     relatedTools: [],
   },
   {
+    slug: "support-scam",
+    category: "security",
+    title: "サポート詐欺（偽警告詐欺）の手口と対処法 - 偽セキュリティ警告・遠隔操作・電話詐欺",
+    description:
+      "ブラウザに突然表示される偽のウイルス警告や、Microsoftをかたる電話で遠隔操作ソフトをインストールさせる「サポート詐欺」の手口。IPA・警察庁の被害統計、画面が閉じられない時の具体的対処、AnyDesk/Quick Assistを使った詐取の流れ、遠隔操作を許してしまった後の対応を日本語で解説します。",
+    date: "2026-05-31",
+    readingMinutes: 9,
+    relatedTools: [],
+  },
+  {
     slug: "github-actions-supply-chain",
     category: "security",
     title: "GitHub Actions サプライチェーン攻撃 - tj-actions/GhostAction/Megalodon の手口と対策",
@@ -952,6 +967,7 @@ const topicSlugs: Record<TopicId, string[]> = {
     "shai-hulud",
     "toolshell",
     "github-actions-supply-chain",
+    "support-scam",
     "cpanel-cve-2026-41940",
     "netlogon-cve-2026-41089",
     "apex-one-cve-2026-34926",
