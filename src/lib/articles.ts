@@ -204,6 +204,21 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "2025年に出現したnpm史上初の自己増殖型サプライチェーンワーム Shai-Hulud を日本語で解説。postinstall等のライフサイクルスクリプトでトークンを窃取し感染を連鎖させる仕組み、被害規模、--ignore-scriptsやlockfile・2FA・短命トークンによる開発者/CIの対策を整理します。",
   },
+  "teampcp-cloud-credential-theft": {
+    title: "TeamPCPがOSSからAWSへ — セキュリティツール汚染で実現するクラウド鍵の大量窃取",
+    description:
+      "2026年3〜5月に発覚したTeamPCPによるサプライチェーン攻撃を解説。Trivy・KICS・LiteLLMなどDevSecOpsツールに忍び込んだマルウェアがAWSアクセスキー・Kubernetesトークン・GitHub PAT等を自動収集し、クラウド環境への二次侵害へと連鎖した攻撃の全体像と対策を日本語でまとめます。",
+  },
+  "fog-ransomware-propagation": {
+    title: "Fogランサムウェアが「拡散すれば無料復号」の前代未聞の要求 — VPN侵害とLNKフィッシングの実態",
+    description:
+      "2026年に100件超の被害を出したFogランサムウェアが、「マルウェアを他者に拡散すれば身代金を免除する」という前代未聞の社会工学的手口を採用した。VPNクレデンシャル悪用・BYOVDによるEDR無効化・DOGEロゴ入り脅迫状の仕組み、組織が今すぐすべき対策を日本語で解説します。",
+  },
+  "apt28-prismex-nato": {
+    title: "APT28が新マルウェアPRISMEXでNATO防衛サプライチェーンを標的 — ステガノグラフィとCOMハイジャックの脅威",
+    description:
+      "ロシア国家系APTグループAPT28（Pawn Storm/Fancy Bear）が2026年に展開した新マルウェアスイートPRISMEXを解説。画像内にペイロードを隠すステガノグラフィ、COMハイジャックによる永続化、CVE-2026-21509/21513の悪用、ウクライナ・NATO加盟国の防衛インフラへの標的型侵害の手口と対策を日本語でまとめます。",
+  },
   "foxconn-nitrogen-ransomware": {
     title: "Foxconn北米工場がNitrogenランサムウェアの標的に — Apple・Nvidia設計書8TB流出か",
     description:
@@ -681,6 +696,36 @@ export const articles: Article[] = [
     relatedTools: [],
   },
   {
+    slug: "teampcp-cloud-credential-theft",
+    category: "security",
+    title: "TeamPCPがOSSからAWSへ — セキュリティツール汚染で実現するクラウド鍵の大量窃取",
+    description:
+      "2026年3〜5月に発覚したTeamPCPによるサプライチェーン攻撃。Trivy・KICS・LiteLLMなどDevSecOpsツールに悪性コードを注入し、AWSアクセスキー・Kubernetesトークン・GitHub PATなどを自動収集してクラウド環境への二次侵害へ連鎖した攻撃の全体像と対策を解説します。",
+    date: "2026-05-31",
+    readingMinutes: 11,
+    relatedTools: [],
+  },
+  {
+    slug: "fog-ransomware-propagation",
+    category: "security",
+    title: "Fogランサムウェアが「拡散すれば無料復号」の前代未聞の要求 — VPN侵害とLNKフィッシングの実態",
+    description:
+      "2026年に100件超の被害を出したFogランサムウェアが「マルウェアを他者に拡散すれば身代金を免除する」という前代未聞の手口を採用。VPNクレデンシャル悪用・BYOVDによるEDR無効化・二重恐喝の仕組み、組織が今すぐすべき対策を解説します。",
+    date: "2026-05-31",
+    readingMinutes: 10,
+    relatedTools: [],
+  },
+  {
+    slug: "apt28-prismex-nato",
+    category: "security",
+    title: "APT28が新マルウェアPRISMEXでNATO防衛サプライチェーンを標的 — ステガノグラフィとCOMハイジャックの脅威",
+    description:
+      "ロシア国家系APT28（Pawn Storm）が2026年に展開した新マルウェアスイートPRISMEXを解説。画像内にペイロードを隠すステガノグラフィ、COMハイジャックによる永続化、CVE-2026-21509悪用、ウクライナ・NATO加盟国の防衛インフラへの標的型侵害の手口と対策をまとめます。",
+    date: "2026-05-31",
+    readingMinutes: 11,
+    relatedTools: [],
+  },
+  {
     slug: "foxconn-nitrogen-ransomware",
     category: "security",
     title: "Foxconn北米工場がNitrogenランサムウェアの標的に — Apple・Nvidia設計書8TB流出か",
@@ -1015,6 +1060,9 @@ const topicSlugs: Record<TopicId, string[]> = {
     "foxconn-nitrogen-ransomware",
     "daemon-tools-supply-chain",
     "canvas-shinyhunters-breach",
+    "teampcp-cloud-credential-theft",
+    "fog-ransomware-propagation",
+    "apt28-prismex-nato",
     "support-scam",
     "cpanel-cve-2026-41940",
     "netlogon-cve-2026-41089",
