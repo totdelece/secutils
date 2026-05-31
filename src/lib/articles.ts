@@ -204,6 +204,11 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "2025年に出現したnpm史上初の自己増殖型サプライチェーンワーム Shai-Hulud を日本語で解説。postinstall等のライフサイクルスクリプトでトークンを窃取し感染を連鎖させる仕組み、被害規模、--ignore-scriptsやlockfile・2FA・短命トークンによる開発者/CIの対策を整理します。",
   },
+  toolshell: {
+    title: "ToolShell（CVE-2025-53770）詳解 - SharePoint RCEゼロデイと国家攻撃者の手口",
+    description:
+      "2025年7月に悪用が確認されたMicrosoft SharePointのゼロデイ脆弱性チェーン「ToolShell」（CVE-2025-53770＋CVE-2025-53771）を日本語で解説。認証バイパスからRCEへの攻撃の流れ、Linen/Violet Typhoon等中国系APTによる400件超の侵害、MachineKey窃取による永続化、パッチ適用・鍵ローテーション・AMSIによる対策を整理します。",
+  },
   "cpanel-cve-2026-41940": {
     title: "cPanel認証バイパス（CVE-2026-41940）とは - WHM乗っ取りの仕組みと対策",
     description:
@@ -651,6 +656,16 @@ export const articles: Article[] = [
     relatedTools: [],
   },
   {
+    slug: "toolshell",
+    category: "security",
+    title: "ToolShell（CVE-2025-53770）詳解 - SharePoint RCEゼロデイと国家攻撃者の手口",
+    description:
+      "2025年7月に悪用が確認されたMicrosoft SharePointゼロデイ「ToolShell」（CVE-2025-53770・CVE-2025-53771）の仕組み。認証バイパスからRCEへの攻撃チェーン、Linen/Violet Typhoon等中国系APTによる400件超の侵害、MachineKey窃取による永続化、パッチ適用・鍵ローテーション・AMSIによる対策を日本語で解説します。",
+    date: "2026-05-31",
+    readingMinutes: 10,
+    relatedTools: [],
+  },
+  {
     slug: "cpanel-cve-2026-41940",
     category: "security",
     title: "cPanel認証バイパス（CVE-2026-41940）詳解 - WHM乗っ取りの仕組みと対策",
@@ -920,6 +935,7 @@ const topicSlugs: Record<TopicId, string[]> = {
   threat: [
     "react2shell",
     "shai-hulud",
+    "toolshell",
     "cpanel-cve-2026-41940",
     "netlogon-cve-2026-41089",
     "apex-one-cve-2026-34926",
