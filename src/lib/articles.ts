@@ -204,6 +204,11 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "2025年に出現したnpm史上初の自己増殖型サプライチェーンワーム Shai-Hulud を日本語で解説。postinstall等のライフサイクルスクリプトでトークンを窃取し感染を連鎖させる仕組み、被害規模、--ignore-scriptsやlockfile・2FA・短命トークンによる開発者/CIの対策を整理します。",
   },
+  "github-actions-supply-chain": {
+    title: "GitHub Actions サプライチェーン攻撃 - tj-actions/GhostAction/Megalodon の手口と対策",
+    description:
+      "2025年に相次いだGitHub Actionsを狙うサプライチェーン攻撃を日本語で解説。tj-actions/changed-files（CVE-2025-30066、2.3万リポジトリ影響）・GhostAction（3,325シークレット窃取）・Megalodon（5,500件超のリポジトリ汚染）の手口、タグ可変性の問題、SHAピン・OIDC・最小権限による防御を整理します。",
+  },
   toolshell: {
     title: "ToolShell（CVE-2025-53770）詳解 - SharePoint RCEゼロデイと国家攻撃者の手口",
     description:
@@ -656,6 +661,16 @@ export const articles: Article[] = [
     relatedTools: [],
   },
   {
+    slug: "github-actions-supply-chain",
+    category: "security",
+    title: "GitHub Actions サプライチェーン攻撃 - tj-actions/GhostAction/Megalodon の手口と対策",
+    description:
+      "2025年に相次いだGitHub Actionsを狙うサプライチェーン攻撃を日本語で解説。tj-actions/changed-files（CVE-2025-30066）・GhostAction・Megalodonの手口、タグ可変性の問題、SHAピン・OIDC・最小権限による防御を整理します。",
+    date: "2026-05-31",
+    readingMinutes: 11,
+    relatedTools: [],
+  },
+  {
     slug: "toolshell",
     category: "security",
     title: "ToolShell（CVE-2025-53770）詳解 - SharePoint RCEゼロデイと国家攻撃者の手口",
@@ -936,6 +951,7 @@ const topicSlugs: Record<TopicId, string[]> = {
     "react2shell",
     "shai-hulud",
     "toolshell",
+    "github-actions-supply-chain",
     "cpanel-cve-2026-41940",
     "netlogon-cve-2026-41089",
     "apex-one-cve-2026-34926",
