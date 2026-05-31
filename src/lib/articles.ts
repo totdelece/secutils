@@ -204,6 +204,21 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "2025年に出現したnpm史上初の自己増殖型サプライチェーンワーム Shai-Hulud を日本語で解説。postinstall等のライフサイクルスクリプトでトークンを窃取し感染を連鎖させる仕組み、被害規模、--ignore-scriptsやlockfile・2FA・短命トークンによる開発者/CIの対策を整理します。",
   },
+  "foxconn-nitrogen-ransomware": {
+    title: "Foxconn北米工場がNitrogenランサムウェアの標的に — Apple・Nvidia設計書8TB流出か",
+    description:
+      "2026年5月、Apple・Nidia・Intelの主要サプライヤーFoxconnの北米工場がNitrogenランサムウェアに侵害され、8TB・1,100万ファイル超が盗まれたと主張された。Nitrogenの技術的特徴、身代金を払っても復号できない欠陥、EDR無効化手法、製造業のサプライチェーンリスクを日本語で解説します。",
+  },
+  "daemon-tools-supply-chain": {
+    title: "DAEMON Tools公式インストーラに1ヶ月バックドア — 正規署名済みサプライチェーン攻撃の全貌",
+    description:
+      "2026年4〜5月、仮想ドライブソフト「DAEMON Tools」の公式Webサイトから正規の開発者デジタル署名付きの悪性インストーラが約1ヶ月配布された。Kasperkyが発見したこの中国系攻撃者によるサプライチェーン攻撃の手口、バックドアの挙動、製造業・政府機関への標的型二次ペイロード、対処法を日本語で解説します。",
+  },
+  "canvas-shinyhunters-breach": {
+    title: "Canvas（Instructure）で2.75億人分のデータ漏洩 — ShinyHuntersが世界8,809校を2度侵害",
+    description:
+      "2026年4〜5月、世界最大級のLMS（学習管理システム）CanvasのInstructureがShinyHuntersに侵害され、8,809校・2.75億人のユーザーデータ3.65TBが流出した。2度の侵害・ログイン画面改ざん・教育機関特有のリスク・ShinyHunters手口の変化を日本語で解説します。",
+  },
   "support-scam": {
     title: "サポート詐欺（偽警告詐欺）の手口と対処法 - 偽セキュリティ警告・遠隔操作・電話詐欺",
     description:
@@ -666,6 +681,36 @@ export const articles: Article[] = [
     relatedTools: [],
   },
   {
+    slug: "foxconn-nitrogen-ransomware",
+    category: "security",
+    title: "Foxconn北米工場がNitrogenランサムウェアの標的に — Apple・Nvidia設計書8TB流出か",
+    description:
+      "2026年5月にFoxconnの北米工場がNitrogenランサムウェアに侵害され、8TB超のファイルが盗まれた事案を解説。Nitrogen の技術的特徴、EDR無効化手法、身代金を払っても復号できない欠陥、製造業サプライチェーンへの教訓を整理します。",
+    date: "2026-05-31",
+    readingMinutes: 9,
+    relatedTools: [],
+  },
+  {
+    slug: "daemon-tools-supply-chain",
+    category: "security",
+    title: "DAEMON Tools公式インストーラに1ヶ月バックドア — 正規署名済みサプライチェーン攻撃の全貌",
+    description:
+      "2026年4〜5月に仮想ドライブソフト「DAEMON Tools」の公式サイトから正規署名付きの悪性インストーラが配布されたサプライチェーン攻撃を解説。Kasperskyが発見した中国系攻撃者のバックドア挙動、製造業・政府機関への標的型ペイロード、対処法を整理します。",
+    date: "2026-05-31",
+    readingMinutes: 9,
+    relatedTools: [],
+  },
+  {
+    slug: "canvas-shinyhunters-breach",
+    category: "security",
+    title: "Canvas（Instructure）で2.75億人のデータ漏洩 — ShinyHuntersが世界8,809校を2度侵害",
+    description:
+      "2026年4〜5月に世界最大のLMS CanvasのInstructureがShinyHuntersに侵害され、8,809校・2.75億人のデータ3.65TBが流出した事案を解説。2度の侵害・ログイン画面改ざん・教育機関特有のリスク・恐喝型ハッカーの手口の変化を整理します。",
+    date: "2026-05-31",
+    readingMinutes: 9,
+    relatedTools: [],
+  },
+  {
     slug: "support-scam",
     category: "security",
     title: "サポート詐欺（偽警告詐欺）の手口と対処法 - 偽セキュリティ警告・遠隔操作・電話詐欺",
@@ -967,6 +1012,9 @@ const topicSlugs: Record<TopicId, string[]> = {
     "shai-hulud",
     "toolshell",
     "github-actions-supply-chain",
+    "foxconn-nitrogen-ransomware",
+    "daemon-tools-supply-chain",
+    "canvas-shinyhunters-breach",
     "support-scam",
     "cpanel-cve-2026-41940",
     "netlogon-cve-2026-41089",
