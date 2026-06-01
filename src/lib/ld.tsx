@@ -65,6 +65,22 @@ export function ArticleJsonLd({ slug }: { slug: string }) {
   });
 }
 
+export function ArticleFaqJsonLd({
+  faqs,
+}: {
+  faqs: { q: string; a: string }[];
+}) {
+  return jsonLdScript({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map(({ q, a }) => ({
+      "@type": "Question",
+      name: q,
+      acceptedAnswer: { "@type": "Answer", text: a },
+    })),
+  });
+}
+
 export function ToolJsonLd({ slug }: { slug: string }) {
   const tool = tools.find((t) => t.slug === slug);
   if (!tool) return null;

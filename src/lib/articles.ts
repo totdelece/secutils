@@ -344,6 +344,26 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "2026年5月から積極悪用されCISA KEVに登録されたPalo Alto Networks PAN-OSのVPN認証バイパス脆弱性CVE-2026-0257を日本語で解説。Authentication Override Cookieと証明書共有の設定ミスで公開鍵が取得でき正規VPNセッションを偽造できる仕組み、Rapid7が観測した管理者アカウント乗っ取り、影響を受けるPAN-OSバージョンと修正版、GlobalProtect設定の確認と無効化手順を日本語で整理します。",
   },
+  "sc-exam-guide": {
+    title: "情報処理安全確保支援士 勉強方法・合格率・おすすめ参考書【独学対策】",
+    description:
+      "情報処理安全確保支援士（登録セキスペ）の勉強方法を独学で合格した観点から解説。合格率約20%の難易度、午前I・午前II・午後の試験形式、スケジュールの立て方、おすすめ参考書・学習サイト、午後の記述対策まで実務目線でまとめます。",
+  },
+  "cissp-guide": {
+    title: "CISSP難易度・合格率・勉強時間をわかりやすく解説 - 日本語試験・必要な実務経験",
+    description:
+      "世界最高峰のセキュリティ資格CISSPの難易度、合格率、必要な実務経験、勉強時間の目安を日本語で解説。CAT方式の試験形式、8ドメインの内容、日本語試験の特徴、情報処理安全確保支援士・CompTIA Security+との難易度比較、Associate of (ISC)²の活用法まで整理します。",
+  },
+  "zero-trust-security": {
+    title: "ゼロトラストとは？わかりやすく解説 - 従来型セキュリティとの違い・導入製品・実践手順",
+    description:
+      "「信頼しない、常に確認する（Never Trust, Always Verify）」を原則とするゼロトラストセキュリティを初心者向けにわかりやすく解説。なぜ境界型防御では不十分なのか、NIST SP 800-207の7原則、SASEとの違い、Zscaler・Microsoft Entra ID・Google BeyondCorpなど代表的な製品・サービス、日本企業の導入ステップを整理します。",
+  },
+  "incident-response-guide": {
+    title: "セキュリティインシデント対応手順 - 初動から報告書作成まで【CSIRTフロー・テンプレート】",
+    description:
+      "セキュリティインシデント発生時の対応手順をNIST SP 800-61のフレームワークに沿って解説。検知・トリアージ・証拠保全・封じ込め・根絶・復旧・再発防止の各フェーズでやることを実務目線で整理し、ランサムウェア対応の特殊な注意点、報告書のテンプレート、CSIRT構築の考え方まで日本語でまとめます。",
+  },
 };
 
 export const articles: Article[] = [
@@ -961,6 +981,46 @@ export const articles: Article[] = [
     relatedTools: [],
   },
   {
+    slug: "sc-exam-guide",
+    category: "security",
+    title: "情報処理安全確保支援士 勉強方法・合格率・おすすめ参考書",
+    description:
+      "情報処理安全確保支援士（登録セキスペ）の難易度・合格率・試験形式・独学スケジュール・おすすめ参考書・午後対策を実務目線で解説します。",
+    date: "2026-06-01",
+    readingMinutes: 14,
+    relatedTools: [],
+  },
+  {
+    slug: "cissp-guide",
+    category: "security",
+    title: "CISSP難易度・合格率・勉強時間をわかりやすく解説",
+    description:
+      "世界最高峰のセキュリティ資格CISSPの難易度、必要な実務経験、勉強時間、日本語試験、情報処理安全確保支援士との比較を解説します。",
+    date: "2026-06-01",
+    readingMinutes: 13,
+    relatedTools: [],
+  },
+  {
+    slug: "zero-trust-security",
+    category: "security",
+    title: "ゼロトラストとは？わかりやすく解説 - 導入製品と実践手順",
+    description:
+      "Never Trust, Always Verify を原則とするゼロトラストセキュリティを初心者向けに解説。従来型との違い、NIST SP 800-207、代表製品、導入ステップをまとめます。",
+    date: "2026-06-01",
+    readingMinutes: 12,
+    relatedTools: [],
+  },
+  {
+    slug: "incident-response-guide",
+    category: "security",
+    title: "セキュリティインシデント対応手順 - 初動から報告書作成まで",
+    description:
+      "NIST SP 800-61 に沿った検知・証拠保全・封じ込め・根絶・復旧・再発防止の各フェーズ、ランサムウェア対応の注意点、報告書テンプレートを実務目線で整理します。",
+    date: "2026-06-01",
+    readingMinutes: 16,
+    relatedTools: [],
+  },
+  {
     slug: "cisco-firestarter-backdoor",
     category: "security",
     title: "FIRESTARTERバックドア詳解 - パッチ後も残るCisco ASAマルウェアと「電源抜き」だけが答え",
@@ -1090,6 +1150,7 @@ const topicSlugs: Record<TopicId, string[]> = {
     "path-traversal",
     "http-security-headers",
     "owasp-top-10",
+    "zero-trust-security",
   ],
   crypto: [
     "public-key-crypto",
@@ -1126,6 +1187,7 @@ const topicSlugs: Record<TopicId, string[]> = {
     "cisco-firestarter-backdoor",
     "forticlient-ems-cve-2026-35616",
     "pan-os-globalprotect-cve-2026-0257",
+    "incident-response-guide",
   ],
   ai: [
     "claude-mythos",
