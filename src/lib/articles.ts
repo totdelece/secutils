@@ -329,6 +329,21 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "OWASP LLM Top 10の第1位 プロンプトインジェクション（LLM01）を日本語で体系解説。LLMが「指示」と「データ」を区別できないという根本原因、直接（ジェイルブレイク）と間接（外部コンテンツ由来、2026年は55%超）の違い、EchoLeak（CVE-2025-32711）やMCP経由のゼロクリックRCE・KYC文書からのPII漏えいといった実例、危険な組み合わせ「Lethal Trifecta」、Spotlighting・ガードレール・CaMeL・最小権限・人間による承認といった多層防御とその限界を整理します。",
   },
+  "cisco-firestarter-backdoor": {
+    title: "FIRESTARTERバックドア詳解 - パッチ後も残るCisco ASA/Firewallマルウェアとハードリセットだけが答え",
+    description:
+      "2026年4月にCISA/NCSCが共同勧告したCisco ASA/Firewallに感染するFIRESTARTERバックドアを日本語で解説。CVE-2025-20333（CVSS 9.9）悪用で米連邦政府機関のFirepowerデバイスに設置され、ファームウェアアップデートでも除去できず物理的な電源抜きが唯一の駆除手段となった実態、LINE VIPERとのマルウェアチェーン、YARAルールによる検出、Cisco機器の継続監査の必要性を日本語で整理します。",
+  },
+  "forticlient-ems-cve-2026-35616": {
+    title: "FortiClient EMS CVE-2026-35616詳解 - 未認証APIバイパスで全管理端末にEKZスティーラーを配布",
+    description:
+      "2026年5月に積極悪用が確認されたFortiClient EMSの認証バイパス脆弱性CVE-2026-35616（CVSS 9.1）を日本語で解説。未認証でAPIを叩いて特権昇格し、FortiClientの管理チャネルを乗っ取ることで配下の全端末にEKZインフォスティーラーを「公式パッチ」に偽装して配布する攻撃チェーン、Chrome暗号化Cookie迂回、エンドポイント管理基盤が攻撃経路に変わるリスク、修正版と確認手順を日本語でまとめます。",
+  },
+  "pan-os-globalprotect-cve-2026-0257": {
+    title: "PAN-OS GlobalProtect CVE-2026-0257詳解 - VPN Cookie偽造とCISA KEV登録・2026年5月から積極悪用",
+    description:
+      "2026年5月から積極悪用されCISA KEVに登録されたPalo Alto Networks PAN-OSのVPN認証バイパス脆弱性CVE-2026-0257を日本語で解説。Authentication Override Cookieと証明書共有の設定ミスで公開鍵が取得でき正規VPNセッションを偽造できる仕組み、Rapid7が観測した管理者アカウント乗っ取り、影響を受けるPAN-OSバージョンと修正版、GlobalProtect設定の確認と無効化手順を日本語で整理します。",
+  },
 };
 
 export const articles: Article[] = [
@@ -945,6 +960,36 @@ export const articles: Article[] = [
     readingMinutes: 11,
     relatedTools: [],
   },
+  {
+    slug: "cisco-firestarter-backdoor",
+    category: "security",
+    title: "FIRESTARTERバックドア詳解 - パッチ後も残るCisco ASAマルウェアと「電源抜き」だけが答え",
+    description:
+      "2026年4月にCISA/NCSCが共同勧告したCisco ASA/Firewallに感染するFIRESTARTERバックドアを解説。CVE-2025-20333（CVSS 9.9）悪用で米連邦機関のFirepowerデバイスに設置され、ファームウェアアップデートでも除去できず物理的な電源抜きが唯一の駆除手段となった実態、LINE VIPERとのチェーン、YARAルール検出、Cisco機器の継続監査の必要性を日本語で整理します。",
+    date: "2026-06-01",
+    readingMinutes: 10,
+    relatedTools: [],
+  },
+  {
+    slug: "forticlient-ems-cve-2026-35616",
+    category: "security",
+    title: "FortiClient EMS CVE-2026-35616詳解 - 未認証APIバイパスで全管理端末にEKZスティーラーを配布",
+    description:
+      "2026年5月に積極悪用が確認されたFortiClient EMSの認証バイパス脆弱性CVE-2026-35616（CVSS 9.1）を解説。未認証でAPIを叩いて特権昇格し、FortiClientの管理チャネルを乗っ取ることで配下の全端末にEKZインフォスティーラーを「公式パッチ」に偽装して配布する攻撃チェーン、Chrome暗号化Cookie迂回、エンドポイント管理基盤が攻撃経路に変わるリスク、修正版と確認手順を日本語でまとめます。",
+    date: "2026-06-01",
+    readingMinutes: 10,
+    relatedTools: [],
+  },
+  {
+    slug: "pan-os-globalprotect-cve-2026-0257",
+    category: "security",
+    title: "PAN-OS GlobalProtect CVE-2026-0257詳解 - VPN Cookie偽造とCISA KEV登録・2026年5月から積極悪用",
+    description:
+      "2026年5月から積極悪用されCISA KEVに登録されたPalo Alto Networks PAN-OSのVPN認証バイパス脆弱性CVE-2026-0257を解説。Authentication Override Cookieと証明書共有の設定ミスで公開鍵が取得でき正規VPNセッションを偽造できる仕組み、Rapid7が観測した管理者アカウント乗っ取り、影響を受けるPAN-OSバージョンと修正版、GlobalProtect設定の確認と無効化手順を日本語で整理します。",
+    date: "2026-06-01",
+    readingMinutes: 10,
+    relatedTools: [],
+  },
 ];
 
 export function getArticle(
@@ -1078,6 +1123,9 @@ const topicSlugs: Record<TopicId, string[]> = {
     "ransomware-2026",
     "prompt-injection",
     "device-code-phishing",
+    "cisco-firestarter-backdoor",
+    "forticlient-ems-cve-2026-35616",
+    "pan-os-globalprotect-cve-2026-0257",
   ],
   ai: [
     "claude-mythos",
