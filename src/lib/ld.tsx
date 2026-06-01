@@ -6,6 +6,7 @@ import {
   getArticleSeoDescription,
   getArticleSeoTitle,
 } from "./articles";
+import { articleFaqs } from "./faqs";
 
 function jsonLdScript(data: object) {
   return (
@@ -41,28 +42,43 @@ export function ArticleJsonLd({ slug }: { slug: string }) {
   if (!article) return null;
   const base = getBaseUrl();
   const url = `${base}/learn/${article.category}/${article.slug}`;
-  return jsonLdScript({
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: getArticleSeoTitle(article),
-    description: getArticleSeoDescription(article),
-    url,
-    inLanguage: "ja",
-    datePublished: article.date,
-    dateModified: article.date,
-    articleSection: articleCategoryLabels[article.category],
-    author: {
-      "@type": "Organization",
-      name: siteName,
-      url: base,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: siteName,
-      url: base,
-    },
-    mainEntityOfPage: { "@type": "WebPage", "@id": url },
-  });
+  const faqs = articleFaqs[slug];
+  return (
+    <>
+      {jsonLdScript({
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: getArticleSeoTitle(article),
+        description: getArticleSeoDescription(article),
+        url,
+        inLanguage: "ja",
+        datePublished: article.date,
+        dateModified: article.date,
+        articleSection: articleCategoryLabels[article.category],
+        author: {
+          "@type": "Organization",
+          name: siteName,
+          url: base,
+        },
+        publisher: {
+          "@type": "Organization",
+          name: siteName,
+          url: base,
+        },
+        mainEntityOfPage: { "@type": "WebPage", "@id": url },
+      })}
+      {faqs && faqs.length > 0 &&
+        jsonLdScript({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqs.map(({ q, a }) => ({
+            "@type": "Question",
+            name: q,
+            acceptedAnswer: { "@type": "Answer", text: a },
+          })),
+        })}
+    </>
+  );
 }
 
 export function ArticleFaqJsonLd({

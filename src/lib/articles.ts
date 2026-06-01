@@ -344,6 +344,11 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "2026年5月から積極悪用されCISA KEVに登録されたPalo Alto Networks PAN-OSのVPN認証バイパス脆弱性CVE-2026-0257を日本語で解説。Authentication Override Cookieと証明書共有の設定ミスで公開鍵が取得でき正規VPNセッションを偽造できる仕組み、Rapid7が観測した管理者アカウント乗っ取り、影響を受けるPAN-OSバージョンと修正版、GlobalProtect設定の確認と無効化手順を日本語で整理します。",
   },
+  "security-certification-guide": {
+    title: "セキュリティ資格 比較・一覧 - 情報処理安全確保支援士・CISSP・CompTIA Security+の選び方",
+    description:
+      "セキュリティ資格を比較して自分に合ったものを選ぶためのガイドです。情報処理安全確保支援士・CISSP・CompTIA Security+・CEH・OSCP・AWS Security Specialtyなど主要資格の難易度・費用・取得条件・キャリアへの影響を日本語でまとめます。",
+  },
   "sc-exam-guide": {
     title: "情報処理安全確保支援士 勉強方法・合格率・おすすめ参考書【独学対策】",
     description:
@@ -978,6 +983,16 @@ export const articles: Article[] = [
       "OWASP LLM Top 10第1位のプロンプトインジェクション（LLM01）を体系解説。LLMが指示とデータを区別できない根本原因、直接（ジェイルブレイク）と間接（外部コンテンツ由来・2026年は55%超）の違い、EchoLeak（CVE-2025-32711）やMCP経由のゼロクリックRCEなどの実例、危険な組み合わせLethal Trifecta、Spotlighting・ガードレール・CaMeL・最小権限・人間による承認といった多層防御とその限界を日本語で整理します。",
     date: "2026-05-30",
     readingMinutes: 11,
+    relatedTools: [],
+  },
+  {
+    slug: "security-certification-guide",
+    category: "security",
+    title: "セキュリティ資格 比較・一覧 - 自分に合った資格の選び方",
+    description:
+      "情報処理安全確保支援士・CISSP・CompTIA Security+・CEH・OSCP・AWS Security Specialtyなど主要セキュリティ資格を難易度・費用・実務経験要件・キャリアへの影響で比較します。",
+    date: "2026-06-01",
+    readingMinutes: 13,
     relatedTools: [],
   },
   {
