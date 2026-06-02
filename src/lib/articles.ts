@@ -339,6 +339,11 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "2026年5月に積極悪用が確認されたFortiClient EMSの認証バイパス脆弱性CVE-2026-35616（CVSS 9.1）を日本語で解説。未認証でAPIを叩いて特権昇格し、FortiClientの管理チャネルを乗っ取ることで配下の全端末にEKZインフォスティーラーを「公式パッチ」に偽装して配布する攻撃チェーン、Chrome暗号化Cookie迂回、エンドポイント管理基盤が攻撃経路に変わるリスク、修正版と確認手順を日本語でまとめます。",
   },
+  "nordvpn-vs-expressvpn": {
+    title: "NordVPN vs ExpressVPN 比較2026 - ITエンジニアが選ぶVPNの違いと結論",
+    description:
+      "NordVPNとExpressVPNを料金・プロトコル・サーバー安全性・追加機能で正直に比較。NordLynx vs Lightway+耐量子暗号Kyber、TrustedServer（全RAM動作）の意味、Double VPN・Threat Protection、2年プランの実際のコスト、シナリオ別おすすめをIT担当者向けに整理します。",
+  },
   "pan-os-globalprotect-cve-2026-0257": {
     title: "PAN-OS GlobalProtect CVE-2026-0257詳解 - VPN Cookie偽造とCISA KEV登録・2026年5月から積極悪用",
     description:
@@ -1144,6 +1149,17 @@ export const articles: Article[] = [
     date: "2026-06-02",
     readingMinutes: 11,
     relatedTools: [],
+  },
+  {
+    slug: "nordvpn-vs-expressvpn",
+    category: "network",
+    title: "NordVPN vs ExpressVPN 比較2026 - ITエンジニアが選ぶVPNの違いと結論",
+    description:
+      "NordVPNとExpressVPNを料金・プロトコル・安全性・機能で比較。NordLynx vs Lightway+耐量子暗号Kyber、TrustedServer（全RAM動作）の意味、Double VPN・Threat Protection、シナリオ別おすすめをIT担当者向けに整理します。",
+    date: "2026-06-02",
+    readingMinutes: 12,
+    relatedTools: [],
+    affiliate: true,
   },
   {
     slug: "defender-bluehammer-redsun-undefend",
