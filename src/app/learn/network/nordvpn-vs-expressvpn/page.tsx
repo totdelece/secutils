@@ -8,6 +8,42 @@ const NORD_PIXEL = "https://www18.a8.net/0.gif?a8mat=4B5MC7+7118VM+3YFI+674EQ";
 const EXPRESS_URL = "https://px.a8.net/svt/ejp?a8mat=4B3LMV+A4YQLU+5JSS+5YJRM";
 const EXPRESS_PIXEL = "https://www14.a8.net/0.gif?a8mat=4B3LMV+A4YQLU+5JSS+5YJRM";
 
+type BannerAd = {
+  href: string;
+  src: string;
+  pixel: string;
+  width: number;
+  height: number;
+  alt: string;
+};
+
+const nordBanner300x250: BannerAd = {
+  href: "https://px.a8.net/svt/ejp?a8mat=4B5MC7+7118VM+3YFI+5ZMCH",
+  src: "https://www22.a8.net/svt/bgt?aid=260602711425&wid=001&eno=01&mid=s00000018459001006000&mc=1",
+  pixel: "https://www10.a8.net/0.gif?a8mat=4B5MC7+7118VM+3YFI+5ZMCH",
+  width: 300,
+  height: 250,
+  alt: "NordVPN 公式キャンペーン",
+};
+
+const nordBanner936x120: BannerAd = {
+  href: "https://px.a8.net/svt/ejp?a8mat=4B5MC7+7118VM+3YFI+60OXD",
+  src: "https://www21.a8.net/svt/bgt?aid=260602711425&wid=001&eno=01&mid=s00000018459001011000&mc=1",
+  pixel: "https://www17.a8.net/0.gif?a8mat=4B5MC7+7118VM+3YFI+60OXD",
+  width: 936,
+  height: 120,
+  alt: "NordVPN 公式キャンペーン",
+};
+
+const expressBanner300x250: BannerAd = {
+  href: "https://px.a8.net/svt/ejp?a8mat=4B3LMV+A4YQLU+5JSS+5YZ75",
+  src: "https://www27.a8.net/svt/bgt?aid=260508487613&wid=001&eno=01&mid=s00000025894001003000&mc=1",
+  pixel: "https://www13.a8.net/0.gif?a8mat=4B3LMV+A4YQLU+5JSS+5YZ75",
+  width: 300,
+  height: 250,
+  alt: "ExpressVPN 公式キャンペーン",
+};
+
 const tldr = [
   {
     no: "01",
@@ -139,7 +175,7 @@ const expressStrengths = [
   },
   {
     title: "Lightway + Kyber（耐量子暗号）",
-    body: "独自プロトコルLightwayにNIST標準化のKyber（格子暗号）を採用。現在の盗聴データを将来量子コンピュータで復号する「Harvest Now, Decrypt Later」攻撃への備え。",
+    body: "独自プロトコルLightwayにNIST標準化のKyber（格子暗号）を採用。「Harvest Now, Decrypt Later」攻撃への備え。",
   },
   {
     title: "Lightway Turboモード",
@@ -201,8 +237,7 @@ const faqs = [
   },
   {
     q: "VPNを使えば完全に匿名になれるか？",
-    a: "なれません。VPNはIPアドレスを隠し通信を暗号化しますが、ログインしているサービス（Google・X等）からは依然として識別されます。またVPNプロバイダ自身はあなたの接続先を把握できます。VPNは「通信経路を暗号化する」ツールであり、完全匿名化ツールではありません。VPNの基本的な仕組みについては <a href=\"/learn/network/vpn-basics\">VPNの仕組み</a> も参照してください。",
-    hasInternalLink: true,
+    a: "なれません。VPNはIPアドレスを隠し通信を暗号化しますが、ログインしているサービス（Google・X等）からは依然として識別されます。またVPNプロバイダ自身はあなたの接続先を把握できます。VPNは「通信経路を暗号化する」ツールであり、完全匿名化ツールではありません。",
   },
 ];
 
@@ -263,6 +298,19 @@ function CtaButton({
   );
 }
 
+function BannerImage({ ad }: { ad: BannerAd }) {
+  return (
+    <>
+      <a href={ad.href} rel="nofollow noopener noreferrer" target="_blank" className="block transition hover:opacity-90">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={ad.src} alt={ad.alt} width={ad.width} height={ad.height} className="h-auto max-w-full rounded-md" />
+      </a>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={ad.pixel} width={1} height={1} alt="" aria-hidden="true" style={{ position: "absolute", left: "-9999px", width: 1, height: 1 }} />
+    </>
+  );
+}
+
 function SectionTitle({
   eyebrow,
   title,
@@ -315,7 +363,6 @@ function Hero() {
             <p className="mt-6 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
               「機能が多くて安いのはどっち？」「セキュリティが本当に強いのはどっち？」IT担当者の目線で、料金・プロトコル・サーバー安全性・追加機能を正直に比較します。
             </p>
-
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
               <CtaButton href={NORD_URL} color="emerald" size="lg">NordVPN 公式を見る</CtaButton>
               <CtaButton href={EXPRESS_URL} color="blue" size="lg">ExpressVPN 公式を見る</CtaButton>
@@ -328,29 +375,26 @@ function Hero() {
           <aside className="mx-auto w-full max-w-sm">
             <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-xl shadow-emerald-950/10">
               <div className="mb-4 text-center text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">
-                主要スペック早見表
+                PR / 公式キャンペーン
               </div>
-              <div className="space-y-3 text-sm">
-                {[
-                  { label: "最安（2年）", nord: "$3.39/月", express: "$3.49/月" },
-                  { label: "サーバー数", nord: "6,400+", express: "3,000+" },
-                  { label: "同時接続", nord: "10台", express: "10台" },
-                  { label: "プロトコル", nord: "NordLynx", express: "Lightway" },
-                  { label: "耐量子暗号", nord: "─", express: "Kyber ✓" },
-                  { label: "RAMサーバー", nord: "一部", express: "全台 ✓" },
-                  { label: "Double VPN", nord: "✓", express: "─" },
-                  { label: "返金保証", nord: "30日", express: "30日" },
-                ].map((r) => (
-                  <div key={r.label} className="grid grid-cols-[1fr_1.1fr_1.1fr] items-center gap-2">
-                    <div className="text-[11px] font-bold text-slate-400">{r.label}</div>
-                    <div className="rounded-lg bg-emerald-50 px-2 py-1 text-center text-[11px] font-bold text-emerald-700">{r.nord}</div>
-                    <div className="rounded-lg bg-blue-50 px-2 py-1 text-center text-[11px] font-bold text-blue-700">{r.express}</div>
+              <div className="space-y-5">
+                <div>
+                  <div className="mb-2 text-[10px] font-black uppercase tracking-wide text-emerald-700">NordVPN</div>
+                  <div className="relative flex justify-center">
+                    <BannerImage ad={nordBanner300x250} />
                   </div>
-                ))}
-                <div className="grid grid-cols-[1fr_1.1fr_1.1fr] gap-2 pt-1">
-                  <div />
-                  <div className="text-center text-[10px] font-black text-emerald-700">NordVPN</div>
-                  <div className="text-center text-[10px] font-black text-blue-700">ExpressVPN</div>
+                  <a href={NORD_URL} rel="nofollow noopener noreferrer" target="_blank" className="mt-2 block text-center text-xs font-bold text-emerald-700 underline-offset-2 hover:underline">
+                    公式サイトで詳細を見る →
+                  </a>
+                </div>
+                <div className="border-t border-slate-100 pt-4">
+                  <div className="mb-2 text-[10px] font-black uppercase tracking-wide text-blue-700">ExpressVPN</div>
+                  <div className="relative flex justify-center">
+                    <BannerImage ad={expressBanner300x250} />
+                  </div>
+                  <a href={EXPRESS_URL} rel="nofollow noopener noreferrer" target="_blank" className="mt-2 block text-center text-xs font-bold text-blue-700 underline-offset-2 hover:underline">
+                    公式サイトで詳細を見る →
+                  </a>
                 </div>
               </div>
             </div>
@@ -463,7 +507,7 @@ function CtaBand() {
   return (
     <section className="bg-white px-5 py-14 sm:px-6">
       <div className="mx-auto max-w-6xl">
-        <div className="grid gap-5 rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-6 shadow-sm sm:p-8 lg:grid-cols-2 lg:items-center">
+        <div className="grid gap-6 rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-6 shadow-sm sm:p-8 lg:grid-cols-[minmax(0,1fr)_minmax(280px,560px)] lg:items-center">
           <div>
             <Badge tone="emerald">30日返金保証あり</Badge>
             <h2 className="mt-4 text-2xl font-black leading-tight tracking-tight text-slate-950 sm:text-3xl">
@@ -472,10 +516,18 @@ function CtaBand() {
             <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
               両社とも30日返金保証があります。申し込んで実際に速度・安定性・使い勝手を確かめてから継続か解約を判断するのが最もリスクのない選び方です。
             </p>
+            <div className="mt-5 grid gap-3 sm:grid-cols-2">
+              <CtaButton href={NORD_URL} color="emerald" size="lg">NordVPN を30日試す</CtaButton>
+              <CtaButton href={EXPRESS_URL} color="blue" size="lg">ExpressVPN を30日試す</CtaButton>
+            </div>
           </div>
-          <div className="grid gap-3">
-            <CtaButton href={NORD_URL} color="emerald" size="lg">NordVPN を30日試す（返金保証あり）</CtaButton>
-            <CtaButton href={EXPRESS_URL} color="blue" size="lg">ExpressVPN を30日試す（返金保証あり）</CtaButton>
+          <div className="relative w-full overflow-hidden rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
+            <div className="mb-2 text-center text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">
+              PR / NordVPN 公式バナー
+            </div>
+            <div className="flex justify-center">
+              <BannerImage ad={nordBanner936x120} />
+            </div>
           </div>
         </div>
       </div>
@@ -490,18 +542,31 @@ function NordStrengthsSection() {
         <SectionTitle eyebrow="NordVPN" title="NordVPNの5つの強み" align="left">
           機能の多さと価格のバランスで選ぶなら、現状NordVPNが優位に立つ項目が多い。
         </SectionTitle>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {nordStrengths.map((s) => (
-            <article key={s.title} className="flex h-full flex-col rounded-2xl border border-emerald-200 bg-white p-6 shadow-sm">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-600 text-base font-black text-white">✓</div>
-              <h3 className="mt-5 text-lg font-black text-slate-950">{s.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-slate-600">{s.body}</p>
-            </article>
-          ))}
-        </div>
-        <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:max-w-xl">
-          <CtaButton href={NORD_URL} color="emerald" size="lg">NordVPN 公式を見る</CtaButton>
-          <CtaButton href={NORD_URL} variant="outline" color="emerald">料金プランを確認</CtaButton>
+        <div className="grid gap-6 lg:grid-cols-[1fr_300px]">
+          <div className="grid gap-4 sm:grid-cols-2">
+            {nordStrengths.map((s) => (
+              <article key={s.title} className="flex h-full flex-col rounded-2xl border border-emerald-200 bg-white p-6 shadow-sm">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-600 text-base font-black text-white">✓</div>
+                <h3 className="mt-5 text-lg font-black text-slate-950">{s.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-slate-600">{s.body}</p>
+              </article>
+            ))}
+          </div>
+          <aside className="flex flex-col gap-4">
+            <div className="rounded-2xl border border-emerald-200 bg-white p-4 shadow-sm">
+              <div className="mb-3 text-center text-[10px] font-black uppercase tracking-wide text-emerald-700">PR / NordVPN 公式</div>
+              <div className="relative flex justify-center">
+                <BannerImage ad={nordBanner300x250} />
+              </div>
+              <a href={NORD_URL} rel="nofollow noopener noreferrer" target="_blank" className="mt-3 block text-center text-xs font-bold text-emerald-700 underline-offset-2 hover:underline">
+                公式サイトで詳細を見る →
+              </a>
+            </div>
+            <div className="grid gap-2">
+              <CtaButton href={NORD_URL} color="emerald" size="lg">NordVPN 公式を見る</CtaButton>
+              <CtaButton href={NORD_URL} variant="outline" color="emerald">料金プランを確認</CtaButton>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
@@ -515,18 +580,31 @@ function ExpressStrengthsSection() {
         <SectionTitle eyebrow="ExpressVPN" title="ExpressVPNの5つの強み" align="left">
           ハードウェアレベルの安全性と、量子コンピュータ時代を見据えた暗号化で差別化している。
         </SectionTitle>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {expressStrengths.map((s) => (
-            <article key={s.title} className="flex h-full flex-col rounded-2xl border border-blue-200 bg-white p-6 shadow-sm">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-base font-black text-white">✓</div>
-              <h3 className="mt-5 text-lg font-black text-slate-950">{s.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-slate-600">{s.body}</p>
-            </article>
-          ))}
-        </div>
-        <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:max-w-xl">
-          <CtaButton href={EXPRESS_URL} color="blue" size="lg">ExpressVPN 公式を見る</CtaButton>
-          <CtaButton href={EXPRESS_URL} variant="outline" color="blue">料金プランを確認</CtaButton>
+        <div className="grid gap-6 lg:grid-cols-[1fr_300px]">
+          <div className="grid gap-4 sm:grid-cols-2">
+            {expressStrengths.map((s) => (
+              <article key={s.title} className="flex h-full flex-col rounded-2xl border border-blue-200 bg-white p-6 shadow-sm">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-base font-black text-white">✓</div>
+                <h3 className="mt-5 text-lg font-black text-slate-950">{s.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-slate-600">{s.body}</p>
+              </article>
+            ))}
+          </div>
+          <aside className="flex flex-col gap-4">
+            <div className="rounded-2xl border border-blue-200 bg-white p-4 shadow-sm">
+              <div className="mb-3 text-center text-[10px] font-black uppercase tracking-wide text-blue-700">PR / ExpressVPN 公式</div>
+              <div className="relative flex justify-center">
+                <BannerImage ad={expressBanner300x250} />
+              </div>
+              <a href={EXPRESS_URL} rel="nofollow noopener noreferrer" target="_blank" className="mt-3 block text-center text-xs font-bold text-blue-700 underline-offset-2 hover:underline">
+                公式サイトで詳細を見る →
+              </a>
+            </div>
+            <div className="grid gap-2">
+              <CtaButton href={EXPRESS_URL} color="blue" size="lg">ExpressVPN 公式を見る</CtaButton>
+              <CtaButton href={EXPRESS_URL} variant="outline" color="blue">料金プランを確認</CtaButton>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
@@ -605,13 +683,7 @@ function FaqSection() {
                 </span>
                 <span aria-hidden="true" className="text-emerald-700 transition group-open:rotate-45">+</span>
               </summary>
-              <div className="mt-4 border-t border-slate-100 pt-4 text-sm leading-7 text-slate-700">
-                {f.hasInternalLink ? (
-                  <span dangerouslySetInnerHTML={{ __html: f.a }} />
-                ) : (
-                  f.a
-                )}
-              </div>
+              <div className="mt-4 border-t border-slate-100 pt-4 text-sm leading-7 text-slate-700">{f.a}</div>
             </details>
           ))}
         </div>
@@ -627,12 +699,10 @@ function FinalDecision() {
         <div className="mx-auto mb-10 max-w-3xl text-center">
           <div className="text-[11px] font-black uppercase tracking-[0.24em] text-emerald-300">Final</div>
           <h2 className="mt-3 text-3xl font-black tracking-tight text-white sm:text-4xl">最終結論</h2>
-          <p className="mt-4 text-base leading-8 text-slate-300">
-            どちらも返金保証つきで試せる。迷うより試した方が早い。
-          </p>
+          <p className="mt-4 text-base leading-8 text-slate-300">どちらも返金保証つきで試せる。迷うより試した方が早い。</p>
         </div>
         <div className="grid gap-5 lg:grid-cols-2">
-          <div className="rounded-3xl bg-emerald-900/40 p-6 ring-1 ring-emerald-700/40 sm:p-8">
+          <div className="flex flex-col rounded-3xl bg-emerald-900/40 p-6 ring-1 ring-emerald-700/40 sm:p-8">
             <div className="text-[10px] font-black uppercase tracking-wide text-emerald-300">NordVPN を選ぶなら</div>
             <h3 className="mt-2 text-xl font-black text-white">機能・価格・接続数のバランスで選ぶ</h3>
             <ul className="mt-4 space-y-2 text-sm leading-7 text-slate-300">
@@ -641,12 +711,18 @@ function FinalDecision() {
               <li>✓ Double VPN・Threat Protectionが標準</li>
               <li>✓ セキュリティ機能を盛り込みたいなら第一候補</li>
             </ul>
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+            <div className="mt-5 rounded-xl bg-white/5 p-3 ring-1 ring-white/10">
+              <div className="mb-2 text-center text-[10px] font-black uppercase tracking-wide text-emerald-300">PR / 公式バナー</div>
+              <div className="relative flex justify-center">
+                <BannerImage ad={nordBanner300x250} />
+              </div>
+            </div>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
               <CtaButton href={NORD_URL} color="emerald" size="lg">NordVPN 公式を見る</CtaButton>
               <CtaButton href={NORD_URL} variant="outline" color="emerald">料金を確認</CtaButton>
             </div>
           </div>
-          <div className="rounded-3xl bg-blue-900/40 p-6 ring-1 ring-blue-700/40 sm:p-8">
+          <div className="flex flex-col rounded-3xl bg-blue-900/40 p-6 ring-1 ring-blue-700/40 sm:p-8">
             <div className="text-[10px] font-black uppercase tracking-wide text-blue-300">ExpressVPN を選ぶなら</div>
             <h3 className="mt-2 text-xl font-black text-white">ハード安全性・耐量子暗号で選ぶ</h3>
             <ul className="mt-4 space-y-2 text-sm leading-7 text-slate-300">
@@ -655,7 +731,13 @@ function FinalDecision() {
               <li>✓ 105カ国以上・業界最古参の実績</li>
               <li>✓ 将来の量子コンピュータリスクまで考慮するなら</li>
             </ul>
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+            <div className="mt-5 rounded-xl bg-white/5 p-3 ring-1 ring-white/10">
+              <div className="mb-2 text-center text-[10px] font-black uppercase tracking-wide text-blue-300">PR / 公式バナー</div>
+              <div className="relative flex justify-center">
+                <BannerImage ad={expressBanner300x250} />
+              </div>
+            </div>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
               <CtaButton href={EXPRESS_URL} color="blue" size="lg">ExpressVPN 公式を見る</CtaButton>
               <CtaButton href={EXPRESS_URL} variant="outline" color="blue">料金を確認</CtaButton>
             </div>
