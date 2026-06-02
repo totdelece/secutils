@@ -359,6 +359,21 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "イラン国家系APT MuddyWater（Mango Sandstorm）が2026年前半にMicrosoft Teamsを使った「社内ITサポートなりすまし」で侵入し、Chaosランサムウェアを偽旗として残しながら諜報・認証情報窃取・データ持ち出しを行った事案をRapid7の分析を基に日本語で解説。Teams外部テナント悪用の仕組み、DLLサイドローディング（SentinelOne製バイナリ悪用）、偽旗作戦の戦術的意味、ランサムウェアインシデントが実は国家スパイである場合のリスク、Teams設定確認・RMMツール制御・初動の偽旗チェックによる対策を整理します。",
   },
+  "chatgphish-chatgpt-phishing": {
+    title: "ChatGPhish詳解 - ChatGPTのMarkdown信頼を悪用したフィッシング・IP漏洩・QRコードバイパスの手口",
+    description:
+      "2026年5月にPermiso Securityが公表したChatGPTウェブ要約機能の脆弱性「ChatGPhish」を日本語で解説。chatgpt.comのレスポンスレンダラーがMarkdown画像を自動取得・リンクを信頼済みUI要素として表示する仕組みを悪用し、被害者のIP/UA/Referer流出・クリック可能なフィッシングリンクの埋め込み・デスクトップURLフィルタを回避するQRコードフィッシングが可能になる攻撃チェーン、間接プロンプトインジェクションとの関係、業務利用ChatGPTへの対策ポリシーを整理します。",
+  },
+  "trellix-source-code-breach": {
+    title: "Trellix（旧McAfee/FireEye）ソースコード流出 - RansomHouseが侵害したセキュリティベンダー被害の深刻度",
+    description:
+      "2026年5月にRansomHouseランサムウェアグループが侵害し、ソースコードリポジトリへの不正アクセスを引き起こしたTrellixインシデントを日本語で解説。McAfee EnterpriseとFireEye合併で生まれた53,000超顧客・2億超エンドポイント保護のセキュリティベンダーのソースコード流出がなぜ一般企業と質的に異なるリスクか（検知回避ロジック把握・未知脆弱性発見・サプライチェーン攻撃基盤）、RSA・FireEye・Okta・Microsoftの過去事例との比較、Trellix製品ユーザーが今すべき確認と多層防御の考え方を整理します。",
+  },
+  "defender-bluehammer-redsun-undefend": {
+    title: "Microsoft Defender 3ゼロデイ詳解（BlueHammer/RedSun/UnDefend）- SYSTEM昇格と定義更新無効化の組み合わせ攻撃",
+    description:
+      "2026年4〜5月に連続発覚したMicrosoft Defenderの3ゼロデイ BlueHammer（CVE-2026-33825）・RedSun（CVE-2026-41091）・UnDefend（CVE-2026-45498）を日本語で解説。SAMデータベースを使ったSYSTEM昇格（BlueHammer）・システムファイル書き換えによるSYSTEM昇格（RedSun）・一般ユーザーがDefender定義更新を停止するDoS（UnDefend）を段階的に組み合わせる「Layered Degradation Strategy」の仕組み、Huntressが観測した野放し悪用の実態、Antimalware Platformのバージョン確認・定義更新状態のチェック・多層防御の構築を整理します。",
+  },
   "security-certification-guide": {
     title: "セキュリティ資格 比較・一覧 - 情報処理安全確保支援士・CISSP・CompTIA Security+の選び方",
     description:
@@ -1110,6 +1125,36 @@ export const articles: Article[] = [
     readingMinutes: 11,
     relatedTools: [],
   },
+  {
+    slug: "chatgphish-chatgpt-phishing",
+    category: "security",
+    title: "ChatGPhish詳解 - ChatGPTのMarkdown信頼を悪用したフィッシング・IP漏洩・QRコードバイパス",
+    description:
+      "2026年5月にPermiso Securityが公表したChatGPTウェブ要約機能の脆弱性「ChatGPhish」を解説。Markdown画像の自動取得でIP/UA/Refererが流出し、フィッシングリンクやQRコードがChatGPTのUIに埋め込まれる仕組み、間接プロンプトインジェクションとの関係、デスクトップURLフィルタの回避、業務ChatGPT利用への対策ポリシーを日本語で整理します。",
+    date: "2026-06-02",
+    readingMinutes: 10,
+    relatedTools: [],
+  },
+  {
+    slug: "trellix-source-code-breach",
+    category: "security",
+    title: "Trellix（旧McAfee/FireEye）ソースコード流出 - セキュリティベンダー侵害が特別に危険な理由",
+    description:
+      "2026年5月にRansomHouseが侵害したTrellixのソースコードリポジトリ不正アクセス事案を解説。McAfee Enterprise＋FireEye合併の53,000超顧客ベンダーのコード流出がなぜ一般企業と質的に異なるか（検知回避ロジック把握・未知脆弱性発見）、RSA・FireEye・Okta・Microsoftの歴史的事例との比較、Trellix製品ユーザーの確認手順と多層防御の考え方を日本語で整理します。",
+    date: "2026-06-02",
+    readingMinutes: 11,
+    relatedTools: [],
+  },
+  {
+    slug: "defender-bluehammer-redsun-undefend",
+    category: "security",
+    title: "Microsoft Defender 3ゼロデイ（BlueHammer/RedSun/UnDefend）- SYSTEM昇格と定義更新無効化の組み合わせ攻撃",
+    description:
+      "2026年4〜5月に連続発覚したMicrosoft Defender 3ゼロデイ：SAMを使ったSYSTEM昇格BlueHammer（CVE-2026-33825）・システムファイル書き換えRedSun（CVE-2026-41091）・一般ユーザーが定義更新を停止するUnDefend（CVE-2026-45498）。3つを組み合わせる「Layered Degradation Strategy」の仕組み、Huntressが観測した野放し悪用の実態、Antimalware Platformのバージョン確認・定義更新チェック・多層防御の構築を日本語で整理します。",
+    date: "2026-06-02",
+    readingMinutes: 11,
+    relatedTools: [],
+  },
 ];
 
 export function getArticle(
@@ -1251,6 +1296,9 @@ const topicSlugs: Record<TopicId, string[]> = {
     "ai-generated-zero-day-exploit",
     "exchange-cve-2026-42897",
     "muddywater-teams-fake-ransomware",
+    "chatgphish-chatgpt-phishing",
+    "trellix-source-code-breach",
+    "defender-bluehammer-redsun-undefend",
   ],
   ai: [
     "claude-mythos",
@@ -1259,6 +1307,7 @@ const topicSlugs: Record<TopicId, string[]> = {
     "prompt-injection",
     "langflow-cve-2025-34291",
     "ai-generated-zero-day-exploit",
+    "chatgphish-chatgpt-phishing",
   ],
   netbasics: [
     "cidr-notation",
