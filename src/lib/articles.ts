@@ -344,6 +344,21 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "2026年5月から積極悪用されCISA KEVに登録されたPalo Alto Networks PAN-OSのVPN認証バイパス脆弱性CVE-2026-0257を日本語で解説。Authentication Override Cookieと証明書共有の設定ミスで公開鍵が取得でき正規VPNセッションを偽造できる仕組み、Rapid7が観測した管理者アカウント乗っ取り、影響を受けるPAN-OSバージョンと修正版、GlobalProtect設定の確認と無効化手順を日本語で整理します。",
   },
+  "ai-generated-zero-day-exploit": {
+    title: "AIが書いたゼロデイエクスプロイト - 初の2FA迂回コードをGoogleが検知、攻撃自動化の到達点",
+    description:
+      "2026年5月にGoogleが公表した「犯罪グループがAIを使ってゼロデイエクスプロイトを開発した」初の事例を日本語で解説。LLM生成コードに典型的なdocstring・架空のCVSSスコア・教科書的なコード構造で識別された実態、2FA検証ロジックのバグを大量悪用しようとした攻撃者の意図、Mandiantのパッチ前悪用28.3%データが示すTime-to-Exploitの短縮、管理ツールの公開範囲最小化・2FA実装品質評価・脆弱性対応高速化による防御を整理します。",
+  },
+  "exchange-cve-2026-42897": {
+    title: "Microsoft Exchange XSSゼロデイ（CVE-2026-42897）詳解 - メール1通でOWAセッション乗っ取りとBEC基盤化",
+    description:
+      "2026年5月にCISA KEVに追加されたMicrosoft Exchange Server OWAのXSSゼロデイCVE-2026-42897（CVSS 8.1）を日本語で解説。細工したメールをOWAで開くだけで任意のJavaScript実行・セッションCookie窃取・なりすまし送信・パスワードリセット後も残る転送ルール設置が可能になる仕組み、Exchange 2016/2019/SE全バージョンへの影響、EEMSによる自動緩和の確認手順、BECへの発展リスクと悪性転送ルールの調査コマンドを整理します。",
+  },
+  "muddywater-teams-fake-ransomware": {
+    title: "MuddyWaterがTeamsで社内ITを装う - ランサムウェアを煙幕にするイラン国家スパイ活動の手口",
+    description:
+      "イラン国家系APT MuddyWater（Mango Sandstorm）が2026年前半にMicrosoft Teamsを使った「社内ITサポートなりすまし」で侵入し、Chaosランサムウェアを偽旗として残しながら諜報・認証情報窃取・データ持ち出しを行った事案をRapid7の分析を基に日本語で解説。Teams外部テナント悪用の仕組み、DLLサイドローディング（SentinelOne製バイナリ悪用）、偽旗作戦の戦術的意味、ランサムウェアインシデントが実は国家スパイである場合のリスク、Teams設定確認・RMMツール制御・初動の偽旗チェックによる対策を整理します。",
+  },
   "security-certification-guide": {
     title: "セキュリティ資格 比較・一覧 - 情報処理安全確保支援士・CISSP・CompTIA Security+の選び方",
     description:
@@ -1065,6 +1080,36 @@ export const articles: Article[] = [
     readingMinutes: 10,
     relatedTools: [],
   },
+  {
+    slug: "ai-generated-zero-day-exploit",
+    category: "security",
+    title: "AIが書いたゼロデイエクスプロイト - Googleが検知した2FA迂回コードと攻撃自動化の到達点",
+    description:
+      "2026年5月にGoogleが公表した「犯罪グループがAIを使ってゼロデイエクスプロイトを開発した」初の事例を解説。LLM生成コードの識別特徴（docstring・架空のCVSSスコア・教科書的構造）、2FA検証ロジックのバグを大量悪用しようとした攻撃者の意図、Mandiantのデータが示すTime-to-Exploitの短縮、管理ツールの公開範囲最小化・2FA品質評価・高速パッチ適用による防御を日本語で整理します。",
+    date: "2026-06-02",
+    readingMinutes: 10,
+    relatedTools: [],
+  },
+  {
+    slug: "exchange-cve-2026-42897",
+    category: "security",
+    title: "Microsoft Exchange XSSゼロデイ（CVE-2026-42897）詳解 - メール1通でOWAセッション乗っ取り",
+    description:
+      "2026年5月にCISA KEVに追加されたMicrosoft Exchange Server OWAのXSSゼロデイCVE-2026-42897（CVSS 8.1）を解説。細工したメールをOWAで開くだけで任意のJavaScript実行・セッションCookie窃取・なりすまし送信・パスワードリセット後も残る転送ルール設置が可能になる仕組み、Exchange 2016/2019/SE全バージョンへの影響、EEMSによる緩和確認手順、BECへの発展リスクと転送ルール調査コマンドを日本語で整理します。",
+    date: "2026-06-02",
+    readingMinutes: 10,
+    relatedTools: [],
+  },
+  {
+    slug: "muddywater-teams-fake-ransomware",
+    category: "security",
+    title: "MuddyWaterがTeamsで社内ITを装う - ランサムウェアを煙幕にするイラン国家スパイ活動",
+    description:
+      "イラン国家系APT MuddyWater（Mango Sandstorm）が2026年前半にMicrosoft Teamsを使った「ITサポートなりすまし」で侵入し、Chaosランサムウェアを偽旗として残しながら諜報・認証情報窃取を行った事案をRapid7の分析を基に解説。Teams外部テナント悪用・DLLサイドローディング（SentinelOne製バイナリ悪用）・偽旗作戦の戦術的意味、ランサムウェアが国家スパイの煙幕である場合のリスク、Teams設定確認・RMMツール制御・初動の偽旗チェックによる対策を日本語で整理します。",
+    date: "2026-06-02",
+    readingMinutes: 11,
+    relatedTools: [],
+  },
 ];
 
 export function getArticle(
@@ -1203,6 +1248,9 @@ const topicSlugs: Record<TopicId, string[]> = {
     "forticlient-ems-cve-2026-35616",
     "pan-os-globalprotect-cve-2026-0257",
     "incident-response-guide",
+    "ai-generated-zero-day-exploit",
+    "exchange-cve-2026-42897",
+    "muddywater-teams-fake-ransomware",
   ],
   ai: [
     "claude-mythos",
@@ -1210,6 +1258,7 @@ const topicSlugs: Record<TopicId, string[]> = {
     "ai-browser-prompt-injection",
     "prompt-injection",
     "langflow-cve-2025-34291",
+    "ai-generated-zero-day-exploit",
   ],
   netbasics: [
     "cidr-notation",
