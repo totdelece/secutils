@@ -48,7 +48,7 @@ const tldr = [
   {
     no: "01",
     title: "コスパ・機能量ならNordVPN",
-    body: "2年プランで月$3.39〜。6,400+サーバー、10台同時接続、Double VPN、Threat Protectionを標準装備。セキュリティ重視のIT担当者に刺さる構成。",
+    body: "2年プランで月530円前後〜。6,400+サーバー、10台同時接続、Double VPN、Threat Protectionを標準装備。セキュリティ重視のIT担当者に刺さる構成。",
   },
   {
     no: "02",
@@ -63,8 +63,8 @@ const tldr = [
 ];
 
 const comparisonRows = [
-  { label: "2年プラン（最安）", nord: "$3.39/月", express: "$3.49/月" },
-  { label: "月払い", nord: "$12.99/月", express: "$12.99/月" },
+  { label: "2年プラン（最安）", nord: "約530円/月", express: "約540円/月" },
+  { label: "月払い", nord: "約2,000円/月", express: "約2,000円/月" },
   { label: "同時接続台数", nord: "10台", express: "10台（Basic）" },
   { label: "サーバー数", nord: "6,400+", express: "3,000+" },
   { label: "対応国数", nord: "111カ国+", express: "105カ国+" },
@@ -108,7 +108,7 @@ const useCases = [
   {
     scenario: "コストを最小化しつつ高機能を使いたい",
     recommend: "Nord",
-    reason: "2年プラン$3.39/月。標準プランでDouble VPN・Threat Protection込みの充実度。",
+    reason: "2年プラン約530円/月。標準プランでDouble VPN・Threat Protection込みの充実度。",
   },
 ];
 
@@ -136,7 +136,7 @@ const selectionAxes = [
   {
     no: "05",
     title: "料金と更新コスト",
-    body: "2年プランはNord $3.39 vs Express $3.49とほぼ同じ。注意は更新時の価格——どちらも初回キャンペーン価格は適用されないため、更新前に再確認が必要。",
+    body: "2年プランはNord 約530円 vs Express 約540円とほぼ同じ（1USD≒155円換算）。注意は更新時の価格——どちらも初回キャンペーン価格は適用されないため、更新前に再確認が必要。",
   },
   {
     no: "06",
@@ -195,17 +195,17 @@ const planRows = [
   {
     label: "Basic",
     nordSpec: "VPN本体・10台・NordLynx・Threat Protection",
-    nordPrice: "2年: $3.39/月〜",
+    nordPrice: "2年: 約530円/月〜",
     expressSpec: "VPN本体・10台・Lightway",
-    expressPrice: "2年: $3.49/月〜",
+    expressPrice: "2年: 約540円/月〜",
     highlight: true,
   },
   {
     label: "上位",
     nordSpec: "Plus: パスワードマネージャー追加 / Complete: 1TB暗号化ストレージ追加",
-    nordPrice: "Plus 2年: $4.39/月〜",
+    nordPrice: "Plus 2年: 約680円/月〜",
     expressSpec: "Advanced: Keys・12台・広告ブロック / Pro: 14台・専用IP追加",
-    expressPrice: "Advanced 2年: $4.49/月〜",
+    expressPrice: "Advanced 2年: 約700円/月〜",
   },
 ];
 
@@ -451,7 +451,7 @@ function ComparisonTableSection() {
             </tbody>
           </table>
         </div>
-        <p className="mt-4 text-center text-xs text-slate-500">価格は2026年6月時点。キャンペーンにより変動します。最新価格は各公式サイトでご確認ください。</p>
+        <p className="mt-4 text-center text-xs text-slate-500">円換算はおおよその目安（1USD≒155円）。為替・キャンペーンにより変動します。最新価格は各公式サイトでご確認ください。</p>
       </div>
     </section>
   );
@@ -706,7 +706,7 @@ function FinalDecision() {
             <div className="text-[10px] font-black uppercase tracking-wide text-emerald-300">NordVPN を選ぶなら</div>
             <h3 className="mt-2 text-xl font-black text-white">機能・価格・接続数のバランスで選ぶ</h3>
             <ul className="mt-4 space-y-2 text-sm leading-7 text-slate-300">
-              <li>✓ 2年プランで最安クラス（$3.39/月〜）</li>
+              <li>✓ 2年プランで最安クラス（約530円/月〜）</li>
               <li>✓ 6,400+サーバー・10台同時接続</li>
               <li>✓ Double VPN・Threat Protectionが標準</li>
               <li>✓ セキュリティ機能を盛り込みたいなら第一候補</li>
