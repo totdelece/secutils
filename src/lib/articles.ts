@@ -379,6 +379,21 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "2026年4〜5月に連続発覚したMicrosoft Defenderの3ゼロデイ BlueHammer（CVE-2026-33825）・RedSun（CVE-2026-41091）・UnDefend（CVE-2026-45498）を日本語で解説。SAMデータベースを使ったSYSTEM昇格（BlueHammer）・システムファイル書き換えによるSYSTEM昇格（RedSun）・一般ユーザーがDefender定義更新を停止するDoS（UnDefend）を段階的に組み合わせる「Layered Degradation Strategy」の仕組み、Huntressが観測した野放し悪用の実態、Antimalware Platformのバージョン確認・定義更新状態のチェック・多層防御の構築を整理します。",
   },
+  "the-gentlemen-ransomware": {
+    title: "The Gentlemenランサムウェア詳解 - 自己増殖するGo製エンコーダの手口とStorm-2697の脅威",
+    description:
+      "2026年5月にMicrosoftが解析した自己増殖型ランサムウェア「The Gentlemen」（運用主体Storm-2697）を日本語で解説。Go言語製エンコーダがSMB共有・PsExec・WMI・スケジュールタスク・PowerShellリモーティングなど1標的あたり21通りの実行手段でネットワーク内を自動拡散する仕組み、Defenderリアルタイム監視の無効化・C:\\全体の除外・シャドウコピー削除・イベントログ消去による検知妨害、ファイル毎にCurve25519+XChaCha20を使う暗号化、二重恐喝とRaaS（BreachForums提携）の実態、改ざん防止・制御フォルダーアクセス・ASRルールによる防御を整理します。",
+  },
+  "charter-vishing-entra-breach": {
+    title: "Charter（Spectrum）情報漏えい詳解 - ビッシングでEntra IDを奪い4,200万件を狙ったShinyHunters",
+    description:
+      "2026年に発覚した米通信大手Charter Communications（Spectrum）の情報漏えいを日本語で解説。ShinyHuntersが電話による音声フィッシング（ビッシング）で従業員のMicrosoft Entraアカウントを乗っ取り、技術的な脆弱性ではなく「人」を突いて侵入した手口、4,200万件を主張・約490万メールが実在確認された規模、CPNIを巡るCharterの見解、なぜヘルプデスク/本人確認の運用が突破口になるのか、ヘルプデスク認証強化・フィッシング耐性MFA・条件付きアクセス・トークン保護による対策を整理します。",
+  },
+  "autonomous-llm-agent-intrusion": {
+    title: "AIエージェントが単独で侵入を遂行 - Sysdigが記録した世界初の自律型LLM攻撃（CVE-2026-39987）",
+    description:
+      "2026年5月にSysdigが記録した、世界初とされる「自律型LLMエージェントによるサイバー攻撃」を日本語で解説。MarimoのRCE（CVE-2026-39987）で初期侵入後、人間の指示なしに1時間でクラウド認証情報窃取→AWS Secrets ManagerからSSH鍵取得→踏み台サーバー→PostgreSQL全件持ち出しまでを自動遂行した4段階、Cloudflare Workers経由で22秒に11IP・12API呼び出しという検知回避、機械整形コマンド・既知でないスキーマの即時列挙・中国語の計画コメントといったAI由来の痕跡、「参入障壁が技量から推論コストへ変わる」意味、シグネチャから振る舞い検知への転換という防御の指針を整理します。",
+  },
   "turla-kazuar-p2p-botnet": {
     title: "Turla Kazuarが「P2Pボットネット」へ進化 - 検知を避ける国家系バックドアの新アーキテクチャ詳解",
     description:
@@ -1261,6 +1276,36 @@ export const articles: Article[] = [
     readingMinutes: 11,
     relatedTools: [],
   },
+  {
+    slug: "the-gentlemen-ransomware",
+    category: "security",
+    title: "The Gentlemenランサムウェア詳解 - 自己増殖するGo製エンコーダの手口とStorm-2697の脅威",
+    description:
+      "2026年5月にMicrosoftが解析した自己増殖型ランサムウェア「The Gentlemen」（運用主体Storm-2697）を解説。Go製エンコーダがSMB共有・PsExec・WMI・スケジュールタスク・PowerShellリモーティングなど1標的あたり21通りの実行手段で自動拡散する仕組み、Defender無効化・C:全体の除外・シャドウコピー削除・ログ消去による検知妨害、Curve25519+XChaCha20の暗号化、二重恐喝とRaaS（BreachForums提携）の実態、改ざん防止・制御フォルダーアクセス・ASRルールによる防御を日本語で整理します。",
+    date: "2026-06-03",
+    readingMinutes: 12,
+    relatedTools: [],
+  },
+  {
+    slug: "charter-vishing-entra-breach",
+    category: "security",
+    title: "Charter（Spectrum）情報漏えい詳解 - ビッシングでEntra IDを奪い4,200万件を狙ったShinyHunters",
+    description:
+      "2026年に発覚した米通信大手Charter Communications（Spectrum）の情報漏えいを解説。ShinyHuntersが音声フィッシング（ビッシング）で従業員のMicrosoft Entraアカウントを乗っ取り、技術的脆弱性ではなく「人」を突いて侵入した手口、4,200万件を主張・約490万メールが実在確認された規模、CPNIを巡るCharterの見解、なぜヘルプデスク/本人確認が突破口になるのか、ヘルプデスク認証強化・フィッシング耐性MFA・条件付きアクセス・トークン保護による対策を日本語で整理します。",
+    date: "2026-06-03",
+    readingMinutes: 11,
+    relatedTools: [],
+  },
+  {
+    slug: "autonomous-llm-agent-intrusion",
+    category: "security",
+    title: "AIエージェントが単独で侵入を遂行 - Sysdigが記録した世界初の自律型LLM攻撃（CVE-2026-39987）",
+    description:
+      "2026年5月にSysdigが記録した世界初とされる「自律型LLMエージェントによるサイバー攻撃」を解説。MarimoのRCE（CVE-2026-39987）で初期侵入後、人間の指示なしに1時間でクラウド認証情報窃取→AWS Secrets ManagerからSSH鍵取得→踏み台→PostgreSQL全件持ち出しを自動遂行した4段階、Cloudflare Workers経由で22秒に11IP・12API呼び出しの検知回避、機械整形コマンドや中国語の計画コメントといったAI由来の痕跡、参入障壁が技量から推論コストへ変わる意味、シグネチャから振る舞い検知への転換という防御指針を日本語で整理します。",
+    date: "2026-06-03",
+    readingMinutes: 12,
+    relatedTools: [],
+  },
 ];
 
 export function getArticle(
@@ -1411,6 +1456,9 @@ const topicSlugs: Record<TopicId, string[]> = {
     "turla-kazuar-p2p-botnet",
     "kadnap-edge-proxy-botnet",
     "ivanti-epmm-cve-2026-6973",
+    "the-gentlemen-ransomware",
+    "charter-vishing-entra-breach",
+    "autonomous-llm-agent-intrusion",
   ],
   ai: [
     "claude-mythos",
@@ -1420,6 +1468,7 @@ const topicSlugs: Record<TopicId, string[]> = {
     "langflow-cve-2025-34291",
     "ai-generated-zero-day-exploit",
     "chatgphish-chatgpt-phishing",
+    "autonomous-llm-agent-intrusion",
   ],
   netbasics: [
     "cidr-notation",
