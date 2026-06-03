@@ -379,6 +379,21 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "2026年4〜5月に連続発覚したMicrosoft Defenderの3ゼロデイ BlueHammer（CVE-2026-33825）・RedSun（CVE-2026-41091）・UnDefend（CVE-2026-45498）を日本語で解説。SAMデータベースを使ったSYSTEM昇格（BlueHammer）・システムファイル書き換えによるSYSTEM昇格（RedSun）・一般ユーザーがDefender定義更新を停止するDoS（UnDefend）を段階的に組み合わせる「Layered Degradation Strategy」の仕組み、Huntressが観測した野放し悪用の実態、Antimalware Platformのバージョン確認・定義更新状態のチェック・多層防御の構築を整理します。",
   },
+  "turla-kazuar-p2p-botnet": {
+    title: "Turla Kazuarが「P2Pボットネット」へ進化 - 検知を避ける国家系バックドアの新アーキテクチャ詳解",
+    description:
+      "2026年5月にMicrosoftが解析したロシアFSB系APT Turla（Secret Blizzard）のバックドア「Kazuar」がモジュール型P2Pボットネットへ進化した事案を日本語で解説。単体の.NETバックドアからKernel/Bridge/Workerの3モジュール構成へ移行し、リーダー選出で外部通信する端末を1台に絞って検知痕跡を最小化する仕組み、150以上の設定項目とHTTP/WebSocket/Exchange Web Services（EWS）の多重C2、AMSI/ETWバイパスや通信ブラックアウトによる隠蔽、外務省・大使館・防衛企業を狙う諜報目的、攻撃面削減ルール・EDRブロックモード・改ざん防止による防御を整理します。",
+  },
+  "kadnap-edge-proxy-botnet": {
+    title: "KadNap詳解 - ASUSルーター1.4万台を「住宅プロキシ」に変えるP2Pボットネットの手口",
+    description:
+      "Lumen Black Lotus Labsが2026年3月に公表したエッジデバイス狙いのボットネット「KadNap」を日本語で解説。ASUSルーターなど14,000台超（約6割が米国）を侵害し、犯罪用住宅プロキシサービスDoppelganger（旧Faceless）の出口ノードに仕立てる仕組み、KademliaベースのDHTで分散C2を実現しつつ追跡を困難にする設計と、それでも残る2つの中継ノードという急所、ルーター/IoTが攻撃の踏み台になる構造的問題、ファーム更新・管理画面の露出排除・不要サービス停止による対策を整理します。",
+  },
+  "ivanti-epmm-cve-2026-6973": {
+    title: "Ivanti EPMM ゼロデイ CVE-2026-6973詳解 - 度重なるRCE悪用とMDMが攻撃の起点になる理由",
+    description:
+      "2026年5月に積極悪用が確認されCISA KEVへ即追加されたIvanti Endpoint Manager Mobile（EPMM）のRCEゼロデイCVE-2026-6973を日本語で解説。管理者権限で任意コード実行が可能になる仕組み、2026年1月の未認証RCE（CVE-2026-1281/1340、いずれもCVSS 9.8、Apache RewriteMapのbash注入）と連鎖させる攻撃チェーン、Webシェル設置・リバースシェル・暗号通貨マイナー展開など侵害後の挙動、MDM基盤が全社モバイル端末への侵入起点になるリスク、影響/修正バージョンと侵害痕跡の確認手順を整理します。",
+  },
   "copy-fail-cve-2026-31431": {
     title: "Copy Fail（CVE-2026-31431）詳解 - 732バイトでrootを奪うLinuxカーネル権限昇格ゼロデイ",
     description:
@@ -1216,6 +1231,36 @@ export const articles: Article[] = [
     readingMinutes: 12,
     relatedTools: [],
   },
+  {
+    slug: "turla-kazuar-p2p-botnet",
+    category: "security",
+    title: "Turla Kazuarが「P2Pボットネット」へ進化 - 検知を避ける国家系バックドアの新アーキテクチャ",
+    description:
+      "2026年5月にMicrosoftが解析したロシアFSB系APT Turla（Secret Blizzard）のバックドア「Kazuar」がモジュール型P2Pボットネットへ進化した事案を解説。Kernel/Bridge/Workerの3モジュール構成、リーダー選出で外部通信端末を1台に絞り検知痕跡を最小化する仕組み、150超の設定とHTTP/WebSocket/Exchange Web Servicesの多重C2、AMSI/ETWバイパスや通信ブラックアウトによる隠蔽、外務省・大使館・防衛企業を狙う諜報目的、攻撃面削減ルール・EDRブロックモード・改ざん防止による防御を日本語で整理します。",
+    date: "2026-06-03",
+    readingMinutes: 12,
+    relatedTools: [],
+  },
+  {
+    slug: "kadnap-edge-proxy-botnet",
+    category: "security",
+    title: "KadNap詳解 - ASUSルーター1.4万台を「住宅プロキシ」に変えるP2Pボットネットの手口",
+    description:
+      "Lumen Black Lotus Labsが2026年3月に公表したエッジデバイス狙いのボットネット「KadNap」を解説。ASUSルーターなど14,000台超（約6割が米国）を侵害し犯罪用住宅プロキシDoppelganger（旧Faceless）の出口ノードに仕立てる仕組み、KademliaベースのDHTで分散C2を実現しつつ追跡を困難にする設計と、それでも残る2つの中継ノードという急所、ルーター/IoTが踏み台になる構造的問題、ファーム更新・管理画面の露出排除・不要サービス停止による対策を日本語で整理します。",
+    date: "2026-06-03",
+    readingMinutes: 11,
+    relatedTools: [],
+  },
+  {
+    slug: "ivanti-epmm-cve-2026-6973",
+    category: "security",
+    title: "Ivanti EPMM ゼロデイ CVE-2026-6973詳解 - 度重なるRCE悪用とMDMが攻撃の起点になる理由",
+    description:
+      "2026年5月に積極悪用されCISA KEVへ即追加されたIvanti EPMMのRCEゼロデイCVE-2026-6973を解説。管理者権限で任意コード実行が可能になる仕組み、2026年1月の未認証RCE（CVE-2026-1281/1340、CVSS 9.8、Apache RewriteMapのbash注入）と連鎖させる攻撃チェーン、Webシェル設置・リバースシェル・マイナー展開など侵害後の挙動、MDM基盤が全社モバイル端末への侵入起点になるリスク、影響/修正バージョンと侵害痕跡の確認手順を日本語で整理します。",
+    date: "2026-06-03",
+    readingMinutes: 11,
+    relatedTools: [],
+  },
 ];
 
 export function getArticle(
@@ -1363,6 +1408,9 @@ const topicSlugs: Record<TopicId, string[]> = {
     "copy-fail-cve-2026-31431",
     "kyber-ransomware-post-quantum",
     "gridtide-unc2814-telecom-espionage",
+    "turla-kazuar-p2p-botnet",
+    "kadnap-edge-proxy-botnet",
+    "ivanti-epmm-cve-2026-6973",
   ],
   ai: [
     "claude-mythos",
