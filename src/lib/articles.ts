@@ -379,6 +379,21 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "2026年4〜5月に連続発覚したMicrosoft Defenderの3ゼロデイ BlueHammer（CVE-2026-33825）・RedSun（CVE-2026-41091）・UnDefend（CVE-2026-45498）を日本語で解説。SAMデータベースを使ったSYSTEM昇格（BlueHammer）・システムファイル書き換えによるSYSTEM昇格（RedSun）・一般ユーザーがDefender定義更新を停止するDoS（UnDefend）を段階的に組み合わせる「Layered Degradation Strategy」の仕組み、Huntressが観測した野放し悪用の実態、Antimalware Platformのバージョン確認・定義更新状態のチェック・多層防御の構築を整理します。",
   },
+  "copy-fail-cve-2026-31431": {
+    title: "Copy Fail（CVE-2026-31431）詳解 - 732バイトでrootを奪うLinuxカーネル権限昇格ゼロデイ",
+    description:
+      "2026年4月に公開されCISA KEVに即追加されたLinuxカーネルのローカル権限昇格ゼロデイ「Copy Fail」（CVE-2026-31431、CVSS 7.8）を日本語で解説。AF_ALGのalgif_aeadモジュールに2017年から潜んでいた最適化バグで、ディスク上のファイルを書き換えずにページキャッシュ内のsetuidバイナリへ4バイトを上書きしrootを奪う仕組み、競合条件不要で100%再現する決定論的エクスプロイト（732バイトのPythonスクリプト）、Kubernetesコンテナ脱出やマルチテナント侵害につながるクラウドリスク、影響カーネル4.14〜6.19.12と修正手順・algif_aead無効化の緊急回避策を整理します。",
+  },
+  "kyber-ransomware-post-quantum": {
+    title: "Kyberランサムウェア詳解 - 耐量子暗号Kyber1024を実装した「将来も復号不能」な脅迫の登場",
+    description:
+      "2026年3月にRapid7が解析した耐量子暗号を掲げる新興ランサムウェア「Kyber」を日本語で解説。Windows版（Rust製）はKyber1024（ML-KEM-1024 / FIPS 203）とX25519・AES-256-CTRを本当に実装する一方、Linux/ESXi版は「ポスト量子」を謳いながら実際はChaCha8とRSA-4096という看板倒れだった二面性、シャドウコピー削除・SQL/Exchange停止・実験的なHyper-V停止機能、VMwareデータストアを狙うESXi暗号化、米防衛関連企業が被害に挙がった事実、耐量子暗号が被害者の「将来の復号」希望すら奪う意味と、暗号方式に関わらず鍵管理・バックアップ・ESXi防御が本質である理由を整理します。",
+  },
+  "gridtide-unc2814-telecom-espionage": {
+    title: "GRIDTIDE詳解 - Google Sheetsを司令塔に通信事業者を狙った中国系APT UNC2814のスパイ活動",
+    description:
+      "2026年にGoogle/Mandiantが摘発した中国系APT UNC2814のグローバル諜報作戦「GRIDTIDE」を日本語で解説。42カ国53組織（疑い含め70カ国超）の通信事業者・政府機関を侵害し、加入者のPII（氏名・電話番号・生年月日・国民ID）を窃取した実態、C言語製バックドアがGoogle SheetsのAPIをC2（指令通信）に悪用して正規クラウドトラフィックに紛れる手口、systemdサービスxaptによる永続化とSoftEther VPNの悪用、Mandiantが異常なプロセスツリーから検知しGoogle Cloudプロジェクトごと無効化した対応、Salt Typhoonとの違い、通信・正規SaaSのアウトバウンド監視という日本企業向けの教訓を整理します。",
+  },
   "security-certification-guide": {
     title: "セキュリティ資格 比較・一覧 - 情報処理安全確保支援士・CISSP・CompTIA Security+の選び方",
     description:
@@ -1171,6 +1186,36 @@ export const articles: Article[] = [
     readingMinutes: 11,
     relatedTools: [],
   },
+  {
+    slug: "copy-fail-cve-2026-31431",
+    category: "security",
+    title: "Copy Fail（CVE-2026-31431）詳解 - 732バイトでrootを奪うLinuxカーネル権限昇格ゼロデイ",
+    description:
+      "2026年4月公開・CISA KEV即追加のLinuxカーネル権限昇格ゼロデイ「Copy Fail」（CVE-2026-31431、CVSS 7.8）を解説。AF_ALGのalgif_aeadに2017年から潜む最適化バグで、ディスクを書き換えずページキャッシュ上のsetuidバイナリへ4バイト上書きしrootを奪う仕組み、競合条件不要で決定論的に動く732バイトのエクスプロイト、Kubernetesコンテナ脱出やマルチテナント侵害のクラウドリスク、影響カーネル4.14〜6.19.12と修正・algif_aead無効化の緊急回避策を日本語で整理します。",
+    date: "2026-06-03",
+    readingMinutes: 11,
+    relatedTools: [],
+  },
+  {
+    slug: "kyber-ransomware-post-quantum",
+    category: "security",
+    title: "Kyberランサムウェア詳解 - 耐量子暗号Kyber1024を実装した「将来も復号不能」な脅迫の登場",
+    description:
+      "2026年3月にRapid7が解析した耐量子暗号を掲げる新興ランサムウェア「Kyber」を解説。Windows版（Rust製）はKyber1024（ML-KEM-1024）とX25519・AES-256-CTRを本当に実装する一方、Linux/ESXi版は「ポスト量子」を謳いつつ実体はChaCha8とRSA-4096という二面性、シャドウコピー削除・SQL/Exchange停止・実験的Hyper-V停止、VMwareデータストアを狙うESXi暗号化、米防衛関連企業の被害、耐量子暗号が「将来の復号」希望まで奪う意味と、暗号方式に関わらず鍵管理・バックアップ・ESXi防御が本質である理由を日本語で整理します。",
+    date: "2026-06-03",
+    readingMinutes: 11,
+    relatedTools: [],
+  },
+  {
+    slug: "gridtide-unc2814-telecom-espionage",
+    category: "security",
+    title: "GRIDTIDE詳解 - Google Sheetsを司令塔に通信事業者を狙った中国系APT UNC2814のスパイ活動",
+    description:
+      "2026年にGoogle/Mandiantが摘発した中国系APT UNC2814の諜報作戦「GRIDTIDE」を解説。42カ国53組織（疑い含め70カ国超）の通信事業者・政府機関を侵害し加入者のPII（氏名・電話番号・生年月日・国民ID）を窃取した実態、C言語製バックドアがGoogle SheetsのAPIをC2に悪用して正規クラウドトラフィックに紛れる手口、systemdサービスxaptによる永続化とSoftEther VPNの悪用、Mandiantが異常なプロセスツリーから検知しGoogle Cloudプロジェクトごと無効化した対応、Salt Typhoonとの違い、通信・正規SaaSのアウトバウンド監視という日本企業向けの教訓を日本語で整理します。",
+    date: "2026-06-03",
+    readingMinutes: 12,
+    relatedTools: [],
+  },
 ];
 
 export function getArticle(
@@ -1315,6 +1360,9 @@ const topicSlugs: Record<TopicId, string[]> = {
     "chatgphish-chatgpt-phishing",
     "trellix-source-code-breach",
     "defender-bluehammer-redsun-undefend",
+    "copy-fail-cve-2026-31431",
+    "kyber-ransomware-post-quantum",
+    "gridtide-unc2814-telecom-espionage",
   ],
   ai: [
     "claude-mythos",
