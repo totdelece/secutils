@@ -449,6 +449,21 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "セキュリティインシデント発生時の対応手順をNIST SP 800-61のフレームワークに沿って解説。検知・トリアージ・証拠保全・封じ込め・根絶・復旧・再発防止の各フェーズでやることを実務目線で整理し、ランサムウェア対応の特殊な注意点、報告書のテンプレート、CSIRT構築の考え方まで日本語でまとめます。",
   },
+  "silent-ransom-group-in-person-extortion": {
+    title: "Silent Ransom Group（Luna Moth）詳解 - ITを装い「出向く」対面型恐喝とコールバックフィッシングの手口・対策",
+    description:
+      "2026年5月にFBIが警告した恐喝集団Silent Ransom Group（SRG／Luna Moth／UNC3753）を日本語で解説。偽IT支援への折り返し電話を誘うコールバックフィッシング、遠隔操作の承諾、失敗すると攻撃者がオフィスに出向きUSBで端末をバックアップすると偽ってデータを盗む対面型の手口、正規リモート管理ツール悪用でアンチウイルスをすり抜ける理由、暗号化を伴わないリークサイト型恐喝、法律事務所が狙われる構造、ヘルプデスク本人確認・RMM制限・MFA・対面者の身元確認による対策を整理します。",
+  },
+  "android-cve-2025-48595-framework-zero-day": {
+    title: "Android ゼロデイ CVE-2025-48595詳解 - Frameworkの整数オーバーフロー権限昇格と標的型スパイ悪用・対策",
+    description:
+      "2026年6月のAndroidセキュリティ情報で修正されCISA KEVに追加されたゼロデイ CVE-2025-48595 を日本語で解説。Android Frameworkの整数オーバーフロー（CWE-190）でユーザー操作なしにローカル権限昇格が可能になる仕組み、Android 14/15/16が影響、Googleが「限定的・標的型の悪用の可能性」と表現した意味、商用スパイウェアや国家系がジャーナリスト・活動家を狙う典型、パッチレベル2026-06-01/2026-06-05の読み方、業務スマホ（MDM）での確認・対策を整理します。",
+  },
+  "nyc-health-hospitals-biometric-breach": {
+    title: "NYC Health + Hospitals 生体情報漏えい詳解 - 指紋・掌紋180万人分流出と第三者ベンダー経由侵害の教訓",
+    description:
+      "2026年に公表された米最大級の公立医療機関NYC Health + Hospitalsの情報漏えいを日本語で解説。第三者ベンダー経由で2025年11月末〜2026年2月に侵入され、医療記録・診断・SSN・金融情報・正確な位置情報に加え指紋・掌紋など生体情報を含む180万人超のデータが流出した事案、生体情報は「リセットできない」がゆえの恒久的リスク、信頼するベンダーが攻撃面になるサプライチェーンの教訓、日本企業が委託先管理・データ最小化・生体認証設計で確認すべき点を整理します。",
+  },
 };
 
 export const articles: Article[] = [
@@ -1306,6 +1321,36 @@ export const articles: Article[] = [
     readingMinutes: 12,
     relatedTools: [],
   },
+  {
+    slug: "silent-ransom-group-in-person-extortion",
+    category: "security",
+    title: "Silent Ransom Group詳解 - ITを装い「オフィスに出向く」対面型恐喝とコールバックフィッシング",
+    description:
+      "2026年5月にFBIが警告した恐喝集団Silent Ransom Group（Luna Moth／UNC3753）を解説。偽IT支援への折り返し電話を誘うコールバックフィッシング、遠隔操作の承諾、失敗すると攻撃者がオフィスに出向きUSBでバックアップすると偽ってデータを盗む対面型の手口、正規リモート管理ツール悪用でAVをすり抜ける理由、暗号化なしのリークサイト型恐喝、法律事務所が狙われる構造、ヘルプデスク本人確認・RMM制限・MFA・対面者の身元確認による対策を整理します。",
+    date: "2026-06-04",
+    readingMinutes: 11,
+    relatedTools: [],
+  },
+  {
+    slug: "android-cve-2025-48595-framework-zero-day",
+    category: "security",
+    title: "Android ゼロデイ CVE-2025-48595詳解 - Frameworkの整数オーバーフローで権限昇格、標的型で悪用",
+    description:
+      "2026年6月のAndroidセキュリティ情報で修正されCISA KEVに追加されたゼロデイ CVE-2025-48595 を解説。Android Frameworkの整数オーバーフロー（CWE-190）でユーザー操作なしにローカル権限昇格が可能になる仕組み、Android 14/15/16が影響、Googleが「限定的・標的型の悪用の可能性」と表現した意味、商用スパイウェアや国家系がジャーナリスト・活動家を狙う典型、パッチレベル2026-06-01/2026-06-05の読み方、業務スマホ（MDM）での確認・対策を整理します。",
+    date: "2026-06-04",
+    readingMinutes: 10,
+    relatedTools: [],
+  },
+  {
+    slug: "nyc-health-hospitals-biometric-breach",
+    category: "security",
+    title: "NYC Health + Hospitals 生体情報漏えい詳解 - 指紋・掌紋180万人分流出と第三者ベンダー経由侵害",
+    description:
+      "2026年に公表された米最大級の公立医療機関NYC Health + Hospitalsの情報漏えいを解説。第三者ベンダー経由で2025年11月末〜2026年2月に侵入され、医療記録・診断・SSN・金融情報・正確な位置情報に加え指紋・掌紋など生体情報を含む180万人超のデータが流出した事案、生体情報は「リセットできない」がゆえの恒久的リスク、信頼するベンダーが攻撃面になるサプライチェーンの教訓、日本企業が委託先管理・データ最小化・生体認証設計で確認すべき点を整理します。",
+    date: "2026-06-04",
+    readingMinutes: 10,
+    relatedTools: [],
+  },
 ];
 
 export function getArticle(
@@ -1459,6 +1504,9 @@ const topicSlugs: Record<TopicId, string[]> = {
     "the-gentlemen-ransomware",
     "charter-vishing-entra-breach",
     "autonomous-llm-agent-intrusion",
+    "silent-ransom-group-in-person-extortion",
+    "android-cve-2025-48595-framework-zero-day",
+    "nyc-health-hospitals-biometric-breach",
   ],
   ai: [
     "claude-mythos",
