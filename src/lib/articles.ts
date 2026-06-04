@@ -464,6 +464,21 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "2026年に公表された米最大級の公立医療機関NYC Health + Hospitalsの情報漏えいを日本語で解説。第三者ベンダー経由で2025年11月末〜2026年2月に侵入され、医療記録・診断・SSN・金融情報・正確な位置情報に加え指紋・掌紋など生体情報を含む180万人超のデータが流出した事案、生体情報は「リセットできない」がゆえの恒久的リスク、信頼するベンダーが攻撃面になるサプライチェーンの教訓、日本企業が委託先管理・データ最小化・生体認証設計で確認すべき点を整理します。",
   },
+  "citrix-netscaler-cve-2026-3055": {
+    title: "Citrix NetScaler CVE-2026-3055詳解 - SAML IDPの境界外読み取りで未認証RCE・大規模悪用中（CVSS 9.8）",
+    description:
+      "2026年6月に大規模な積極悪用が確認されたCitrix NetScaler ADC/Gatewayの重大脆弱性 CVE-2026-3055（CVSS 9.8）を日本語で解説。アプライアンスをSAML IDPとして構成している場合に、未認証・遠隔から境界外メモリ読み取り（CWE-125）を起点に任意コード実行へ至る仕組み、CitrixBleed系の歴史的悪用パターン、影響/修正バージョン、関連CVE-2026-4368、Fortinetが観測した攻撃、SAML署名証明書のローテーションやセッション失効を含む確認・対策手順を整理します。",
+  },
+  "ai-built-ransomware-toolkit-edr-evasion": {
+    title: "AIが組み立てたランサムウェア攻撃キット詳解 - EDR回避とAD探索の自動化（Sophos解析）",
+    description:
+      "2026年6月にSophosが解析した、AIコーディング支援（Cursor・Claudeエージェント）を使って開発されたランサムウェア／データ窃取の攻撃キットを日本語で解説。EDR回避手法のリサーチからコード生成・改訂までをAIが補助し、Sophos/CrowdStrike/Microsoftの製品に対する回避を仮想環境で検証していた実態、Cobalt Strikeプロファイル・Telegram BotによるC2・Cloudflare WorkerでのC2秘匿・正規実行ファイルへのシェルコード注入といった構成、AIが攻撃の量産と高速化を可能にする意味、振る舞い検知への転換という防御指針を整理します。",
+  },
+  "redhat-npm-miasma-supply-chain": {
+    title: "Red Hat npmパッケージ汚染（Miasmaワーム）詳解 - 従業員GitHub乗っ取りからの自己増殖サプライチェーン攻撃",
+    description:
+      "2026年6月1日に発覚した@redhat-cloud-services名前空間のnpmサプライチェーン攻撃を日本語で解説。Red Hat従業員のGitHubアカウント乗っ取りからCIワークフローを改ざんし、OIDCトークンでバックドア入りパッケージを公開、コードレビューを丸ごと迂回した手口、32パッケージ・96バージョン（週11.6万DL）が汚染された規模、preinstallスクリプトで実行され被害者がアクセスできるパッケージを再公開して自己増殖する4.2MBのワーム「Miasma」、AWS/GCP/Azure鍵・GitHub Actionsシークレット・SSH鍵・.envを窃取する挙動、Mini Shai-Huludとの関係、CIシークレット即時ローテーションなどの対策を整理します。",
+  },
 };
 
 export const articles: Article[] = [
@@ -1351,6 +1366,36 @@ export const articles: Article[] = [
     readingMinutes: 10,
     relatedTools: [],
   },
+  {
+    slug: "citrix-netscaler-cve-2026-3055",
+    category: "security",
+    title: "Citrix NetScaler CVE-2026-3055詳解 - SAML IDPの境界外読み取りで未認証RCE、大規模悪用中",
+    description:
+      "2026年6月に大規模な積極悪用が確認されたCitrix NetScaler ADC/Gatewayの重大脆弱性 CVE-2026-3055（CVSS 9.8）を解説。SAML IDPとして構成している場合に未認証・遠隔から境界外メモリ読み取り（CWE-125）を起点に任意コード実行へ至る仕組み、CitrixBleed系の悪用パターン、影響/修正バージョン、関連CVE-2026-4368、Fortinetが観測した攻撃、SAML署名証明書のローテーションを含む確認・対策手順を整理します。",
+    date: "2026-06-04",
+    readingMinutes: 10,
+    relatedTools: [],
+  },
+  {
+    slug: "ai-built-ransomware-toolkit-edr-evasion",
+    category: "security",
+    title: "AIが組み立てたランサムウェア攻撃キット - EDR回避とAD探索を自動化（Sophos解析）",
+    description:
+      "2026年6月にSophosが解析した、AIコーディング支援（Cursor・Claudeエージェント）で開発されたランサムウェア／データ窃取の攻撃キットを解説。EDR回避手法のリサーチからコード生成・改訂までをAIが補助し、Sophos/CrowdStrike/Microsoft製品への回避を仮想環境で検証していた実態、Cobalt Strikeプロファイル・Telegram BotのC2・Cloudflare WorkerでのC2秘匿・正規実行ファイルへのシェルコード注入という構成、AIが攻撃の量産と高速化を可能にする意味、振る舞い検知への転換という防御指針を整理します。",
+    date: "2026-06-04",
+    readingMinutes: 11,
+    relatedTools: [],
+  },
+  {
+    slug: "redhat-npm-miasma-supply-chain",
+    category: "security",
+    title: "Red Hat npmパッケージ汚染（Miasmaワーム）詳解 - 従業員GitHub乗っ取りからの自己増殖サプライチェーン攻撃",
+    description:
+      "2026年6月1日に発覚した@redhat-cloud-services名前空間のnpmサプライチェーン攻撃を解説。Red Hat従業員のGitHubアカウント乗っ取りからCIワークフローを改ざんし、OIDCトークンでバックドア入りパッケージを公開、コードレビューを丸ごと迂回した手口、32パッケージ・96バージョン（週11.6万DL）が汚染された規模、preinstallスクリプトで実行され被害者のパッケージを再公開して自己増殖する4.2MBのワーム「Miasma」、AWS/GCP/Azure鍵・GitHub Actionsシークレット・SSH鍵・.envを窃取する挙動、Mini Shai-Huludとの関係、CIシークレット即時ローテーションなどの対策を整理します。",
+    date: "2026-06-04",
+    readingMinutes: 11,
+    relatedTools: [],
+  },
 ];
 
 export function getArticle(
@@ -1507,6 +1552,9 @@ const topicSlugs: Record<TopicId, string[]> = {
     "silent-ransom-group-in-person-extortion",
     "android-cve-2025-48595-framework-zero-day",
     "nyc-health-hospitals-biometric-breach",
+    "citrix-netscaler-cve-2026-3055",
+    "ai-built-ransomware-toolkit-edr-evasion",
+    "redhat-npm-miasma-supply-chain",
   ],
   ai: [
     "claude-mythos",
@@ -1517,6 +1565,7 @@ const topicSlugs: Record<TopicId, string[]> = {
     "ai-generated-zero-day-exploit",
     "chatgphish-chatgpt-phishing",
     "autonomous-llm-agent-intrusion",
+    "ai-built-ransomware-toolkit-edr-evasion",
   ],
   netbasics: [
     "cidr-notation",
