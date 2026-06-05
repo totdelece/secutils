@@ -1396,6 +1396,36 @@ export const articles: Article[] = [
     readingMinutes: 11,
     relatedTools: [],
   },
+  {
+    slug: "ironworm-npm-ebpf-supply-chain",
+    category: "security",
+    title: "eBPFルートキット×Tor C2を搭載したRust製npmワーム「IronWorm」——CI環境で自己増殖し認証情報を根こそぎ奪取",
+    description:
+      "2026年6月3日にJFrogが発見したRust製npmサプライチェーンワーム「IronWorm」を解説。eBPFカーネルルートキットでps/topから姿を消し、Torネットワーク経由でC2通信、npmのOIDC Trusted Publishingを悪用してCI環境で自己増殖する。AWS・Azure・GCP・Anthropic/OpenAI等86種の認証情報を窃取し、Exodus暗号資産ウォレットも標的。asteroidDAO関連37パッケージを経由した攻撃の仕組み・eBPFルートキットの検知困難性・OIDC自己増殖の遮断策を詳解する。",
+    date: "2026-06-05",
+    readingMinutes: 12,
+    relatedTools: [],
+  },
+  {
+    slug: "mirasvit-magento-cve-2026-45247",
+    category: "security",
+    title: "MagentoキャッシュプラグインCVE-2026-45247（CVSS 9.8）——Cookieから未認証RCEで6,000超の店舗が標的に",
+    description:
+      "2026年6月3日にCISA KEV登録されたMirasvit Full Page Cache Warmer（Magento/Adobe Commerce拡張機能）の深刻な脆弱性CVE-2026-45247を解説。CacheWarmerクッキーにBase64エンコードされた悪意あるシリアライズPHPオブジェクトを送るだけで未認証RCEが成立するメカニズム、PHPガジェットチェーンの仕組み、Impervaが観測した実際の攻撃フロー、Magecartスキミングへの発展リスク、6,000超の店舗への影響と日本EC事業者が今すぐ取るべきパッチ適用・FIM・WAF設定を整理する。",
+    date: "2026-06-05",
+    readingMinutes: 11,
+    relatedTools: [],
+  },
+  {
+    slug: "operation-dragon-weave-azure-c2",
+    category: "security",
+    title: "Azure Blob Storageを隠れC2に使う中国系APT「Operation Dragon Weave」——正規クラウド通信に紛れて政府・研究機関を長期侵害",
+    description:
+      "2026年6月にSeqriteが詳報した中国系APTキャンペーン「Operation Dragon Weave」を解説。スピアフィッシングZIPから二経路（LNKファイル／Rustドロッパー）でRUSTCLOAKローダーを展開し、AZUREVEILバックドア（Adaptix C2、36コマンド）を設置。C2通信にAzure Blob Storageをデッドドロップとして使い攻撃者と感染マシンが直接通信しない設計でIPブロックを無効化。チェコ・台湾の政府・研究・金融機関を標的とし日本も同様のリスク。DLLサイドローディング・Dead Drop C2・Azureの検知強化策を解説する。",
+    date: "2026-06-05",
+    readingMinutes: 12,
+    relatedTools: [],
+  },
 ];
 
 export function getArticle(
