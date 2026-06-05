@@ -1456,6 +1456,36 @@ export const articles: Article[] = [
     readingMinutes: 13,
     relatedTools: [],
   },
+  {
+    slug: "osaka-acute-care-elbie-ransomware-2022",
+    category: "security",
+    title: "大阪急性期・総合医療センターへのランサムウェア攻撃を解説｜給食委託業者VPN侵入・電子カルテ73日停止・20億円損失の教訓",
+    description:
+      "2022年10月31日に大阪急性期・総合医療センターがPhobos亜種「Elbie」ランサムウェアに攻撃された事案を解説。給食委託業者ベルキッチンのFortiGate VPN（v5.4.8）を踏み台にした侵入から電子カルテシステムが完全停止し、2023年1月11日の完全復旧まで約73日間にわたり通常診療を制限、被害額は約20億円に上った。全ユーザー管理者権限・パスワード共通化・ウイルス対策ソフト未設定という三重の管理不備が被害を拡大させた構造と、医療機関・病院の情報システムが抱える固有のセキュリティ課題を実務目線で解説する。",
+    date: "2026-06-05",
+    readingMinutes: 14,
+    relatedTools: [],
+  },
+  {
+    slug: "nagoya-port-nuts-lockbit-2023",
+    category: "security",
+    title: "名古屋港統一ターミナルシステム（NUTS）へのランサムウェア攻撃を解説｜コンテナ2万本停止・トヨタ4拠点停止・証拠消失の教訓",
+    description:
+      "2023年7月4日に日本最大の貿易港・名古屋港の統一ターミナルシステム（NUTS）がLockBitランサムウェアに攻撃された事案を解説。コンテナ搬出入約2万本・トヨタ自動車4拠点停止という重要インフラへの深刻な影響が発生。約3日で復旧を優先した結果、バックアップからもマルウェアが検出されるなど証拠保全が困難となり、侵入経路の特定に至らなかった。復旧優先か証拠保全優先かというインシデント対応の本質的なジレンマと、重要インフラのOT/ITセキュリティ課題を整理する。",
+    date: "2026-06-05",
+    readingMinutes: 13,
+    relatedTools: [],
+  },
+  {
+    slug: "hoya-hunters-international-ransomware-2024",
+    category: "security",
+    title: "HOYAへのランサムウェア攻撃を解説｜Hunters Internationalの15億円要求を拒否・170万ファイル窃取の全容",
+    description:
+      "2024年3月30日に光学機器・半導体関連部品の世界大手HOYAがHunters Internationalランサムウェアに攻撃された事案を解説。攻撃者は約170万ファイル（約2TB）を窃取して1,000万ドル（約15億円）の身代金を要求したが、HOYAは支払いを拒否して約24日で復旧した。眼鏡レンズ・医療機器・半導体フォトマスクなど複数の製品ラインが影響を受け、EUVリソグラフィ関連部品の供給停止がチップ製造サプライチェーンに与えた波紋とともに、製造業のサイバーセキュリティ対策のあり方を解説する。",
+    date: "2026-06-05",
+    readingMinutes: 13,
+    relatedTools: [],
+  },
 ];
 
 export function getArticle(
