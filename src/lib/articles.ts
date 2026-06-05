@@ -1426,6 +1426,36 @@ export const articles: Article[] = [
     readingMinutes: 12,
     relatedTools: [],
   },
+  {
+    slug: "kadokawa-blacksuit-ransomware-2024",
+    category: "security",
+    title: "KADOKAWAへのランサムウェア攻撃を解説｜ニコニコ停止・25万件漏洩と「払っても戻らない」身代金の教訓",
+    description:
+      "2024年6月8日にKADOKAWAグループが受けたBlackSuitランサムウェア攻撃を事例研究として解説。ニコニコ動画・N高など複数サービスが約2ヶ月停止し最大254,241人の個人情報が流出、特別損失24億円を計上した日本最大規模の事案。EDR未導入・ESXi/vSphere集中管理・ネットワーク分離不備という三重の脆弱性と、検知から3日間阻止できなかった経緯、身代金支払い後もデータが回復しなかった事実から、情報システム担当者が学ぶべき具体的な対策を整理する。",
+    date: "2026-06-05",
+    readingMinutes: 13,
+    relatedTools: [],
+  },
+  {
+    slug: "asahi-group-qilin-ransomware-2025",
+    category: "security",
+    title: "アサヒグループへのQilinランサムウェア攻撃を解説｜30工場停止・190万件漏洩・70億円損失の全容",
+    description:
+      "2025年9月にアサヒグループホールディングスを襲ったQilinランサムウェア攻撃を事例研究として解説。30工場停止・191万件の個人情報漏洩・推定70億円超の損失を招いた日本食品製造業最大規模のサイバー攻撃。侵入は検知の10日前からVPN経由で始まり、業務時間外の横展開、パスワード脆弱性悪用で管理者権限を奪取。OT/IT分離が工場製造ラインを守った成功例と、VPN廃止を決断させた教訓、製造業のセキュリティ盲点を実務目線で解説する。",
+    date: "2026-06-05",
+    readingMinutes: 13,
+    relatedTools: [],
+  },
+  {
+    slug: "iseto-8base-ransomware-2024",
+    category: "security",
+    title: "イセトーへのランサムウェア攻撃を解説｜3年放置VPN×7年変えぬパスワードで307万件漏洩・自治体サプライチェーン崩壊",
+    description:
+      "2024年5月にBPO企業イセトーが8Baseランサムウェアに攻撃され307万人超の個人情報が漏洩した事案を解説。VPN機器を3年間未更新、管理者パスワードは英小文字のみ11桁で7年変更なし、MFA未導入という初歩的な三重の欠陥が重なった攻撃経路を分析。豊田市・徳島県・和歌山市など自治体や三菱UFJ信託銀行・伊予銀行など金融機関を含む30以上の委託元に波及したサプライチェーン被害の構造と、個人情報保護委員会の行政指導が示す委託先管理の落とし穴を整理する。",
+    date: "2026-06-05",
+    readingMinutes: 13,
+    relatedTools: [],
+  },
 ];
 
 export function getArticle(
