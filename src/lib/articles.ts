@@ -1516,6 +1516,36 @@ export const articles: Article[] = [
     readingMinutes: 13,
     relatedTools: [],
   },
+  {
+    slug: "fujitsu-projectweb-unauthorized-access-2021",
+    category: "security",
+    title: "富士通ProjectWEBへの不正アクセスを解説｜内閣サイバー機構・国交省など142組織に波及したSaaSサプライチェーン攻撃の全容",
+    description:
+      "2021年5月、富士通が提供するクラウド型プロジェクト管理ツール「ProjectWEB」が不正アクセスを受け、内閣サイバーセキュリティセンター（NISC）・国土交通省・外務省・成田国際空港など142の顧客組織の情報が漏洩した事案を解説。SaaSツール1本の侵害が政府・重要インフラ全体に波及するサプライチェーンリスクと、正規の認証情報を悪用した「見えにくい」攻撃の教訓を解説する。",
+    date: "2026-06-05",
+    readingMinutes: 12,
+    relatedTools: [],
+  },
+  {
+    slug: "honda-ekans-snake-ransomware-2020",
+    category: "security",
+    title: "ホンダへのEKANS/Snakeランサムウェア攻撃を解説｜狭山・寄居工場停止・ICS/OT標的型マルウェアの衝撃と製造業への教訓",
+    description:
+      "2020年6月8日、本田技研工業（ホンダ）がSNAKE（EKANS）ランサムウェアの攻撃を受け、埼玉製作所（狭山・寄居）を含む国内外の工場が相次いで停止した事案を解説。製造業の産業制御システム（ICS/OT）を明示的に標的とした初期の事例であり、「mds.honda.com」というホンダ固有のドメインチェックがコードに組み込まれていたことから標的型攻撃と判断された。",
+    date: "2026-06-05",
+    readingMinutes: 12,
+    relatedTools: [],
+  },
+  {
+    slug: "handa-hospital-lockbit-ransomware-2021",
+    category: "security",
+    title: "つるぎ町立半田病院へのランサムウェア攻撃を解説｜LockBit 2.0・FortiGate VPN脆弱性・電子カルテ60日停止・復旧2億円の教訓",
+    description:
+      "2021年10月31日、徳島県のつるぎ町立半田病院がLockBit 2.0ランサムウェアの攻撃を受け、電子カルテシステムが約60日間停止した事案を解説。侵入経路はFortiGate VPN機器の未修正脆弱性（CVE-2018-13379）で、復旧費用は約2億円に達した。地方の公立病院がサイバー攻撃で「重症患者の受け入れ不能」に至ったこの事案は、医療機関のセキュリティ対策に警鐘を鳴らした。",
+    date: "2026-06-05",
+    readingMinutes: 13,
+    relatedTools: [],
+  },
 ];
 
 export function getArticle(
