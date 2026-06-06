@@ -534,7 +534,7 @@ function BannerCtaBand({
   ad: BannerAd;
 }) {
   return (
-    <section className="bg-white px-5 py-14 sm:px-6">
+    <section className="relative bg-white px-5 py-14 sm:px-6">
       <div className="mx-auto grid max-w-6xl gap-6 rounded-3xl border border-orange-200 bg-gradient-to-br from-orange-50 to-white p-6 shadow-sm sm:p-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
         <div>
           <Badge tone="orange">公式キャンペーン</Badge>
@@ -553,17 +553,40 @@ function BannerCtaBand({
             </CtaButton>
           </div>
         </div>
-        <div className="relative hidden w-[340px] flex-shrink-0 justify-center overflow-hidden sm:flex">
-          <div className="w-full rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
+        {/* バナー画像: sm以上のみ表示 */}
+        <div className="hidden flex-shrink-0 justify-center sm:flex">
+          <div className="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
             <div className="mb-2 text-center text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">
               PR / 公式バナー
             </div>
-            <div className="flex items-center justify-center">
-              <BannerImage ad={ad} />
-            </div>
+            <a
+              href={ad.href}
+              rel="nofollow noopener noreferrer"
+              target="_blank"
+              className="block transition hover:opacity-90"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={ad.src}
+                alt={ad.alt}
+                width={ad.width}
+                height={ad.height}
+                className="h-auto max-w-full rounded-md"
+              />
+            </a>
           </div>
         </div>
       </div>
+      {/* インプレッションピクセル: ページロード時に発火（バナー表示有無を問わない） */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={ad.pixel}
+        width={1}
+        height={1}
+        alt=""
+        aria-hidden="true"
+        style={{ position: "absolute", top: 0, left: "-9999px", width: 1, height: 1 }}
+      />
     </section>
   );
 }
@@ -833,7 +856,7 @@ function FaqSection() {
 function ServiceCardSection({ ad, tagline }: { ad: BannerAd; tagline: string }) {
   return (
     <section className="bg-white px-5 py-12 sm:px-6">
-      <div className="mx-auto max-w-md">
+      <div className="relative mx-auto max-w-md">
         <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
           <a
             href={ad.href}
