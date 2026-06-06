@@ -179,6 +179,11 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "独自ドメインのメリット、.jp/.com/.devなどTLDの違い、XServerドメインでの取得手順、Vercel・レンタルサーバーとのDNS連携設定、AdSense承認との関係を実体験ベースで日本語で解説します。",
   },
+  "onamae-domain-guide": {
+    title: "お名前.comでドメインを取得する方法 - 手順・料金・注意点を解説",
+    description:
+      "国内シェアNo.1のお名前.comで独自ドメインを取得する方法を解説。主要TLDの初回・更新料金、Whois情報公開代行の設定、申し込み時の注意点、ネームサーバー変更手順を初心者向けにまとめます。",
+  },
   clickjacking: {
     title: "クリックジャッキング詳解 - 透明iframe攻撃とX-Frame-Options/CSP対策",
     description:
@@ -791,6 +796,17 @@ export const articles: Article[] = [
     description:
       "独自ドメインのメリット、TLDの選び方、XServerドメインでの取得手順、Vercelとの連携、AdSense承認との関係を実体験ベースで整理します。",
     date: "2026-05-26",
+    readingMinutes: 10,
+    relatedTools: [],
+    affiliate: true,
+  },
+  {
+    slug: "onamae-domain-guide",
+    category: "network",
+    title: "お名前.com でドメインを取得する方法 - 料金・手順・注意点を解説",
+    description:
+      "国内シェアNo.1のお名前.comで独自ドメインを取得する手順、主要TLDの料金比較（初回 vs 更新）、Whois代行の設定方法、申し込み時の注意点を初心者向けに解説します。",
+    date: "2026-06-06",
     readingMinutes: 10,
     relatedTools: [],
     affiliate: true,
