@@ -553,12 +553,14 @@ function BannerCtaBand({
             </CtaButton>
           </div>
         </div>
-        <div className="relative hidden justify-center sm:flex">
-          <div className="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
+        <div className="relative hidden w-[340px] flex-shrink-0 justify-center overflow-hidden sm:flex">
+          <div className="w-full rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
             <div className="mb-2 text-center text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">
               PR / 公式バナー
             </div>
-            <BannerImage ad={ad} />
+            <div className="flex items-center justify-center">
+              <BannerImage ad={ad} />
+            </div>
           </div>
         </div>
       </div>
@@ -828,37 +830,140 @@ function FaqSection() {
   );
 }
 
-function BannerSlot({
-  title,
-  description,
-  ads,
+type ServiceCardData = {
+  ad: BannerAd;
+  tagline: string;
+};
+
+function ServiceCard({ ad, tagline }: ServiceCardData) {
+  return (
+    <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:border-orange-300 hover:shadow-md">
+      <a
+        href={ad.href}
+        rel="nofollow noopener noreferrer"
+        target="_blank"
+        className="block"
+        aria-label={`お名前.com 公式サイト - ${tagline}`}
+      >
+        <div className="flex h-[200px] items-center justify-center bg-slate-50 p-5">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={ad.src}
+            alt={ad.alt}
+            width={ad.width}
+            height={ad.height}
+            style={{
+              maxWidth: "100%",
+              maxHeight: "160px",
+              width: "auto",
+              height: "auto",
+              objectFit: "contain",
+            }}
+          />
+        </div>
+      </a>
+      <div className="p-5">
+        <div className="flex items-center gap-2">
+          <span className="text-base font-black text-slate-950">お名前.com</span>
+          <span className="rounded-full bg-orange-100 px-2 py-0.5 text-[10px] font-black text-orange-700">
+            PR
+          </span>
+        </div>
+        <p className="mt-2 min-h-[3rem] text-sm leading-6 text-slate-600">{tagline}</p>
+        <div className="mt-4">
+          <CtaButton href={ad.href}>公式サイトを見る</CtaButton>
+        </div>
+      </div>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={ad.pixel}
+        width={1}
+        height={1}
+        alt=""
+        aria-hidden="true"
+        style={{ position: "absolute", left: "-9999px", width: 1, height: 1 }}
+      />
+    </article>
+  );
+}
+
+function ServiceCardSection({
+  heading,
+  cards,
 }: {
-  title: string;
-  description: string;
-  ads: BannerAd[];
+  heading: string;
+  cards: ServiceCardData[];
 }) {
   return (
-    <section className="bg-white px-5 py-12 sm:px-6">
-      <aside className="mx-auto max-w-6xl rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <div className="text-[11px] font-black uppercase tracking-[0.18em] text-orange-600">
-              PR / 公式バナー
+    <section className="bg-white px-5 py-14 sm:px-6">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-3 text-[11px] font-black uppercase tracking-[0.18em] text-orange-600">
+          PR / おすすめサービス
+        </div>
+        <h2 className="mb-6 text-xl font-black text-slate-950">{heading}</h2>
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {cards.map(({ ad, tagline }) => (
+            <ServiceCard key={ad.href} ad={ad} tagline={tagline} />
+          ))}
+        </div>
+        <p className="mt-4 text-right text-xs text-slate-400">
+          ※ バナーをクリックするとお名前.com公式サイトへ移動します
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function BannerStripSection() {
+  const groups: BannerAd[][] = [
+    [banner728x90],
+    [banner468x60, banner234x60],
+    [banner120x60, banner100x60],
+  ];
+  return (
+    <section className="bg-slate-50 px-5 py-14 sm:px-6">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-5 text-[11px] font-black uppercase tracking-[0.18em] text-orange-600">
+          PR / 公式バナー
+        </div>
+        <div className="flex flex-col items-center gap-6">
+          {groups.map((row, i) => (
+            <div key={i} className="flex flex-wrap items-center justify-center gap-4">
+              {row.map((ad) => (
+                <div key={ad.href} className="relative">
+                  <a
+                    href={ad.href}
+                    rel="nofollow noopener noreferrer"
+                    target="_blank"
+                    className="block overflow-hidden rounded-lg transition hover:opacity-90"
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={ad.src}
+                      alt={ad.alt}
+                      width={ad.width}
+                      height={ad.height}
+                      style={{ maxWidth: "100%", height: "auto", display: "block" }}
+                    />
+                  </a>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={ad.pixel}
+                    width={1}
+                    height={1}
+                    alt=""
+                    aria-hidden="true"
+                    style={{ position: "absolute", left: "-9999px", width: 1, height: 1 }}
+                  />
+                </div>
+              ))}
             </div>
-            <div className="mt-1 font-black text-slate-950">{title}</div>
-          </div>
-          <p className="text-xs text-slate-500">{description}</p>
+          ))}
         </div>
-        <div className="overflow-x-auto">
-          <div className="flex flex-wrap justify-center gap-4">
-            {ads.map((ad) => (
-              <div key={ad.href} className="relative shrink-0">
-                <BannerImage ad={ad} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </aside>
+        <p className="mt-5 text-center text-xs text-slate-400">
+          ※ バナーをクリックするとお名前.com公式サイトへ移動します
+        </p>
+      </div>
     </section>
   );
 }
@@ -1034,17 +1139,25 @@ export default function Page() {
       <CautionsSection />
       <ChecklistSection />
       <FaqSection />
-      <BannerSlot
-        title="公式キャンペーンを確認する"
-        description="各バナーからお名前.com公式サイトへ移動します。"
-        ads={[banner728x90, banner300x250b, banner125x125, banner234x60]}
+      <ServiceCardSection
+        heading="公式キャンペーンを確認する"
+        cards={[
+          {
+            ad: banner300x250b,
+            tagline: "国内シェアNo.1。.comはキャンペーン時1円〜で取得可",
+          },
+          {
+            ad: banner336x280,
+            tagline: "900種類超のTLDから選択。Whois情報公開代行は無料",
+          },
+          {
+            ad: banner125x125,
+            tagline: "ネームサーバー設定が自由。Vercel・GitHub Pagesにも対応",
+          },
+        ]}
       />
       <FinalDecision />
-      <BannerSlot
-        title="最後にドメイン取得を検討する"
-        description="価格・キャンペーンは変動します。申し込み前に最新条件を確認してください。"
-        ads={[banner160x600, banner120x600, banner120x60, banner100x60]}
-      />
+      <BannerStripSection />
       <References />
       <RelatedLinks />
     </main>
