@@ -8,6 +8,27 @@ const ONAMAE_PIXEL = "https://www11.a8.net/0.gif?a8mat=4B3LMV+71MOHE+50+2HHG82";
 const XSERVER_URL = "https://px.a8.net/svt/ejp?a8mat=4B3LMV+C3TBLE+CO4+15ORS2";
 const XSERVER_PIXEL = "https://www13.a8.net/0.gif?a8mat=4B3LMV+C3TBLE+CO4+15ORS2";
 
+type BannerAd = { href: string; src: string; pixel: string; width: number; height: number; alt: string };
+
+const banner468x60: BannerAd = {
+  href: "https://px.a8.net/svt/ejp?a8mat=4B3LMV+71MOHE+50+2HQGAP",
+  src: "https://www25.a8.net/svt/bgt?aid=260508487426&wid=001&eno=01&mid=s00000000018015072000&mc=1",
+  pixel: "https://www19.a8.net/0.gif?a8mat=4B3LMV+71MOHE+50+2HQGAP",
+  width: 468, height: 60, alt: "お名前.com 独自ドメイン取得",
+};
+const banner300x250b: BannerAd = {
+  href: "https://px.a8.net/svt/ejp?a8mat=4B3LMV+71MOHE+50+2HWO29",
+  src: "https://www29.a8.net/svt/bgt?aid=260508487426&wid=001&eno=01&mid=s00000000018015101000&mc=1",
+  pixel: "https://www17.a8.net/0.gif?a8mat=4B3LMV+71MOHE+50+2HWO29",
+  width: 300, height: 250, alt: "お名前.com 独自ドメイン取得",
+};
+const banner728x90: BannerAd = {
+  href: "https://px.a8.net/svt/ejp?a8mat=4B3LMV+71MOHE+50+2HV61T",
+  src: "https://www23.a8.net/svt/bgt?aid=260508487426&wid=001&eno=01&mid=s00000000018015094000&mc=1",
+  pixel: "https://www16.a8.net/0.gif?a8mat=4B3LMV+71MOHE+50+2HV61T",
+  width: 728, height: 90, alt: "お名前.com 独自ドメイン取得",
+};
+
 // ─────────────────────────────────────────────
 // コンポーネント
 // ─────────────────────────────────────────────
@@ -730,6 +751,87 @@ function FinalDecision() {
   );
 }
 
+function BannerCtaBand({ ad }: { ad: BannerAd }) {
+  return (
+    <section className="relative bg-white px-5 py-12 sm:px-6">
+      <div className="mx-auto grid max-w-6xl gap-6 rounded-3xl border border-orange-200 bg-gradient-to-br from-orange-50 to-white p-6 shadow-sm sm:p-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+        <div>
+          <Badge tone="orange">公式キャンペーン</Badge>
+          <h2 className="mt-3 text-2xl font-black text-slate-950">
+            まずはドメイン名を検索してみる
+          </h2>
+          <p className="mt-2 text-sm leading-7 text-slate-600">
+            .comはキャンペーン時1円〜。取得前にお名前.comで希望ドメインが空いているか確認できます。
+          </p>
+          <div className="mt-5">
+            <CtaButton href={ad.href} tone="orange">お名前.com でドメインを検索</CtaButton>
+          </div>
+        </div>
+        <div className="hidden flex-shrink-0 justify-center sm:flex">
+          <div className="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
+            <div className="mb-2 text-center text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">PR / 公式バナー</div>
+            <a href={ad.href} rel="nofollow noopener noreferrer" target="_blank" className="block transition hover:opacity-90">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={ad.src} alt={ad.alt} width={ad.width} height={ad.height} className="h-auto max-w-full rounded-md" />
+            </a>
+          </div>
+        </div>
+      </div>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={ad.pixel} width={1} height={1} alt="" aria-hidden="true"
+        style={{ position: "absolute", top: 0, left: "-9999px", width: 1, height: 1 }} />
+    </section>
+  );
+}
+
+function ServiceCardSection({ ad }: { ad: BannerAd }) {
+  return (
+    <section className="bg-white px-5 py-12 sm:px-6">
+      <div className="relative mx-auto max-w-md">
+        <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+          <a href={ad.href} rel="nofollow noopener noreferrer" target="_blank" className="block"
+            aria-label="お名前.com 公式サイト">
+            <div className="flex h-[200px] items-center justify-center bg-slate-50 p-5">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={ad.src} alt={ad.alt} width={ad.width} height={ad.height}
+                style={{ maxWidth: "100%", maxHeight: "160px", width: "auto", height: "auto", objectFit: "contain" }} />
+            </div>
+          </a>
+          <div className="p-5">
+            <div className="flex items-center gap-2">
+              <span className="text-base font-black text-slate-950">お名前.com</span>
+              <span className="rounded-full bg-orange-100 px-2 py-0.5 text-[10px] font-black text-orange-700">PR</span>
+            </div>
+            <p className="mt-2 text-sm leading-6 text-slate-600">国内シェアNo.1。900種類以上のTLDを取り扱い。.comはキャンペーン時1円〜で取得可。WHOIS代行無料。</p>
+            <div className="mt-4"><CtaButton href={ad.href} tone="orange">公式サイトを見る</CtaButton></div>
+          </div>
+        </article>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={ad.pixel} width={1} height={1} alt="" aria-hidden="true"
+          style={{ position: "absolute", left: "-9999px", width: 1, height: 1 }} />
+      </div>
+    </section>
+  );
+}
+
+function BannerStripSection({ ad }: { ad: BannerAd }) {
+  return (
+    <section className="relative bg-slate-50 px-5 py-12 sm:px-6">
+      <div className="mx-auto w-full max-w-[728px]">
+        <a href={ad.href} rel="nofollow noopener noreferrer" target="_blank"
+          className="block overflow-hidden rounded-lg transition hover:opacity-90">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={ad.src} alt={ad.alt} width={728} height={90}
+            style={{ width: "100%", height: "auto", display: "block" }} />
+        </a>
+      </div>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={ad.pixel} width={1} height={1} alt="" aria-hidden="true"
+        style={{ position: "absolute", left: "-9999px", width: 1, height: 1 }} />
+    </section>
+  );
+}
+
 function References() {
   return (
     <section className="border-t border-slate-200 bg-white px-5 py-10 sm:px-6">
@@ -829,10 +931,13 @@ export default function Page() {
       <Hero />
       <TldrSection />
       <ComparisonSection />
+      <BannerCtaBand ad={banner468x60} />
       <PricingSection />
       <UseCaseSection />
+      <ServiceCardSection ad={banner300x250b} />
       <FaqSection />
       <FinalDecision />
+      <BannerStripSection ad={banner728x90} />
       <References />
       <RelatedLinks />
 
