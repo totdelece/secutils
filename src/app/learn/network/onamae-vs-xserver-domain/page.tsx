@@ -17,13 +17,14 @@ function Badge({
   tone = "slate",
 }: {
   children: React.ReactNode;
-  tone?: "slate" | "emerald" | "orange" | "amber";
+  tone?: "slate" | "emerald" | "orange" | "amber" | "white";
 }) {
   const map = {
     slate: "bg-slate-100 text-slate-700 ring-slate-200",
     emerald: "bg-emerald-50 text-emerald-700 ring-emerald-200",
     orange: "bg-orange-50 text-orange-700 ring-orange-200",
     amber: "bg-amber-50 text-amber-800 ring-amber-200",
+    white: "bg-white/25 text-white ring-white/30",
   };
   return (
     <span
@@ -43,7 +44,7 @@ function CtaButton({
   href: string;
   children: React.ReactNode;
   variant?: "solid" | "outline";
-  tone?: "emerald" | "orange" | "slate";
+  tone?: "emerald" | "orange" | "slate" | "white";
 }) {
   const solidMap = {
     emerald:
@@ -52,6 +53,8 @@ function CtaButton({
       "bg-orange-600 text-white shadow-lg shadow-orange-950/15 hover:bg-orange-700 focus-visible:outline-orange-600",
     slate:
       "bg-slate-800 text-white shadow-lg hover:bg-slate-900 focus-visible:outline-slate-800",
+    white:
+      "bg-white text-slate-950 shadow-lg hover:bg-slate-100 focus-visible:outline-white",
   };
   const outlineMap = {
     emerald:
@@ -60,6 +63,8 @@ function CtaButton({
       "border border-orange-300 bg-white text-slate-950 hover:border-orange-400 hover:bg-orange-50 focus-visible:outline-orange-600",
     slate:
       "border border-slate-300 bg-white text-slate-950 hover:border-slate-400 hover:bg-slate-50 focus-visible:outline-slate-600",
+    white:
+      "border border-white/50 bg-transparent text-white hover:bg-white/10 focus-visible:outline-white",
   };
   return (
     <a
@@ -687,33 +692,33 @@ function FinalDecision() {
 
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           <article className="rounded-2xl bg-emerald-600 p-6 text-white">
-            <Badge tone="emerald">XServerユーザー</Badge>
+            <Badge tone="white">XServerユーザー</Badge>
             <h3 className="mt-4 text-2xl font-black">XServerドメイン</h3>
             <p className="mt-3 text-sm leading-7 text-emerald-50">
               既にXServerのサービスを使っているなら同アカウントで管理できるXServerドメイン一択。DNS設定の手間が最小化される。
             </p>
             <div className="mt-5">
-              <CtaButton href={XSERVER_URL} tone="slate">
+              <CtaButton href={XSERVER_URL} tone="white">
                 XServerドメイン 公式へ
               </CtaButton>
             </div>
           </article>
 
           <article className="rounded-2xl bg-orange-600 p-6 text-white">
-            <Badge tone="orange">XServer以外を使う人</Badge>
+            <Badge tone="white">XServer以外を使う人</Badge>
             <h3 className="mt-4 text-2xl font-black">お名前.com</h3>
             <p className="mt-3 text-sm leading-7 text-orange-50">
               Vercel・GitHub Pages・ConoHaなどXServer以外を使うなら、TLD数・価格・国内No.1の実績があるお名前.comが使いやすい。
             </p>
             <div className="mt-5">
-              <CtaButton href={ONAMAE_URL} tone="slate">
+              <CtaButton href={ONAMAE_URL} tone="white">
                 お名前.com 公式へ
               </CtaButton>
             </div>
           </article>
 
           <article className="rounded-2xl bg-white/10 p-6 ring-1 ring-white/10">
-            <Badge tone="amber">どちらでも共通の注意</Badge>
+            <Badge tone="white">どちらでも共通の注意</Badge>
             <h3 className="mt-4 text-2xl font-black">更新料と自動更新</h3>
             <p className="mt-3 text-sm leading-7 text-slate-300">
               初回キャンペーン価格だけで選ばず、毎年かかる更新料を確認してから申し込む。申し込み直後に自動更新を必ず設定すること。
