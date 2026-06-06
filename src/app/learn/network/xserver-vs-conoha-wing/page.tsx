@@ -247,6 +247,37 @@ const checklist = [
   "キャンペーン終了日と適用条件を確認した",
 ];
 
+const faqs = [
+  {
+    q: "無料お試しの10日間が終わったらどうなりますか？",
+    a: "エックスサーバーの無料お試し期間が終了すると、有料プランへの移行確認が来ます。移行しない場合はデータごと削除されます。なおWordPressクイックスタートを利用した場合は最初から有料契約扱いになり、無料お試しは適用されません。ConoHa WINGには無料お試し期間がないため、申し込み時から課金が始まります。詳細条件は各公式サイトでご確認ください。",
+  },
+  {
+    q: "初回価格と更新価格はどのくらい違いますか？",
+    a: "どちらのサービスも、申し込み時のキャンペーン価格は初回のみ適用されます。2年目以降は通常の更新価格が適用されるため、「初回の月額」だけで判断すると更新時に驚くことがあります。契約前に「更新後の年額」を必ず公式ページで確認し、複数年の総コストで比較してください。",
+  },
+  {
+    q: "WordPressクイックスタートを使う場合の注意点は？",
+    a: "エックスサーバーのWordPressクイックスタートは、サーバー・ドメイン・WordPress設定を一気に完了できる機能です。ただし申し込みと同時に有料契約が開始されるため、無料お試し期間は使えません。「まず管理画面を見てから判断したい」場合はクイックスタートを使わず、通常申し込みで無料お試し後にWordPressをインストールする流れをおすすめします。",
+  },
+  {
+    q: "独自ドメインはどちらのサービスで取得すればいいですか？",
+    a: "ConoHa WINGのWINGパックには独自ドメインが無料になる特典がありますが、対象プランと契約期間の条件があります。エックスサーバーはサーバー契約とは別にXServerドメインで取得します。どちらを選ぶ場合も、ドメインの取得料だけでなく更新料と自動更新設定を確認することが重要です。",
+    link: {
+      href: "/learn/network/xserver-domain-guide",
+      label: "独自ドメイン取得ガイド",
+    },
+  },
+  {
+    q: "レンタルサーバーとVPSはどう違いますか？",
+    a: "このページで比較しているエックスサーバー・ConoHa WINGは共有レンタルサーバーです。WordPressブログや一般的なWebサイトを動かすだけなら、ほぼすべてのケースで共有レンタルサーバーが適切です。VPSは自前のゲームサーバー・常駐Bot・カスタムミドルウェアが必要なサービスを動かす際に使います。「ブログを運営したい」だけならVPSは不要です。",
+    link: {
+      href: "/learn/network/xserver-vps-guide",
+      label: "XServer VPS入門ガイド",
+    },
+  },
+];
+
 function toneClass(tone: "green" | "orange") {
   return tone === "green"
     ? {
@@ -708,6 +739,57 @@ function ChecklistSection() {
   );
 }
 
+function FaqSection() {
+  return (
+    <section className="bg-white px-5 py-16 sm:px-6 lg:py-20">
+      <div className="mx-auto max-w-4xl">
+        <SectionTitle eyebrow="FAQ" title="よくある質問">
+          申し込み前に迷いやすいポイントをまとめました。
+        </SectionTitle>
+        <div className="space-y-3">
+          {faqs.map((f, idx) => (
+            <details
+              key={f.q}
+              className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition open:border-blue-300 open:shadow-md"
+              open={idx === 0}
+            >
+              <summary className="flex cursor-pointer items-center justify-between gap-4 text-base font-black text-slate-950 marker:hidden [&::-webkit-details-marker]:hidden">
+                <span className="flex items-center gap-3">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue-100 text-xs font-black text-blue-700">
+                    Q
+                  </span>
+                  {f.q}
+                </span>
+                <span
+                  aria-hidden="true"
+                  className="text-blue-700 transition group-open:rotate-45"
+                >
+                  +
+                </span>
+              </summary>
+              <div className="mt-4 border-t border-slate-100 pt-4 text-sm leading-7 text-slate-700">
+                {f.a}
+                {"link" in f && f.link && (
+                  <>
+                    {" "}
+                    <Link
+                      href={f.link.href}
+                      className="font-bold text-blue-700 underline-offset-2 hover:underline"
+                    >
+                      {f.link.label}
+                    </Link>
+                    {"も参考にしてください。"}
+                  </>
+                )}
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function BannerSlot({
   title,
   description,
@@ -944,6 +1026,7 @@ export default function Page() {
         text="Xserverは無料お試しの有無、ConoHa WINGはWINGパックとWordPress開設の条件を確認してから選ぶと安心です。"
       />
       <ChecklistSection />
+      <FaqSection />
       <BannerSlot
         title="料金・特典の最終確認"
         description="契約期間、更新料金、特典条件、解約条件を確認してから申し込みましょう。"

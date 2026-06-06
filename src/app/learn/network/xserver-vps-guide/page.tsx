@@ -289,15 +289,13 @@ function CtaButton({
 }: {
   href: string;
   children: React.ReactNode;
-  variant?: "solid" | "outline" | "dark";
+  variant?: "solid" | "outline";
   size?: "md" | "lg";
 }) {
   const variantClass =
     variant === "solid"
       ? "bg-emerald-600 text-white shadow-lg shadow-emerald-950/15 hover:-translate-y-0.5 hover:bg-emerald-700 focus-visible:outline-emerald-600"
-      : variant === "dark"
-        ? "bg-slate-950 text-white hover:-translate-y-0.5 hover:bg-slate-800 focus-visible:outline-slate-900"
-        : "border border-slate-300 bg-white text-slate-950 hover:-translate-y-0.5 hover:border-emerald-400 hover:bg-emerald-50 focus-visible:outline-emerald-600";
+      : "border border-slate-300 bg-white text-slate-950 hover:-translate-y-0.5 hover:border-emerald-400 hover:bg-emerald-50 focus-visible:outline-emerald-600";
   const sizeClass =
     size === "lg"
       ? "min-h-14 px-6 py-3.5 text-base"

@@ -53,7 +53,7 @@ const tldr = [
   {
     no: "02",
     title: "速度・ハード安全性ならExpressVPN",
-    body: "独自Lightway＋耐量子暗号Kyber採用。RAMのみで動くTrustedServerでデータ非永続化を実現。通信品質とハードウェア信頼性を最優先にしたいなら選択肢に入る。",
+    body: "独自Lightway＋耐量子暗号Kyberを業界先行で採用。RAMのみで動くTrustedServerでデータ非永続化を実現。通信品質とハードウェア信頼性を最優先にしたいなら選択肢に入る。",
   },
   {
     no: "03",
@@ -69,7 +69,7 @@ const comparisonRows = [
   { label: "サーバー数", nord: "6,400+", express: "3,000+" },
   { label: "対応国数", nord: "111カ国+", express: "105カ国+" },
   { label: "VPNプロトコル", nord: "NordLynx（WireGuard）", express: "Lightway（独自）" },
-  { label: "耐量子暗号", nord: "非公表", express: "Kyber採用（Lightway）" },
+  { label: "耐量子暗号", nord: "ML-KEM採用（NordLynx・2024年〜）", express: "Kyber採用（Lightway・先行）" },
   { label: "RAM専用サーバー", nord: "一部対応", express: "全サーバー対応（TrustedServer）" },
   { label: "ノーログ監査", nord: "✓ 複数回監査済み", express: "✓ 複数回監査済み" },
   { label: "Double VPN", nord: "✓", express: "─" },
@@ -102,8 +102,8 @@ const useCases = [
   },
   {
     scenario: "将来の量子コンピュータ脅威まで考慮したい",
-    recommend: "Express",
-    reason: "LightwayにKyber（耐量子暗号）を採用済み。ポスト量子暗号対応はExpressが先行。",
+    recommend: "どちらでも",
+    reason: "両社ともKyber系の耐量子暗号を採用済み。ExpressVPNが先行採用、NordVPNも2024年にNordLynxで対応完了。",
   },
   {
     scenario: "コストを最小化しつつ高機能を使いたい",
@@ -116,7 +116,7 @@ const selectionAxes = [
   {
     no: "01",
     title: "プロトコルと暗号化",
-    body: "NordはWireGuardベースのNordLynx。ExpressはLightway（独自実装）でKyber（耐量子）を採用。どちらも高速・安全だが、将来の量子コンピュータリスクを意識するならExpressが先行。",
+    body: "NordはWireGuardベースのNordLynxにML-KEM（耐量子暗号）を2024年から採用。ExpressはLightway（独自実装）でKyberを先行採用。両社とも対応済みだが、採用時期と実装の成熟度でExpressが先行。",
   },
   {
     no: "02",
@@ -174,8 +174,8 @@ const expressStrengths = [
     body: "全サーバーがRAMのみで動作。電源オフで全データが物理消去され、サーバー差押え時のデータ漏洩リスクを設計レベルで排除。",
   },
   {
-    title: "Lightway + Kyber（耐量子暗号）",
-    body: "独自プロトコルLightwayにNIST標準化のKyber（格子暗号）を採用。「Harvest Now, Decrypt Later」攻撃への備え。",
+    title: "Lightway + Kyber（耐量子暗号・業界先行）",
+    body: "独自プロトコルLightwayにNIST標準化のKyber（格子暗号）を業界先行で採用。NordVPNも2024年に続いたが、採用実績の成熟度でExpressVPNが優位。「Harvest Now, Decrypt Later」攻撃への備えとして有効。",
   },
   {
     title: "Lightway Turboモード",
@@ -233,7 +233,7 @@ const faqs = [
   },
   {
     q: "「Harvest Now, Decrypt Later」とは何か？",
-    a: "現在の暗号化通信を記録しておき、将来強力な量子コンピュータが普及した時点で復号する攻撃手法です。現時点では解読できなくても、機密情報の有効期間が長い場合（10年先まで秘密にしたい情報など）は今から耐量子暗号を使うことに意味があります。ExpressVPNがLightwayにKyberを採用したのはこのリスクへの備えです。",
+    a: "現在の暗号化通信を記録しておき、将来強力な量子コンピュータが普及した時点で復号する攻撃手法です。現時点では解読できなくても、機密情報の有効期間が長い場合（10年先まで秘密にしたい情報など）は今から耐量子暗号を使うことに意味があります。ExpressVPNがLightwayにKyberを先行採用し、NordVPNも2024年にNordLynxで対応を完了しています。長期的な機密情報を扱う用途では、どちらのVPNでも今から備えることができます。",
   },
   {
     q: "VPNを使えば完全に匿名になれるか？",
