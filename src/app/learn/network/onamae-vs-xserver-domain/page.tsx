@@ -29,6 +29,25 @@ const banner728x90: BannerAd = {
   width: 728, height: 90, alt: "お名前.com 独自ドメイン取得",
 };
 
+const xserverBanner468x60: BannerAd = {
+  href: "https://px.a8.net/svt/ejp?a8mat=4B3LMV+C3TBLE+CO4+15THJ5",
+  src: "https://www23.a8.net/svt/bgt?aid=260508487732&wid=001&eno=01&mid=s00000001642007024000&mc=1",
+  pixel: "https://www11.a8.net/0.gif?a8mat=4B3LMV+C3TBLE+CO4+15THJ5",
+  width: 468, height: 60, alt: "XServerドメイン 独自ドメイン取得",
+};
+const xserverBanner300x250: BannerAd = {
+  href: "https://px.a8.net/svt/ejp?a8mat=4B3LMV+C3TBLE+CO4+15XZKH",
+  src: "https://www24.a8.net/svt/bgt?aid=260508487732&wid=001&eno=01&mid=s00000001642007045000&mc=1",
+  pixel: "https://www10.a8.net/0.gif?a8mat=4B3LMV+C3TBLE+CO4+15XZKH",
+  width: 300, height: 250, alt: "XServerドメイン 独自ドメイン取得",
+};
+const xserverBanner728x90: BannerAd = {
+  href: "https://px.a8.net/svt/ejp?a8mat=4B3LMV+C3TBLE+CO4+15UK41",
+  src: "https://www21.a8.net/svt/bgt?aid=260508487732&wid=001&eno=01&mid=s00000001642007029000&mc=1",
+  pixel: "https://www13.a8.net/0.gif?a8mat=4B3LMV+C3TBLE+CO4+15UK41",
+  width: 728, height: 90, alt: "XServerドメイン 独自ドメイン取得",
+};
+
 // ─────────────────────────────────────────────
 // コンポーネント
 // ─────────────────────────────────────────────
@@ -751,20 +770,25 @@ function FinalDecision() {
   );
 }
 
-function BannerCtaBand({ ad }: { ad: BannerAd }) {
+function BannerCtaBand({ ad, theme }: { ad: BannerAd; theme: "orange" | "emerald" }) {
+  const isOrange = theme === "orange";
   return (
     <section className="relative bg-white px-5 py-12 sm:px-6">
-      <div className="mx-auto grid max-w-6xl gap-6 rounded-3xl border border-orange-200 bg-gradient-to-br from-orange-50 to-white p-6 shadow-sm sm:p-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+      <div className={`mx-auto grid max-w-6xl gap-6 rounded-3xl border ${isOrange ? "border-orange-200 bg-gradient-to-br from-orange-50 to-white" : "border-emerald-200 bg-gradient-to-br from-emerald-50 to-white"} p-6 shadow-sm sm:p-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center`}>
         <div>
-          <Badge tone="orange">公式キャンペーン</Badge>
+          <Badge tone={isOrange ? "orange" : "emerald"}>公式キャンペーン</Badge>
           <h2 className="mt-3 text-2xl font-black text-slate-950">
-            まずはドメイン名を検索してみる
+            {isOrange ? "まずはドメイン名を検索してみる" : "XServerを使うなら一元管理が便利"}
           </h2>
           <p className="mt-2 text-sm leading-7 text-slate-600">
-            .comはキャンペーン時1円〜。取得前にお名前.comで希望ドメインが空いているか確認できます。
+            {isOrange
+              ? ".comはキャンペーン時1円〜。取得前にお名前.comで希望ドメインが空いているか確認できます。"
+              : "XServerのレンタルサーバー・VPSと同アカウントでドメインを管理。設定の手間を最小化できます。"}
           </p>
           <div className="mt-5">
-            <CtaButton href={ad.href} tone="orange">お名前.com でドメインを検索</CtaButton>
+            <CtaButton href={ad.href} tone={isOrange ? "orange" : "emerald"}>
+              {isOrange ? "お名前.com でドメインを検索" : "XServerドメイン 公式サイトを確認"}
+            </CtaButton>
           </div>
         </div>
         <div className="hidden flex-shrink-0 justify-center sm:flex">
@@ -784,50 +808,86 @@ function BannerCtaBand({ ad }: { ad: BannerAd }) {
   );
 }
 
-function ServiceCardSection({ ad }: { ad: BannerAd }) {
+function ServiceCardSection({ onamaeAd, xserverAd }: { onamaeAd: BannerAd; xserverAd: BannerAd }) {
   return (
     <section className="bg-white px-5 py-12 sm:px-6">
-      <div className="relative mx-auto max-w-md">
-        <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-          <a href={ad.href} rel="nofollow noopener noreferrer" target="_blank" className="block"
-            aria-label="お名前.com 公式サイト">
-            <div className="flex h-[200px] items-center justify-center bg-slate-50 p-5">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={ad.src} alt={ad.alt} width={ad.width} height={ad.height}
-                style={{ maxWidth: "100%", maxHeight: "160px", width: "auto", height: "auto", objectFit: "contain" }} />
-            </div>
-          </a>
-          <div className="p-5">
-            <div className="flex items-center gap-2">
-              <span className="text-base font-black text-slate-950">お名前.com</span>
-              <span className="rounded-full bg-orange-100 px-2 py-0.5 text-[10px] font-black text-orange-700">PR</span>
-            </div>
-            <p className="mt-2 text-sm leading-6 text-slate-600">国内シェアNo.1。900種類以上のTLDを取り扱い。.comはキャンペーン時1円〜で取得可。WHOIS代行無料。</p>
-            <div className="mt-4"><CtaButton href={ad.href} tone="orange">公式サイトを見る</CtaButton></div>
+      <div className="mx-auto max-w-3xl">
+        <div className="grid gap-5 sm:grid-cols-2">
+          {/* お名前.com */}
+          <div className="relative">
+            <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+              <a href={onamaeAd.href} rel="nofollow noopener noreferrer" target="_blank" className="block">
+                <div className="flex h-[180px] items-center justify-center bg-slate-50 p-5">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={onamaeAd.src} alt={onamaeAd.alt} width={onamaeAd.width} height={onamaeAd.height}
+                    style={{ maxWidth: "100%", maxHeight: "150px", width: "auto", height: "auto", objectFit: "contain" }} />
+                </div>
+              </a>
+              <div className="flex flex-1 flex-col p-5">
+                <div className="flex items-center gap-2">
+                  <span className="text-base font-black text-slate-950">お名前.com</span>
+                  <span className="rounded-full bg-orange-100 px-2 py-0.5 text-[10px] font-black text-orange-700">PR</span>
+                </div>
+                <p className="mt-2 flex-1 text-sm leading-6 text-slate-600">国内シェアNo.1。TLD 900種類+。.comはキャンペーン時1円〜。WHOIS代行無料。</p>
+                <div className="mt-4"><CtaButton href={onamaeAd.href} tone="orange">公式サイトを見る</CtaButton></div>
+              </div>
+            </article>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={onamaeAd.pixel} width={1} height={1} alt="" aria-hidden="true"
+              style={{ position: "absolute", left: "-9999px", width: 1, height: 1 }} />
           </div>
-        </article>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={ad.pixel} width={1} height={1} alt="" aria-hidden="true"
-          style={{ position: "absolute", left: "-9999px", width: 1, height: 1 }} />
+          {/* XServerドメイン */}
+          <div className="relative">
+            <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+              <a href={xserverAd.href} rel="nofollow noopener noreferrer" target="_blank" className="block">
+                <div className="flex h-[180px] items-center justify-center bg-slate-50 p-5">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={xserverAd.src} alt={xserverAd.alt} width={xserverAd.width} height={xserverAd.height}
+                    style={{ maxWidth: "100%", maxHeight: "150px", width: "auto", height: "auto", objectFit: "contain" }} />
+                </div>
+              </a>
+              <div className="flex flex-1 flex-col p-5">
+                <div className="flex items-center gap-2">
+                  <span className="text-base font-black text-slate-950">XServerドメイン</span>
+                  <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-black text-emerald-700">PR</span>
+                </div>
+                <p className="mt-2 flex-1 text-sm leading-6 text-slate-600">XServerと同アカウント管理。TLD 70種類+。WHOIS代行無料。XServer利用者に最適。</p>
+                <div className="mt-4"><CtaButton href={xserverAd.href} tone="emerald">公式サイトを見る</CtaButton></div>
+              </div>
+            </article>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={xserverAd.pixel} width={1} height={1} alt="" aria-hidden="true"
+              style={{ position: "absolute", left: "-9998px", width: 1, height: 1 }} />
+          </div>
+        </div>
       </div>
     </section>
   );
 }
 
-function BannerStripSection({ ad }: { ad: BannerAd }) {
+function BannerStripSection({ onamaeAd, xserverAd }: { onamaeAd: BannerAd; xserverAd: BannerAd }) {
   return (
     <section className="relative bg-slate-50 px-5 py-12 sm:px-6">
-      <div className="mx-auto w-full max-w-[728px]">
-        <a href={ad.href} rel="nofollow noopener noreferrer" target="_blank"
+      <div className="mx-auto flex w-full max-w-[728px] flex-col gap-4">
+        <a href={onamaeAd.href} rel="nofollow noopener noreferrer" target="_blank"
           className="block overflow-hidden rounded-lg transition hover:opacity-90">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={ad.src} alt={ad.alt} width={728} height={90}
+          <img src={onamaeAd.src} alt={onamaeAd.alt} width={728} height={90}
+            style={{ width: "100%", height: "auto", display: "block" }} />
+        </a>
+        <a href={xserverAd.href} rel="nofollow noopener noreferrer" target="_blank"
+          className="block overflow-hidden rounded-lg transition hover:opacity-90">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={xserverAd.src} alt={xserverAd.alt} width={728} height={90}
             style={{ width: "100%", height: "auto", display: "block" }} />
         </a>
       </div>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={ad.pixel} width={1} height={1} alt="" aria-hidden="true"
+      <img src={onamaeAd.pixel} width={1} height={1} alt="" aria-hidden="true"
         style={{ position: "absolute", left: "-9999px", width: 1, height: 1 }} />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={xserverAd.pixel} width={1} height={1} alt="" aria-hidden="true"
+        style={{ position: "absolute", left: "-9998px", width: 1, height: 1 }} />
     </section>
   );
 }
@@ -931,13 +991,14 @@ export default function Page() {
       <Hero />
       <TldrSection />
       <ComparisonSection />
-      <BannerCtaBand ad={banner468x60} />
+      <BannerCtaBand ad={banner468x60} theme="orange" />
       <PricingSection />
+      <BannerCtaBand ad={xserverBanner468x60} theme="emerald" />
       <UseCaseSection />
-      <ServiceCardSection ad={banner300x250b} />
+      <ServiceCardSection onamaeAd={banner300x250b} xserverAd={xserverBanner300x250} />
       <FaqSection />
       <FinalDecision />
-      <BannerStripSection ad={banner728x90} />
+      <BannerStripSection onamaeAd={banner728x90} xserverAd={xserverBanner728x90} />
       <References />
       <RelatedLinks />
 
