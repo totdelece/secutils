@@ -184,6 +184,11 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "国内シェアNo.1のお名前.comで独自ドメインを取得する方法を解説。主要TLDの初回・更新料金、Whois情報公開代行の設定、申し込み時の注意点、ネームサーバー変更手順を初心者向けにまとめます。",
   },
+  "onamae-vs-xserver-domain": {
+    title: "お名前.com vs XServerドメイン 比較 - どちらで取得すべきか",
+    description:
+      "お名前.comとXServerドメインを料金・TLD数・WHOIS代行・サーバー連携の観点で比較。XServerを使うなら一元管理が強み、XServer以外なら豊富なTLDと低コストのお名前.comが有利。用途別の選び方を解説します。",
+  },
   clickjacking: {
     title: "クリックジャッキング詳解 - 透明iframe攻撃とX-Frame-Options/CSP対策",
     description:
@@ -808,6 +813,17 @@ export const articles: Article[] = [
       "国内シェアNo.1のお名前.comで独自ドメインを取得する手順、主要TLDの料金比較（初回 vs 更新）、Whois代行の設定方法、申し込み時の注意点を初心者向けに解説します。",
     date: "2026-06-06",
     readingMinutes: 10,
+    relatedTools: [],
+    affiliate: true,
+  },
+  {
+    slug: "onamae-vs-xserver-domain",
+    category: "network",
+    title: "お名前.com vs XServerドメイン 比較 - どちらで取得すべきか",
+    description:
+      "お名前.comとXServerドメインを料金・TLD数・WHOIS代行・サーバー連携の観点で徹底比較。XServerを使うなら一元管理が強み、XServer以外なら豊富なTLDと低コストのお名前.comが有利。用途別の選び方を解説します。",
+    date: "2026-06-06",
+    readingMinutes: 8,
     relatedTools: [],
     affiliate: true,
   },
