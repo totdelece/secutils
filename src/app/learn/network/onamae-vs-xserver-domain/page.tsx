@@ -676,51 +676,51 @@ function FaqSection() {
 
 function FinalDecision() {
   return (
-    <section className="bg-slate-950 px-5 py-16 text-white sm:px-6 lg:py-24">
+    <section className="bg-slate-50 px-5 py-16 sm:px-6 lg:py-24">
       <div className="mx-auto max-w-6xl">
         <div className="mx-auto mb-10 max-w-3xl text-center">
-          <div className="text-[11px] font-black uppercase tracking-[0.24em] text-slate-400">
+          <div className="text-[11px] font-black uppercase tracking-[0.24em] text-slate-500">
             Final Decision
           </div>
-          <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">
+          <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
             最終結論
           </h2>
-          <p className="mt-4 text-base leading-8 text-slate-300">
+          <p className="mt-4 text-base leading-8 text-slate-600">
             迷ったら「XServerを今使っているか・使う予定があるか」だけ考えてください。
           </p>
         </div>
 
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          <article className="rounded-2xl bg-emerald-600 p-6 text-white">
-            <Badge tone="white">XServerユーザー</Badge>
-            <h3 className="mt-4 text-2xl font-black">XServerドメイン</h3>
-            <p className="mt-3 text-sm leading-7 text-emerald-50">
+          <article className="rounded-2xl border border-emerald-200 bg-white p-6 shadow-sm">
+            <Badge tone="emerald">XServerユーザー</Badge>
+            <h3 className="mt-4 text-2xl font-black text-slate-950">XServerドメイン</h3>
+            <p className="mt-3 text-sm leading-7 text-slate-600">
               既にXServerのサービスを使っているなら同アカウントで管理できるXServerドメイン一択。DNS設定の手間が最小化される。
             </p>
             <div className="mt-5">
-              <CtaButton href={XSERVER_URL} tone="white">
+              <CtaButton href={XSERVER_URL} tone="emerald">
                 XServerドメイン 公式へ
               </CtaButton>
             </div>
           </article>
 
-          <article className="rounded-2xl bg-orange-600 p-6 text-white">
-            <Badge tone="white">XServer以外を使う人</Badge>
-            <h3 className="mt-4 text-2xl font-black">お名前.com</h3>
-            <p className="mt-3 text-sm leading-7 text-orange-50">
+          <article className="rounded-2xl border border-orange-200 bg-white p-6 shadow-sm">
+            <Badge tone="orange">XServer以外を使う人</Badge>
+            <h3 className="mt-4 text-2xl font-black text-slate-950">お名前.com</h3>
+            <p className="mt-3 text-sm leading-7 text-slate-600">
               Vercel・GitHub Pages・ConoHaなどXServer以外を使うなら、TLD数・価格・国内No.1の実績があるお名前.comが使いやすい。
             </p>
             <div className="mt-5">
-              <CtaButton href={ONAMAE_URL} tone="white">
+              <CtaButton href={ONAMAE_URL} tone="orange">
                 お名前.com 公式へ
               </CtaButton>
             </div>
           </article>
 
-          <article className="rounded-2xl bg-white/10 p-6 ring-1 ring-white/10">
-            <Badge tone="white">どちらでも共通の注意</Badge>
-            <h3 className="mt-4 text-2xl font-black">更新料と自動更新</h3>
-            <p className="mt-3 text-sm leading-7 text-slate-300">
+          <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <Badge tone="amber">どちらでも共通の注意</Badge>
+            <h3 className="mt-4 text-2xl font-black text-slate-950">更新料と自動更新</h3>
+            <p className="mt-3 text-sm leading-7 text-slate-600">
               初回キャンペーン価格だけで選ばず、毎年かかる更新料を確認してから申し込む。申し込み直後に自動更新を必ず設定すること。
             </p>
           </article>
