@@ -161,7 +161,7 @@ const faqs = [
 
 function BannerImage({ ad }: { ad: BannerAd }) {
   return (
-    <div className="relative">
+    <div className="relative rounded-xl border border-slate-200 bg-slate-100 p-2">
       <a
         href={ad.href}
         rel="nofollow noopener noreferrer"
@@ -711,11 +711,11 @@ function SummarySection() {
     "世界規模の脅威インテリジェンスによる高い検知精度を求める人",
   ];
   return (
-    <section className="bg-slate-950 px-5 py-16 text-white sm:px-6">
+    <section className="bg-white px-5 py-16 sm:px-6">
       <div className="mx-auto max-w-5xl">
         <div className="mb-10 text-center">
-          <p className="text-[11px] font-black uppercase tracking-[0.24em] text-blue-400">Summary</p>
-          <h2 className="mt-3 text-3xl font-black tracking-tight text-white sm:text-4xl">
+          <p className="text-[11px] font-black uppercase tracking-[0.24em] text-blue-700">Summary</p>
+          <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
             こんな人におすすめ
           </h2>
         </div>
@@ -724,7 +724,7 @@ function SummarySection() {
             {fits.map((item) => (
               <li
                 key={item}
-                className="flex items-start gap-3 rounded-2xl bg-white/5 p-4 text-sm leading-7 text-slate-200 ring-1 ring-white/10"
+                className="flex items-start gap-3 rounded-2xl bg-slate-50 p-4 text-sm leading-7 text-slate-700 ring-1 ring-slate-200"
               >
                 <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-600 text-xs font-black text-white">
                   ✓
@@ -735,7 +735,7 @@ function SummarySection() {
           </ul>
 
           {/* 記事末尾 CTA ── ガイドライン⑤ */}
-          <div className="overflow-hidden rounded-2xl bg-white shadow-2xl">
+          <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg">
             <div className="bg-blue-600 px-5 py-2.5">
               <p className="text-[11px] font-black uppercase tracking-[0.2em] text-blue-100">
                 PR / 公式キャンペーン
