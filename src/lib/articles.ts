@@ -1589,6 +1589,17 @@ export const articles: Article[] = [
     relatedTools: [],
     affiliate: true,
   },
+  {
+    slug: "norton-360-review",
+    category: "security",
+    title: "ノートン 360 レビュー - 機能・料金・特徴を解説【世界No.1】",
+    description:
+      "世界販売台数No.1のノートン（Norton 360）の機能・料金プランを解説。リアルタイム保護・VPN・パスワードマネージャー・クラウドバックアップ・ダークウェブモニタリングなど、オールインワンセキュリティの全体像をまとめます。",
+    date: "2026-06-07",
+    readingMinutes: 10,
+    relatedTools: [],
+    affiliate: true,
+  },
 ];
 
 export function getArticle(
