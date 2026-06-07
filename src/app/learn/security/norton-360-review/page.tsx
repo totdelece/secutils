@@ -329,46 +329,42 @@ function Hero() {
             </p>
           </div>
           <div className="p-5 sm:p-6">
-            <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
-              <div className="flex-1">
-                <p className="text-xl font-black text-slate-950">ノートン 360</p>
-                <div className="mt-1 flex items-center gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-amber-400 text-base">★</span>
-                  ))}
-                  <span className="ml-1 text-xs font-bold text-slate-500">世界販売台数 No.1</span>
-                </div>
-                <ul className="mt-4 space-y-2">
-                  {[
-                    "ウイルス対策 + VPN + バックアップが一本に",
-                    "ダークウェブ流出を継続監視",
-                    "60 日間返金保証付き",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-sm text-slate-700">
-                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-100 text-[10px] font-black text-blue-700">
-                        ✓
-                      </span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-5 grid gap-2 sm:grid-cols-2">
-                  <CtaButton href={NORTON_URL} size="lg">
-                    公式サイトを見る
-                  </CtaButton>
-                  <CtaButton href={NORTON_URL} variant="outline" size="lg">
-                    料金を確認する
-                  </CtaButton>
-                </div>
+            <p className="text-xl font-black text-slate-950">ノートン 360</p>
+            <div className="mt-1 flex items-center gap-1">
+              {[...Array(5)].map((_, i) => (
+                <span key={i} className="text-amber-400 text-base">★</span>
+              ))}
+              <span className="ml-1 text-xs font-bold text-slate-500">世界販売台数 No.1</span>
+            </div>
+            <ul className="mt-4 space-y-2">
+              {[
+                "ウイルス対策 + VPN + バックアップが一本に",
+                "ダークウェブ流出を継続監視",
+                "60 日間返金保証付き",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-2 text-sm text-slate-700">
+                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-100 text-[10px] font-black text-blue-700">
+                    ✓
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-5 flex justify-center">
+              <div className="hidden sm:block">
+                <BannerImage ad={banner468x60A} />
               </div>
-              <div className="shrink-0">
-                <div className="hidden sm:block">
-                  <BannerImage ad={banner468x60A} />
-                </div>
-                <div className="sm:hidden">
-                  <BannerImage ad={banner234x60} />
-                </div>
+              <div className="sm:hidden">
+                <BannerImage ad={banner234x60} />
               </div>
+            </div>
+            <div className="mt-4 grid gap-2 sm:grid-cols-2">
+              <CtaButton href={NORTON_URL} size="lg">
+                公式サイトを見る
+              </CtaButton>
+              <CtaButton href={NORTON_URL} variant="outline" size="lg">
+                料金を確認する
+              </CtaButton>
             </div>
           </div>
         </div>
@@ -550,10 +546,10 @@ function PlansSection() {
             <p className="mt-2 mb-4 text-sm leading-7 text-slate-600">
               Norton 360 は初年度に大幅割引が適用されることが多く、2 年目以降は通常価格になります。まず公式サイトで「初回価格」と「更新価格」を両方確認してから申し込んでください。
             </p>
-            <div className="hidden sm:block">
+            <div className="hidden sm:flex sm:justify-center">
               <BannerImage ad={banner468x60B} />
             </div>
-            <div className="mt-3 sm:hidden">
+            <div className="mt-3 flex justify-center sm:hidden">
               <BannerImage ad={banner234x60} />
             </div>
             <div className="mt-4 grid gap-2 sm:grid-cols-2">
