@@ -1578,6 +1578,17 @@ export const articles: Article[] = [
     readingMinutes: 13,
     relatedTools: [],
   },
+  {
+    slug: "virusbuster-cloud-review",
+    category: "security",
+    title: "ウイルスバスター クラウド レビュー - 機能・料金・特徴を解説",
+    description:
+      "トレンドマイクロのウイルスバスタークラウドの機能・料金プランを解説。AI検知・ランサムウェア対策（フォルダシールド）・Pay Guard・フィッシング対策など、国内シェアNo.1セキュリティソフトの全体像をまとめます。",
+    date: "2026-06-07",
+    readingMinutes: 10,
+    relatedTools: [],
+    affiliate: true,
+  },
 ];
 
 export function getArticle(
