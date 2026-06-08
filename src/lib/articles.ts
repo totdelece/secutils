@@ -1600,6 +1600,36 @@ export const articles: Article[] = [
     relatedTools: [],
     affiliate: true,
   },
+  {
+    slug: "cisco-sdwan-manager-cve-2026-20245",
+    category: "security",
+    title: "Cisco SD-WAN Manager ゼロデイ CVE-2026-20245 解説｜パッチなし悪用中・全デプロイタイプに影響",
+    description:
+      "2026年6月にCisco Catalyst SD-WAN Manager（旧vManage）で発見されたゼロデイ脆弱性CVE-2026-20245（CVSS 7.8）を解説。netadmin権限を持つ攻撃者がCLIの入力検証不備を悪用してrootコマンドを実行可能。パッチ未リリースの状態で限定的な悪用が確認されており、オンプレ・クラウド・FedRAMP全デプロイタイプが影響を受ける。",
+    date: "2026-06-08",
+    readingMinutes: 11,
+    relatedTools: [],
+  },
+  {
+    slug: "fifa-world-cup-2026-cyber-fraud",
+    category: "security",
+    title: "FIFAワールドカップ2026を狙うサイバー詐欺を解説｜偽チケット・バンキングマルウェア・19,000ドメイン",
+    description:
+      "2026年FIFAワールドカップ開幕に合わせ19,000以上の詐欺ドメインが登録されている。FortiGuard Labsが分析した脅威の全貌を解説。偽チケットサイト・LummaC2/Vidar/RedLineによる認証情報窃取・SNS上の1,700件超なりすまし・バンキングマルウェアなど多層的な詐欺エコシステムへの注意喚起。",
+    date: "2026-06-08",
+    readingMinutes: 10,
+    relatedTools: [],
+  },
+  {
+    slug: "everest-forms-pro-cve-2026-3300",
+    category: "security",
+    title: "WordPress Everest Forms Pro CVE-2026-3300 解説｜CVSS 9.8・eval()インジェクション・3万件超の攻撃",
+    description:
+      "WordPressプラグイン「Everest Forms Pro」のComplex Calculation機能に存在するCVSS 9.8のRCE脆弱性CVE-2026-3300を解説。ユーザー入力がeval()に渡ることで未認証攻撃者が任意PHPコードを実行可能。2026年4月から悪用が始まりWordfenceが29,300件超のブロックを記録。修正版1.9.13へのアップデートが急務。",
+    date: "2026-06-08",
+    readingMinutes: 10,
+    relatedTools: [],
+  },
 ];
 
 export function getArticle(
