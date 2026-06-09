@@ -1630,6 +1630,17 @@ export const articles: Article[] = [
     readingMinutes: 10,
     relatedTools: [],
   },
+  {
+    slug: "norton-vs-virusbuster",
+    category: "security",
+    title: "ノートン vs ウイルスバスター 比較2026 - どちらを選ぶべきか",
+    description:
+      "Norton 360とウイルスバスタークラウドを料金・機能・サポート・動作の軽さで比較。VPN・バックアップ内蔵のオールインワンか、Pay Guard・24時間日本語電話サポートの国内安心感か。用途別の選び方を解説します。",
+    date: "2026-06-09",
+    readingMinutes: 12,
+    relatedTools: [],
+    affiliate: true,
+  },
 ];
 
 export function getArticle(
