@@ -334,30 +334,26 @@ function TopPickCard() {
         <p className="text-sm font-black text-amber-950">🏆 総合評価 No.1</p>
       </div>
       <div className="p-5 sm:p-6">
-        <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
-          <div className="flex-1">
-            <div className="flex items-center gap-2">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-600 text-sm font-black text-white">N</span>
-              <span className="text-xl font-black text-slate-950">ノートン 360</span>
-            </div>
-            <div className="mt-2"><Stars rating={4.5} /></div>
-            <ul className="mt-4 space-y-2">
-              {[
-                "VPN・バックアップ・パスワード管理・ダークウェブ監視が一本に",
-                "全世界5億台超の脅威センサーで新種マルウェアをいち早く検知",
-                "60日間返金保証つき — 使ってみてから判断できる",
-              ].map((f) => (
-                <li key={f} className="flex items-start gap-2 text-sm text-slate-700">
-                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-100 text-[10px] font-black text-blue-700">✓</span>
-                  {f}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="flex flex-col gap-3 sm:w-52">
-            <CtaPrimary href={NORTON_URL} mainText="公式サイトを見る" subText="60日間返金保証あり" color="blue" />
-            <CtaOutline href={NORTON_URL} color="blue">料金・プランを確認する</CtaOutline>
-          </div>
+        <div className="flex items-center gap-2">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-600 text-sm font-black text-white">N</span>
+          <span className="text-xl font-black text-slate-950">ノートン 360</span>
+        </div>
+        <div className="mt-2"><Stars rating={4.5} /></div>
+        <ul className="mt-4 space-y-2">
+          {[
+            "VPN・バックアップ・パスワード管理・ダークウェブ監視が一本に",
+            "全世界5億台超の脅威センサーで新種マルウェアをいち早く検知",
+            "60日間返金保証つき — 使ってみてから判断できる",
+          ].map((f) => (
+            <li key={f} className="flex items-start gap-2 text-sm text-slate-700">
+              <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-100 text-[10px] font-black text-blue-700">✓</span>
+              {f}
+            </li>
+          ))}
+        </ul>
+        <div className="mt-5 grid gap-2 sm:grid-cols-2">
+          <CtaPrimary href={NORTON_URL} mainText="公式サイトを見る" subText="60日間返金保証あり" color="blue" />
+          <CtaOutline href={NORTON_URL} color="blue">料金・プランを確認する</CtaOutline>
         </div>
       </div>
       {/* バナーはカード下部に独立配置 — 枠で白背景と分離 */}
