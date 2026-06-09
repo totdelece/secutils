@@ -14,7 +14,7 @@ export function StickyCta() {
       <div className="fixed inset-x-0 bottom-0 z-50 sm:hidden">
         <div className="border-t border-slate-200 bg-white px-4 py-3 shadow-2xl">
           <div className="mb-2 flex items-center justify-between">
-            <p className="text-xs font-black text-slate-600">おすすめセキュリティソフト</p>
+            <p className="text-xs font-black text-slate-600">セキュリティソフト比較</p>
             <button
               onClick={() => setClosed(true)}
               className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-xs text-slate-500 hover:bg-slate-200"
@@ -50,7 +50,7 @@ export function StickyCta() {
       <div className="fixed bottom-28 right-5 z-50 hidden w-52 sm:block">
         <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-xl">
           <div className="mb-3 flex items-center justify-between">
-            <p className="text-xs font-black text-amber-600">🏆 編集部おすすめ</p>
+            <p className="text-xs font-black text-amber-600">🏆 総合評価 No.1</p>
             <button
               onClick={() => setClosed(true)}
               className="flex h-5 w-5 items-center justify-center rounded-full bg-slate-100 text-[10px] text-slate-500 hover:bg-slate-200"

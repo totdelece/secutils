@@ -326,12 +326,12 @@ function Hero() {
   );
 }
 
-/** 編集部おすすめNo.1カード */
-function EditorPickCard() {
+/** 総合評価 No.1カード */
+function TopPickCard() {
   return (
     <div className="overflow-hidden rounded-2xl border-2 border-amber-400 bg-white shadow-lg">
       <div className="bg-amber-400 px-5 py-2.5">
-        <p className="text-sm font-black text-amber-950">🏆 編集部おすすめ No.1</p>
+        <p className="text-sm font-black text-amber-950">🏆 総合評価 No.1</p>
       </div>
       <div className="p-5 sm:p-6">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
@@ -354,13 +354,22 @@ function EditorPickCard() {
               ))}
             </ul>
           </div>
-          <div className="flex flex-col gap-3 sm:w-56">
+          <div className="flex flex-col gap-3 sm:w-52">
             <CtaPrimary href={NORTON_URL} mainText="公式サイトを見る" subText="60日間返金保証あり" color="blue" />
             <CtaOutline href={NORTON_URL} color="blue">料金・プランを確認する</CtaOutline>
-            <div className="hidden sm:block"><BannerImage ad={nortonBanner300x250} /></div>
           </div>
         </div>
-        <div className="mt-4 sm:hidden"><BannerImage ad={nortonBanner468x60} /></div>
+      </div>
+      {/* バナーはカード下部に独立配置 — 枠で白背景と分離 */}
+      <div className="border-t border-amber-200 bg-slate-50 px-5 py-4">
+        <div className="flex justify-center">
+          <div className="rounded-xl border border-slate-200 bg-white p-2 shadow-sm hidden sm:block">
+            <BannerImage ad={nortonBanner468x60} />
+          </div>
+          <div className="rounded-xl border border-slate-200 bg-white p-2 shadow-sm sm:hidden">
+            <BannerImage ad={nortonBanner234x60} />
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -370,7 +379,7 @@ function EditorPickSection() {
   return (
     <section className="bg-slate-50 px-5 py-10 sm:px-6">
       <div className="mx-auto max-w-5xl">
-        <EditorPickCard />
+        <TopPickCard />
       </div>
     </section>
   );
@@ -638,7 +647,7 @@ function FinalDecisionSection() {
 
         {/* 編集部おすすめカード（末尾） */}
         <div className="mb-8">
-          <EditorPickCard />
+          <TopPickCard />
         </div>
 
         <div className="grid gap-6 lg:grid-cols-2">
