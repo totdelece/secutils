@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getArticle } from "@/lib/articles";
+import { StickyCta } from "./sticky-cta";
 
 const article = getArticle("security", "norton-vs-virusbuster")!;
 
@@ -71,23 +72,9 @@ const vbBanner234x60: BannerAd = {
   alt: "ウイルスバスター クラウド 公式",
 };
 
-const tldr = [
-  {
-    no: "01",
-    title: "VPN・バックアップ・パスワード管理をまとめたいならノートン",
-    body: "Norton 360 Deluxe はVPN帯域無制限・50GBバックアップ・パスワードマネージャー・ダークウェブ監視を一本に集約。別々に契約すれば月数千円かかる機能をまとめてカバーできる。",
-  },
-  {
-    no: "02",
-    title: "ネットバンキング重視・日本語サポートならウイルスバスター",
-    body: "決済専用保護ブラウザ「Pay Guard」とランサムウェア対策「フォルダシールド」は国内No.1の独自機能。24時間365日日本語電話サポートも強み。",
-  },
-  {
-    no: "03",
-    title: "迷ったらノートン、国内安心感重視ならウイルスバスター",
-    body: "セット機能のボリュームと60日返金保証でノートンが汎用性高め。ネットバンキングへのこだわりと日本語サポートを優先するならウイルスバスターが刺さる。",
-  },
-];
+// ────────────────────────────────────────────────────────────
+// Data
+// ────────────────────────────────────────────────────────────
 
 const comparisonRows: {
   label: string;
@@ -96,132 +83,49 @@ const comparisonRows: {
   nortonWin?: boolean;
   vbWin?: boolean;
 }[] = [
-  { label: "料金（最安プラン目安）", norton: "初年度割引あり（公式確認要）", vb: "初年度割引あり（公式確認要）" },
-  { label: "対応台数（最安プラン）", norton: "1台（Standard）", vb: "1台（1台版）" },
-  { label: "VPN", norton: "✓（Standard: 帯域制限あり / Deluxe以上: 無制限）", vb: "─", nortonWin: true },
-  { label: "クラウドバックアップ", norton: "✓（Deluxe: 50GB / Premium: 100GB）", vb: "─", nortonWin: true },
+  { label: "総合評価", norton: "★★★★★ 4.5", vb: "★★★★☆ 4.2", nortonWin: true },
+  { label: "料金（目安）", norton: "初年度割引あり（公式確認要）", vb: "初年度割引あり（公式確認要）" },
+  { label: "対応台数（最安）", norton: "1台（Standard）", vb: "1台（1台版）" },
+  { label: "VPN", norton: "✓（Deluxe以上: 帯域無制限）", vb: "─", nortonWin: true },
+  { label: "クラウドバックアップ", norton: "✓（Deluxe: 50GB）", vb: "─", nortonWin: true },
   { label: "パスワードマネージャー", norton: "✓（Norton PM）", vb: "─", nortonWin: true },
-  { label: "ダークウェブモニタリング", norton: "✓（メール・電話・クレカ監視）", vb: "─", nortonWin: true },
-  { label: "Pay Guard（決済保護）", norton: "─", vb: "✓（ネットバンキング専用ブラウザ環境）", vbWin: true },
-  { label: "フォルダシールド", norton: "─", vb: "✓（重要フォルダへの不正書き換えをブロック）", vbWin: true },
-  { label: "動作の軽さ", norton: "普通", vb: "軽い（クラウド型スキャン）", vbWin: true },
+  { label: "ダークウェブモニタリング", norton: "✓（メール・電話・クレカ）", vb: "─", nortonWin: true },
+  { label: "Pay Guard（決済保護）", norton: "─", vb: "✓（専用ブラウザ環境）", vbWin: true },
+  { label: "フォルダシールド", norton: "─", vb: "✓（ランサムウェア対策）", vbWin: true },
+  { label: "動作の軽さ", norton: "普通", vb: "軽い（クラウド型）", vbWin: true },
   { label: "日本語電話サポート", norton: "△（チャット中心）", vb: "✓（24時間365日）", vbWin: true },
   { label: "返金保証", norton: "60日間", vb: "30日間", nortonWin: true },
-  { label: "世界シェア", norton: "世界販売台数No.1", vb: "国内シェアNo.1" },
 ];
 
-const useCases = [
-  {
-    scenario: "ネットバンキング・オンライン決済を安全に使いたい",
-    recommend: "ウイルスバスター",
-    color: "red" as const,
-    reason: "Pay Guardが決済時のフォームデータ横取りや画面キャプチャをブロック。金融機関が特に多い日本市場向けに最適化されている。",
-  },
-  {
-    scenario: "VPN・バックアップ・パスワード管理をまとめてコストを下げたい",
-    recommend: "ノートン",
-    color: "blue" as const,
-    reason: "Norton 360 Deluxeひとつでこれら全てをカバー。個別に契約すれば月数千円かかる費用を一本化できる。",
-  },
-  {
-    scenario: "サポートは電話で日本語対応が安心",
-    recommend: "ウイルスバスター",
-    color: "red" as const,
-    reason: "24時間365日の日本語電話サポートを提供。初心者や家族の端末を管理する人に特に心強い。",
-  },
-  {
-    scenario: "個人情報がダークウェブに流出していないか監視したい",
-    recommend: "ノートン",
-    color: "blue" as const,
-    reason: "メール・電話番号・クレジットカードをダークウェブで継続監視し、検知時に即通知。ウイルスバスターにはない機能。",
-  },
-  {
-    scenario: "古めのPCでも動作を軽くしたい",
-    recommend: "ウイルスバスター",
-    color: "red" as const,
-    reason: "クラウド型スキャンで判定をサーバー側で処理するため、PCのCPU負荷が低い。定義ファイルの手動更新も不要。",
-  },
-  {
-    scenario: "返金保証を使ってじっくり試したい",
-    recommend: "ノートン",
-    color: "blue" as const,
-    reason: "60日間返金保証つき（ウイルスバスターは30日間）。2か月かけてVPNやバックアップの使い勝手まで確認できる。",
-  },
-];
-
-const nortonStrengths = [
-  {
-    title: "VPN・バックアップ・パスワード管理の3点セット",
-    body: "Deluxe以上で帯域無制限VPN・50GBバックアップ・Norton Password Managerが一本に。別々に契約すれば月数千円かかるサービスをまとめてカバーできる。",
-  },
-  {
-    title: "ダークウェブモニタリング",
-    body: "登録したメールアドレス・電話番号・クレジットカードがダークウェブで売買されていないかを継続監視。流出を検知したら即通知が届く。",
-  },
-  {
-    title: "全世界5億台の脅威インテリジェンス",
-    body: "グローバル規模のセンサーネットワークが新種マルウェアをいち早く検知し共有。国内専業ブランドには持てないスケールの防御力。",
-  },
-  {
-    title: "60日間返金保証",
-    body: "ウイルスバスターの30日間に対して60日間と長い。VPNやバックアップなど全機能を使い込んでから判断できる。",
-  },
-];
-
-const vbStrengths = [
-  {
-    title: "Pay Guard（決済専用保護ブラウザ）",
-    body: "ネットバンキングや決済サイトにアクセスすると専用の保護ブラウザ環境が起動。フォームデータの横取りや画面キャプチャをブロックし、金融取引を安全に実行できる。",
-  },
-  {
-    title: "フォルダシールド（ランサムウェア対策）",
-    body: "重要フォルダへの不正な書き換えをリアルタイムでブロック。ランサムウェアによるファイル暗号化を未然に防ぐ専用の保護機能で、バックアップと二重の防御が実現する。",
-  },
-  {
-    title: "クラウド型スキャンで動作軽量",
-    body: "ファイル判定の大部分をトレンドマイクロのクラウドサーバーで処理するためPCへの負荷が低い。定義ファイルの手動更新が不要で、古めのPCでも快適に使える。",
-  },
-  {
-    title: "24時間365日日本語電話サポート",
-    body: "困ったときにすぐ電話で日本語サポートを受けられる。初心者や家族の端末を管理する人にとって大きな安心感。国内シェアNo.1を支える顧客サポート体制。",
-  },
-];
-
-const checklist = [
-  "使用デバイスの OS が両社の対応範囲内（Windows/macOS/iOS/Android）か確認した",
-  "守りたい台数に合ったプランを選び、台数超過にならないか確認した",
-  "初回価格と 2 年目以降の更新価格を公式サイトで確認した",
-  "ノートン選択時: VPN 帯域無制限が必要なら Deluxe 以上を選んだ",
-  "ウイルスバスター選択時: Pay Guard を使うブラウザの動作確認を購入後に行う",
-  "既存のセキュリティソフトをアンインストールしてから導入する",
-  "家族の端末も守る場合は、複数台プランのコスト比較を行った",
-];
-
-const faqs = [
+const allFaqs = [
   {
     q: "ノートンとウイルスバスターを両方同時にインストールできますか？",
     a: "できません。セキュリティソフトは複数を同時にインストールすると競合が起きリアルタイム保護が正常に機能しなくなります。乗り換える場合は既存ソフトを完全にアンインストールしてから新しいソフトをインストールしてください。",
   },
   {
-    q: "検知率・マルウェア対策の精度はどちらが高いですか？",
-    a: "AV-TESTなどの第三者評価機関では両社ともに高い検知率を記録しており、日常的な脅威への対処能力に大きな差はありません。ノートンは全世界5億台超のセンサーネットワークによる新種マルウェアへの対応速度が強みで、ウイルスバスターはAI×クラウド型によるパターンレスの検出が特徴です。最終的な選び方は「検知率の差」より「どの付加機能が必要か」で決めるのが実用的です。",
+    q: "ノートンとウイルスバスター、どっちが動作が軽いですか？",
+    a: "一般的にウイルスバスターの方が軽いとされています。クラウド型スキャンでファイル判定の大部分をトレンドマイクロのサーバー側で処理するため、PC本体への負荷が低くなります。ノートンはVPN・バックアップ・ダークウェブ監視など複数のバックグラウンドサービスが動くため、その分システムリソースを使います。古めのPCや、PCの動作を軽くしたい場合はウイルスバスターが向いています。",
   },
   {
-    q: "乗り換えの手順はどうすればいいですか？",
-    a: "（1）現在のソフトの契約期間を確認する、（2）新しいソフトを購入・アカウント作成、（3）旧ソフトをコントロールパネル（またはアプリ一覧）からアンインストール・再起動、（4）新しいソフトをインストール——の順番が基本です。アンインストール前に旧ソフト側の専用削除ツールが公式から提供されていることもあるため、公式サポートページを参照してください。",
+    q: "Windows Defenderだけで十分ですか？",
+    a: "基本的なウイルス・マルウェア対策としてはWindows Defenderでも一定の効果はあります。ただし、有料ソフトには「VPN」「パスワードマネージャー」「Pay Guard（決済保護）」「ダークウェブモニタリング」「フォルダシールド（ランサムウェア対策）」などDefenderにはない機能が含まれます。ネットバンキングをよく使う・家族のデバイスも守りたい・個人情報流出が心配という場合は有料ソフトを検討する価値があります。",
   },
   {
-    q: "Mac・スマホでも使えますか？",
-    a: "両社ともWindows・macOS・iOS・Androidに対応しています。ただしOSごとに使える機能が異なります（例: ノートンのクラウドバックアップはWindows PC向け）。購入前に公式サイトでOS別の機能一覧を確認してください。",
+    q: "スマートフォンにもセキュリティソフトは必要ですか？",
+    a: "iOSは比較的安全と言われますが、Androidはマルウェアのリスクがあります。また両OSともフィッシングサイト対策・公共Wi-Fi保護・迷惑電話ブロックなどの付加機能は役立ちます。両社ともスマホ向けアプリを提供しており、複数台プランに加入すれば追加費用なしでスマホにも導入できます。",
+  },
+  {
+    q: "Macでも使えますか？",
+    a: "両社ともmacOSに対応しています。ただしWindowsと比べると一部機能が制限される場合があります（例：ノートンのクラウドバックアップはWindows向けが中心）。購入前に必ず各公式サイトのOS別機能比較を確認してください。",
   },
   {
     q: "2年目以降の更新価格は高くなりますか？",
-    a: "両社とも初年度は大幅割引が適用されることが多く、2年目以降は通常価格（更新価格）になります。更新価格は初回より高くなるケースがほとんどです。購入前に必ず「初回価格」と「更新価格」を両方確認し、長期コストで判断してください。長期プランを選ぶと1年あたりの単価を抑えられる場合があります。",
+    a: "両社とも初年度は大幅割引が適用されることが多く、2年目以降は通常価格（更新価格）になります。更新価格は初回より高くなるケースがほとんどです。購入前に必ず「初回価格」と「更新価格」を両方確認してから申し込んでください。長期プランを選ぶと1年あたりの単価を抑えられる場合があります。",
   },
 ];
 
 // ────────────────────────────────────────────────────────────
-// Shared UI
+// UI primitives
 // ────────────────────────────────────────────────────────────
 
 function BannerImage({ ad }: { ad: BannerAd }) {
@@ -237,39 +141,72 @@ function BannerImage({ ad }: { ad: BannerAd }) {
   );
 }
 
-function CtaButton({
+/** メインCTA: 補足テキスト付き・横幅いっぱい */
+function CtaPrimary({
   href,
-  children,
-  variant = "solid",
+  mainText,
+  subText,
   color = "blue",
-  size = "md",
 }: {
   href: string;
-  children: React.ReactNode;
-  variant?: "solid" | "outline";
+  mainText: string;
+  subText?: string;
   color?: "blue" | "red";
-  size?: "md" | "lg";
 }) {
-  const solidMap = {
-    blue: "bg-blue-600 text-white shadow-lg shadow-blue-950/15 hover:-translate-y-0.5 hover:bg-blue-700 focus-visible:outline-blue-600",
-    red: "bg-red-600 text-white shadow-lg shadow-red-950/15 hover:-translate-y-0.5 hover:bg-red-700 focus-visible:outline-red-600",
+  const colorMap = {
+    blue: "bg-blue-600 hover:bg-blue-700 shadow-blue-200/60 focus-visible:outline-blue-600",
+    red: "bg-red-600 hover:bg-red-700 shadow-red-200/60 focus-visible:outline-red-600",
   };
-  const outlineMap = {
-    blue: "border border-blue-300 bg-white text-blue-700 hover:-translate-y-0.5 hover:bg-blue-50 focus-visible:outline-blue-600",
-    red: "border border-red-300 bg-white text-red-700 hover:-translate-y-0.5 hover:bg-red-50 focus-visible:outline-red-600",
-  };
-  const variantClass = variant === "solid" ? solidMap[color] : outlineMap[color];
-  const sizeClass = size === "lg" ? "min-h-14 px-6 py-3.5 text-base" : "min-h-11 px-5 py-2.5 text-sm";
   return (
     <a
       href={href}
       target="_blank"
       rel="nofollow noopener noreferrer"
-      className={`inline-flex w-full items-center justify-center gap-2 rounded-xl text-center font-black no-underline transition duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${variantClass} ${sizeClass}`}
+      className={`flex w-full flex-col items-center justify-center rounded-xl px-6 py-4 text-white no-underline shadow-lg transition duration-200 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${colorMap[color]}`}
     >
-      <span>{children}</span>
-      <span aria-hidden="true">{"→"}</span>
+      <span className="text-base font-black">{mainText} →</span>
+      {subText && <span className="mt-0.5 text-xs opacity-85">{subText}</span>}
     </a>
+  );
+}
+
+/** サブCTA: アウトライン */
+function CtaOutline({
+  href,
+  children,
+  color = "blue",
+}: {
+  href: string;
+  children: React.ReactNode;
+  color?: "blue" | "red";
+}) {
+  const colorMap = {
+    blue: "border-blue-300 text-blue-700 hover:bg-blue-50 focus-visible:outline-blue-600",
+    red: "border-red-300 text-red-700 hover:bg-red-50 focus-visible:outline-red-600",
+  };
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="nofollow noopener noreferrer"
+      className={`flex min-h-11 w-full items-center justify-center gap-2 rounded-xl border bg-white px-5 py-2.5 text-sm font-black no-underline transition duration-200 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${colorMap[color]}`}
+    >
+      {children} →
+    </a>
+  );
+}
+
+function Stars({ rating }: { rating: number }) {
+  const full = Math.floor(rating);
+  const hasHalf = rating % 1 >= 0.5;
+  const empty = 5 - full - (hasHalf ? 1 : 0);
+  return (
+    <span className="inline-flex items-center gap-0.5">
+      {Array.from({ length: full }).map((_, i) => <span key={`f${i}`} className="text-amber-400">★</span>)}
+      {hasHalf && <span className="text-amber-300">★</span>}
+      {Array.from({ length: empty }).map((_, i) => <span key={`e${i}`} className="text-slate-200">★</span>)}
+      <span className="ml-1.5 text-sm font-bold text-slate-500">{rating.toFixed(1)}</span>
+    </span>
   );
 }
 
@@ -283,6 +220,8 @@ function Hero() {
       <div aria-hidden="true" className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-blue-200/30 blur-3xl" />
       <div aria-hidden="true" className="pointer-events-none absolute -left-32 top-40 h-96 w-96 rounded-full bg-red-200/20 blur-3xl" />
       <div className="relative mx-auto max-w-5xl px-5 py-10 sm:px-6 lg:py-16">
+
+        {/* パンくず */}
         <nav className="mb-8 flex flex-wrap items-center gap-2 text-sm text-slate-500">
           <Link href="/" className="hover:text-slate-950">Tools</Link>
           <span>/</span>
@@ -294,83 +233,88 @@ function Hero() {
         </nav>
 
         <div className="mb-4 flex flex-wrap gap-2">
-          <span className="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-700 ring-1 ring-slate-200">
-            PR / 広告を含みます
-          </span>
-          <span className="inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700 ring-1 ring-blue-200">
-            {article.date} 確認
-          </span>
-          <span className="inline-flex items-center rounded-full bg-amber-50 px-3 py-1 text-xs font-bold text-amber-800 ring-1 ring-amber-200">
-            価格は公式確認
-          </span>
+          <span className="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-700 ring-1 ring-slate-200">PR / 広告を含みます</span>
+          <span className="inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700 ring-1 ring-blue-200">{article.date} 確認</span>
+          <span className="inline-flex items-center rounded-full bg-amber-50 px-3 py-1 text-xs font-bold text-amber-800 ring-1 ring-amber-200">価格は公式確認</span>
         </div>
 
-        <h1 className="text-4xl font-black leading-tight tracking-tight text-slate-950 sm:text-5xl">
+        <h1 className="text-3xl font-black leading-tight tracking-tight text-slate-950 sm:text-5xl">
           ノートン vs ウイルスバスター
-          <span className="mt-2 block text-2xl font-black text-slate-600 sm:text-3xl">
+          <span className="mt-2 block text-xl font-black text-slate-500 sm:text-2xl">
             どちらを選ぶべきか — 機能・料金・サポートを徹底比較
           </span>
         </h1>
-        <p className="mt-5 max-w-2xl text-base leading-8 text-slate-600">
-          国内外のセキュリティソフト二強を並べて比較。VPN・バックアップ・ダークウェブ監視が揃うノートンと、Pay Guard・フォルダシールド・日本語電話サポートが強みのウイルスバスター。用途に合った選び方を整理します。
-        </p>
 
-        {/* ファーストビュー: 両社カード横並び */}
-        <div className="mt-8 grid gap-4 sm:grid-cols-2">
-          {/* ノートンカード */}
-          <div className="overflow-hidden rounded-2xl border border-blue-200 bg-white shadow-md">
-            <div className="bg-blue-600 px-4 py-2.5">
-              <p className="text-[11px] font-black uppercase tracking-[0.2em] text-blue-100">PR / Norton 360</p>
-            </div>
-            <div className="p-5">
-              <p className="text-lg font-black text-slate-950">ノートン 360</p>
-              <p className="mt-1 text-xs text-slate-500">世界販売台数 No.1</p>
-              <ul className="mt-3 space-y-1.5">
-                {["VPN内蔵（帯域無制限）", "クラウドバックアップ", "ダークウェブ監視", "60日間返金保証"].map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-sm text-slate-700">
-                    <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-blue-100 text-[9px] font-black text-blue-700">✓</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-4 flex justify-center">
-                <div className="hidden sm:block"><BannerImage ad={nortonBanner468x60} /></div>
-                <div className="sm:hidden"><BannerImage ad={nortonBanner234x60} /></div>
-              </div>
-              <div className="mt-3">
-                <CtaButton href={NORTON_URL} color="blue" size="lg">公式サイトを見る</CtaButton>
-              </div>
-            </div>
+        {/* ──── 結論カード ──── */}
+        <div className="mt-8 overflow-hidden rounded-2xl border-2 border-slate-300 bg-white shadow-md">
+          <div className="bg-slate-800 px-5 py-3">
+            <p className="text-sm font-black text-white">この記事の結論</p>
           </div>
-
-          {/* ウイルスバスターカード */}
-          <div className="overflow-hidden rounded-2xl border border-red-200 bg-white shadow-md">
-            <div className="bg-red-600 px-4 py-2.5">
-              <p className="text-[11px] font-black uppercase tracking-[0.2em] text-red-100">PR / ウイルスバスター クラウド</p>
+          <div className="grid divide-y divide-slate-100 sm:grid-cols-2 sm:divide-x sm:divide-y-0">
+            <div className="p-5">
+              <div className="flex items-center gap-2 mb-1">
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-600 text-xs font-black text-white">N</span>
+                <span className="text-xs font-black uppercase tracking-wider text-blue-600">総合力・セット機能</span>
+              </div>
+              <p className="text-lg font-black text-slate-950">ノートン 360</p>
+              <Stars rating={4.5} />
+              <p className="mt-2 text-sm leading-6 text-slate-600">VPN・バックアップ・パスワード管理・ダークウェブ監視がひとつの契約に。60日返金保証でリスクなく試せる。</p>
+              <div className="mt-4">
+                <CtaPrimary href={NORTON_URL} mainText="公式サイトを見る" subText="60日間返金保証あり" color="blue" />
+              </div>
             </div>
             <div className="p-5">
-              <p className="text-lg font-black text-slate-950">ウイルスバスター クラウド</p>
-              <p className="mt-1 text-xs text-slate-500">国内シェア No.1</p>
-              <ul className="mt-3 space-y-1.5">
-                {["Pay Guard（決済保護）", "フォルダシールド（ランサム対策）", "クラウド型で動作軽量", "24時間日本語電話サポート"].map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-sm text-slate-700">
-                    <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-red-100 text-[9px] font-black text-red-700">✓</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-4 flex justify-center">
-                <div className="hidden sm:block"><BannerImage ad={vbBanner468x100} /></div>
-                <div className="sm:hidden"><BannerImage ad={vbBanner234x60} /></div>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-red-600 text-xs font-black text-white">V</span>
+                <span className="text-xs font-black uppercase tracking-wider text-red-600">初心者・国内サポート</span>
               </div>
-              <div className="mt-3">
-                <CtaButton href={VB_URL} color="red" size="lg">公式サイトを見る</CtaButton>
+              <p className="text-lg font-black text-slate-950">ウイルスバスター クラウド</p>
+              <Stars rating={4.2} />
+              <p className="mt-2 text-sm leading-6 text-slate-600">Pay Guard（決済保護）・フォルダシールド・24時間日本語電話サポート。動作が軽く国内シェアNo.1の安心感。</p>
+              <div className="mt-4">
+                <CtaPrimary href={VB_URL} mainText="公式サイトを見る" subText="30日間返金保証あり" color="red" />
               </div>
             </div>
           </div>
         </div>
 
-        <p className="mt-3 text-xs leading-5 text-slate-500">
+        {/* ──── おすすめな人 2カラム ──── */}
+        <div className="mt-6 grid gap-4 sm:grid-cols-2">
+          <div className="rounded-2xl border border-blue-200 bg-blue-50/60 p-4">
+            <p className="mb-3 text-xs font-black uppercase tracking-wider text-blue-700">ノートンがおすすめな人</p>
+            <ul className="space-y-2">
+              {[
+                "VPN・バックアップ・パスワード管理を一本にまとめたい",
+                "ダークウェブへの情報流出を監視したい",
+                "60日間じっくり試してから判断したい",
+                "世界規模の脅威インテリジェンスを使いたい",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-2 text-sm text-slate-700">
+                  <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-blue-600 text-[9px] font-black text-white">✓</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="rounded-2xl border border-red-200 bg-red-50/60 p-4">
+            <p className="mb-3 text-xs font-black uppercase tracking-wider text-red-700">ウイルスバスターがおすすめな人</p>
+            <ul className="space-y-2">
+              {[
+                "ネットバンキング・決済を安全に使いたい",
+                "日本語電話サポートが安心な人・初心者",
+                "古めのPCでも動作を軽くしたい",
+                "ランサムウェアからファイルを守りたい",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-2 text-sm text-slate-700">
+                  <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-red-600 text-[9px] font-black text-white">✓</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <p className="mt-4 text-xs leading-5 text-slate-500">
           ※ 本ページのリンクには広告を含みます。価格・機能・対応 OS は記事執筆時点の情報です。最新条件は各公式サイトでご確認ください。
         </p>
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -382,26 +326,51 @@ function Hero() {
   );
 }
 
-function TldrSection() {
+/** 編集部おすすめNo.1カード */
+function EditorPickCard() {
   return (
-    <section className="bg-white px-5 py-14 sm:px-6">
+    <div className="overflow-hidden rounded-2xl border-2 border-amber-400 bg-white shadow-lg">
+      <div className="bg-amber-400 px-5 py-2.5">
+        <p className="text-sm font-black text-amber-950">🏆 編集部おすすめ No.1</p>
+      </div>
+      <div className="p-5 sm:p-6">
+        <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
+          <div className="flex-1">
+            <div className="flex items-center gap-2">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-600 text-sm font-black text-white">N</span>
+              <span className="text-xl font-black text-slate-950">ノートン 360</span>
+            </div>
+            <div className="mt-2"><Stars rating={4.5} /></div>
+            <ul className="mt-4 space-y-2">
+              {[
+                "VPN・バックアップ・パスワード管理・ダークウェブ監視が一本に",
+                "全世界5億台超の脅威センサーで新種マルウェアをいち早く検知",
+                "60日間返金保証つき — 使ってみてから判断できる",
+              ].map((f) => (
+                <li key={f} className="flex items-start gap-2 text-sm text-slate-700">
+                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-100 text-[10px] font-black text-blue-700">✓</span>
+                  {f}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="flex flex-col gap-3 sm:w-56">
+            <CtaPrimary href={NORTON_URL} mainText="公式サイトを見る" subText="60日間返金保証あり" color="blue" />
+            <CtaOutline href={NORTON_URL} color="blue">料金・プランを確認する</CtaOutline>
+            <div className="hidden sm:block"><BannerImage ad={nortonBanner300x250} /></div>
+          </div>
+        </div>
+        <div className="mt-4 sm:hidden"><BannerImage ad={nortonBanner468x60} /></div>
+      </div>
+    </div>
+  );
+}
+
+function EditorPickSection() {
+  return (
+    <section className="bg-slate-50 px-5 py-10 sm:px-6">
       <div className="mx-auto max-w-5xl">
-        <div className="mb-8 text-center">
-          <p className="text-[11px] font-black uppercase tracking-[0.22em] text-slate-500">3 sec summary</p>
-          <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-950">3秒でわかる結論</h2>
-        </div>
-        <div className="grid gap-4 md:grid-cols-3">
-          {tldr.map((item) => (
-            <article
-              key={item.no}
-              className="relative rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg"
-            >
-              <div className="absolute right-5 top-5 text-5xl font-black text-slate-100">{item.no}</div>
-              <h3 className="relative text-base font-black text-slate-950">{item.title}</h3>
-              <p className="relative mt-3 text-sm leading-7 text-slate-600">{item.body}</p>
-            </article>
-          ))}
-        </div>
+        <EditorPickCard />
       </div>
     </section>
   );
@@ -409,7 +378,7 @@ function TldrSection() {
 
 function ComparisonTableSection() {
   return (
-    <section className="bg-slate-50 px-5 py-14 sm:px-6">
+    <section className="bg-white px-5 py-14 sm:px-6">
       <div className="mx-auto max-w-5xl">
         <div className="mb-8 text-center">
           <p className="text-[11px] font-black uppercase tracking-[0.22em] text-slate-500">Comparison</p>
@@ -418,33 +387,42 @@ function ComparisonTableSection() {
             料金は初年度割引があるため目安です。最新料金は必ず公式サイトでご確認ください。
           </p>
         </div>
+
+        {/* テーブル */}
         <div className="overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-sm">
-          <table className="w-full min-w-[540px] text-sm">
-            <thead>
-              <tr className="border-b border-slate-200">
-                <th className="px-5 py-4 text-left text-xs font-black uppercase tracking-wider text-slate-500">項目</th>
-                <th className="px-5 py-4 text-left text-xs font-black uppercase tracking-wider text-blue-700">
-                  <span className="flex items-center gap-1.5">
-                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-600 text-[9px] font-black text-white">N</span>
-                    ノートン 360
-                  </span>
+          <table className="w-full min-w-[580px] text-sm">
+            <thead className="sticky top-0 z-10 bg-white shadow-[0_1px_0_0_#e2e8f0]">
+              <tr>
+                <th className="px-5 py-4 text-left text-xs font-black uppercase tracking-wider text-slate-400 w-36">項目</th>
+                <th className="bg-blue-50/70 px-5 py-4 text-left w-[45%]">
+                  <div className="flex flex-col gap-1">
+                    <div className="flex items-center gap-1.5">
+                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-600 text-[9px] font-black text-white">N</span>
+                      <span className="text-xs font-black text-blue-700">ノートン 360</span>
+                      <span className="ml-1 inline-flex items-center rounded-full bg-amber-400 px-2 py-0.5 text-[10px] font-black text-amber-950">おすすめ</span>
+                    </div>
+                    <Stars rating={4.5} />
+                  </div>
                 </th>
-                <th className="px-5 py-4 text-left text-xs font-black uppercase tracking-wider text-red-700">
-                  <span className="flex items-center gap-1.5">
-                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-[9px] font-black text-white">V</span>
-                    ウイルスバスター
-                  </span>
+                <th className="px-5 py-4 text-left w-[45%]">
+                  <div className="flex flex-col gap-1">
+                    <div className="flex items-center gap-1.5">
+                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-[9px] font-black text-white">V</span>
+                      <span className="text-xs font-black text-red-700">ウイルスバスター</span>
+                    </div>
+                    <Stars rating={4.2} />
+                  </div>
                 </th>
               </tr>
             </thead>
             <tbody>
               {comparisonRows.map((row, i) => (
-                <tr key={row.label} className={`border-b border-slate-100 ${i % 2 === 0 ? "" : "bg-slate-50/50"}`}>
-                  <td className="px-5 py-3.5 font-bold text-slate-700">{row.label}</td>
-                  <td className={`px-5 py-3.5 leading-6 ${row.nortonWin ? "font-bold text-blue-700" : "text-slate-600"}`}>
+                <tr key={row.label} className={`border-t border-slate-100 ${i % 2 === 0 ? "" : "bg-slate-50/50"}`}>
+                  <td className="px-5 py-4 text-xs font-black text-slate-500">{row.label}</td>
+                  <td className={`bg-blue-50/30 px-5 py-4 leading-6 ${row.nortonWin ? "font-bold text-blue-700" : "text-slate-600"}`}>
                     {row.norton}
                   </td>
-                  <td className={`px-5 py-3.5 leading-6 ${row.vbWin ? "font-bold text-red-700" : "text-slate-600"}`}>
+                  <td className={`px-5 py-4 leading-6 ${row.vbWin ? "font-bold text-red-700" : "text-slate-500"}`}>
                     {row.vb}
                   </td>
                 </tr>
@@ -452,34 +430,57 @@ function ComparisonTableSection() {
             </tbody>
           </table>
         </div>
-        <p className="mt-4 text-xs leading-6 text-slate-500">
+        <p className="mt-3 text-xs leading-6 text-slate-500">
           ※ 料金・機能・プラン内容は変更される場合があります。購入前に必ず公式サイトで最新情報をご確認ください。
         </p>
+
+        {/* 比較表直後のCTA */}
+        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          <div className="overflow-hidden rounded-2xl border border-blue-200 bg-blue-50/60 p-5">
+            <p className="text-sm font-black text-slate-950">ノートン 360</p>
+            <p className="mt-1 text-xs text-slate-500">総合力で選ぶなら</p>
+            <div className="mt-4 flex flex-col gap-2">
+              <CtaPrimary href={NORTON_URL} mainText="無料体験はこちら" subText="60日間返金保証あり" color="blue" />
+              <CtaOutline href={NORTON_URL} color="blue">料金・プランを見る</CtaOutline>
+            </div>
+          </div>
+          <div className="overflow-hidden rounded-2xl border border-red-200 bg-red-50/60 p-5">
+            <p className="text-sm font-black text-slate-950">ウイルスバスター クラウド</p>
+            <p className="mt-1 text-xs text-slate-500">初心者・国内サポート重視なら</p>
+            <div className="mt-4 flex flex-col gap-2">
+              <CtaPrimary href={VB_URL} mainText="無料体験はこちら" subText="30日間返金保証あり" color="red" />
+              <CtaOutline href={VB_URL} color="red">料金・プランを見る</CtaOutline>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
 }
 
 function UseCasesSection() {
+  const cases = [
+    { scenario: "ネットバンキング・オンライン決済を安全に使いたい", recommend: "ウイルスバスター", color: "red" as const, reason: "Pay Guardが決済時のフォームデータ横取りや画面キャプチャをブロック。金融機関が特に多い日本市場向けに最適化。" },
+    { scenario: "VPN・バックアップ・パスワード管理をまとめたい", recommend: "ノートン", color: "blue" as const, reason: "Norton 360 Deluxeひとつでこれら全てをカバー。個別に契約すれば月数千円かかる費用を一本化できる。" },
+    { scenario: "サポートは電話で日本語対応が安心", recommend: "ウイルスバスター", color: "red" as const, reason: "24時間365日の日本語電話サポートを提供。初心者や家族の端末を管理する人に特に心強い。" },
+    { scenario: "個人情報がダークウェブに流出していないか監視したい", recommend: "ノートン", color: "blue" as const, reason: "メール・電話番号・クレカをダークウェブで継続監視。検知時に即通知。ウイルスバスターにはない機能。" },
+    { scenario: "古めのPCでも動作を軽くしたい", recommend: "ウイルスバスター", color: "red" as const, reason: "クラウド型スキャンでPCのCPU負荷が低い。定義ファイルの手動更新も不要。" },
+    { scenario: "60日間じっくり試してから判断したい", recommend: "ノートン", color: "blue" as const, reason: "60日間返金保証つき（ウイルスバスターは30日間）。VPNやバックアップの使い勝手まで確認できる。" },
+  ];
+
   return (
-    <section className="bg-white px-5 py-14 sm:px-6">
+    <section className="bg-slate-50 px-5 py-14 sm:px-6">
       <div className="mx-auto max-w-5xl">
         <div className="mb-8 text-center">
           <p className="text-[11px] font-black uppercase tracking-[0.22em] text-slate-500">Use Cases</p>
           <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-950">シナリオ別おすすめ</h2>
-          <p className="mx-auto mt-3 max-w-xl text-sm leading-7 text-slate-600">
-            用途を絞って選ぶための判断基準です。
-          </p>
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
-          {useCases.map((item) => {
+          {cases.map((item) => {
             const isNorton = item.color === "blue";
             return (
-              <article
-                key={item.scenario}
-                className={`rounded-2xl border p-5 shadow-sm ${isNorton ? "border-blue-200 bg-blue-50/40" : "border-red-200 bg-red-50/40"}`}
-              >
-                <p className="text-xs font-black text-slate-500">{item.scenario}</p>
+              <article key={item.scenario} className={`rounded-2xl border p-5 shadow-sm ${isNorton ? "border-blue-200 bg-blue-50/40" : "border-red-200 bg-red-50/40"}`}>
+                <p className="text-xs font-bold text-slate-500">{item.scenario}</p>
                 <div className={`mt-2 inline-flex items-center rounded-full px-3 py-1 text-xs font-black ring-1 ${isNorton ? "bg-blue-100 text-blue-700 ring-blue-200" : "bg-red-100 text-red-700 ring-red-200"}`}>
                   {item.recommend}
                 </div>
@@ -494,8 +495,21 @@ function UseCasesSection() {
 }
 
 function StrengthsSection() {
+  const nortonStrengths = [
+    { title: "VPN・バックアップ・パスワード管理の3点セット", body: "Deluxe以上で帯域無制限VPN・50GBバックアップ・Norton PMが一本に。別々に契約すれば月数千円かかるサービスをまとめてカバーできる。" },
+    { title: "ダークウェブモニタリング", body: "登録したメール・電話番号・クレカがダークウェブで売買されていないかを継続監視。流出を検知したら即通知が届く。" },
+    { title: "全世界5億台の脅威インテリジェンス", body: "グローバル規模のセンサーネットワークが新種マルウェアをいち早く検知し共有。国内専業ブランドには持てないスケールの防御力。" },
+    { title: "60日間返金保証", body: "ウイルスバスターの30日間に対して60日間と長い。VPNやバックアップなど全機能を使い込んでから判断できる。" },
+  ];
+  const vbStrengths = [
+    { title: "Pay Guard（決済専用保護ブラウザ）", body: "ネットバンキングや決済サイトにアクセスすると専用の保護ブラウザ環境が起動。フォームデータの横取りや画面キャプチャをブロック。" },
+    { title: "フォルダシールド（ランサムウェア対策）", body: "重要フォルダへの不正な書き換えをリアルタイムでブロック。ランサムウェアによるファイル暗号化を未然に防ぐ専用の保護機能。" },
+    { title: "クラウド型スキャンで動作軽量", body: "ファイル判定の大部分をクラウドで処理するためPCへの負荷が低い。定義ファイルの手動更新が不要で、古めのPCでも快適。" },
+    { title: "24時間365日日本語電話サポート", body: "困ったときにすぐ電話で日本語サポートを受けられる。初心者や家族の端末を管理する人にとって大きな安心感。" },
+  ];
+
   return (
-    <section className="bg-slate-50 px-5 py-14 sm:px-6">
+    <section className="bg-white px-5 py-14 sm:px-6">
       <div className="mx-auto max-w-5xl">
         <div className="mb-10 text-center">
           <p className="text-[11px] font-black uppercase tracking-[0.22em] text-slate-500">Strengths</p>
@@ -504,97 +518,43 @@ function StrengthsSection() {
         <div className="grid gap-8 lg:grid-cols-2">
           {/* ノートン */}
           <div>
-            <div className="mb-5 flex items-center gap-3">
+            <div className="mb-4 flex items-center gap-3">
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-600 text-sm font-black text-white">N</span>
               <h3 className="text-xl font-black text-slate-950">ノートン 360 の強み</h3>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {nortonStrengths.map((s) => (
-                <article key={s.title} className="rounded-2xl border border-blue-100 bg-white p-5 shadow-sm">
+                <article key={s.title} className="rounded-2xl border border-blue-100 bg-blue-50/40 p-5">
                   <h4 className="text-sm font-black text-blue-700">{s.title}</h4>
                   <p className="mt-2 text-sm leading-7 text-slate-600">{s.body}</p>
                 </article>
               ))}
             </div>
-            <div className="mt-6">
+            <div className="mt-5 flex flex-col gap-2">
               <div className="hidden sm:block"><BannerImage ad={nortonBanner468x60} /></div>
               <div className="sm:hidden"><BannerImage ad={nortonBanner234x60} /></div>
-              <div className="mt-3">
-                <CtaButton href={NORTON_URL} color="blue">ノートン公式サイトを見る</CtaButton>
-              </div>
+              <CtaPrimary href={NORTON_URL} mainText="ノートン公式サイトを見る" subText="60日間返金保証あり" color="blue" />
             </div>
           </div>
 
           {/* ウイルスバスター */}
           <div>
-            <div className="mb-5 flex items-center gap-3">
+            <div className="mb-4 flex items-center gap-3">
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-red-600 text-sm font-black text-white">V</span>
               <h3 className="text-xl font-black text-slate-950">ウイルスバスターの強み</h3>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {vbStrengths.map((s) => (
-                <article key={s.title} className="rounded-2xl border border-red-100 bg-white p-5 shadow-sm">
+                <article key={s.title} className="rounded-2xl border border-red-100 bg-red-50/40 p-5">
                   <h4 className="text-sm font-black text-red-700">{s.title}</h4>
                   <p className="mt-2 text-sm leading-7 text-slate-600">{s.body}</p>
                 </article>
               ))}
             </div>
-            <div className="mt-6">
+            <div className="mt-5 flex flex-col gap-2">
               <div className="hidden sm:block"><BannerImage ad={vbBanner468x100} /></div>
               <div className="sm:hidden"><BannerImage ad={vbBanner234x60} /></div>
-              <div className="mt-3">
-                <CtaButton href={VB_URL} color="red">ウイルスバスター公式サイトを見る</CtaButton>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function CtaBandSection() {
-  return (
-    <section className="bg-white px-5 py-12 sm:px-6">
-      <div className="mx-auto max-w-5xl">
-        <div className="grid gap-4 sm:grid-cols-2">
-          <div className="overflow-hidden rounded-2xl border border-blue-200 bg-gradient-to-br from-blue-50 to-white shadow-sm">
-            <div className="border-b border-blue-100 bg-blue-600 px-5 py-2.5">
-              <p className="text-[11px] font-black uppercase tracking-[0.2em] text-blue-100">PR / Norton 360</p>
-            </div>
-            <div className="p-5">
-              <h3 className="text-base font-black text-slate-950">VPN・バックアップ・ダークウェブ監視が一本に</h3>
-              <p className="mt-2 mb-4 text-sm leading-7 text-slate-600">
-                60日間返金保証つきでセット機能を試せます。Deluxe以上ならVPN帯域無制限で使えます。
-              </p>
-              <div className="flex justify-center">
-                <div className="hidden sm:block"><BannerImage ad={nortonBanner300x250} /></div>
-                <div className="sm:hidden"><BannerImage ad={nortonBanner234x60} /></div>
-              </div>
-              <div className="mt-4 grid gap-2">
-                <CtaButton href={NORTON_URL} color="blue" size="lg">最新キャンペーンを確認する</CtaButton>
-                <CtaButton href={NORTON_URL} color="blue" variant="outline">料金・プランを見る</CtaButton>
-              </div>
-            </div>
-          </div>
-
-          <div className="overflow-hidden rounded-2xl border border-red-200 bg-gradient-to-br from-red-50 to-white shadow-sm">
-            <div className="border-b border-red-100 bg-red-600 px-5 py-2.5">
-              <p className="text-[11px] font-black uppercase tracking-[0.2em] text-red-100">PR / ウイルスバスター クラウド</p>
-            </div>
-            <div className="p-5">
-              <h3 className="text-base font-black text-slate-950">Pay Guard・フォルダシールド・日本語サポート</h3>
-              <p className="mt-2 mb-4 text-sm leading-7 text-slate-600">
-                国内No.1の安心感。30日間返金保証つきでネットバンキング保護を実際に体験できます。
-              </p>
-              <div className="flex justify-center">
-                <div className="hidden sm:block"><BannerImage ad={vbBanner300x250} /></div>
-                <div className="sm:hidden"><BannerImage ad={vbBanner234x60} /></div>
-              </div>
-              <div className="mt-4 grid gap-2">
-                <CtaButton href={VB_URL} color="red" size="lg">最新キャンペーンを確認する</CtaButton>
-                <CtaButton href={VB_URL} color="red" variant="outline">料金・プランを見る</CtaButton>
-              </div>
+              <CtaPrimary href={VB_URL} mainText="ウイルスバスター公式サイトを見る" subText="30日間返金保証あり" color="red" />
             </div>
           </div>
         </div>
@@ -604,6 +564,14 @@ function CtaBandSection() {
 }
 
 function ChecklistSection() {
+  const items = [
+    "使用デバイスのOSが両社の対応範囲内（Windows/macOS/iOS/Android）か確認した",
+    "守りたい台数に合ったプランを選び、台数超過にならないか確認した",
+    "初回価格と2年目以降の更新価格を公式サイトで確認した",
+    "ノートン選択時: VPN帯域無制限が必要ならDeluxe以上を選んだ",
+    "ウイルスバスター選択時: Pay Guardを使うブラウザの動作を購入後に確認する",
+    "既存のセキュリティソフトをアンインストールしてから導入する",
+  ];
   return (
     <section className="bg-slate-50 px-5 py-14 sm:px-6">
       <div className="mx-auto max-w-5xl">
@@ -613,11 +581,8 @@ function ChecklistSection() {
         </div>
         <div className="rounded-3xl border border-amber-200 bg-amber-50 p-5 sm:p-8">
           <ul className="grid gap-3 md:grid-cols-2">
-            {checklist.map((item) => (
-              <li
-                key={item}
-                className="flex gap-3 rounded-xl bg-white p-4 text-sm font-bold leading-6 text-slate-700 shadow-sm"
-              >
+            {items.map((item) => (
+              <li key={item} className="flex gap-3 rounded-xl bg-white p-4 text-sm font-bold leading-6 text-slate-700 shadow-sm">
                 <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-amber-500 text-xs font-black text-white">✓</span>
                 {item}
               </li>
@@ -638,7 +603,7 @@ function FaqSection() {
           <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-950">よくある質問</h2>
         </div>
         <div className="space-y-3">
-          {faqs.map((f, idx) => (
+          {allFaqs.map((f, idx) => (
             <details
               key={f.q}
               className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition open:border-slate-300 open:shadow-md"
@@ -649,7 +614,7 @@ function FaqSection() {
                   <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-slate-100 text-xs font-black text-slate-700">Q</span>
                   {f.q}
                 </span>
-                <span aria-hidden="true" className="text-slate-500 transition group-open:rotate-45">+</span>
+                <span aria-hidden="true" className="shrink-0 text-slate-400 transition group-open:rotate-45">+</span>
               </summary>
               <div className="mt-4 border-t border-slate-100 pt-4 text-sm leading-7 text-slate-700">
                 {f.a}
@@ -670,6 +635,12 @@ function FinalDecisionSection() {
           <p className="text-[11px] font-black uppercase tracking-[0.24em] text-slate-500">Final Decision</p>
           <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">結論 — こんな人に向いている</h2>
         </div>
+
+        {/* 編集部おすすめカード（末尾） */}
+        <div className="mb-8">
+          <EditorPickCard />
+        </div>
+
         <div className="grid gap-6 lg:grid-cols-2">
           {/* ノートン */}
           <div className="overflow-hidden rounded-2xl border border-blue-200 bg-white shadow-md">
@@ -694,12 +665,11 @@ function FinalDecisionSection() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-6">
+              <div className="mt-5 flex flex-col gap-2">
                 <div className="hidden sm:block"><BannerImage ad={nortonBanner468x60} /></div>
                 <div className="sm:hidden"><BannerImage ad={nortonBanner234x60} /></div>
-              </div>
-              <div className="mt-3 grid gap-2">
-                <CtaButton href={NORTON_URL} color="blue" size="lg">ノートン公式サイトを見る</CtaButton>
+                <CtaPrimary href={NORTON_URL} mainText="今すぐ申し込む" subText="60日間返金保証あり" color="blue" />
+                <CtaOutline href={NORTON_URL} color="blue">特典・キャンペーンを確認する</CtaOutline>
               </div>
             </div>
           </div>
@@ -727,12 +697,11 @@ function FinalDecisionSection() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-6">
+              <div className="mt-5 flex flex-col gap-2">
                 <div className="hidden sm:block"><BannerImage ad={vbBanner468x100} /></div>
                 <div className="sm:hidden"><BannerImage ad={vbBanner234x60} /></div>
-              </div>
-              <div className="mt-3 grid gap-2">
-                <CtaButton href={VB_URL} color="red" size="lg">ウイルスバスター公式サイトを見る</CtaButton>
+                <CtaPrimary href={VB_URL} mainText="今すぐ申し込む" subText="30日間返金保証あり" color="red" />
+                <CtaOutline href={VB_URL} color="red">特典・キャンペーンを確認する</CtaOutline>
               </div>
             </div>
           </div>
@@ -798,18 +767,20 @@ function RelatedLinks() {
 
 export default function NortonVsVirusbusterPage() {
   return (
-    <main>
-      <Hero />
-      <TldrSection />
-      <ComparisonTableSection />
-      <UseCasesSection />
-      <StrengthsSection />
-      <CtaBandSection />
-      <ChecklistSection />
-      <FaqSection />
-      <FinalDecisionSection />
-      <References />
-      <RelatedLinks />
-    </main>
+    <>
+      <main className="pb-20 sm:pb-0">
+        <Hero />
+        <EditorPickSection />
+        <ComparisonTableSection />
+        <UseCasesSection />
+        <StrengthsSection />
+        <ChecklistSection />
+        <FaqSection />
+        <FinalDecisionSection />
+        <References />
+        <RelatedLinks />
+      </main>
+      <StickyCta />
+    </>
   );
 }
