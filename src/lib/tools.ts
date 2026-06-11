@@ -231,4 +231,13 @@ export const tools: Tool[] = [
     icon: "L¶",
     useCase: "デザイン検証用ダミー文章作成",
   },
+  {
+    slug: "security-headers",
+    title: "Security Headers Analyzer",
+    description:
+      "HTTP レスポンスヘッダーを貼り付けると、CSP / HSTS / X-Frame-Options などのセキュリティヘッダーを採点し、各項目の意味と修正例を表示します。",
+    category: "security",
+    icon: "SH",
+    useCase: "レスポンスヘッダーの安全性採点",
+  },
 ];

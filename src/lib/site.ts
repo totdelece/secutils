@@ -132,6 +132,11 @@ const toolSeo: Record<string, { title: string; description: string }> = {
     description:
       "段落数、単語数、Lorem ipsum で始めるかを指定してダミーテキストをブラウザ内で生成します。日本語ダミー文章にも対応し、デザイン検証やワイヤーフレーム作成に使えます。",
   },
+  "security-headers": {
+    title: "Security Headers Analyzer - HTTPセキュリティヘッダー採点ツール",
+    description:
+      "HTTPレスポンスヘッダーを貼り付けて、CSP・HSTS・X-Frame-Options・X-Content-Type-Options・Referrer-Policy・Permissions-Policyをブラウザ内で採点します。A〜F評価と各ヘッダーの意味・修正例つき。データはサーバーに送信しません。",
+  },
 };
 
 export function getToolSeo(slug: string) {

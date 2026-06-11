@@ -620,7 +620,7 @@ export const articles: Article[] = [
       "CSP、HSTS、X-Frame-Options、Permissions-Policy など、ブラウザ防御に効くヘッダーを整理します。",
     date: "2026-05-08",
     readingMinutes: 8,
-    relatedTools: ["http-status"],
+    relatedTools: ["security-headers", "http-status"],
   },
   {
     slug: "secure-randomness",
@@ -835,7 +835,7 @@ export const articles: Article[] = [
       "透明iframeでUIを重ねて意図しないクリックを誘発する攻撃の仕組み、likejacking/cursorjackingなどUIリドレッシング全般、X-Frame-Options と CSP frame-ancestors による防御を解説します。",
     date: "2026-05-27",
     readingMinutes: 8,
-    relatedTools: ["cookie-parser"],
+    relatedTools: ["security-headers", "cookie-parser"],
   },
   {
     slug: "ssrf",
