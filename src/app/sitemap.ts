@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { articles } from "@/lib/articles";
+import { articles, isArticleNoindexed } from "@/lib/articles";
 import { getBaseUrl } from "@/lib/site";
 import { tools } from "@/lib/tools";
 
@@ -43,11 +43,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),
-    ...articles.map((article) => ({
-      url: `${base}/learn/${article.category}/${article.slug}`,
-      lastModified: new Date(article.date),
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    })),
+    ...articles
+      .filter((article) => !isArticleNoindexed(article.slug))
+      .map((article) => ({
+        url: `${base}/learn/${article.category}/${article.slug}`,
+        lastModified: new Date(article.date),
+        changeFrequency: "monthly" as const,
+        priority: 0.7,
+      })),
   ];
 }

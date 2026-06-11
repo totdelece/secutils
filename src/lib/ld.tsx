@@ -1,4 +1,5 @@
 import { getBaseUrl, getToolSeo, siteDescription, siteName } from "./site";
+import { author } from "./author";
 import { tools } from "./tools";
 import {
   articleCategoryLabels,
@@ -56,9 +57,10 @@ export function ArticleJsonLd({ slug }: { slug: string }) {
         dateModified: article.date,
         articleSection: articleCategoryLabels[article.category],
         author: {
-          "@type": "Organization",
-          name: siteName,
-          url: base,
+          "@type": "Person",
+          name: author.handle,
+          description: author.role,
+          url: `${base}/about`,
         },
         publisher: {
           "@type": "Organization",

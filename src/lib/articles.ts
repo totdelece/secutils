@@ -1658,6 +1658,80 @@ export function getArticleSeoDescription(article: Article): string {
   return articleSeo[article.slug]?.description ?? article.description;
 }
 
+/* ------------------------------------------------------------------ *
+ * noindex 管理（AdSense「有用性の低いコンテンツ」対策）
+ * 特定日付のインシデント/CVE/漏えいを要約した「速報型」記事は検索インデックス
+ * から外し、サイト評価の主役を普遍的な解説とツールへ寄せる。記事ページ自体は
+ * 残るため、直リンクや関連記事からは引き続き読める（index:false, follow:true）。
+ * sitemap.ts もこの集合を見て出力対象から除外する。
+ * 再 index したくなったら、その slug をこの集合から外すだけでよい。
+ * ------------------------------------------------------------------ */
+export const noindexArticleSlugs = new Set<string>([
+  // 海外 CVE / インシデント速報
+  "react2shell",
+  "shai-hulud",
+  "teampcp-cloud-credential-theft",
+  "fog-ransomware-propagation",
+  "apt28-prismex-nato",
+  "foxconn-nitrogen-ransomware",
+  "daemon-tools-supply-chain",
+  "canvas-shinyhunters-breach",
+  "github-actions-supply-chain",
+  "toolshell",
+  "cpanel-cve-2026-41940",
+  "netlogon-cve-2026-41089",
+  "apex-one-cve-2026-34926",
+  "langflow-cve-2025-34291",
+  "claude-mythos",
+  "cisco-firestarter-backdoor",
+  "forticlient-ems-cve-2026-35616",
+  "pan-os-globalprotect-cve-2026-0257",
+  "ai-generated-zero-day-exploit",
+  "exchange-cve-2026-42897",
+  "muddywater-teams-fake-ransomware",
+  "chatgphish-chatgpt-phishing",
+  "trellix-source-code-breach",
+  "defender-bluehammer-redsun-undefend",
+  "copy-fail-cve-2026-31431",
+  "kyber-ransomware-post-quantum",
+  "gridtide-unc2814-telecom-espionage",
+  "turla-kazuar-p2p-botnet",
+  "kadnap-edge-proxy-botnet",
+  "ivanti-epmm-cve-2026-6973",
+  "the-gentlemen-ransomware",
+  "charter-vishing-entra-breach",
+  "autonomous-llm-agent-intrusion",
+  "silent-ransom-group-in-person-extortion",
+  "android-cve-2025-48595-framework-zero-day",
+  "nyc-health-hospitals-biometric-breach",
+  "citrix-netscaler-cve-2026-3055",
+  "ai-built-ransomware-toolkit-edr-evasion",
+  "redhat-npm-miasma-supply-chain",
+  "ironworm-npm-ebpf-supply-chain",
+  "mirasvit-magento-cve-2026-45247",
+  "operation-dragon-weave-azure-c2",
+  "cisco-sdwan-manager-cve-2026-20245",
+  "fifa-world-cup-2026-cyber-fraud",
+  "everest-forms-pro-cve-2026-3300",
+  // 国内インシデント事例（2020〜2025）
+  "kadokawa-blacksuit-ransomware-2024",
+  "asahi-group-qilin-ransomware-2025",
+  "iseto-8base-ransomware-2024",
+  "osaka-acute-care-elbie-ransomware-2022",
+  "nagoya-port-nuts-lockbit-2023",
+  "hoya-hunters-international-ransomware-2024",
+  "mitsubishi-electric-blacktech-cyberattack-2020",
+  "kojima-press-ransomware-toyota-shutdown-2022",
+  "lineyahoo-naver-unauthorized-access-2023",
+  "fujitsu-projectweb-unauthorized-access-2021",
+  "honda-ekans-snake-ransomware-2020",
+  "handa-hospital-lockbit-ransomware-2021",
+]);
+
+export function isArticleNoindexed(slug: string): boolean {
+  return noindexArticleSlugs.has(slug);
+}
+
 export function getArticleMetadata(article: Article): Metadata {
   const path = `/learn/${article.category}/${article.slug}`;
   const title = getArticleSeoTitle(article);
@@ -1670,6 +1744,9 @@ export function getArticleMetadata(article: Article): Metadata {
     title,
     description,
     alternates: { canonical: path },
+    robots: isArticleNoindexed(article.slug)
+      ? { index: false, follow: true }
+      : undefined,
     openGraph: {
       type: "article",
       title: `${title} | secutils`,

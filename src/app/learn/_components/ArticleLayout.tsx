@@ -5,6 +5,7 @@ import {
   articles,
   getRelatedArticles,
 } from "@/lib/articles";
+import { author, disclaimerText } from "@/lib/author";
 import { tools } from "@/lib/tools";
 import { ArticleTocDesktop, ArticleTocMobile } from "./ArticleToc";
 
@@ -87,11 +88,21 @@ export function ArticleLayout({
                 {article.title}
               </h1>
               <div className="mt-5 flex flex-wrap items-center gap-3 text-[12px] text-fg-subtle">
-                <time dateTime={article.date}>{article.date}</time>
+                <span>
+                  著者{" "}
+                  <Link
+                    href="/about"
+                    className="font-semibold text-fg-muted underline-offset-2 transition hover:text-accent hover:underline"
+                  >
+                    {author.handle}
+                  </Link>
+                </span>
+                <span className="h-1 w-1 rounded-full bg-fg-subtle/60" />
+                <span>
+                  公開 <time dateTime={article.date}>{article.date}</time>
+                </span>
                 <span className="h-1 w-1 rounded-full bg-fg-subtle/60" />
                 <span>約{article.readingMinutes}分</span>
-                <span className="h-1 w-1 rounded-full bg-fg-subtle/60" />
-                <span>Zero tracking reading surface</span>
               </div>
             </div>
           </header>
@@ -111,6 +122,39 @@ export function ArticleLayout({
           )}
 
           <article className="article-prose mt-10">{children}</article>
+
+          <section className="article-related mt-12 rounded-xl p-6">
+            <div className="flex items-start gap-4">
+              <span
+                aria-hidden="true"
+                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-bg-base text-sm font-bold uppercase text-fg-primary ring-1 ring-border-subtle"
+              >
+                {author.handle.slice(0, 2)}
+              </span>
+              <div className="min-w-0">
+                <div className="text-[10px] font-semibold uppercase text-accent">
+                  この記事を書いた人
+                </div>
+                <div className="mt-1 flex flex-wrap items-baseline gap-2">
+                  <span className="text-[15px] font-bold text-fg-primary">
+                    {author.handle}
+                  </span>
+                  <span className="text-[12px] text-fg-subtle">{author.role}</span>
+                </div>
+                <p className="mt-2 text-[13px] leading-6 text-fg-muted">{author.bio}</p>
+                <Link
+                  href="/about"
+                  className="mt-3 inline-flex items-center gap-1 text-[12px] font-semibold text-accent underline-offset-2 hover:underline"
+                >
+                  運営者・編集方針について
+                  <Arrow />
+                </Link>
+              </div>
+            </div>
+            <p className="mt-4 border-t border-border-subtle pt-4 text-[11.5px] leading-5 text-fg-subtle">
+              {disclaimerText}
+            </p>
+          </section>
 
           {relatedTools.length > 0 && (
             <section className="article-related mt-16 rounded-xl p-6">
