@@ -77,8 +77,8 @@ export default function Page() {
         </li>
       </ul>
       <p>
-        構図は npm の自己増殖ワーム{" "}
-        <a href="/learn/security/shai-hulud">Shai-Hulud</a>{" "}
+        構図は npm の{" "}
+        <a href="/learn/security/supply-chain-attacks">自己増殖型サプライチェーンワーム</a>{" "}
         と同じです。<strong>「便利そうだから入れる」を、コードを実行する権限の付与だと捉え直す</strong>必要があります。
       </p>
 
@@ -161,7 +161,7 @@ export default function Page() {
           <strong>ツール検出を「信頼できない入力」として扱う</strong>：<code>tools/list</code> の結果（特に説明文）を、外部から来た未検証データとみなす。長さ制限・Unicode正規化・ゼロ幅文字の除去で隠し指示を弾く。<a href="/learn/security/mfa-totp-fido2">人間の承認</a>を要する操作とそうでない操作を分ける。
         </li>
         <li>
-          <strong>導入するサーバを絞り、出所を検証する</strong>：野良MCPサーバを安易に入れない。公式配布元・署名・ピン留めしたバージョンを使い、レビュー済みの許可リストで運用する。<a href="/learn/security/shai-hulud">lockfileと <code>--ignore-scripts</code></a> の発想はMCPでも有効。
+          <strong>導入するサーバを絞り、出所を検証する</strong>：野良MCPサーバを安易に入れない。公式配布元・署名・ピン留めしたバージョンを使い、レビュー済みの許可リストで運用する。<a href="/learn/security/supply-chain-attacks">lockfileと <code>--ignore-scripts</code></a> の発想はMCPでも有効。
         </li>
         <li>
           <strong>最小権限・短命トークン</strong>：MCPサーバに渡す認証情報はスコープを最小化し、有効期限を短くする。「読み取り専用で足りるか」を毎回問う。

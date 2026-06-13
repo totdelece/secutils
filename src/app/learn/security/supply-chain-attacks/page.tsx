@@ -8,7 +8,7 @@ export default function Page() {
     <ArticleLayout article={article}>
       <p>
         現代のソフトウェアは、自分が書いたコードより<strong>取り込んだ依存パッケージの方が圧倒的に多い</strong>のが当たり前です。<code>npm install</code> 一発で何百もの第三者コードが自分の環境とCIで実行される——その信頼を逆手に取るのが<strong>ソフトウェアサプライチェーン攻撃</strong>です。Sonatype は<strong>累計120万件超の悪性パッケージ</strong>を追跡しており、2025年9月の自己増殖ワーム{" "}
-        <a href="/learn/security/shai-hulud">Shai-Hulud</a>{" "}
+        <strong>Shai-Hulud</strong>{" "}
         以降、攻撃の頻度と技術的な深さは「いたずらの時代」から「高被害の時代」へと一段上がりました。
       </p>
       <p>
@@ -104,7 +104,7 @@ export default function Page() {
       <h3>6. 自己増殖ワーム</h3>
       <p>
         最も新しく、最も厄介な類型。汚染されたパッケージが<strong>感染した開発者のトークンを使って、その人の他のパッケージへ自動的に感染を広げる</strong>。{" "}
-        <a href="/learn/security/shai-hulud">Shai-Hulud</a>{" "}
+        <strong>Shai-Hulud</strong>{" "}
         がその嚆矢で、2025年12月の <strong>Shai-Hulud 2.0</strong>、2026年5月の <strong>Mini Shai-Hulud</strong>（170超のnpm＋PyPIパッケージ、404の悪性バージョン、「Shai-Hulud: Here We Go Again」を含む400超のリポジトリ作成）と<strong>再来・変異</strong>を繰り返しています。人手を介さず連鎖するため、被害が指数関数的に広がります。
       </p>
 
@@ -167,8 +167,7 @@ export default function Page() {
         サプライチェーン攻撃は、<strong>「開発の土台になっている信頼」そのものを武器化</strong>します。6類型（タイポスクワッティング／依存関係混同／slopsquatting／メンテナ乗っ取り／悪意あるスクリプト／自己増殖ワーム）は入口こそ違え、ゴールは共通——<strong>install/import の自動実行を足がかりに、CIのシークレットとクラウドの鍵を奪う</strong>ことです。
       </p>
       <p>
-        守りも共通します。<strong>取り込む前に止める（固定・クールダウン・許可リスト）、install時の自動実行を抑える（--ignore-scripts・環境分離）、漏れても限定する（最小権限・SBOM・即rotate）</strong>。具体的なワームの挙動は{" "}
-        <a href="/learn/security/shai-hulud">Shai-Hulud 詳解</a>、AIエージェント基盤に固有のサプライチェーンは{" "}
+        守りも共通します。<strong>取り込む前に止める（固定・クールダウン・許可リスト）、install時の自動実行を抑える（--ignore-scripts・環境分離）、漏れても限定する（最小権限・SBOM・即rotate）</strong>。AIエージェント基盤に固有のサプライチェーンは{" "}
         <a href="/learn/security/mcp-security">MCPのセキュリティ</a>{" "}
         も合わせてご覧ください。
       </p>

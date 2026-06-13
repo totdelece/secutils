@@ -209,35 +209,10 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "2025年12月にMeta/Vercelが公表したReact Server Componentsの致命的脆弱性 React2Shell（CVE-2025-55182、CVSS 10.0）を日本語で解説。安全でないデシリアライズによる事前認証RCEの仕組み、影響バージョンと修正版、Next.jsアプリの確認・対策手順を整理します。",
   },
-  "shai-hulud": {
-    title: "Shai-Hulud詳解 - npm史上初の自己増殖ワームとサプライチェーン対策",
-    description:
-      "2025年に出現したnpm史上初の自己増殖型サプライチェーンワーム Shai-Hulud を日本語で解説。postinstall等のライフサイクルスクリプトでトークンを窃取し感染を連鎖させる仕組み、被害規模、--ignore-scriptsやlockfile・2FA・短命トークンによる開発者/CIの対策を整理します。",
-  },
-  "teampcp-cloud-credential-theft": {
-    title: "TeamPCPがOSSからAWSへ — セキュリティツール汚染で実現するクラウド鍵の大量窃取",
-    description:
-      "2026年3〜5月に発覚したTeamPCPによるサプライチェーン攻撃を解説。Trivy・KICS・LiteLLMなどDevSecOpsツールに忍び込んだマルウェアがAWSアクセスキー・Kubernetesトークン・GitHub PAT等を自動収集し、クラウド環境への二次侵害へと連鎖した攻撃の全体像と対策を日本語でまとめます。",
-  },
-  "fog-ransomware-propagation": {
-    title: "Fogランサムウェアが「拡散すれば無料復号」の前代未聞の要求 — VPN侵害とLNKフィッシングの実態",
-    description:
-      "2026年に100件超の被害を出したFogランサムウェアが、「マルウェアを他者に拡散すれば身代金を免除する」という前代未聞の社会工学的手口を採用した。VPNクレデンシャル悪用・BYOVDによるEDR無効化・DOGEロゴ入り脅迫状の仕組み、組織が今すぐすべき対策を日本語で解説します。",
-  },
   "apt28-prismex-nato": {
     title: "APT28が新マルウェアPRISMEXでNATO防衛サプライチェーンを標的 — ステガノグラフィとCOMハイジャックの脅威",
     description:
       "ロシア国家系APTグループAPT28（Pawn Storm/Fancy Bear）が2026年に展開した新マルウェアスイートPRISMEXを解説。画像内にペイロードを隠すステガノグラフィ、COMハイジャックによる永続化、CVE-2026-21509/21513の悪用、ウクライナ・NATO加盟国の防衛インフラへの標的型侵害の手口と対策を日本語でまとめます。",
-  },
-  "foxconn-nitrogen-ransomware": {
-    title: "Foxconn北米工場がNitrogenランサムウェアの標的に — Apple・Nvidia設計書8TB流出か",
-    description:
-      "2026年5月、Apple・Nidia・Intelの主要サプライヤーFoxconnの北米工場がNitrogenランサムウェアに侵害され、8TB・1,100万ファイル超が盗まれたと主張された。Nitrogenの技術的特徴、身代金を払っても復号できない欠陥、EDR無効化手法、製造業のサプライチェーンリスクを日本語で解説します。",
-  },
-  "daemon-tools-supply-chain": {
-    title: "DAEMON Tools公式インストーラに1ヶ月バックドア — 正規署名済みサプライチェーン攻撃の全貌",
-    description:
-      "2026年4〜5月、仮想ドライブソフト「DAEMON Tools」の公式Webサイトから正規の開発者デジタル署名付きの悪性インストーラが約1ヶ月配布された。Kasperkyが発見したこの中国系攻撃者によるサプライチェーン攻撃の手口、バックドアの挙動、製造業・政府機関への標的型二次ペイロード、対処法を日本語で解説します。",
   },
   "canvas-shinyhunters-breach": {
     title: "Canvas（Instructure）で2.75億人分のデータ漏洩 — ShinyHuntersが世界8,809校を2度侵害",
@@ -248,11 +223,6 @@ const articleSeo: Record<string, ArticleSeo> = {
     title: "サポート詐欺（偽警告詐欺）の手口と対処法 - 偽セキュリティ警告・遠隔操作・電話詐欺",
     description:
       "ブラウザに突然表示される偽のウイルス警告や、Microsoftをかたる電話で遠隔操作ソフトをインストールさせる「サポート詐欺」の手口を日本語で解説。IPA・警察庁の被害統計、画面が閉じられない時の具体的対処、AnyDesk/Quick Assistを使った詐取の流れ、スマートフォン版の新手口、遠隔操作を許してしまった後の対応を整理します。",
-  },
-  "github-actions-supply-chain": {
-    title: "GitHub Actions サプライチェーン攻撃 - tj-actions/GhostAction/Megalodon の手口と対策",
-    description:
-      "2025年に相次いだGitHub Actionsを狙うサプライチェーン攻撃を日本語で解説。tj-actions/changed-files（CVE-2025-30066、2.3万リポジトリ影響）・GhostAction（3,325シークレット窃取）・Megalodon（5,500件超のリポジトリ汚染）の手口、タグ可変性の問題、SHAピン・OIDC・最小権限による防御を整理します。",
   },
   toolshell: {
     title: "ToolShell（CVE-2025-53770）詳解 - SharePoint RCEゼロデイと国家攻撃者の手口",
@@ -389,11 +359,6 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "2026年4〜5月に連続発覚したMicrosoft Defenderの3ゼロデイ BlueHammer（CVE-2026-33825）・RedSun（CVE-2026-41091）・UnDefend（CVE-2026-45498）を日本語で解説。SAMデータベースを使ったSYSTEM昇格（BlueHammer）・システムファイル書き換えによるSYSTEM昇格（RedSun）・一般ユーザーがDefender定義更新を停止するDoS（UnDefend）を段階的に組み合わせる「Layered Degradation Strategy」の仕組み、Huntressが観測した野放し悪用の実態、Antimalware Platformのバージョン確認・定義更新状態のチェック・多層防御の構築を整理します。",
   },
-  "the-gentlemen-ransomware": {
-    title: "The Gentlemenランサムウェア詳解 - 自己増殖するGo製エンコーダの手口とStorm-2697の脅威",
-    description:
-      "2026年5月にMicrosoftが解析した自己増殖型ランサムウェア「The Gentlemen」（運用主体Storm-2697）を日本語で解説。Go言語製エンコーダがSMB共有・PsExec・WMI・スケジュールタスク・PowerShellリモーティングなど1標的あたり21通りの実行手段でネットワーク内を自動拡散する仕組み、Defenderリアルタイム監視の無効化・C:\\全体の除外・シャドウコピー削除・イベントログ消去による検知妨害、ファイル毎にCurve25519+XChaCha20を使う暗号化、二重恐喝とRaaS（BreachForums提携）の実態、改ざん防止・制御フォルダーアクセス・ASRルールによる防御を整理します。",
-  },
   "charter-vishing-entra-breach": {
     title: "Charter（Spectrum）情報漏えい詳解 - ビッシングでEntra IDを奪い4,200万件を狙ったShinyHunters",
     description:
@@ -423,11 +388,6 @@ const articleSeo: Record<string, ArticleSeo> = {
     title: "Copy Fail（CVE-2026-31431）詳解 - 732バイトでrootを奪うLinuxカーネル権限昇格ゼロデイ",
     description:
       "2026年4月に公開されCISA KEVに即追加されたLinuxカーネルのローカル権限昇格ゼロデイ「Copy Fail」（CVE-2026-31431、CVSS 7.8）を日本語で解説。AF_ALGのalgif_aeadモジュールに2017年から潜んでいた最適化バグで、ディスク上のファイルを書き換えずにページキャッシュ内のsetuidバイナリへ4バイトを上書きしrootを奪う仕組み、競合条件不要で100%再現する決定論的エクスプロイト（732バイトのPythonスクリプト）、Kubernetesコンテナ脱出やマルチテナント侵害につながるクラウドリスク、影響カーネル4.14〜6.19.12と修正手順・algif_aead無効化の緊急回避策を整理します。",
-  },
-  "kyber-ransomware-post-quantum": {
-    title: "Kyberランサムウェア詳解 - 耐量子暗号Kyber1024を実装した「将来も復号不能」な脅迫の登場",
-    description:
-      "2026年3月にRapid7が解析した耐量子暗号を掲げる新興ランサムウェア「Kyber」を日本語で解説。Windows版（Rust製）はKyber1024（ML-KEM-1024 / FIPS 203）とX25519・AES-256-CTRを本当に実装する一方、Linux/ESXi版は「ポスト量子」を謳いながら実際はChaCha8とRSA-4096という看板倒れだった二面性、シャドウコピー削除・SQL/Exchange停止・実験的なHyper-V停止機能、VMwareデータストアを狙うESXi暗号化、米防衛関連企業が被害に挙がった事実、耐量子暗号が被害者の「将来の復号」希望すら奪う意味と、暗号方式に関わらず鍵管理・バックアップ・ESXi防御が本質である理由を整理します。",
   },
   "gridtide-unc2814-telecom-espionage": {
     title: "GRIDTIDE詳解 - Google Sheetsを司令塔に通信事業者を狙った中国系APT UNC2814のスパイ活動",
@@ -483,11 +443,6 @@ const articleSeo: Record<string, ArticleSeo> = {
     title: "AIが組み立てたランサムウェア攻撃キット詳解 - EDR回避とAD探索の自動化（Sophos解析）",
     description:
       "2026年6月にSophosが解析した、AIコーディング支援（Cursor・Claudeエージェント）を使って開発されたランサムウェア／データ窃取の攻撃キットを日本語で解説。EDR回避手法のリサーチからコード生成・改訂までをAIが補助し、Sophos/CrowdStrike/Microsoftの製品に対する回避を仮想環境で検証していた実態、Cobalt Strikeプロファイル・Telegram BotによるC2・Cloudflare WorkerでのC2秘匿・正規実行ファイルへのシェルコード注入といった構成、AIが攻撃の量産と高速化を可能にする意味、振る舞い検知への転換という防御指針を整理します。",
-  },
-  "redhat-npm-miasma-supply-chain": {
-    title: "Red Hat npmパッケージ汚染（Miasmaワーム）詳解 - 従業員GitHub乗っ取りからの自己増殖サプライチェーン攻撃",
-    description:
-      "2026年6月1日に発覚した@redhat-cloud-services名前空間のnpmサプライチェーン攻撃を日本語で解説。Red Hat従業員のGitHubアカウント乗っ取りからCIワークフローを改ざんし、OIDCトークンでバックドア入りパッケージを公開、コードレビューを丸ごと迂回した手口、32パッケージ・96バージョン（週11.6万DL）が汚染された規模、preinstallスクリプトで実行され被害者がアクセスできるパッケージを再公開して自己増殖する4.2MBのワーム「Miasma」、AWS/GCP/Azure鍵・GitHub Actionsシークレット・SSH鍵・.envを窃取する挙動、Mini Shai-Huludとの関係、CIシークレット即時ローテーションなどの対策を整理します。",
   },
 };
 
@@ -868,36 +823,6 @@ export const articles: Article[] = [
     relatedTools: [],
   },
   {
-    slug: "shai-hulud",
-    category: "security",
-    title: "Shai-Hulud詳解 - npm史上初の自己増殖ワームとサプライチェーン対策",
-    description:
-      "npm史上初の自己増殖型サプライチェーンワーム Shai-Hulud の仕組み。postinstall等のライフサイクルスクリプトでトークンを窃取し感染を連鎖させる流れ、被害規模、--ignore-scripts・lockfile・2FA・短命トークンによる開発者/CIの対策を日本語で解説します。",
-    date: "2026-05-29",
-    readingMinutes: 10,
-    relatedTools: [],
-  },
-  {
-    slug: "teampcp-cloud-credential-theft",
-    category: "security",
-    title: "TeamPCPがOSSからAWSへ — セキュリティツール汚染で実現するクラウド鍵の大量窃取",
-    description:
-      "2026年3〜5月に発覚したTeamPCPによるサプライチェーン攻撃。Trivy・KICS・LiteLLMなどDevSecOpsツールに悪性コードを注入し、AWSアクセスキー・Kubernetesトークン・GitHub PATなどを自動収集してクラウド環境への二次侵害へ連鎖した攻撃の全体像と対策を解説します。",
-    date: "2026-05-31",
-    readingMinutes: 11,
-    relatedTools: [],
-  },
-  {
-    slug: "fog-ransomware-propagation",
-    category: "security",
-    title: "Fogランサムウェアが「拡散すれば無料復号」の前代未聞の要求 — VPN侵害とLNKフィッシングの実態",
-    description:
-      "2026年に100件超の被害を出したFogランサムウェアが「マルウェアを他者に拡散すれば身代金を免除する」という前代未聞の手口を採用。VPNクレデンシャル悪用・BYOVDによるEDR無効化・二重恐喝の仕組み、組織が今すぐすべき対策を解説します。",
-    date: "2026-05-31",
-    readingMinutes: 10,
-    relatedTools: [],
-  },
-  {
     slug: "apt28-prismex-nato",
     category: "security",
     title: "APT28が新マルウェアPRISMEXでNATO防衛サプライチェーンを標的 — ステガノグラフィとCOMハイジャックの脅威",
@@ -905,26 +830,6 @@ export const articles: Article[] = [
       "ロシア国家系APT28（Pawn Storm）が2026年に展開した新マルウェアスイートPRISMEXを解説。画像内にペイロードを隠すステガノグラフィ、COMハイジャックによる永続化、CVE-2026-21509悪用、ウクライナ・NATO加盟国の防衛インフラへの標的型侵害の手口と対策をまとめます。",
     date: "2026-05-31",
     readingMinutes: 11,
-    relatedTools: [],
-  },
-  {
-    slug: "foxconn-nitrogen-ransomware",
-    category: "security",
-    title: "Foxconn北米工場がNitrogenランサムウェアの標的に — Apple・Nvidia設計書8TB流出か",
-    description:
-      "2026年5月にFoxconnの北米工場がNitrogenランサムウェアに侵害され、8TB超のファイルが盗まれた事案を解説。Nitrogen の技術的特徴、EDR無効化手法、身代金を払っても復号できない欠陥、製造業サプライチェーンへの教訓を整理します。",
-    date: "2026-05-31",
-    readingMinutes: 9,
-    relatedTools: [],
-  },
-  {
-    slug: "daemon-tools-supply-chain",
-    category: "security",
-    title: "DAEMON Tools公式インストーラに1ヶ月バックドア — 正規署名済みサプライチェーン攻撃の全貌",
-    description:
-      "2026年4〜5月に仮想ドライブソフト「DAEMON Tools」の公式サイトから正規署名付きの悪性インストーラが配布されたサプライチェーン攻撃を解説。Kasperskyが発見した中国系攻撃者のバックドア挙動、製造業・政府機関への標的型ペイロード、対処法を整理します。",
-    date: "2026-05-31",
-    readingMinutes: 9,
     relatedTools: [],
   },
   {
@@ -945,16 +850,6 @@ export const articles: Article[] = [
       "ブラウザに突然表示される偽のウイルス警告や、Microsoftをかたる電話で遠隔操作ソフトをインストールさせる「サポート詐欺」の手口。IPA・警察庁の被害統計、画面が閉じられない時の具体的対処、AnyDesk/Quick Assistを使った詐取の流れ、遠隔操作を許してしまった後の対応を日本語で解説します。",
     date: "2026-05-31",
     readingMinutes: 9,
-    relatedTools: [],
-  },
-  {
-    slug: "github-actions-supply-chain",
-    category: "security",
-    title: "GitHub Actions サプライチェーン攻撃 - tj-actions/GhostAction/Megalodon の手口と対策",
-    description:
-      "2025年に相次いだGitHub Actionsを狙うサプライチェーン攻撃を日本語で解説。tj-actions/changed-files（CVE-2025-30066）・GhostAction・Megalodonの手口、タグ可変性の問題、SHAピン・OIDC・最小権限による防御を整理します。",
-    date: "2026-05-31",
-    readingMinutes: 11,
     relatedTools: [],
   },
   {
@@ -1289,16 +1184,6 @@ export const articles: Article[] = [
     relatedTools: [],
   },
   {
-    slug: "kyber-ransomware-post-quantum",
-    category: "security",
-    title: "Kyberランサムウェア詳解 - 耐量子暗号Kyber1024を実装した「将来も復号不能」な脅迫の登場",
-    description:
-      "2026年3月にRapid7が解析した耐量子暗号を掲げる新興ランサムウェア「Kyber」を解説。Windows版（Rust製）はKyber1024（ML-KEM-1024）とX25519・AES-256-CTRを本当に実装する一方、Linux/ESXi版は「ポスト量子」を謳いつつ実体はChaCha8とRSA-4096という二面性、シャドウコピー削除・SQL/Exchange停止・実験的Hyper-V停止、VMwareデータストアを狙うESXi暗号化、米防衛関連企業の被害、耐量子暗号が「将来の復号」希望まで奪う意味と、暗号方式に関わらず鍵管理・バックアップ・ESXi防御が本質である理由を日本語で整理します。",
-    date: "2026-06-03",
-    readingMinutes: 11,
-    relatedTools: [],
-  },
-  {
     slug: "gridtide-unc2814-telecom-espionage",
     category: "security",
     title: "GRIDTIDE詳解 - Google Sheetsを司令塔に通信事業者を狙った中国系APT UNC2814のスパイ活動",
@@ -1336,16 +1221,6 @@ export const articles: Article[] = [
       "2026年5月に積極悪用されCISA KEVへ即追加されたIvanti EPMMのRCEゼロデイCVE-2026-6973を解説。管理者権限で任意コード実行が可能になる仕組み、2026年1月の未認証RCE（CVE-2026-1281/1340、CVSS 9.8、Apache RewriteMapのbash注入）と連鎖させる攻撃チェーン、Webシェル設置・リバースシェル・マイナー展開など侵害後の挙動、MDM基盤が全社モバイル端末への侵入起点になるリスク、影響/修正バージョンと侵害痕跡の確認手順を日本語で整理します。",
     date: "2026-06-03",
     readingMinutes: 11,
-    relatedTools: [],
-  },
-  {
-    slug: "the-gentlemen-ransomware",
-    category: "security",
-    title: "The Gentlemenランサムウェア詳解 - 自己増殖するGo製エンコーダの手口とStorm-2697の脅威",
-    description:
-      "2026年5月にMicrosoftが解析した自己増殖型ランサムウェア「The Gentlemen」（運用主体Storm-2697）を解説。Go製エンコーダがSMB共有・PsExec・WMI・スケジュールタスク・PowerShellリモーティングなど1標的あたり21通りの実行手段で自動拡散する仕組み、Defender無効化・C:全体の除外・シャドウコピー削除・ログ消去による検知妨害、Curve25519+XChaCha20の暗号化、二重恐喝とRaaS（BreachForums提携）の実態、改ざん防止・制御フォルダーアクセス・ASRルールによる防御を日本語で整理します。",
-    date: "2026-06-03",
-    readingMinutes: 12,
     relatedTools: [],
   },
   {
@@ -1416,26 +1291,6 @@ export const articles: Article[] = [
       "2026年6月にSophosが解析した、AIコーディング支援（Cursor・Claudeエージェント）で開発されたランサムウェア／データ窃取の攻撃キットを解説。EDR回避手法のリサーチからコード生成・改訂までをAIが補助し、Sophos/CrowdStrike/Microsoft製品への回避を仮想環境で検証していた実態、Cobalt Strikeプロファイル・Telegram BotのC2・Cloudflare WorkerでのC2秘匿・正規実行ファイルへのシェルコード注入という構成、AIが攻撃の量産と高速化を可能にする意味、振る舞い検知への転換という防御指針を整理します。",
     date: "2026-06-04",
     readingMinutes: 11,
-    relatedTools: [],
-  },
-  {
-    slug: "redhat-npm-miasma-supply-chain",
-    category: "security",
-    title: "Red Hat npmパッケージ汚染（Miasmaワーム）詳解 - 従業員GitHub乗っ取りからの自己増殖サプライチェーン攻撃",
-    description:
-      "2026年6月1日に発覚した@redhat-cloud-services名前空間のnpmサプライチェーン攻撃を解説。Red Hat従業員のGitHubアカウント乗っ取りからCIワークフローを改ざんし、OIDCトークンでバックドア入りパッケージを公開、コードレビューを丸ごと迂回した手口、32パッケージ・96バージョン（週11.6万DL）が汚染された規模、preinstallスクリプトで実行され被害者のパッケージを再公開して自己増殖する4.2MBのワーム「Miasma」、AWS/GCP/Azure鍵・GitHub Actionsシークレット・SSH鍵・.envを窃取する挙動、Mini Shai-Huludとの関係、CIシークレット即時ローテーションなどの対策を整理します。",
-    date: "2026-06-04",
-    readingMinutes: 11,
-    relatedTools: [],
-  },
-  {
-    slug: "ironworm-npm-ebpf-supply-chain",
-    category: "security",
-    title: "eBPFルートキット×Tor C2を搭載したRust製npmワーム「IronWorm」——CI環境で自己増殖し認証情報を根こそぎ奪取",
-    description:
-      "2026年6月3日にJFrogが発見したRust製npmサプライチェーンワーム「IronWorm」を解説。eBPFカーネルルートキットでps/topから姿を消し、Torネットワーク経由でC2通信、npmのOIDC Trusted Publishingを悪用してCI環境で自己増殖する。AWS・Azure・GCP・Anthropic/OpenAI等86種の認証情報を窃取し、Exodus暗号資産ウォレットも標的。asteroidDAO関連37パッケージを経由した攻撃の仕組み・eBPFルートキットの検知困難性・OIDC自己増殖の遮断策を詳解する。",
-    date: "2026-06-05",
-    readingMinutes: 12,
     relatedTools: [],
   },
   {
@@ -1669,14 +1524,8 @@ export function getArticleSeoDescription(article: Article): string {
 export const noindexArticleSlugs = new Set<string>([
   // 海外 CVE / インシデント速報
   "react2shell",
-  "shai-hulud",
-  "teampcp-cloud-credential-theft",
-  "fog-ransomware-propagation",
   "apt28-prismex-nato",
-  "foxconn-nitrogen-ransomware",
-  "daemon-tools-supply-chain",
   "canvas-shinyhunters-breach",
-  "github-actions-supply-chain",
   "toolshell",
   "cpanel-cve-2026-41940",
   "netlogon-cve-2026-41089",
@@ -1693,12 +1542,10 @@ export const noindexArticleSlugs = new Set<string>([
   "trellix-source-code-breach",
   "defender-bluehammer-redsun-undefend",
   "copy-fail-cve-2026-31431",
-  "kyber-ransomware-post-quantum",
   "gridtide-unc2814-telecom-espionage",
   "turla-kazuar-p2p-botnet",
   "kadnap-edge-proxy-botnet",
   "ivanti-epmm-cve-2026-6973",
-  "the-gentlemen-ransomware",
   "charter-vishing-entra-breach",
   "autonomous-llm-agent-intrusion",
   "silent-ransom-group-in-person-extortion",
@@ -1706,8 +1553,6 @@ export const noindexArticleSlugs = new Set<string>([
   "nyc-health-hospitals-biometric-breach",
   "citrix-netscaler-cve-2026-3055",
   "ai-built-ransomware-toolkit-edr-evasion",
-  "redhat-npm-miasma-supply-chain",
-  "ironworm-npm-ebpf-supply-chain",
   "mirasvit-magento-cve-2026-45247",
   "operation-dragon-weave-azure-c2",
   "cisco-sdwan-manager-cve-2026-20245",
@@ -1833,14 +1678,8 @@ const topicSlugs: Record<TopicId, string[]> = {
   ],
   threat: [
     "react2shell",
-    "shai-hulud",
     "toolshell",
-    "github-actions-supply-chain",
-    "foxconn-nitrogen-ransomware",
-    "daemon-tools-supply-chain",
     "canvas-shinyhunters-breach",
-    "teampcp-cloud-credential-theft",
-    "fog-ransomware-propagation",
     "apt28-prismex-nato",
     "support-scam",
     "cpanel-cve-2026-41940",
@@ -1868,12 +1707,10 @@ const topicSlugs: Record<TopicId, string[]> = {
     "trellix-source-code-breach",
     "defender-bluehammer-redsun-undefend",
     "copy-fail-cve-2026-31431",
-    "kyber-ransomware-post-quantum",
     "gridtide-unc2814-telecom-espionage",
     "turla-kazuar-p2p-botnet",
     "kadnap-edge-proxy-botnet",
     "ivanti-epmm-cve-2026-6973",
-    "the-gentlemen-ransomware",
     "charter-vishing-entra-breach",
     "autonomous-llm-agent-intrusion",
     "silent-ransom-group-in-person-extortion",
@@ -1881,7 +1718,6 @@ const topicSlugs: Record<TopicId, string[]> = {
     "nyc-health-hospitals-biometric-breach",
     "citrix-netscaler-cve-2026-3055",
     "ai-built-ransomware-toolkit-edr-evasion",
-    "redhat-npm-miasma-supply-chain",
   ],
   ai: [
     "claude-mythos",

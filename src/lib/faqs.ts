@@ -785,28 +785,6 @@ export const articleFaqs: Record<string, Faq[]> = {
     },
   ],
 
-  "kyber-ransomware-post-quantum": [
-    {
-      q: "Kyberランサムウェアとは何ですか？",
-      a: "「耐量子暗号（ポスト量子暗号）」を売り文句に掲げる新興ランサムウェアです。NISTが標準化したポスト量子暗号アルゴリズムKyber（ML-KEM）から名を取り、Rapid7が2026年3月のインシデント対応中に2つの検体を解析・公表しました。",
-    },
-    {
-      q: "Kyberの「耐量子暗号」は本物ですか？",
-      a: "検体によって異なります。Windows版（Rust製）はKyber1024（ML-KEM-1024）とX25519、AES-256-CTRを本当に実装していますが、Linux/ESXi版は「ポスト量子」を謳いながら実体はChaCha8とRSA-4096という従来型構成の看板倒れでした。",
-    },
-    {
-      q: "耐量子暗号だと復号できないのですか？",
-      a: "暗号方式が本物か誇張かは、被害発生後の復旧可能性をほとんど左右しません。RSA-4096でもKyber1024でも、攻撃者の秘密鍵がなければ現実的な時間で復号する手段はありません。「耐量子だから絶望、従来暗号だから希望」という線引きは成り立ちません。",
-    },
-    {
-      q: "KyberはESXiも狙いますか？",
-      a: "はい。Linux/ESXi版はVMwareのデータストアを標的とし、1MB未満は全体、それより大きいファイルは部分暗号化して大量の仮想ディスクを高速に人質化します。ESXiが暗号化されるとその上で動く多数の業務サーバーが一斉に停止します。",
-    },
-    {
-      q: "Kyberランサムウェアの対策は何ですか？",
-      a: "暗号方式に関わらず本質は同じで、ネットワークから隔離したオフライン／イミュータブルなバックアップと復旧テスト、ESXi/vCenterの最新化とロックダウンモード、シャドウコピー削除などの前兆検知、MFAと特権分離による横展開の阻止が有効です。",
-    },
-  ],
 
   "gridtide-unc2814-telecom-espionage": [
     {
@@ -900,28 +878,6 @@ export const articleFaqs: Record<string, Faq[]> = {
     },
   ],
 
-  "the-gentlemen-ransomware": [
-    {
-      q: "The Gentlemenランサムウェアとは何ですか？",
-      a: "MicrosoftがStorm-2697として追跡する金銭目的グループが運用するランサムウェアです。2025年中頃に出現し9月からRaaS（Ransomware-as-a-Service）として提携先に提供、暗号化モジュールはGo言語製で自己増殖能力を持ちます。Microsoftが2026年5月28日に解析を公表しました。",
-    },
-    {
-      q: "The Gentlemenはどうやって自己増殖しますか？",
-      a: "感染ホストに隠しSMB共有を作りPsExecを展開した後、ネットワークを列挙し、各標的に対しPsExec・WMI・スケジュールタスク・Windowsサービス・PowerShellリモーティングなど1標的あたり21通りの実行を試みます。1つでも成功すれば拡散が継続します。",
-    },
-    {
-      q: "The Gentlemenはどんな検知妨害を行いますか？",
-      a: "Microsoft Defenderのリアルタイム監視を無効化しC:ドライブ全体をスキャン除外、vssadmin/wmicでシャドウコピーを削除、wevtutilでイベントログを消去、プレフェッチやRDPログ・PowerShell履歴を削除します。さらに40以上のプロセスと30以上のサービス（DB・Veeam・EDR等）を停止します。",
-    },
-    {
-      q: "The Gentlemenの暗号化は復号できますか？",
-      a: "ファイルごとに使い捨てのCurve25519鍵ペアを生成しXChaCha20で暗号化する堅牢な設計のため、攻撃者の秘密鍵がなければ現実的な復号は不可能です。1MB以下は全体、大きいファイルは分散したチャンクを暗号化し高速に人質化します。",
-    },
-    {
-      q: "自己増殖型ランサムウェアの対策は何ですか？",
-      a: "改ざん防止（Tamper Protection）でDefender無効化を防ぎ、PSExec/WMI/PowerShellリモーティングをASRルールやセグメンテーションで制限、ローカル管理者パスワードを端末ごとに一意化（LAPS）、制御フォルダーアクセスとEDRブロックモード・自動攻撃中断を有効化、オフライン／イミュータブルバックアップの用意が有効です。",
-    },
-  ],
 
   "charter-vishing-entra-breach": [
     {
@@ -1084,51 +1040,7 @@ export const articleFaqs: Record<string, Faq[]> = {
     },
   ],
 
-  "redhat-npm-miasma-supply-chain": [
-    {
-      q: "Red Hat npmパッケージ汚染（Miasma）とは何ですか？",
-      a: "2026年6月1日に発覚した、npmの@redhat-cloud-services名前空間で正規パッケージにバックドアが仕込まれたサプライチェーン攻撃です。32パッケージ・96バージョン（週約11.6万ダウンロード）が汚染され、認証情報を盗みながら自己増殖するワーム「Miasma」が混入しました。",
-    },
-    {
-      q: "なぜ大手ベンダーのパッケージが汚染されたのですか？",
-      a: "Red Hat従業員のGitHubアカウントが乗っ取られ、攻撃者が悪性のワークフローファイルをリポジトリへ注入してコードレビューを丸ごと迂回したためです。改ざんしたci.yamlがGitHub ActionsのOIDCトークンで正規にパッケージを公開したため、外形上は正常なリリースに見えました。",
-    },
-    {
-      q: "Miasmaワームは何を盗み、どう広がりますか？",
-      a: "npmインストール時のpreinstallスクリプトで実行され、AWS/GCP/Azureのクラウド認証情報、GitHub Actionsシークレット、npm/PyPIトークン、SSH鍵・GPG鍵、Kubernetes設定、Docker認証情報、.envファイルを収集します。盗んだ権限で被害者がアクセスできる別パッケージにバックドア版を再公開して自己増殖します。",
-    },
-    {
-      q: "Mini Shai-Huludとの関係は何ですか？",
-      a: "Miasmaは2026年5月にTeamPCPがオープンソース化した自己増殖ワーム「Mini Shai-Hulud」と強い類似性があるとされています。攻撃ツールが公開されると他の攻撃者が複製・改変して再利用でき、Red Hatという別の標的に対する新たな波として現れたものです。",
-    },
-    {
-      q: "開発組織は何を確認・対策すべきですか？",
-      a: "汚染バージョンの利用有無を確認し、該当・疑いがあればCIシークレット・クラウド認証情報・SSH鍵・npmトークンを即ローテーションします。npm install --ignore-scriptsでスクリプト自動実行を止め、lockfileとnpm ciでバージョンを固定、ワークフローファイルの変更をアプリコードと同等以上に厳格レビューし、メンテナにフィッシング耐性MFAを必須化します。",
-    },
-  ],
 
-  "ironworm-npm-ebpf-supply-chain": [
-    {
-      q: "IronWormとは何ですか？",
-      a: "2026年6月3日にJFrogが発見したRust製のnpmサプライチェーンワームです。asteroidDAO関連の37パッケージを通じて配布され、eBPFカーネルルートキットで自身を隠蔽しながらAWS・Azure・GCP等86種の認証情報を盗み、npmのOIDC Trusted Publishingを悪用してCI環境で自己増殖します。",
-    },
-    {
-      q: "eBPFルートキットとは何ですか？なぜ検知が難しいのですか？",
-      a: "eBPF（Extended Berkeley Packet Filter）はLinuxカーネル内でプログラムを実行する正規機能ですが、IronWormはこれを悪用してカーネルレベルで/procの情報を書き換え、自身のプロセスIDをps・top・lsなどから完全に隠蔽します。EDR製品が参照するシステム情報そのものが偽装されるため、ユーザーランドの監視ツールでは原理的に検出できません。",
-    },
-    {
-      q: "OIDC Trusted Publishingの悪用とはどういう意味ですか？",
-      a: "npmのTrusted Publishing機能はCI/CDパイプラインがOIDCトークンで一時的なnpm公開トークンを取得できる仕組みです。IronWormは感染したCI環境でこのOIDCトークンを取得し、被害者が所有するパッケージのトロイの木馬版を公開します。保存された認証情報が一切なくても自己増殖できるため、npm tokenのローテーションだけでは対策になりません。",
-    },
-    {
-      q: "IronWormはどのような認証情報を盗みますか？",
-      a: "86の環境変数と20以上のクレデンシャルファイルパスを対象として、AWS・GCP・Azure・Kubernetes・Docker・HashiCorp Vault・npm・GitHubトークン・SSH鍵・Exodus暗号資産ウォレット、そしてAnthropic・OpenAI・Gemini・Mistralなど2026世代のAIプロバイダーAPIキーを網羅的に収集します。",
-    },
-    {
-      q: "IronWorm感染が疑われる場合に最初にすべきことは何ですか？",
-      a: "まずCI/CDランナーのログで異常なプロセス起動や外部通信を確認し、自社管理npmパッケージに不審なバージョンが公開されていないかチェックします。感染が疑われる場合はAWS・GitHub・npm・AIプロバイダーの認証情報を即座にローテーションし、SSH鍵については全サーバーのauthorized_keysを確認して不審なエントリを削除します。",
-    },
-  ],
 
   "mirasvit-magento-cve-2026-45247": [
     {

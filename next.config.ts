@@ -99,6 +99,25 @@ const securityHeaders = [
   },
 ];
 
+// pillar 統合で削除した記事を、対応する解説記事へ 301 転送（AdSense対策・Phase1）。
+// 旧URLを 404 にせず評価を pillar に引き継ぐ。
+const consolidatedRedirects = [
+  { slug: "fog-ransomware-propagation", to: "ransomware-2026" },
+  { slug: "foxconn-nitrogen-ransomware", to: "ransomware-2026" },
+  { slug: "kyber-ransomware-post-quantum", to: "ransomware-2026" },
+  { slug: "the-gentlemen-ransomware", to: "ransomware-2026" },
+  { slug: "shai-hulud", to: "supply-chain-attacks" },
+  { slug: "teampcp-cloud-credential-theft", to: "supply-chain-attacks" },
+  { slug: "daemon-tools-supply-chain", to: "supply-chain-attacks" },
+  { slug: "github-actions-supply-chain", to: "supply-chain-attacks" },
+  { slug: "redhat-npm-miasma-supply-chain", to: "supply-chain-attacks" },
+  { slug: "ironworm-npm-ebpf-supply-chain", to: "supply-chain-attacks" },
+].map(({ slug, to }) => ({
+  source: `/learn/security/${slug}`,
+  destination: `/learn/security/${to}`,
+  permanent: true,
+}));
+
 const nextConfig: NextConfig = {
   async headers() {
     return [
@@ -116,6 +135,7 @@ const nextConfig: NextConfig = {
         destination: "https://secutils.jp/:path*",
         permanent: true,
       },
+      ...consolidatedRedirects,
     ];
   },
 };
