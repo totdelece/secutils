@@ -125,7 +125,7 @@ export default function Page() {
       </ul>
       <p>
         2026年4月には、OX Securityらが<strong>MCPのSTDIO転送の設計レベルの問題</strong>——設定値がサニタイズなしにコマンド実行へ流れる構造——を指摘し、Letta AI・Langflow・Windsurfなど<strong>累計1.5億ダウンロード超、7,000台以上の公開サーバ</strong>に影響しうると報じられました。AIエージェント基盤の{" "}
-        <a href="/learn/security/langflow-cve-2025-34291">Langflow（CVE-2025-34291）</a>{" "}
+        Langflow（CVE-2025-34291）{" "}
         と同じく、「AIだから新しい」のではなく「AIの皮をかぶった古典的RCE」が多いのが実態です。
       </p>
 
@@ -188,9 +188,9 @@ export default function Page() {
         効く守りは目新しいものではありません。<strong>最小権限、出所の検証、人間による承認、入力の検証、棚卸し</strong>——{" "}
         <a href="/learn/security/owasp-top-10">OWASP Top 10</a>{" "}
         で語られてきた基本を、AIエージェントという新しい実行主体に対して引き直すことです。プロンプトインジェクションが間に挟まると影響が増幅される点は{" "}
-        <a href="/learn/security/langflow-cve-2025-34291">Langflowの事例</a>{" "}
+        Langflowの事例{" "}
         や{" "}
-        <a href="/learn/security/claude-mythos">Claude Mythos</a>{" "}
+        Claude Mythos{" "}
         の解説も合わせて読むと、攻防の全体像がつかめます。
       </p>
       <p>

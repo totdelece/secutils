@@ -125,9 +125,56 @@ const consolidatedRedirects = [
   { slug: "fujitsu-projectweb-unauthorized-access-2021", to: "japan-security-incidents" },
   { slug: "honda-ekans-snake-ransomware-2020", to: "japan-security-incidents" },
   { slug: "handa-hospital-lockbit-ransomware-2021", to: "japan-security-incidents" },
+  // Phase3: CVE/ゼロデイ速報 → owasp-top-10
+  { slug: "toolshell", to: "owasp-top-10" },
+  { slug: "cpanel-cve-2026-41940", to: "owasp-top-10" },
+  { slug: "netlogon-cve-2026-41089", to: "owasp-top-10" },
+  { slug: "apex-one-cve-2026-34926", to: "owasp-top-10" },
+  { slug: "langflow-cve-2025-34291", to: "owasp-top-10" },
+  { slug: "forticlient-ems-cve-2026-35616", to: "owasp-top-10" },
+  { slug: "pan-os-globalprotect-cve-2026-0257", to: "owasp-top-10" },
+  { slug: "exchange-cve-2026-42897", to: "owasp-top-10" },
+  { slug: "copy-fail-cve-2026-31431", to: "owasp-top-10" },
+  { slug: "ivanti-epmm-cve-2026-6973", to: "owasp-top-10" },
+  { slug: "citrix-netscaler-cve-2026-3055", to: "owasp-top-10" },
+  { slug: "mirasvit-magento-cve-2026-45247", to: "owasp-top-10" },
+  { slug: "cisco-sdwan-manager-cve-2026-20245", to: "owasp-top-10" },
+  { slug: "everest-forms-pro-cve-2026-3300", to: "owasp-top-10" },
+  { slug: "android-cve-2025-48595-framework-zero-day", to: "owasp-top-10" },
+  { slug: "cisco-firestarter-backdoor", to: "owasp-top-10" },
+  { slug: "react2shell", to: "owasp-top-10" },
+  { slug: "defender-bluehammer-redsun-undefend", to: "owasp-top-10" },
+  // Phase3: APT・国家系 → mitre-attack
+  { slug: "apt28-prismex-nato", to: "mitre-attack" },
+  { slug: "gridtide-unc2814-telecom-espionage", to: "mitre-attack" },
+  { slug: "turla-kazuar-p2p-botnet", to: "mitre-attack" },
+  { slug: "operation-dragon-weave-azure-c2", to: "mitre-attack" },
+  { slug: "muddywater-teams-fake-ransomware", to: "mitre-attack" },
+  // Phase3: AI悪用 → prompt-injection
+  { slug: "claude-mythos", to: "prompt-injection" },
+  { slug: "ai-generated-zero-day-exploit", to: "prompt-injection" },
+  { slug: "autonomous-llm-agent-intrusion", to: "prompt-injection" },
+  { slug: "ai-built-ransomware-toolkit-edr-evasion", to: "prompt-injection" },
+  { slug: "chatgphish-chatgpt-phishing", to: "prompt-injection" },
+  // Phase3: 情報漏えい → incident-response-guide
+  { slug: "canvas-shinyhunters-breach", to: "incident-response-guide" },
+  { slug: "trellix-source-code-breach", to: "incident-response-guide" },
+  { slug: "nyc-health-hospitals-biometric-breach", to: "incident-response-guide" },
+  { slug: "charter-vishing-entra-breach", to: "incident-response-guide" },
 ].map(({ slug, to }) => ({
   source: `/learn/security/${slug}`,
   destination: `/learn/security/${to}`,
+  permanent: true,
+}));
+
+// Phase3: 詐欺・恐喝・botnet（適切な個別pillarが無いもの）→ Learn ハブへ
+const hubRedirects = [
+  "silent-ransom-group-in-person-extortion",
+  "fifa-world-cup-2026-cyber-fraud",
+  "kadnap-edge-proxy-botnet",
+].map((slug) => ({
+  source: `/learn/security/${slug}`,
+  destination: "/learn",
   permanent: true,
 }));
 
@@ -149,6 +196,7 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       ...consolidatedRedirects,
+      ...hubRedirects,
     ];
   },
 };

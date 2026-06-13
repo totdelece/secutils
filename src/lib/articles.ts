@@ -210,55 +210,10 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "パストラバーサル攻撃の仕組み、../ や %2e%2e%2f によるディレクトリ脱出、Null Byte挿入、ZipSlip、防御策としての正規化後の許可リスト・抽象化APIを日本語で解説します。",
   },
-  react2shell: {
-    title: "React2Shell（CVE-2025-55182）とは - RSC/Next.jsの事前認証RCEと対策",
-    description:
-      "2025年12月にMeta/Vercelが公表したReact Server Componentsの致命的脆弱性 React2Shell（CVE-2025-55182、CVSS 10.0）を日本語で解説。安全でないデシリアライズによる事前認証RCEの仕組み、影響バージョンと修正版、Next.jsアプリの確認・対策手順を整理します。",
-  },
-  "apt28-prismex-nato": {
-    title: "APT28が新マルウェアPRISMEXでNATO防衛サプライチェーンを標的 — ステガノグラフィとCOMハイジャックの脅威",
-    description:
-      "ロシア国家系APTグループAPT28（Pawn Storm/Fancy Bear）が2026年に展開した新マルウェアスイートPRISMEXを解説。画像内にペイロードを隠すステガノグラフィ、COMハイジャックによる永続化、CVE-2026-21509/21513の悪用、ウクライナ・NATO加盟国の防衛インフラへの標的型侵害の手口と対策を日本語でまとめます。",
-  },
-  "canvas-shinyhunters-breach": {
-    title: "Canvas（Instructure）で2.75億人分のデータ漏洩 — ShinyHuntersが世界8,809校を2度侵害",
-    description:
-      "2026年4〜5月、世界最大級のLMS（学習管理システム）CanvasのInstructureがShinyHuntersに侵害され、8,809校・2.75億人のユーザーデータ3.65TBが流出した。2度の侵害・ログイン画面改ざん・教育機関特有のリスク・ShinyHunters手口の変化を日本語で解説します。",
-  },
   "support-scam": {
     title: "サポート詐欺（偽警告詐欺）の手口と対処法 - 偽セキュリティ警告・遠隔操作・電話詐欺",
     description:
       "ブラウザに突然表示される偽のウイルス警告や、Microsoftをかたる電話で遠隔操作ソフトをインストールさせる「サポート詐欺」の手口を日本語で解説。IPA・警察庁の被害統計、画面が閉じられない時の具体的対処、AnyDesk/Quick Assistを使った詐取の流れ、スマートフォン版の新手口、遠隔操作を許してしまった後の対応を整理します。",
-  },
-  toolshell: {
-    title: "ToolShell（CVE-2025-53770）詳解 - SharePoint RCEゼロデイと国家攻撃者の手口",
-    description:
-      "2025年7月に悪用が確認されたMicrosoft SharePointのゼロデイ脆弱性チェーン「ToolShell」（CVE-2025-53770＋CVE-2025-53771）を日本語で解説。認証バイパスからRCEへの攻撃の流れ、Linen/Violet Typhoon等中国系APTによる400件超の侵害、MachineKey窃取による永続化、パッチ適用・鍵ローテーション・AMSIによる対策を整理します。",
-  },
-  "cpanel-cve-2026-41940": {
-    title: "cPanel認証バイパス（CVE-2026-41940）とは - WHM乗っ取りの仕組みと対策",
-    description:
-      "2026年4月に公表されたcPanel & WHMの認証バイパス脆弱性 CVE-2026-41940（CVSS 9.8）を日本語で解説。セッションCookieへのCRLFインジェクションでrootとして管理画面を乗っ取る仕組み、影響範囲と修正版、約2か月先行したゼロデイ悪用の経緯、レンタルサーバー利用者・管理者の確認/対策手順を整理します。",
-  },
-  "netlogon-cve-2026-41089": {
-    title: "Netlogon RCE（CVE-2026-41089）とは - ドメインコントローラ乗っ取りとZerologonの教訓",
-    description:
-      "2026年5月のPatch Tuesdayで修正されたWindows Netlogonの重大脆弱性 CVE-2026-41089（CVSS 9.8）を日本語で解説。未認証の遠隔攻撃でドメインコントローラ上にSYSTEM権限のコード実行を許す仕組み（MS-NRPCのバッファオーバーフロー）、影響範囲、Zerologon（CVE-2020-1472）との類似と教訓、AD管理者の確認/対策手順を整理します。",
-  },
-  "apex-one-cve-2026-34926": {
-    title: "Trend Micro Apex One脆弱性（CVE-2026-34926）とは - EDRが攻撃経路に変わる悪用とCVSSの落とし穴",
-    description:
-      "2026年5月にCISA KEV入りした Trend Micro Apex One の悪用中脆弱性 CVE-2026-34926（CVSS 6.7・パストラバーサル）を日本語で解説。EDRサーバの信頼された配信チャネルを全端末へのマルウェア配布路に変える仕組み、影響範囲と修正版、CVSSの数値より「悪用中か」を優先すべき理由、管理者の確認/対策手順を整理します。",
-  },
-  "langflow-cve-2025-34291": {
-    title: "Langflow脆弱性（CVE-2025-34291）とは - AIエージェント基盤のRCEとCORS/CSRFの教訓",
-    description:
-      "2026年5月にCISA KEV入りした AIエージェント構築基盤 Langflow の悪用中脆弱性 CVE-2025-34291（CVSS 9.4）を日本語で解説。寛容なCORS・弱いCSRF・コード実行エンドポイントの連鎖で未認証RCEとアカウント乗っ取り・全APIキー露出に至る仕組み、影響範囲と修正版、AIフレームワーク特有の攻撃面と対策を整理します。",
-  },
-  "claude-mythos": {
-    title: "Claude Mythosとは - AIによる自律的な脆弱性発見が変える攻防とエンジニアの備え",
-    description:
-      "Anthropicが2026年4月に公表したフロンティアモデル Claude Mythos Preview を、AIによる自律的な脆弱性発見という観点から日本語で解説。FreeBSDの17年もの・OpenBSDの27年もののバグ発見などAnthropic公表の事実、二段刃（攻撃にも転用可能）の本質、誤検知やプロンプトインジェクションの注意点、防御側（パッチ速度・SBOM・人間によるレビュー）の備えを整理します。",
   },
   "mcp-security": {
     title: "MCP（Model Context Protocol）のセキュリティ - Tool Poisoning・Rug Pull・実例と対策",
@@ -315,90 +270,10 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "OWASP LLM Top 10の第1位 プロンプトインジェクション（LLM01）を日本語で体系解説。LLMが「指示」と「データ」を区別できないという根本原因、直接（ジェイルブレイク）と間接（外部コンテンツ由来、2026年は55%超）の違い、EchoLeak（CVE-2025-32711）やMCP経由のゼロクリックRCE・KYC文書からのPII漏えいといった実例、危険な組み合わせ「Lethal Trifecta」、Spotlighting・ガードレール・CaMeL・最小権限・人間による承認といった多層防御とその限界を整理します。",
   },
-  "cisco-firestarter-backdoor": {
-    title: "FIRESTARTERバックドア詳解 - パッチ後も残るCisco ASA/Firewallマルウェアとハードリセットだけが答え",
-    description:
-      "2026年4月にCISA/NCSCが共同勧告したCisco ASA/Firewallに感染するFIRESTARTERバックドアを日本語で解説。CVE-2025-20333（CVSS 9.9）悪用で米連邦政府機関のFirepowerデバイスに設置され、ファームウェアアップデートでも除去できず物理的な電源抜きが唯一の駆除手段となった実態、LINE VIPERとのマルウェアチェーン、YARAルールによる検出、Cisco機器の継続監査の必要性を日本語で整理します。",
-  },
-  "forticlient-ems-cve-2026-35616": {
-    title: "FortiClient EMS CVE-2026-35616詳解 - 未認証APIバイパスで全管理端末にEKZスティーラーを配布",
-    description:
-      "2026年5月に積極悪用が確認されたFortiClient EMSの認証バイパス脆弱性CVE-2026-35616（CVSS 9.1）を日本語で解説。未認証でAPIを叩いて特権昇格し、FortiClientの管理チャネルを乗っ取ることで配下の全端末にEKZインフォスティーラーを「公式パッチ」に偽装して配布する攻撃チェーン、Chrome暗号化Cookie迂回、エンドポイント管理基盤が攻撃経路に変わるリスク、修正版と確認手順を日本語でまとめます。",
-  },
   "nordvpn-vs-expressvpn": {
     title: "NordVPN vs ExpressVPN 比較2026 - ITエンジニアが選ぶVPNの違いと結論",
     description:
       "NordVPNとExpressVPNを料金・プロトコル・サーバー安全性・追加機能で正直に比較。NordLynx vs Lightway+耐量子暗号Kyber、TrustedServer（全RAM動作）の意味、Double VPN・Threat Protection、2年プランの実際のコスト、シナリオ別おすすめをIT担当者向けに整理します。",
-  },
-  "pan-os-globalprotect-cve-2026-0257": {
-    title: "PAN-OS GlobalProtect CVE-2026-0257詳解 - VPN Cookie偽造とCISA KEV登録・2026年5月から積極悪用",
-    description:
-      "2026年5月から積極悪用されCISA KEVに登録されたPalo Alto Networks PAN-OSのVPN認証バイパス脆弱性CVE-2026-0257を日本語で解説。Authentication Override Cookieと証明書共有の設定ミスで公開鍵が取得でき正規VPNセッションを偽造できる仕組み、Rapid7が観測した管理者アカウント乗っ取り、影響を受けるPAN-OSバージョンと修正版、GlobalProtect設定の確認と無効化手順を日本語で整理します。",
-  },
-  "ai-generated-zero-day-exploit": {
-    title: "AIが書いたゼロデイエクスプロイト - 初の2FA迂回コードをGoogleが検知、攻撃自動化の到達点",
-    description:
-      "2026年5月にGoogleが公表した「犯罪グループがAIを使ってゼロデイエクスプロイトを開発した」初の事例を日本語で解説。LLM生成コードに典型的なdocstring・架空のCVSSスコア・教科書的なコード構造で識別された実態、2FA検証ロジックのバグを大量悪用しようとした攻撃者の意図、Mandiantのパッチ前悪用28.3%データが示すTime-to-Exploitの短縮、管理ツールの公開範囲最小化・2FA実装品質評価・脆弱性対応高速化による防御を整理します。",
-  },
-  "exchange-cve-2026-42897": {
-    title: "Microsoft Exchange XSSゼロデイ（CVE-2026-42897）詳解 - メール1通でOWAセッション乗っ取りとBEC基盤化",
-    description:
-      "2026年5月にCISA KEVに追加されたMicrosoft Exchange Server OWAのXSSゼロデイCVE-2026-42897（CVSS 8.1）を日本語で解説。細工したメールをOWAで開くだけで任意のJavaScript実行・セッションCookie窃取・なりすまし送信・パスワードリセット後も残る転送ルール設置が可能になる仕組み、Exchange 2016/2019/SE全バージョンへの影響、EEMSによる自動緩和の確認手順、BECへの発展リスクと悪性転送ルールの調査コマンドを整理します。",
-  },
-  "muddywater-teams-fake-ransomware": {
-    title: "MuddyWaterがTeamsで社内ITを装う - ランサムウェアを煙幕にするイラン国家スパイ活動の手口",
-    description:
-      "イラン国家系APT MuddyWater（Mango Sandstorm）が2026年前半にMicrosoft Teamsを使った「社内ITサポートなりすまし」で侵入し、Chaosランサムウェアを偽旗として残しながら諜報・認証情報窃取・データ持ち出しを行った事案をRapid7の分析を基に日本語で解説。Teams外部テナント悪用の仕組み、DLLサイドローディング（SentinelOne製バイナリ悪用）、偽旗作戦の戦術的意味、ランサムウェアインシデントが実は国家スパイである場合のリスク、Teams設定確認・RMMツール制御・初動の偽旗チェックによる対策を整理します。",
-  },
-  "chatgphish-chatgpt-phishing": {
-    title: "ChatGPhish詳解 - ChatGPTのMarkdown信頼を悪用したフィッシング・IP漏洩・QRコードバイパスの手口",
-    description:
-      "2026年5月にPermiso Securityが公表したChatGPTウェブ要約機能の脆弱性「ChatGPhish」を日本語で解説。chatgpt.comのレスポンスレンダラーがMarkdown画像を自動取得・リンクを信頼済みUI要素として表示する仕組みを悪用し、被害者のIP/UA/Referer流出・クリック可能なフィッシングリンクの埋め込み・デスクトップURLフィルタを回避するQRコードフィッシングが可能になる攻撃チェーン、間接プロンプトインジェクションとの関係、業務利用ChatGPTへの対策ポリシーを整理します。",
-  },
-  "trellix-source-code-breach": {
-    title: "Trellix（旧McAfee/FireEye）ソースコード流出 - RansomHouseが侵害したセキュリティベンダー被害の深刻度",
-    description:
-      "2026年5月にRansomHouseランサムウェアグループが侵害し、ソースコードリポジトリへの不正アクセスを引き起こしたTrellixインシデントを日本語で解説。McAfee EnterpriseとFireEye合併で生まれた53,000超顧客・2億超エンドポイント保護のセキュリティベンダーのソースコード流出がなぜ一般企業と質的に異なるリスクか（検知回避ロジック把握・未知脆弱性発見・サプライチェーン攻撃基盤）、RSA・FireEye・Okta・Microsoftの過去事例との比較、Trellix製品ユーザーが今すべき確認と多層防御の考え方を整理します。",
-  },
-  "defender-bluehammer-redsun-undefend": {
-    title: "Microsoft Defender 3ゼロデイ詳解（BlueHammer/RedSun/UnDefend）- SYSTEM昇格と定義更新無効化の組み合わせ攻撃",
-    description:
-      "2026年4〜5月に連続発覚したMicrosoft Defenderの3ゼロデイ BlueHammer（CVE-2026-33825）・RedSun（CVE-2026-41091）・UnDefend（CVE-2026-45498）を日本語で解説。SAMデータベースを使ったSYSTEM昇格（BlueHammer）・システムファイル書き換えによるSYSTEM昇格（RedSun）・一般ユーザーがDefender定義更新を停止するDoS（UnDefend）を段階的に組み合わせる「Layered Degradation Strategy」の仕組み、Huntressが観測した野放し悪用の実態、Antimalware Platformのバージョン確認・定義更新状態のチェック・多層防御の構築を整理します。",
-  },
-  "charter-vishing-entra-breach": {
-    title: "Charter（Spectrum）情報漏えい詳解 - ビッシングでEntra IDを奪い4,200万件を狙ったShinyHunters",
-    description:
-      "2026年に発覚した米通信大手Charter Communications（Spectrum）の情報漏えいを日本語で解説。ShinyHuntersが電話による音声フィッシング（ビッシング）で従業員のMicrosoft Entraアカウントを乗っ取り、技術的な脆弱性ではなく「人」を突いて侵入した手口、4,200万件を主張・約490万メールが実在確認された規模、CPNIを巡るCharterの見解、なぜヘルプデスク/本人確認の運用が突破口になるのか、ヘルプデスク認証強化・フィッシング耐性MFA・条件付きアクセス・トークン保護による対策を整理します。",
-  },
-  "autonomous-llm-agent-intrusion": {
-    title: "AIエージェントが単独で侵入を遂行 - Sysdigが記録した世界初の自律型LLM攻撃（CVE-2026-39987）",
-    description:
-      "2026年5月にSysdigが記録した、世界初とされる「自律型LLMエージェントによるサイバー攻撃」を日本語で解説。MarimoのRCE（CVE-2026-39987）で初期侵入後、人間の指示なしに1時間でクラウド認証情報窃取→AWS Secrets ManagerからSSH鍵取得→踏み台サーバー→PostgreSQL全件持ち出しまでを自動遂行した4段階、Cloudflare Workers経由で22秒に11IP・12API呼び出しという検知回避、機械整形コマンド・既知でないスキーマの即時列挙・中国語の計画コメントといったAI由来の痕跡、「参入障壁が技量から推論コストへ変わる」意味、シグネチャから振る舞い検知への転換という防御の指針を整理します。",
-  },
-  "turla-kazuar-p2p-botnet": {
-    title: "Turla Kazuarが「P2Pボットネット」へ進化 - 検知を避ける国家系バックドアの新アーキテクチャ詳解",
-    description:
-      "2026年5月にMicrosoftが解析したロシアFSB系APT Turla（Secret Blizzard）のバックドア「Kazuar」がモジュール型P2Pボットネットへ進化した事案を日本語で解説。単体の.NETバックドアからKernel/Bridge/Workerの3モジュール構成へ移行し、リーダー選出で外部通信する端末を1台に絞って検知痕跡を最小化する仕組み、150以上の設定項目とHTTP/WebSocket/Exchange Web Services（EWS）の多重C2、AMSI/ETWバイパスや通信ブラックアウトによる隠蔽、外務省・大使館・防衛企業を狙う諜報目的、攻撃面削減ルール・EDRブロックモード・改ざん防止による防御を整理します。",
-  },
-  "kadnap-edge-proxy-botnet": {
-    title: "KadNap詳解 - ASUSルーター1.4万台を「住宅プロキシ」に変えるP2Pボットネットの手口",
-    description:
-      "Lumen Black Lotus Labsが2026年3月に公表したエッジデバイス狙いのボットネット「KadNap」を日本語で解説。ASUSルーターなど14,000台超（約6割が米国）を侵害し、犯罪用住宅プロキシサービスDoppelganger（旧Faceless）の出口ノードに仕立てる仕組み、KademliaベースのDHTで分散C2を実現しつつ追跡を困難にする設計と、それでも残る2つの中継ノードという急所、ルーター/IoTが攻撃の踏み台になる構造的問題、ファーム更新・管理画面の露出排除・不要サービス停止による対策を整理します。",
-  },
-  "ivanti-epmm-cve-2026-6973": {
-    title: "Ivanti EPMM ゼロデイ CVE-2026-6973詳解 - 度重なるRCE悪用とMDMが攻撃の起点になる理由",
-    description:
-      "2026年5月に積極悪用が確認されCISA KEVへ即追加されたIvanti Endpoint Manager Mobile（EPMM）のRCEゼロデイCVE-2026-6973を日本語で解説。管理者権限で任意コード実行が可能になる仕組み、2026年1月の未認証RCE（CVE-2026-1281/1340、いずれもCVSS 9.8、Apache RewriteMapのbash注入）と連鎖させる攻撃チェーン、Webシェル設置・リバースシェル・暗号通貨マイナー展開など侵害後の挙動、MDM基盤が全社モバイル端末への侵入起点になるリスク、影響/修正バージョンと侵害痕跡の確認手順を整理します。",
-  },
-  "copy-fail-cve-2026-31431": {
-    title: "Copy Fail（CVE-2026-31431）詳解 - 732バイトでrootを奪うLinuxカーネル権限昇格ゼロデイ",
-    description:
-      "2026年4月に公開されCISA KEVに即追加されたLinuxカーネルのローカル権限昇格ゼロデイ「Copy Fail」（CVE-2026-31431、CVSS 7.8）を日本語で解説。AF_ALGのalgif_aeadモジュールに2017年から潜んでいた最適化バグで、ディスク上のファイルを書き換えずにページキャッシュ内のsetuidバイナリへ4バイトを上書きしrootを奪う仕組み、競合条件不要で100%再現する決定論的エクスプロイト（732バイトのPythonスクリプト）、Kubernetesコンテナ脱出やマルチテナント侵害につながるクラウドリスク、影響カーネル4.14〜6.19.12と修正手順・algif_aead無効化の緊急回避策を整理します。",
-  },
-  "gridtide-unc2814-telecom-espionage": {
-    title: "GRIDTIDE詳解 - Google Sheetsを司令塔に通信事業者を狙った中国系APT UNC2814のスパイ活動",
-    description:
-      "2026年にGoogle/Mandiantが摘発した中国系APT UNC2814のグローバル諜報作戦「GRIDTIDE」を日本語で解説。42カ国53組織（疑い含め70カ国超）の通信事業者・政府機関を侵害し、加入者のPII（氏名・電話番号・生年月日・国民ID）を窃取した実態、C言語製バックドアがGoogle SheetsのAPIをC2（指令通信）に悪用して正規クラウドトラフィックに紛れる手口、systemdサービスxaptによる永続化とSoftEther VPNの悪用、Mandiantが異常なプロセスツリーから検知しGoogle Cloudプロジェクトごと無効化した対応、Salt Typhoonとの違い、通信・正規SaaSのアウトバウンド監視という日本企業向けの教訓を整理します。",
   },
   "security-certification-guide": {
     title: "セキュリティ資格 比較・一覧 - 情報処理安全確保支援士・CISSP・CompTIA Security+の選び方",
@@ -424,31 +299,6 @@ const articleSeo: Record<string, ArticleSeo> = {
     title: "セキュリティインシデント対応手順 - 初動から報告書作成まで【CSIRTフロー・テンプレート】",
     description:
       "セキュリティインシデント発生時の対応手順をNIST SP 800-61のフレームワークに沿って解説。検知・トリアージ・証拠保全・封じ込め・根絶・復旧・再発防止の各フェーズでやることを実務目線で整理し、ランサムウェア対応の特殊な注意点、報告書のテンプレート、CSIRT構築の考え方まで日本語でまとめます。",
-  },
-  "silent-ransom-group-in-person-extortion": {
-    title: "Silent Ransom Group（Luna Moth）詳解 - ITを装い「出向く」対面型恐喝とコールバックフィッシングの手口・対策",
-    description:
-      "2026年5月にFBIが警告した恐喝集団Silent Ransom Group（SRG／Luna Moth／UNC3753）を日本語で解説。偽IT支援への折り返し電話を誘うコールバックフィッシング、遠隔操作の承諾、失敗すると攻撃者がオフィスに出向きUSBで端末をバックアップすると偽ってデータを盗む対面型の手口、正規リモート管理ツール悪用でアンチウイルスをすり抜ける理由、暗号化を伴わないリークサイト型恐喝、法律事務所が狙われる構造、ヘルプデスク本人確認・RMM制限・MFA・対面者の身元確認による対策を整理します。",
-  },
-  "android-cve-2025-48595-framework-zero-day": {
-    title: "Android ゼロデイ CVE-2025-48595詳解 - Frameworkの整数オーバーフロー権限昇格と標的型スパイ悪用・対策",
-    description:
-      "2026年6月のAndroidセキュリティ情報で修正されCISA KEVに追加されたゼロデイ CVE-2025-48595 を日本語で解説。Android Frameworkの整数オーバーフロー（CWE-190）でユーザー操作なしにローカル権限昇格が可能になる仕組み、Android 14/15/16が影響、Googleが「限定的・標的型の悪用の可能性」と表現した意味、商用スパイウェアや国家系がジャーナリスト・活動家を狙う典型、パッチレベル2026-06-01/2026-06-05の読み方、業務スマホ（MDM）での確認・対策を整理します。",
-  },
-  "nyc-health-hospitals-biometric-breach": {
-    title: "NYC Health + Hospitals 生体情報漏えい詳解 - 指紋・掌紋180万人分流出と第三者ベンダー経由侵害の教訓",
-    description:
-      "2026年に公表された米最大級の公立医療機関NYC Health + Hospitalsの情報漏えいを日本語で解説。第三者ベンダー経由で2025年11月末〜2026年2月に侵入され、医療記録・診断・SSN・金融情報・正確な位置情報に加え指紋・掌紋など生体情報を含む180万人超のデータが流出した事案、生体情報は「リセットできない」がゆえの恒久的リスク、信頼するベンダーが攻撃面になるサプライチェーンの教訓、日本企業が委託先管理・データ最小化・生体認証設計で確認すべき点を整理します。",
-  },
-  "citrix-netscaler-cve-2026-3055": {
-    title: "Citrix NetScaler CVE-2026-3055詳解 - SAML IDPの境界外読み取りで未認証RCE・大規模悪用中（CVSS 9.8）",
-    description:
-      "2026年6月に大規模な積極悪用が確認されたCitrix NetScaler ADC/Gatewayの重大脆弱性 CVE-2026-3055（CVSS 9.8）を日本語で解説。アプライアンスをSAML IDPとして構成している場合に、未認証・遠隔から境界外メモリ読み取り（CWE-125）を起点に任意コード実行へ至る仕組み、CitrixBleed系の歴史的悪用パターン、影響/修正バージョン、関連CVE-2026-4368、Fortinetが観測した攻撃、SAML署名証明書のローテーションやセッション失効を含む確認・対策手順を整理します。",
-  },
-  "ai-built-ransomware-toolkit-edr-evasion": {
-    title: "AIが組み立てたランサムウェア攻撃キット詳解 - EDR回避とAD探索の自動化（Sophos解析）",
-    description:
-      "2026年6月にSophosが解析した、AIコーディング支援（Cursor・Claudeエージェント）を使って開発されたランサムウェア／データ窃取の攻撃キットを日本語で解説。EDR回避手法のリサーチからコード生成・改訂までをAIが補助し、Sophos/CrowdStrike/Microsoftの製品に対する回避を仮想環境で検証していた実態、Cobalt Strikeプロファイル・Telegram BotによるC2・Cloudflare WorkerでのC2秘匿・正規実行ファイルへのシェルコード注入といった構成、AIが攻撃の量産と高速化を可能にする意味、振る舞い検知への転換という防御指針を整理します。",
   },
 };
 
@@ -829,102 +679,12 @@ export const articles: Article[] = [
     relatedTools: ["url-encoder"],
   },
   {
-    slug: "react2shell",
-    category: "security",
-    title: "React2Shell（CVE-2025-55182）詳解 - RSC/Next.jsの事前認証RCE",
-    description:
-      "2025年12月公表のReact Server Components脆弱性 React2Shell（CVE-2025-55182、CVSS 10.0）の仕組み、安全でないデシリアライズによる事前認証RCE、影響バージョンと修正版、Next.jsアプリの確認と対策を日本語で解説します。",
-    date: "2026-05-29",
-    readingMinutes: 9,
-    relatedTools: [],
-  },
-  {
-    slug: "apt28-prismex-nato",
-    category: "security",
-    title: "APT28が新マルウェアPRISMEXでNATO防衛サプライチェーンを標的 — ステガノグラフィとCOMハイジャックの脅威",
-    description:
-      "ロシア国家系APT28（Pawn Storm）が2026年に展開した新マルウェアスイートPRISMEXを解説。画像内にペイロードを隠すステガノグラフィ、COMハイジャックによる永続化、CVE-2026-21509悪用、ウクライナ・NATO加盟国の防衛インフラへの標的型侵害の手口と対策をまとめます。",
-    date: "2026-05-31",
-    readingMinutes: 11,
-    relatedTools: [],
-  },
-  {
-    slug: "canvas-shinyhunters-breach",
-    category: "security",
-    title: "Canvas（Instructure）で2.75億人のデータ漏洩 — ShinyHuntersが世界8,809校を2度侵害",
-    description:
-      "2026年4〜5月に世界最大のLMS CanvasのInstructureがShinyHuntersに侵害され、8,809校・2.75億人のデータ3.65TBが流出した事案を解説。2度の侵害・ログイン画面改ざん・教育機関特有のリスク・恐喝型ハッカーの手口の変化を整理します。",
-    date: "2026-05-31",
-    readingMinutes: 9,
-    relatedTools: [],
-  },
-  {
     slug: "support-scam",
     category: "security",
     title: "サポート詐欺（偽警告詐欺）の手口と対処法 - 偽セキュリティ警告・遠隔操作・電話詐欺",
     description:
       "ブラウザに突然表示される偽のウイルス警告や、Microsoftをかたる電話で遠隔操作ソフトをインストールさせる「サポート詐欺」の手口。IPA・警察庁の被害統計、画面が閉じられない時の具体的対処、AnyDesk/Quick Assistを使った詐取の流れ、遠隔操作を許してしまった後の対応を日本語で解説します。",
     date: "2026-05-31",
-    readingMinutes: 9,
-    relatedTools: [],
-  },
-  {
-    slug: "toolshell",
-    category: "security",
-    title: "ToolShell（CVE-2025-53770）詳解 - SharePoint RCEゼロデイと国家攻撃者の手口",
-    description:
-      "2025年7月に悪用が確認されたMicrosoft SharePointゼロデイ「ToolShell」（CVE-2025-53770・CVE-2025-53771）の仕組み。認証バイパスからRCEへの攻撃チェーン、Linen/Violet Typhoon等中国系APTによる400件超の侵害、MachineKey窃取による永続化、パッチ適用・鍵ローテーション・AMSIによる対策を日本語で解説します。",
-    date: "2026-05-31",
-    readingMinutes: 10,
-    relatedTools: [],
-  },
-  {
-    slug: "cpanel-cve-2026-41940",
-    category: "security",
-    title: "cPanel認証バイパス（CVE-2026-41940）詳解 - WHM乗っ取りの仕組みと対策",
-    description:
-      "2026年4月公表のcPanel & WHM認証バイパス CVE-2026-41940（CVSS 9.8）の仕組み。セッションCookieへのCRLFインジェクションでrootとして管理画面を乗っ取る流れ、影響範囲と修正版、約2か月先行したゼロデイ悪用の経緯、レンタルサーバー利用者・管理者の確認と対策を日本語で解説します。",
-    date: "2026-05-29",
-    readingMinutes: 9,
-    relatedTools: [],
-  },
-  {
-    slug: "netlogon-cve-2026-41089",
-    category: "security",
-    title: "Netlogon RCE（CVE-2026-41089）詳解 - DC乗っ取りとZerologonの教訓",
-    description:
-      "2026年5月公表のWindows Netlogon脆弱性 CVE-2026-41089（CVSS 9.8）の仕組み。未認証の遠隔攻撃でドメインコントローラ上にSYSTEM権限のコード実行を許すMS-NRPCのバッファオーバーフロー、影響範囲、Zerologon（CVE-2020-1472）との類似と教訓、AD管理者の確認と対策を日本語で解説します。",
-    date: "2026-05-29",
-    readingMinutes: 9,
-    relatedTools: [],
-  },
-  {
-    slug: "apex-one-cve-2026-34926",
-    category: "security",
-    title: "Trend Micro Apex One脆弱性（CVE-2026-34926）詳解 - EDRが攻撃経路に変わる悪用",
-    description:
-      "2026年5月にCISA KEV入りしたTrend Micro Apex Oneの悪用中脆弱性 CVE-2026-34926（CVSS 6.7・パストラバーサル）の仕組み。EDRサーバの信頼された配信チャネルを全端末へのマルウェア配布路に変える流れ、影響範囲と修正版、CVSSより悪用中かを優先すべき理由、管理者の確認と対策を日本語で解説します。",
-    date: "2026-05-29",
-    readingMinutes: 8,
-    relatedTools: [],
-  },
-  {
-    slug: "langflow-cve-2025-34291",
-    category: "security",
-    title: "Langflow脆弱性（CVE-2025-34291）詳解 - AIエージェント基盤のRCEとCORS/CSRF",
-    description:
-      "2026年5月にCISA KEV入りしたAIエージェント構築基盤 Langflow の悪用中脆弱性 CVE-2025-34291（CVSS 9.4）の仕組み。寛容なCORS・弱いCSRF・コード実行エンドポイントの連鎖で未認証RCEとアカウント乗っ取り・全APIキー露出に至る流れ、影響範囲と修正版、AIフレームワーク特有の攻撃面と対策を日本語で解説します。",
-    date: "2026-05-29",
-    readingMinutes: 9,
-    relatedTools: [],
-  },
-  {
-    slug: "claude-mythos",
-    category: "security",
-    title: "Claude Mythosとは - AIによる自律的な脆弱性発見が変える攻防と備え",
-    description:
-      "Anthropicが2026年4月に公表したフロンティアモデル Claude Mythos Preview を、AIによる自律的な脆弱性発見の観点から解説。FreeBSDの17年もの・OpenBSDの27年もののバグ発見などAnthropic公表の事実、攻撃にも転用可能な二段刃の本質、誤検知やプロンプトインジェクションの注意点、防御側（パッチ速度・SBOM・人間のレビュー）の備えを日本語で整理します。",
-    date: "2026-05-29",
     readingMinutes: 9,
     relatedTools: [],
   },
@@ -1089,86 +849,6 @@ export const articles: Article[] = [
     relatedTools: [],
   },
   {
-    slug: "cisco-firestarter-backdoor",
-    category: "security",
-    title: "FIRESTARTERバックドア詳解 - パッチ後も残るCisco ASAマルウェアと「電源抜き」だけが答え",
-    description:
-      "2026年4月にCISA/NCSCが共同勧告したCisco ASA/Firewallに感染するFIRESTARTERバックドアを解説。CVE-2025-20333（CVSS 9.9）悪用で米連邦機関のFirepowerデバイスに設置され、ファームウェアアップデートでも除去できず物理的な電源抜きが唯一の駆除手段となった実態、LINE VIPERとのチェーン、YARAルール検出、Cisco機器の継続監査の必要性を日本語で整理します。",
-    date: "2026-06-01",
-    readingMinutes: 10,
-    relatedTools: [],
-  },
-  {
-    slug: "forticlient-ems-cve-2026-35616",
-    category: "security",
-    title: "FortiClient EMS CVE-2026-35616詳解 - 未認証APIバイパスで全管理端末にEKZスティーラーを配布",
-    description:
-      "2026年5月に積極悪用が確認されたFortiClient EMSの認証バイパス脆弱性CVE-2026-35616（CVSS 9.1）を解説。未認証でAPIを叩いて特権昇格し、FortiClientの管理チャネルを乗っ取ることで配下の全端末にEKZインフォスティーラーを「公式パッチ」に偽装して配布する攻撃チェーン、Chrome暗号化Cookie迂回、エンドポイント管理基盤が攻撃経路に変わるリスク、修正版と確認手順を日本語でまとめます。",
-    date: "2026-06-01",
-    readingMinutes: 10,
-    relatedTools: [],
-  },
-  {
-    slug: "pan-os-globalprotect-cve-2026-0257",
-    category: "security",
-    title: "PAN-OS GlobalProtect CVE-2026-0257詳解 - VPN Cookie偽造とCISA KEV登録・2026年5月から積極悪用",
-    description:
-      "2026年5月から積極悪用されCISA KEVに登録されたPalo Alto Networks PAN-OSのVPN認証バイパス脆弱性CVE-2026-0257を解説。Authentication Override Cookieと証明書共有の設定ミスで公開鍵が取得でき正規VPNセッションを偽造できる仕組み、Rapid7が観測した管理者アカウント乗っ取り、影響を受けるPAN-OSバージョンと修正版、GlobalProtect設定の確認と無効化手順を日本語で整理します。",
-    date: "2026-06-01",
-    readingMinutes: 10,
-    relatedTools: [],
-  },
-  {
-    slug: "ai-generated-zero-day-exploit",
-    category: "security",
-    title: "AIが書いたゼロデイエクスプロイト - Googleが検知した2FA迂回コードと攻撃自動化の到達点",
-    description:
-      "2026年5月にGoogleが公表した「犯罪グループがAIを使ってゼロデイエクスプロイトを開発した」初の事例を解説。LLM生成コードの識別特徴（docstring・架空のCVSSスコア・教科書的構造）、2FA検証ロジックのバグを大量悪用しようとした攻撃者の意図、Mandiantのデータが示すTime-to-Exploitの短縮、管理ツールの公開範囲最小化・2FA品質評価・高速パッチ適用による防御を日本語で整理します。",
-    date: "2026-06-02",
-    readingMinutes: 10,
-    relatedTools: [],
-  },
-  {
-    slug: "exchange-cve-2026-42897",
-    category: "security",
-    title: "Microsoft Exchange XSSゼロデイ（CVE-2026-42897）詳解 - メール1通でOWAセッション乗っ取り",
-    description:
-      "2026年5月にCISA KEVに追加されたMicrosoft Exchange Server OWAのXSSゼロデイCVE-2026-42897（CVSS 8.1）を解説。細工したメールをOWAで開くだけで任意のJavaScript実行・セッションCookie窃取・なりすまし送信・パスワードリセット後も残る転送ルール設置が可能になる仕組み、Exchange 2016/2019/SE全バージョンへの影響、EEMSによる緩和確認手順、BECへの発展リスクと転送ルール調査コマンドを日本語で整理します。",
-    date: "2026-06-02",
-    readingMinutes: 10,
-    relatedTools: [],
-  },
-  {
-    slug: "muddywater-teams-fake-ransomware",
-    category: "security",
-    title: "MuddyWaterがTeamsで社内ITを装う - ランサムウェアを煙幕にするイラン国家スパイ活動",
-    description:
-      "イラン国家系APT MuddyWater（Mango Sandstorm）が2026年前半にMicrosoft Teamsを使った「ITサポートなりすまし」で侵入し、Chaosランサムウェアを偽旗として残しながら諜報・認証情報窃取を行った事案をRapid7の分析を基に解説。Teams外部テナント悪用・DLLサイドローディング（SentinelOne製バイナリ悪用）・偽旗作戦の戦術的意味、ランサムウェアが国家スパイの煙幕である場合のリスク、Teams設定確認・RMMツール制御・初動の偽旗チェックによる対策を日本語で整理します。",
-    date: "2026-06-02",
-    readingMinutes: 11,
-    relatedTools: [],
-  },
-  {
-    slug: "chatgphish-chatgpt-phishing",
-    category: "security",
-    title: "ChatGPhish詳解 - ChatGPTのMarkdown信頼を悪用したフィッシング・IP漏洩・QRコードバイパス",
-    description:
-      "2026年5月にPermiso Securityが公表したChatGPTウェブ要約機能の脆弱性「ChatGPhish」を解説。Markdown画像の自動取得でIP/UA/Refererが流出し、フィッシングリンクやQRコードがChatGPTのUIに埋め込まれる仕組み、間接プロンプトインジェクションとの関係、デスクトップURLフィルタの回避、業務ChatGPT利用への対策ポリシーを日本語で整理します。",
-    date: "2026-06-02",
-    readingMinutes: 10,
-    relatedTools: [],
-  },
-  {
-    slug: "trellix-source-code-breach",
-    category: "security",
-    title: "Trellix（旧McAfee/FireEye）ソースコード流出 - セキュリティベンダー侵害が特別に危険な理由",
-    description:
-      "2026年5月にRansomHouseが侵害したTrellixのソースコードリポジトリ不正アクセス事案を解説。McAfee Enterprise＋FireEye合併の53,000超顧客ベンダーのコード流出がなぜ一般企業と質的に異なるか（検知回避ロジック把握・未知脆弱性発見）、RSA・FireEye・Okta・Microsoftの歴史的事例との比較、Trellix製品ユーザーの確認手順と多層防御の考え方を日本語で整理します。",
-    date: "2026-06-02",
-    readingMinutes: 11,
-    relatedTools: [],
-  },
-  {
     slug: "nordvpn-vs-expressvpn",
     category: "network",
     title: "NordVPN vs ExpressVPN 比較2026 - ITエンジニアが選ぶVPNの違いと結論",
@@ -1178,156 +858,6 @@ export const articles: Article[] = [
     readingMinutes: 12,
     relatedTools: [],
     affiliate: true,
-  },
-  {
-    slug: "defender-bluehammer-redsun-undefend",
-    category: "security",
-    title: "Microsoft Defender 3ゼロデイ（BlueHammer/RedSun/UnDefend）- SYSTEM昇格と定義更新無効化の組み合わせ攻撃",
-    description:
-      "2026年4〜5月に連続発覚したMicrosoft Defender 3ゼロデイ：SAMを使ったSYSTEM昇格BlueHammer（CVE-2026-33825）・システムファイル書き換えRedSun（CVE-2026-41091）・一般ユーザーが定義更新を停止するUnDefend（CVE-2026-45498）。3つを組み合わせる「Layered Degradation Strategy」の仕組み、Huntressが観測した野放し悪用の実態、Antimalware Platformのバージョン確認・定義更新チェック・多層防御の構築を日本語で整理します。",
-    date: "2026-06-02",
-    readingMinutes: 11,
-    relatedTools: [],
-  },
-  {
-    slug: "copy-fail-cve-2026-31431",
-    category: "security",
-    title: "Copy Fail（CVE-2026-31431）詳解 - 732バイトでrootを奪うLinuxカーネル権限昇格ゼロデイ",
-    description:
-      "2026年4月公開・CISA KEV即追加のLinuxカーネル権限昇格ゼロデイ「Copy Fail」（CVE-2026-31431、CVSS 7.8）を解説。AF_ALGのalgif_aeadに2017年から潜む最適化バグで、ディスクを書き換えずページキャッシュ上のsetuidバイナリへ4バイト上書きしrootを奪う仕組み、競合条件不要で決定論的に動く732バイトのエクスプロイト、Kubernetesコンテナ脱出やマルチテナント侵害のクラウドリスク、影響カーネル4.14〜6.19.12と修正・algif_aead無効化の緊急回避策を日本語で整理します。",
-    date: "2026-06-03",
-    readingMinutes: 11,
-    relatedTools: [],
-  },
-  {
-    slug: "gridtide-unc2814-telecom-espionage",
-    category: "security",
-    title: "GRIDTIDE詳解 - Google Sheetsを司令塔に通信事業者を狙った中国系APT UNC2814のスパイ活動",
-    description:
-      "2026年にGoogle/Mandiantが摘発した中国系APT UNC2814の諜報作戦「GRIDTIDE」を解説。42カ国53組織（疑い含め70カ国超）の通信事業者・政府機関を侵害し加入者のPII（氏名・電話番号・生年月日・国民ID）を窃取した実態、C言語製バックドアがGoogle SheetsのAPIをC2に悪用して正規クラウドトラフィックに紛れる手口、systemdサービスxaptによる永続化とSoftEther VPNの悪用、Mandiantが異常なプロセスツリーから検知しGoogle Cloudプロジェクトごと無効化した対応、Salt Typhoonとの違い、通信・正規SaaSのアウトバウンド監視という日本企業向けの教訓を日本語で整理します。",
-    date: "2026-06-03",
-    readingMinutes: 12,
-    relatedTools: [],
-  },
-  {
-    slug: "turla-kazuar-p2p-botnet",
-    category: "security",
-    title: "Turla Kazuarが「P2Pボットネット」へ進化 - 検知を避ける国家系バックドアの新アーキテクチャ",
-    description:
-      "2026年5月にMicrosoftが解析したロシアFSB系APT Turla（Secret Blizzard）のバックドア「Kazuar」がモジュール型P2Pボットネットへ進化した事案を解説。Kernel/Bridge/Workerの3モジュール構成、リーダー選出で外部通信端末を1台に絞り検知痕跡を最小化する仕組み、150超の設定とHTTP/WebSocket/Exchange Web Servicesの多重C2、AMSI/ETWバイパスや通信ブラックアウトによる隠蔽、外務省・大使館・防衛企業を狙う諜報目的、攻撃面削減ルール・EDRブロックモード・改ざん防止による防御を日本語で整理します。",
-    date: "2026-06-03",
-    readingMinutes: 12,
-    relatedTools: [],
-  },
-  {
-    slug: "kadnap-edge-proxy-botnet",
-    category: "security",
-    title: "KadNap詳解 - ASUSルーター1.4万台を「住宅プロキシ」に変えるP2Pボットネットの手口",
-    description:
-      "Lumen Black Lotus Labsが2026年3月に公表したエッジデバイス狙いのボットネット「KadNap」を解説。ASUSルーターなど14,000台超（約6割が米国）を侵害し犯罪用住宅プロキシDoppelganger（旧Faceless）の出口ノードに仕立てる仕組み、KademliaベースのDHTで分散C2を実現しつつ追跡を困難にする設計と、それでも残る2つの中継ノードという急所、ルーター/IoTが踏み台になる構造的問題、ファーム更新・管理画面の露出排除・不要サービス停止による対策を日本語で整理します。",
-    date: "2026-06-03",
-    readingMinutes: 11,
-    relatedTools: [],
-  },
-  {
-    slug: "ivanti-epmm-cve-2026-6973",
-    category: "security",
-    title: "Ivanti EPMM ゼロデイ CVE-2026-6973詳解 - 度重なるRCE悪用とMDMが攻撃の起点になる理由",
-    description:
-      "2026年5月に積極悪用されCISA KEVへ即追加されたIvanti EPMMのRCEゼロデイCVE-2026-6973を解説。管理者権限で任意コード実行が可能になる仕組み、2026年1月の未認証RCE（CVE-2026-1281/1340、CVSS 9.8、Apache RewriteMapのbash注入）と連鎖させる攻撃チェーン、Webシェル設置・リバースシェル・マイナー展開など侵害後の挙動、MDM基盤が全社モバイル端末への侵入起点になるリスク、影響/修正バージョンと侵害痕跡の確認手順を日本語で整理します。",
-    date: "2026-06-03",
-    readingMinutes: 11,
-    relatedTools: [],
-  },
-  {
-    slug: "charter-vishing-entra-breach",
-    category: "security",
-    title: "Charter（Spectrum）情報漏えい詳解 - ビッシングでEntra IDを奪い4,200万件を狙ったShinyHunters",
-    description:
-      "2026年に発覚した米通信大手Charter Communications（Spectrum）の情報漏えいを解説。ShinyHuntersが音声フィッシング（ビッシング）で従業員のMicrosoft Entraアカウントを乗っ取り、技術的脆弱性ではなく「人」を突いて侵入した手口、4,200万件を主張・約490万メールが実在確認された規模、CPNIを巡るCharterの見解、なぜヘルプデスク/本人確認が突破口になるのか、ヘルプデスク認証強化・フィッシング耐性MFA・条件付きアクセス・トークン保護による対策を日本語で整理します。",
-    date: "2026-06-03",
-    readingMinutes: 11,
-    relatedTools: [],
-  },
-  {
-    slug: "autonomous-llm-agent-intrusion",
-    category: "security",
-    title: "AIエージェントが単独で侵入を遂行 - Sysdigが記録した世界初の自律型LLM攻撃（CVE-2026-39987）",
-    description:
-      "2026年5月にSysdigが記録した世界初とされる「自律型LLMエージェントによるサイバー攻撃」を解説。MarimoのRCE（CVE-2026-39987）で初期侵入後、人間の指示なしに1時間でクラウド認証情報窃取→AWS Secrets ManagerからSSH鍵取得→踏み台→PostgreSQL全件持ち出しを自動遂行した4段階、Cloudflare Workers経由で22秒に11IP・12API呼び出しの検知回避、機械整形コマンドや中国語の計画コメントといったAI由来の痕跡、参入障壁が技量から推論コストへ変わる意味、シグネチャから振る舞い検知への転換という防御指針を日本語で整理します。",
-    date: "2026-06-03",
-    readingMinutes: 12,
-    relatedTools: [],
-  },
-  {
-    slug: "silent-ransom-group-in-person-extortion",
-    category: "security",
-    title: "Silent Ransom Group詳解 - ITを装い「オフィスに出向く」対面型恐喝とコールバックフィッシング",
-    description:
-      "2026年5月にFBIが警告した恐喝集団Silent Ransom Group（Luna Moth／UNC3753）を解説。偽IT支援への折り返し電話を誘うコールバックフィッシング、遠隔操作の承諾、失敗すると攻撃者がオフィスに出向きUSBでバックアップすると偽ってデータを盗む対面型の手口、正規リモート管理ツール悪用でAVをすり抜ける理由、暗号化なしのリークサイト型恐喝、法律事務所が狙われる構造、ヘルプデスク本人確認・RMM制限・MFA・対面者の身元確認による対策を整理します。",
-    date: "2026-06-04",
-    readingMinutes: 11,
-    relatedTools: [],
-  },
-  {
-    slug: "android-cve-2025-48595-framework-zero-day",
-    category: "security",
-    title: "Android ゼロデイ CVE-2025-48595詳解 - Frameworkの整数オーバーフローで権限昇格、標的型で悪用",
-    description:
-      "2026年6月のAndroidセキュリティ情報で修正されCISA KEVに追加されたゼロデイ CVE-2025-48595 を解説。Android Frameworkの整数オーバーフロー（CWE-190）でユーザー操作なしにローカル権限昇格が可能になる仕組み、Android 14/15/16が影響、Googleが「限定的・標的型の悪用の可能性」と表現した意味、商用スパイウェアや国家系がジャーナリスト・活動家を狙う典型、パッチレベル2026-06-01/2026-06-05の読み方、業務スマホ（MDM）での確認・対策を整理します。",
-    date: "2026-06-04",
-    readingMinutes: 10,
-    relatedTools: [],
-  },
-  {
-    slug: "nyc-health-hospitals-biometric-breach",
-    category: "security",
-    title: "NYC Health + Hospitals 生体情報漏えい詳解 - 指紋・掌紋180万人分流出と第三者ベンダー経由侵害",
-    description:
-      "2026年に公表された米最大級の公立医療機関NYC Health + Hospitalsの情報漏えいを解説。第三者ベンダー経由で2025年11月末〜2026年2月に侵入され、医療記録・診断・SSN・金融情報・正確な位置情報に加え指紋・掌紋など生体情報を含む180万人超のデータが流出した事案、生体情報は「リセットできない」がゆえの恒久的リスク、信頼するベンダーが攻撃面になるサプライチェーンの教訓、日本企業が委託先管理・データ最小化・生体認証設計で確認すべき点を整理します。",
-    date: "2026-06-04",
-    readingMinutes: 10,
-    relatedTools: [],
-  },
-  {
-    slug: "citrix-netscaler-cve-2026-3055",
-    category: "security",
-    title: "Citrix NetScaler CVE-2026-3055詳解 - SAML IDPの境界外読み取りで未認証RCE、大規模悪用中",
-    description:
-      "2026年6月に大規模な積極悪用が確認されたCitrix NetScaler ADC/Gatewayの重大脆弱性 CVE-2026-3055（CVSS 9.8）を解説。SAML IDPとして構成している場合に未認証・遠隔から境界外メモリ読み取り（CWE-125）を起点に任意コード実行へ至る仕組み、CitrixBleed系の悪用パターン、影響/修正バージョン、関連CVE-2026-4368、Fortinetが観測した攻撃、SAML署名証明書のローテーションを含む確認・対策手順を整理します。",
-    date: "2026-06-04",
-    readingMinutes: 10,
-    relatedTools: [],
-  },
-  {
-    slug: "ai-built-ransomware-toolkit-edr-evasion",
-    category: "security",
-    title: "AIが組み立てたランサムウェア攻撃キット - EDR回避とAD探索を自動化（Sophos解析）",
-    description:
-      "2026年6月にSophosが解析した、AIコーディング支援（Cursor・Claudeエージェント）で開発されたランサムウェア／データ窃取の攻撃キットを解説。EDR回避手法のリサーチからコード生成・改訂までをAIが補助し、Sophos/CrowdStrike/Microsoft製品への回避を仮想環境で検証していた実態、Cobalt Strikeプロファイル・Telegram BotのC2・Cloudflare WorkerでのC2秘匿・正規実行ファイルへのシェルコード注入という構成、AIが攻撃の量産と高速化を可能にする意味、振る舞い検知への転換という防御指針を整理します。",
-    date: "2026-06-04",
-    readingMinutes: 11,
-    relatedTools: [],
-  },
-  {
-    slug: "mirasvit-magento-cve-2026-45247",
-    category: "security",
-    title: "MagentoキャッシュプラグインCVE-2026-45247（CVSS 9.8）——Cookieから未認証RCEで6,000超の店舗が標的に",
-    description:
-      "2026年6月3日にCISA KEV登録されたMirasvit Full Page Cache Warmer（Magento/Adobe Commerce拡張機能）の深刻な脆弱性CVE-2026-45247を解説。CacheWarmerクッキーにBase64エンコードされた悪意あるシリアライズPHPオブジェクトを送るだけで未認証RCEが成立するメカニズム、PHPガジェットチェーンの仕組み、Impervaが観測した実際の攻撃フロー、Magecartスキミングへの発展リスク、6,000超の店舗への影響と日本EC事業者が今すぐ取るべきパッチ適用・FIM・WAF設定を整理する。",
-    date: "2026-06-05",
-    readingMinutes: 11,
-    relatedTools: [],
-  },
-  {
-    slug: "operation-dragon-weave-azure-c2",
-    category: "security",
-    title: "Azure Blob Storageを隠れC2に使う中国系APT「Operation Dragon Weave」——正規クラウド通信に紛れて政府・研究機関を長期侵害",
-    description:
-      "2026年6月にSeqriteが詳報した中国系APTキャンペーン「Operation Dragon Weave」を解説。スピアフィッシングZIPから二経路（LNKファイル／Rustドロッパー）でRUSTCLOAKローダーを展開し、AZUREVEILバックドア（Adaptix C2、36コマンド）を設置。C2通信にAzure Blob Storageをデッドドロップとして使い攻撃者と感染マシンが直接通信しない設計でIPブロックを無効化。チェコ・台湾の政府・研究・金融機関を標的とし日本も同様のリスク。DLLサイドローディング・Dead Drop C2・Azureの検知強化策を解説する。",
-    date: "2026-06-05",
-    readingMinutes: 12,
-    relatedTools: [],
   },
   {
     slug: "virusbuster-cloud-review",
@@ -1350,36 +880,6 @@ export const articles: Article[] = [
     readingMinutes: 10,
     relatedTools: [],
     affiliate: true,
-  },
-  {
-    slug: "cisco-sdwan-manager-cve-2026-20245",
-    category: "security",
-    title: "Cisco SD-WAN Manager ゼロデイ CVE-2026-20245 解説｜パッチなし悪用中・全デプロイタイプに影響",
-    description:
-      "2026年6月にCisco Catalyst SD-WAN Manager（旧vManage）で発見されたゼロデイ脆弱性CVE-2026-20245（CVSS 7.8）を解説。netadmin権限を持つ攻撃者がCLIの入力検証不備を悪用してrootコマンドを実行可能。パッチ未リリースの状態で限定的な悪用が確認されており、オンプレ・クラウド・FedRAMP全デプロイタイプが影響を受ける。",
-    date: "2026-06-08",
-    readingMinutes: 11,
-    relatedTools: [],
-  },
-  {
-    slug: "fifa-world-cup-2026-cyber-fraud",
-    category: "security",
-    title: "FIFAワールドカップ2026を狙うサイバー詐欺を解説｜偽チケット・バンキングマルウェア・19,000ドメイン",
-    description:
-      "2026年FIFAワールドカップ開幕に合わせ19,000以上の詐欺ドメインが登録されている。FortiGuard Labsが分析した脅威の全貌を解説。偽チケットサイト・LummaC2/Vidar/RedLineによる認証情報窃取・SNS上の1,700件超なりすまし・バンキングマルウェアなど多層的な詐欺エコシステムへの注意喚起。",
-    date: "2026-06-08",
-    readingMinutes: 10,
-    relatedTools: [],
-  },
-  {
-    slug: "everest-forms-pro-cve-2026-3300",
-    category: "security",
-    title: "WordPress Everest Forms Pro CVE-2026-3300 解説｜CVSS 9.8・eval()インジェクション・3万件超の攻撃",
-    description:
-      "WordPressプラグイン「Everest Forms Pro」のComplex Calculation機能に存在するCVSS 9.8のRCE脆弱性CVE-2026-3300を解説。ユーザー入力がeval()に渡ることで未認証攻撃者が任意PHPコードを実行可能。2026年4月から悪用が始まりWordfenceが29,300件超のブロックを記録。修正版1.9.13へのアップデートが急務。",
-    date: "2026-06-08",
-    readingMinutes: 10,
-    relatedTools: [],
   },
   {
     slug: "norton-vs-virusbuster",
@@ -1417,45 +917,10 @@ export function getArticleSeoDescription(article: Article): string {
  * sitemap.ts もこの集合を見て出力対象から除外する。
  * 再 index したくなったら、その slug をこの集合から外すだけでよい。
  * ------------------------------------------------------------------ */
-export const noindexArticleSlugs = new Set<string>([
-  // 海外 CVE / インシデント速報
-  "react2shell",
-  "apt28-prismex-nato",
-  "canvas-shinyhunters-breach",
-  "toolshell",
-  "cpanel-cve-2026-41940",
-  "netlogon-cve-2026-41089",
-  "apex-one-cve-2026-34926",
-  "langflow-cve-2025-34291",
-  "claude-mythos",
-  "cisco-firestarter-backdoor",
-  "forticlient-ems-cve-2026-35616",
-  "pan-os-globalprotect-cve-2026-0257",
-  "ai-generated-zero-day-exploit",
-  "exchange-cve-2026-42897",
-  "muddywater-teams-fake-ransomware",
-  "chatgphish-chatgpt-phishing",
-  "trellix-source-code-breach",
-  "defender-bluehammer-redsun-undefend",
-  "copy-fail-cve-2026-31431",
-  "gridtide-unc2814-telecom-espionage",
-  "turla-kazuar-p2p-botnet",
-  "kadnap-edge-proxy-botnet",
-  "ivanti-epmm-cve-2026-6973",
-  "charter-vishing-entra-breach",
-  "autonomous-llm-agent-intrusion",
-  "silent-ransom-group-in-person-extortion",
-  "android-cve-2025-48595-framework-zero-day",
-  "nyc-health-hospitals-biometric-breach",
-  "citrix-netscaler-cve-2026-3055",
-  "ai-built-ransomware-toolkit-edr-evasion",
-  "mirasvit-magento-cve-2026-45247",
-  "operation-dragon-weave-azure-c2",
-  "cisco-sdwan-manager-cve-2026-20245",
-  "fifa-world-cup-2026-cyber-fraud",
-  "everest-forms-pro-cve-2026-3300",
-  // 国内インシデント事例（2020〜2025）
-]);
+// 速報型記事の noindex 運用は終了。速報は pillar（ransomware-2026 /
+// supply-chain-attacks / japan-security-incidents 等）へ統合し個別記事は削除済み。
+// 仕組みは温存（将来また個別 slug を noindex したくなったらここに追加する）。
+export const noindexArticleSlugs = new Set<string>([]);
 
 export function isArticleNoindexed(slug: string): boolean {
   return noindexArticleSlugs.has(slug);
@@ -1562,15 +1027,7 @@ const topicSlugs: Record<TopicId, string[]> = {
   ],
   threat: [
     "japan-security-incidents",
-    "react2shell",
-    "toolshell",
-    "canvas-shinyhunters-breach",
-    "apt28-prismex-nato",
     "support-scam",
-    "cpanel-cve-2026-41940",
-    "netlogon-cve-2026-41089",
-    "apex-one-cve-2026-34926",
-    "langflow-cve-2025-34291",
     "clickfix",
     "ai-browser-prompt-injection",
     "infostealer-session-hijacking",
@@ -1581,39 +1038,12 @@ const topicSlugs: Record<TopicId, string[]> = {
     "ransomware-2026",
     "prompt-injection",
     "device-code-phishing",
-    "cisco-firestarter-backdoor",
-    "forticlient-ems-cve-2026-35616",
-    "pan-os-globalprotect-cve-2026-0257",
     "incident-response-guide",
-    "ai-generated-zero-day-exploit",
-    "exchange-cve-2026-42897",
-    "muddywater-teams-fake-ransomware",
-    "chatgphish-chatgpt-phishing",
-    "trellix-source-code-breach",
-    "defender-bluehammer-redsun-undefend",
-    "copy-fail-cve-2026-31431",
-    "gridtide-unc2814-telecom-espionage",
-    "turla-kazuar-p2p-botnet",
-    "kadnap-edge-proxy-botnet",
-    "ivanti-epmm-cve-2026-6973",
-    "charter-vishing-entra-breach",
-    "autonomous-llm-agent-intrusion",
-    "silent-ransom-group-in-person-extortion",
-    "android-cve-2025-48595-framework-zero-day",
-    "nyc-health-hospitals-biometric-breach",
-    "citrix-netscaler-cve-2026-3055",
-    "ai-built-ransomware-toolkit-edr-evasion",
   ],
   ai: [
-    "claude-mythos",
     "mcp-security",
     "ai-browser-prompt-injection",
     "prompt-injection",
-    "langflow-cve-2025-34291",
-    "ai-generated-zero-day-exploit",
-    "chatgphish-chatgpt-phishing",
-    "autonomous-llm-agent-intrusion",
-    "ai-built-ransomware-toolkit-edr-evasion",
   ],
   netbasics: [
     "cidr-notation",

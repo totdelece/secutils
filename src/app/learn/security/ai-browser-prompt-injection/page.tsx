@@ -127,7 +127,7 @@ export default function Page() {
         当面の合言葉は<strong>「便利さと権限を切り分ける」</strong>。機微なログインと同居させない、機微な操作は人間が承認する、信頼できないページでエージェントを走らせない——この3点を守るだけで、最悪の乗っ取りはかなり避けられます。同じ「外部入力＝指示」の問題は{" "}
         <a href="/learn/security/mcp-security">MCPのセキュリティ</a>{" "}
         や{" "}
-        <a href="/learn/security/langflow-cve-2025-34291">Langflowの事例</a>{" "}
+        Langflowの事例{" "}
         にも通じるので、AIを業務に組み込む前に合わせて押さえておくと安全です。
       </p>
       <p>

@@ -10,7 +10,7 @@ export default function Page() {
         <strong>プロンプトインジェクション</strong>は、LLM（大規模言語モデル）アプリの<strong>最重要リスク</strong>です。<strong>OWASP Top 10 for LLM Applications</strong> でも堂々の第1位（LLM01）。当サイトで解説してきた{" "}
         <a href="/learn/security/mcp-security">MCP</a>・{" "}
         <a href="/learn/security/ai-browser-prompt-injection">AIブラウザ</a>・{" "}
-        <a href="/learn/security/langflow-cve-2025-34291">Langflow</a>{" "}
+        Langflow{" "}
         の脆弱性は、いずれも根っこにこの問題を抱えています。本記事はそれらを束ねる<strong>総論</strong>として、なぜ防ぎにくいのか、直接／間接の違い、実例、そして防御とその限界までを整理します。
       </p>
       <p>
@@ -107,7 +107,7 @@ export default function Page() {
       <ul>
         <li><strong>CaMeL（Defeating Prompt Injections by Design, 2025）</strong>：<strong>制御フロー（ユーザーの意図）とデータフロー（外部の内容）を構造的に分離</strong>し、値に権限（capability）メタデータを付与。専用インタプリタでポリシーを強制し、<strong>LLM自体を変えずに</strong>保証を与える設計アプローチ。</li>
         <li><strong>最小権限</strong>：エージェントに渡す権限・トークン・ツールを絞る。{" "}
-          <a href="/learn/security/langflow-cve-2025-34291">Langflow</a>{" "}
+          Langflow{" "}
           のように、寛容な設定が被害を増幅する。</li>
         <li><strong>人間による承認（Human-in-the-loop）</strong>：外部送信・コード実行・送金など不可逆な操作は実行前に人間が確認する。</li>
         <li><strong>Lethal Trifecta を崩す</strong>：機微データ・未信頼コンテンツ・外部送信のうち<strong>少なくとも1本を構造的に断つ</strong>（例: 外部送信先を許可リストに限定）。</li>
@@ -121,9 +121,9 @@ export default function Page() {
         個別の現れ方は{" "}
         <a href="/learn/security/mcp-security">MCP</a>・{" "}
         <a href="/learn/security/ai-browser-prompt-injection">AIブラウザ</a>・{" "}
-        <a href="/learn/security/langflow-cve-2025-34291">Langflow</a>{" "}
+        Langflow{" "}
         の各記事で、AIが攻撃に使われる側面は{" "}
-        <a href="/learn/security/claude-mythos">Claude Mythos</a>{" "}
+        Claude Mythos{" "}
         で、Webアプリ全体のリスクは{" "}
         <a href="/learn/security/owasp-top-10">OWASP Top 10</a>{" "}
         で扱っています。あわせて読むと、AI時代のセキュリティの全体像がつかめます。
