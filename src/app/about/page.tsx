@@ -56,6 +56,12 @@ export default function AboutPage() {
             </Link>{" "}
             から受け付けています。
           </p>
+          <Link
+            href={author.profilePath}
+            className="mt-4 inline-block text-sm font-medium text-emerald-700 dark:text-emerald-300 hover:underline"
+          >
+            {author.handle} の著者プロフィール・執筆記事一覧 →
+          </Link>
         </div>
 
         <h2 className="text-xl font-bold tracking-tight mt-10 mb-3">

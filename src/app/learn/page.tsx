@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
-import { articles } from "@/lib/articles";
+import { articles, isArticleNoindexed } from "@/lib/articles";
 import { LearnBrowser } from "./_components/LearnBrowser";
+
+const indexedArticleCount = articles.filter(
+  (a) => !isArticleNoindexed(a.slug),
+).length;
 
 export const metadata: Metadata = {
   title: "Learn - セキュリティとネットワークの学習ハブ",
@@ -33,7 +37,7 @@ export default function LearnPage() {
           <p className="max-w-3xl text-[13px] leading-7 text-fg-subtle">
             secutils の Learn は、Webセキュリティ（XSS・CSRF・SQLインジェクション・認証/認可・暗号）と
             ネットワーク（TCP/IP・DNS・TLS・HTTP）の仕組み、そして最新の脅威やCVEを日本語で解説する
-            技術リファレンスです。現在 {articles.length} 本の記事を公開しており、各テーマは
+            技術リファレンスです。現在 {indexedArticleCount} 本の解説記事を公開しており、各テーマは
             ブラウザ完結のツールと連携しています。用語や概念は上部の検索・カテゴリから引けます。
           </p>
         </footer>

@@ -1,5 +1,5 @@
 import { getBaseUrl, getToolSeo, siteDescription, siteName } from "./site";
-import { author } from "./author";
+import { author, editorialPolicy } from "./author";
 import { tools } from "./tools";
 import {
   articleCategoryLabels,
@@ -60,7 +60,7 @@ export function ArticleJsonLd({ slug }: { slug: string }) {
           "@type": "Person",
           name: author.handle,
           description: author.role,
-          url: `${base}/about`,
+          url: `${base}${author.profilePath}`,
         },
         publisher: {
           "@type": "Organization",
@@ -96,6 +96,41 @@ export function ArticleFaqJsonLd({
       name: q,
       acceptedAnswer: { "@type": "Answer", text: a },
     })),
+  });
+}
+
+export function AuthorJsonLd() {
+  const base = getBaseUrl();
+  const url = `${base}${author.profilePath}`;
+  return jsonLdScript({
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    url,
+    inLanguage: "ja",
+    mainEntity: {
+      "@type": "Person",
+      name: author.handle,
+      jobTitle: author.role,
+      description: author.bio,
+      knowsAbout: [...author.expertise],
+      url,
+      sameAs: ["https://github.com/totdelece/secutils"],
+      worksFor: {
+        "@type": "Organization",
+        name: siteName,
+        url: base,
+      },
+    },
+    about: {
+      "@type": "Person",
+      name: author.handle,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteName,
+      url: base,
+    },
+    description: editorialPolicy.summary,
   });
 }
 

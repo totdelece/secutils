@@ -22,6 +22,8 @@ export const author = {
   ],
   /** 連絡手段（問い合わせページ） */
   contactPath: "/contact",
+  /** 著者プロフィールページ（E-E-A-T の単一エンティティ） */
+  profilePath: "/author/aki",
 } as const;
 
 /* 編集・裏取り方針（About と記事末尾の信頼性表示で共用） */

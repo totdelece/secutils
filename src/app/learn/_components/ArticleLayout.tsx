@@ -91,7 +91,7 @@ export function ArticleLayout({
                 <span>
                   著者{" "}
                   <Link
-                    href="/about"
+                    href={author.profilePath}
                     className="font-semibold text-fg-muted underline-offset-2 transition hover:text-accent hover:underline"
                   >
                     {author.handle}
@@ -136,9 +136,12 @@ export function ArticleLayout({
                   この記事を書いた人
                 </div>
                 <div className="mt-1 flex flex-wrap items-baseline gap-2">
-                  <span className="text-[15px] font-bold text-fg-primary">
+                  <Link
+                    href={author.profilePath}
+                    className="text-[15px] font-bold text-fg-primary underline-offset-2 transition hover:text-accent hover:underline"
+                  >
                     {author.handle}
-                  </span>
+                  </Link>
                   <span className="text-[12px] text-fg-subtle">{author.role}</span>
                 </div>
                 <p className="mt-2 text-[13px] leading-6 text-fg-muted">{author.bio}</p>

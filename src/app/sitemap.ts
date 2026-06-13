@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { articles, isArticleNoindexed } from "@/lib/articles";
 import { getBaseUrl } from "@/lib/site";
 import { tools } from "@/lib/tools";
+import { author } from "@/lib/author";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = getBaseUrl();
@@ -24,6 +25,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: "monthly",
       priority: 0.5,
+    },
+    {
+      url: `${base}${author.profilePath}`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.4,
     },
     {
       url: `${base}/privacy`,

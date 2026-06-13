@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { author } from "@/lib/author";
 
 type FooterGroup = {
   label: string;
@@ -12,6 +13,7 @@ const groups: FooterGroup[] = [
       { href: "/", label: "Tools" },
       { href: "/learn", label: "Learn" },
       { href: "/about", label: "About" },
+      { href: author.profilePath, label: "Author" },
       { href: "/feed.xml", label: "RSS", external: true },
     ],
   },
