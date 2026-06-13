@@ -33,6 +33,7 @@ export const relatedToolSlugs: Record<string, string[]> = {
   "cookie-parser": ["security-headers", "jwt-decoder", "http-status", "html-entity"],
   "security-headers": ["cookie-parser", "http-status", "html-entity", "url-encoder"],
   "exif-viewer": ["hash-generator", "security-headers", "qr-code", "color-converter"],
+  "mock-json-generator": ["json-formatter", "json-yaml", "uuid-generator", "lorem-ipsum"],
   "html-entity": ["url-encoder", "json-formatter", "cookie-parser", "regex-tester"],
   "cidr-calculator": ["http-status", "timestamp-converter", "regex-tester", "diff-viewer"],
   "http-status": ["security-headers", "cookie-parser", "cidr-calculator", "json-formatter"],

@@ -249,4 +249,13 @@ export const tools: Tool[] = [
     icon: "EXIF",
     useCase: "画像の位置情報・撮影情報の確認と除去",
   },
+  {
+    slug: "mock-json-generator",
+    title: "Mock JSON Generator",
+    description:
+      "フィールドと型を定義して、テスト用のダミー JSON データを生成します。名前・メール・日時・UUID・選択肢などに対応し、整形 JSON / NDJSON / 単一オブジェクトで出力できます。",
+    category: "misc",
+    icon: "MOCK",
+    useCase: "テスト用ダミーデータ作成",
+  },
 ];

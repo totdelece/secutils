@@ -142,6 +142,11 @@ const toolSeo: Record<string, { title: string; description: string }> = {
     description:
       "写真のEXIFメタデータ（GPSの撮影位置・撮影日時・カメラ機種など）をブラウザ内で表示し、ワンクリックで取り除いた画像をダウンロードできる無料ツールです。JPEGは再圧縮なしで除去。画像はサーバーに送信しません。",
   },
+  "mock-json-generator": {
+    title: "Mock JSON Generator - テスト用ダミーJSONデータ生成ツール",
+    description:
+      "フィールドと型を指定してテスト用のダミーJSONデータをブラウザ内で生成できる無料ツールです。名前・メール・日時・UUID・価格・選択肢などに対応し、整形JSON・NDJSON(JSON Lines)・単一オブジェクトで出力。APIモックやテストデータ作成に使えます。",
+  },
 };
 
 export function getToolSeo(slug: string) {
