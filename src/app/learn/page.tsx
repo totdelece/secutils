@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
-import { articles, isArticleNoindexed } from "@/lib/articles";
+import { indexedArticleCount } from "@/lib/articles";
 import { LearnBrowser } from "./_components/LearnBrowser";
-
-const indexedArticleCount = articles.filter(
-  (a) => !isArticleNoindexed(a.slug),
-).length;
 
 export const metadata: Metadata = {
   title: "Learn - セキュリティとネットワークの学習ハブ",

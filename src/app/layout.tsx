@@ -5,7 +5,7 @@ import "./globals.css";
 import { getBaseUrl, siteDescription, siteName, siteTagline } from "@/lib/site";
 import { SiteJsonLd } from "@/lib/ld";
 import { tools } from "@/lib/tools";
-import { articles } from "@/lib/articles";
+import { indexedArticleCount } from "@/lib/articles";
 import { SiteHeader } from "./_components/SiteHeader";
 import { SiteFooter } from "./_components/SiteFooter";
 import { CommandPalette } from "./_components/CommandPalette";
@@ -83,7 +83,7 @@ export default function RootLayout({
         <SiteJsonLd />
         <SiteHeader toolCount={tools.length} />
         <main className="flex-1">{children}</main>
-        <SiteFooter toolCount={tools.length} articleCount={articles.length} />
+        <SiteFooter toolCount={tools.length} articleCount={indexedArticleCount} />
         <CommandPalette />
         <Analytics />
       </body>

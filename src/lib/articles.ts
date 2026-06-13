@@ -1732,6 +1732,11 @@ export function isArticleNoindexed(slug: string): boolean {
   return noindexArticleSlugs.has(slug);
 }
 
+/** 検索 index する evergreen 記事数（速報アーカイブを除く）。サイト全体の記事数表示の単一真実源。 */
+export const indexedArticleCount = articles.filter(
+  (a) => !noindexArticleSlugs.has(a.slug),
+).length;
+
 export function getArticleMetadata(article: Article): Metadata {
   const path = `/learn/${article.category}/${article.slug}`;
   const title = getArticleSeoTitle(article);

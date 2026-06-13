@@ -1,4 +1,4 @@
-import { articles } from "@/lib/articles";
+import { indexedArticleCount } from "@/lib/articles";
 import { tools } from "@/lib/tools";
 import { HomeHero } from "./_components/HomeHero";
 import { ToolIndex } from "./_components/ToolIndex";
@@ -7,7 +7,7 @@ import { HomeLearn } from "./_components/HomeLearn";
 export default function Home() {
   return (
     <>
-      <HomeHero toolCount={tools.length} articleCount={articles.length} />
+      <HomeHero toolCount={tools.length} articleCount={indexedArticleCount} />
       <ToolIndex />
       <HomeLearn />
     </>
