@@ -310,7 +310,7 @@ export const articles: Article[] = [
     description:
       "国内の主要なセキュリティインシデント12件を一覧で俯瞰し、VPN未更新・委託先/グループ経由・弱い認証という繰り返し現れる侵入経路と失敗パターン、日本企業が今すぐ確認すべき対策チェックリストを事例研究として整理します。",
     date: "2026-06-13",
-    readingMinutes: 14,
+    readingMinutes: 22,
     relatedTools: [],
   },
   {
