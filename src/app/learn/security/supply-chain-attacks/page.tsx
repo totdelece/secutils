@@ -28,6 +28,57 @@ export default function Page() {
       </p>
 
       <h2>サプライチェーン攻撃の6類型</h2>
+      <p>
+        まず全体像を早見表で押さえます。入口（どこを突くか）は異なりますが、後述するとおり<strong>防御の勘所は共通</strong>です。
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>類型</th>
+            <th>入口（突くポイント）</th>
+            <th>代表例</th>
+            <th>主な防御</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>タイポスクワッティング</td>
+            <td>名前の打ち間違い</td>
+            <td><code>boto3</code> 等の1文字違い</td>
+            <td>許可リスト・名前の確認</td>
+          </tr>
+          <tr>
+            <td>依存関係混同</td>
+            <td>社内名と公開名の衝突</td>
+            <td>高バージョンで公開側を優先</td>
+            <td>スコープ付きレジストリ・社内名の秘匿</td>
+          </tr>
+          <tr>
+            <td>slopsquatting</td>
+            <td>AI の幻覚パッケージ名</td>
+            <td>AI 提案名を先回り登録</td>
+            <td>実在確認・許可リスト</td>
+          </tr>
+          <tr>
+            <td>メンテナ乗っ取り</td>
+            <td>公開アカウントの奪取</td>
+            <td>TanStack / Mistral 等の汚染</td>
+            <td>フィッシング耐性 MFA・Trusted Publishing</td>
+          </tr>
+          <tr>
+            <td>悪意あるスクリプト</td>
+            <td>install / import 時の自動実行</td>
+            <td>preinstall 窃取・TrapDoor</td>
+            <td><code>--ignore-scripts</code>・環境分離</td>
+          </tr>
+          <tr>
+            <td>自己増殖ワーム</td>
+            <td>盗んだ公開トークンで連鎖</td>
+            <td>Shai-Hulud 系</td>
+            <td>短命トークン・即 rotate</td>
+          </tr>
+        </tbody>
+      </table>
       <h3>1. タイポスクワッティング（typosquatting）</h3>
       <p>
         人気パッケージと<strong>1文字違いの名前</strong>で悪性パッケージを公開し、打ち間違いを待つ手口。2026年初頭には PyPI で <code>boto3</code>・<code>requests</code>・<code>numpy</code> 等の<strong>1文字違い</strong>を狙うキャンペーンがあり、import 時にリバースシェルを張り、環境変数を窃取しました。データサイエンス／ML チームが標的でした。
@@ -99,6 +150,18 @@ export default function Page() {
         <li><strong>侵害時はトークン即rotate</strong>：漏れた可能性のある認証情報・公開トークンを直ちに失効・再発行。ワームの連鎖を断つ。</li>
       </ul>
 
+      <h2>導入チェックリスト</h2>
+      <ul>
+        <li>☐ lockfile（<code>package-lock.json</code> / <code>poetry.lock</code> 等）を完全性ハッシュ込みでコミットしている</li>
+        <li>☐ 公開直後の新バージョンを即採用せず、クールダウン期間を設けている</li>
+        <li>☐ CI / ローカルで <code>--ignore-scripts</code> を既定にし、必要な物だけ許可している</li>
+        <li>☐ CI のシークレットはジョブ単位スコープ＋短命トークンで、本番クラウド鍵がビルドから見えない</li>
+        <li>☐ 公開アカウントにフィッシング耐性 MFA、可能なら Trusted Publishing(OIDC) を使用</li>
+        <li>☐ SBOM を管理し、既知の悪性パッケージとの照合を自動化している</li>
+        <li>☐ 侵害時にトークンを即 rotate する手順が用意されている</li>
+        <li>☐ AI が提案したパッケージ名を、そのまま install せず実在・正当性を確認している</li>
+      </ul>
+
       <h2>まとめ</h2>
       <p>
         サプライチェーン攻撃は、<strong>「開発の土台になっている信頼」そのものを武器化</strong>します。6類型（タイポスクワッティング／依存関係混同／slopsquatting／メンテナ乗っ取り／悪意あるスクリプト／自己増殖ワーム）は入口こそ違え、ゴールは共通——<strong>install/import の自動実行を足がかりに、CIのシークレットとクラウドの鍵を奪う</strong>ことです。
@@ -112,6 +175,25 @@ export default function Page() {
       <p>
         ※ 本記事のキャンペーン名・統計値・パッケージ名は、Sonatype／Unit 42／Microsoft／各セキュリティベンダーの公表内容および報道に基づきます。状況は急速に更新されるため、対応時は最新の公式情報をご確認ください。
       </p>
+
+      <h2>参考（一次情報）</h2>
+      <ul>
+        <li>
+          <a href="https://www.sonatype.com/state-of-the-software-supply-chain/introduction" target="_blank" rel="noopener noreferrer">
+            Sonatype — State of the Software Supply Chain
+          </a>
+        </li>
+        <li>
+          <a href="https://slsa.dev/" target="_blank" rel="noopener noreferrer">
+            SLSA — Supply-chain Levels for Software Artifacts
+          </a>
+        </li>
+        <li>
+          <a href="https://docs.npmjs.com/generating-provenance-statements" target="_blank" rel="noopener noreferrer">
+            npm — Generating provenance statements（来歴の検証）
+          </a>
+        </li>
+      </ul>
     </ArticleLayout>
   );
 }

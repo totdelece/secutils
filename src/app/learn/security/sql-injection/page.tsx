@@ -172,6 +172,35 @@ SELECT * FROM products ORDER BY \${col}
         </li>
       </ul>
 
+      <h2>チェックリスト</h2>
+      <ul>
+        <li>☐ すべてのクエリでプレースホルダ（パラメータ化）を使い、文字列連結していない</li>
+        <li>☐ ORM の「生 SQL / unsafe」系 API を使う箇所を把握し、パラメータ化している</li>
+        <li>☐ プレースホルダ化できない部分（<code>ORDER BY</code> の列名等）はホワイトリスト照合</li>
+        <li>☐ アプリ用 DB ユーザーは最小権限（<code>DROP</code> 等は不可）</li>
+        <li>☐ 本番では SQL エラーの詳細をクライアントに返していない</li>
+        <li>☐ パスワードは適切なハッシュで保存（漏えい時の被害を限定）</li>
+        <li>☐ ブラックリスト／クォートエスケープを「本対策」として頼っていない</li>
+      </ul>
+
+      <h2>参考（一次情報）</h2>
+      <ul>
+        <li>
+          <a
+            href="https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            OWASP — SQL Injection Prevention Cheat Sheet
+          </a>
+        </li>
+        <li>
+          <a href="https://owasp.org/Top10/A03_2021-Injection/" target="_blank" rel="noopener noreferrer">
+            OWASP Top 10 — A03:2021 Injection
+          </a>
+        </li>
+      </ul>
+
       <h2>おわりに</h2>
       <p>
         SQLi の根は「SQL クエリを文字列連結で組み立てる」だけ。<strong>プリペアドステートメント / ORM 経由のクエリビルダ</strong>を徹底すれば原理的に発生しません。本当に難しい部分は「すでに書かれた数千行のレガシーコードに散らばる文字列連結を、すべて洗い出して直す」という<strong>運用面</strong>であって、技術的にはとてもシンプルな話です。

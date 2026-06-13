@@ -27,6 +27,9 @@ export default function Page() {
       <p>
         <strong>対策の要点</strong>: 「URL に出てる ID は信用しない」が鉄則。<strong>すべての操作で「セッション上のユーザーがそのリソースに権限を持つか」をサーバ側で必ず確認</strong>。デフォルト拒否、ホワイトリスト方式、ログ監査。
       </p>
+      <p className="text-sm">
+        関連: <Link href="/learn/security/zero-trust-security">ゼロトラストの考え方</Link>
+      </p>
 
       <h2>A02: Cryptographic Failures（暗号化の失敗）</h2>
       <p>
@@ -42,7 +45,7 @@ export default function Page() {
         <strong>対策の要点</strong>: 通信は <strong>TLS 1.2 以上必須 + HSTS</strong>。パスワード保存は <strong>bcrypt / scrypt / Argon2</strong>。一般データ暗号化は <strong>AES-GCM</strong> 等の認証付き暗号。「自作するな、標準ライブラリを使え」。
       </p>
       <p className="text-sm">
-        関連: <Link href="/learn/security/password-strength">パスワード強度はどう決まるか</Link> · <Link href="/learn/network/https-tls">HTTPS と TLS の仕組み</Link>
+        関連: <Link href="/learn/security/password-hashing">パスワードハッシュの選び方</Link> · <Link href="/learn/security/password-strength">パスワード強度</Link> · <Link href="/learn/security/public-key-crypto">公開鍵暗号</Link> · <Link href="/learn/network/https-tls">HTTPS と TLS</Link>
       </p>
 
       <h2>A03: Injection（インジェクション）</h2>
@@ -58,7 +61,7 @@ export default function Page() {
         <strong>対策の要点</strong>: <strong>パラメータ化クエリ（プリペアドステートメント）</strong>と<strong>出力時エスケープ</strong>。「文字列連結で組み立てない」が原則。ORM、テンプレートエンジンを通すこと。
       </p>
       <p className="text-sm">
-        関連: <Link href="/learn/security/xss">XSS の基礎と防御</Link>
+        関連: <Link href="/learn/security/xss">XSS の基礎と防御</Link> · <Link href="/learn/security/sql-injection">SQL インジェクション</Link>
       </p>
 
       <h2>A04: Insecure Design（セキュアでない設計）</h2>
@@ -87,6 +90,9 @@ export default function Page() {
       <p>
         <strong>対策の要点</strong>: <strong>「最小権限」「不要なものは無効化」</strong>。Infrastructure as Code（Terraform 等）で設定を版管理し、定期スキャンで逸脱検出。本サイト自身も securityheaders.com で A 評価を維持しています。
       </p>
+      <p className="text-sm">
+        関連: <Link href="/learn/security/http-security-headers">HTTP セキュリティヘッダー詳解</Link> · <Link href="/learn/security/clickjacking">クリックジャッキング</Link> · <Link href="/tools/security-headers">Security Headers Analyzer（採点ツール）</Link>
+      </p>
 
       <h2>A06: Vulnerable and Outdated Components（古い・脆弱なコンポーネント）</h2>
       <p>
@@ -94,6 +100,9 @@ export default function Page() {
       </p>
       <p>
         <strong>対策の要点</strong>: <strong>SBOM（依存リスト）の管理</strong>と<strong>自動アップデート</strong>。GitHub なら Dependabot、Node なら <code>npm audit</code>、Python なら <code>safety</code>、コンテナイメージは Trivy / Snyk でスキャン。本サイトも Dependabot + npm audit を CI に組み込み済みです。
+      </p>
+      <p className="text-sm">
+        関連: <Link href="/learn/security/supply-chain-attacks">サプライチェーン攻撃の6類型と防御</Link>
       </p>
 
       <h2>A07: Identification and Authentication Failures（識別・認証の失敗）</h2>
@@ -109,6 +118,9 @@ export default function Page() {
       <p>
         <strong>対策の要点</strong>: <strong>強いパスワードポリシー + 漏洩パスワードチェック（HIBP API）</strong>、<strong>レート制限・アカウントロック</strong>、<strong>TOTP / FIDO2 (Passkey) による MFA</strong>、セッション ID は cryptographically random。
       </p>
+      <p className="text-sm">
+        関連: <Link href="/learn/security/mfa-totp-fido2">MFA / TOTP / FIDO2</Link> · <Link href="/learn/security/session-vs-jwt">セッション認証と JWT</Link> · <Link href="/learn/security/jwt-security-issues">JWT のセキュリティ問題</Link>
+      </p>
 
       <h2>A08: Software and Data Integrity Failures（整合性の検証不足）</h2>
       <p>
@@ -123,6 +135,9 @@ export default function Page() {
       <p>
         <strong>対策の要点</strong>: ライブラリは <strong>lockfile + ハッシュ検証</strong>、外部スクリプトは <strong>SRI</strong>、デプロイは<strong>署名済みアーティファクト</strong>。逆シリアライズは信頼できる入力のみ。
       </p>
+      <p className="text-sm">
+        関連: <Link href="/learn/security/supply-chain-attacks">サプライチェーン攻撃</Link>
+      </p>
 
       <h2>A09: Security Logging and Monitoring Failures（ロギング・監視の不足）</h2>
       <p>
@@ -135,6 +150,9 @@ export default function Page() {
       </ul>
       <p>
         <strong>対策の要点</strong>: <strong>認証・権限・入力検証・サーバ側エラーは必ず記録</strong>。中央集約型のログ基盤（ELK / CloudWatch / Datadog）と異常検知。インシデント対応プレイブックを事前に用意。
+      </p>
+      <p className="text-sm">
+        関連: <Link href="/learn/security/incident-response-guide">インシデント対応の進め方</Link>
       </p>
 
       <h2>A10: Server-Side Request Forgery（SSRF）</h2>
@@ -149,6 +167,9 @@ const html = await fetch(url).then(r => r.text())`}</code></pre>
       </p>
       <p>
         <strong>対策の要点</strong>: <strong>URL ホワイトリスト</strong>、<strong>内部ネットワーク・IMDS への接続を ファイアウォールで遮断</strong>、IMDSv2 強制、HTTP リダイレクト追跡しない / 追跡先も検証。
+      </p>
+      <p className="text-sm">
+        関連: <Link href="/learn/security/ssrf">SSRF の仕組みと対策</Link>
       </p>
 
       <h2>使い方: チェックリストとして</h2>
@@ -169,9 +190,19 @@ const html = await fetch(url).then(r => r.text())`}</code></pre>
       <p>
         OWASP Top 10 はWebセキュリティの<strong>共通言語</strong>。エンジニア・PM・経営層が同じ用語で会話するために整備されているとも言えます。各項目を深掘りした記事は本サイトの Learn に順次追加していくので、関連記事リンクから掘り下げてみてください。
       </p>
-      <p className="text-sm">
-        参考: <a href="https://owasp.org/Top10/" target="_blank" rel="noopener noreferrer">OWASP Top 10 公式（owasp.org）</a>
-      </p>
+      <h2>参考（一次情報）</h2>
+      <ul>
+        <li>
+          <a href="https://owasp.org/Top10/" target="_blank" rel="noopener noreferrer">
+            OWASP Top 10 — 2021（公式）
+          </a>
+        </li>
+        <li>
+          <a href="https://cheatsheetseries.owasp.org/" target="_blank" rel="noopener noreferrer">
+            OWASP Cheat Sheet Series（各リスクの実装ガイド）
+          </a>
+        </li>
+      </ul>
     </ArticleLayout>
   );
 }
