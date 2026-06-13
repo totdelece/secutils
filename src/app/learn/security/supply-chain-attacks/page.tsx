@@ -108,6 +108,28 @@ export default function Page() {
         がその嚆矢で、2025年12月の <strong>Shai-Hulud 2.0</strong>、2026年5月の <strong>Mini Shai-Hulud</strong>（170超のnpm＋PyPIパッケージ、404の悪性バージョン、「Shai-Hulud: Here We Go Again」を含む400超のリポジトリ作成）と<strong>再来・変異</strong>を繰り返しています。人手を介さず連鎖するため、被害が指数関数的に広がります。
       </p>
 
+      <h2>代表的な事例（2025–2026）</h2>
+      <p>
+        前述の類型が実際にどう現れたか。いずれも「インストール／取り込みの自動実行」と「CI・公開アカウントの信頼」を突いている点が共通します。
+      </p>
+      <ul>
+        <li>
+          <strong>GitHub Actions の連鎖汚染（2025）</strong>：広く使われる <code>tj-actions/changed-files</code> が侵害され（CVE-2025-30066、約2.3万リポジトリに影響）、続いて GhostAction（3,325件のシークレット窃取）・Megalodon（5,500件超のリポジトリ汚染）が発生。<strong>タグが可変（同じタグの中身が差し替えられる）</strong>ことが連鎖の温床で、対策はアクションを<strong>コミットSHAでピン留め</strong>し、OIDC・最小権限を徹底すること。
+        </li>
+        <li>
+          <strong>TeamPCP（2026年3〜5月）</strong>：Trivy・KICS・LiteLLM といった<strong>DevSecOpsツールに悪性コードを注入</strong>し、AWSアクセスキー・Kubernetesトークン・GitHub PAT を自動収集してクラウド環境への二次侵害へ連鎖させた。「セキュリティのために入れるツール」自体が侵入口になり得る皮肉な例。
+        </li>
+        <li>
+          <strong>DAEMON Tools 公式サイト汚染（2026年4〜5月）</strong>：仮想ドライブソフトの<strong>公式サイトから、正規の開発者署名付きの悪性インストーラ</strong>が約1ヶ月配布された（Kaspersky が発見）。<strong>署名済み＝安全とは限らず</strong>、配布元そのものが侵害されると検証をすり抜ける。
+        </li>
+        <li>
+          <strong>Red Hat npm パッケージ汚染「Miasma」（2026年6月）</strong>：<code>@redhat-cloud-services</code> 名前空間で、<strong>従業員のGitHubアカウント乗っ取り→CIワークフロー改ざん→OIDCでバックドア入りパッケージを公開</strong>し、レビューを丸ごと迂回。32パッケージ・96バージョン（週11.6万DL）が汚染され、preinstall で動く 4.2MB のワームがクラウド鍵・SSH・<code>.env</code> を窃取して自己増殖した。
+        </li>
+        <li>
+          <strong>ironworm（2026年6月、JFrog発見）</strong>：asteroidDAO 関連の37パッケージ経由で広がった Rust 製 npm ワーム。<strong>eBPFカーネルルートキット</strong>で <code>ps</code>／<code>top</code> から自身を隠し、Tor 経由でC2通信、OIDCでCIに自己増殖。AWS/Azure/GCP の鍵やAI APIキー、暗号資産ウォレットなど<strong>86種</strong>の秘密情報を窃取した。Shai-Hulud の「従兄弟」だが完全に別実装。
+        </li>
+      </ul>
+
       <h2>図解案：汚染がCIのシークレットに届くまで</h2>
       <pre>
         <code>{`[攻撃者] 6類型のいずれかで悪性パッケージを公開/汚染

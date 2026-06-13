@@ -72,6 +72,25 @@ export default function Page() {
         「グループ数は減り、1件あたりの影響は増す（fewer groups, higher impact）」が2026年の基調です。摘発も進み、データ売買フォーラム <strong>LeakBase が2026年3月に押収</strong>されましたが、空白は別のフォーラムが埋めると見られています。
       </p>
 
+      <h2>2026年に注目された個別事例</h2>
+      <p>
+        ここまでの変化が、実際の事案でどう現れたかを4つ挙げます。
+      </p>
+      <ul>
+        <li>
+          <strong>Fog</strong>：2026年に100件超の被害。「<strong>マルウェアを他者に拡散すれば身代金を免除する</strong>」という前代未聞の社会工学的手口を持ち込んだ。侵入はVPNクレデンシャルの悪用、実行前に <strong>BYOVD でEDRを無効化</strong>し、DOGEロゴ入りの脅迫状で二重恐喝を行った。
+        </li>
+        <li>
+          <strong>Nitrogen（Foxconn事案）</strong>：2026年5月、Apple・Nvidia・Intelの主要サプライヤーである Foxconn の北米工場が侵害され、<strong>8TB・1,100万ファイル超の窃取</strong>が主張された。<strong>身代金を払っても復号できない欠陥</strong>を抱える点が特徴で、製造業のサプライチェーンリスクを改めて示した。
+        </li>
+        <li>
+          <strong>Kyber</strong>：2026年3月にRapid7が解析した、<strong>耐量子暗号を掲げる</strong>新興。Windows版（Rust製）は Kyber1024（ML-KEM-1024）＋X25519＋AES-256-CTR を本当に実装する一方、Linux/ESXi版は ChaCha8＋RSA-4096 の看板倒れという二面性を持つ。シャドウコピー削除・SQL/Exchange停止・ESXi暗号化を行い、米防衛関連企業が被害に挙がった。耐量子を謳うことは、被害者の「将来の復号」の望みすら断つ意味を持つ。
+        </li>
+        <li>
+          <strong>The Gentlemen（Storm-2697）</strong>：2026年5月にMicrosoftが解析。Go製エンコーダが<strong>1標的あたり21通り</strong>（PsExec／WMI／スケジュールタスク／PowerShellリモーティング／SMB共有など）の手段でネットワーク内を自動拡散する。Defenderの無効化・C:全体の除外・シャドウコピー削除・イベントログ消去で検知を妨害し、Curve25519＋XChaCha20で暗号化する二重恐喝型RaaS。
+        </li>
+      </ul>
+
       <h2>変化4：EDRを殺してから動く（BYOVD）</h2>
       <p>
         ペイロード実行前に<strong>防御を無力化する</strong>のが標準戦術になりました。<strong>EDRキラー</strong>と呼ばれるツール群で監視エージェントを停止させます。代表が <strong>BYOVD（Bring Your Own Vulnerable Driver）</strong>——<strong>正規だが脆弱なカーネルドライバを読み込み、カーネルレベルでEDR/AVを盲目化</strong>する手口です。Cl0p も暗号化前のBYOVDでセキュリティ製品を無効化していました。{" "}
