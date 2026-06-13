@@ -24,6 +24,12 @@ type ArticleSeo = {
 };
 
 const articleSeo: Record<string, ArticleSeo> = {
+  "japan-security-incidents": {
+    title:
+      "日本の主要セキュリティインシデント事例まとめ（2020-2025）- 共通する侵入経路と教訓",
+    description:
+      "KADOKAWA・アサヒ・名古屋港・三菱電機・LINEヤフー・富士通など、2020〜2025年の国内主要セキュリティインシデント12件を一覧で俯瞰し、VPN未更新・委託先経由・弱い認証といった共通の侵入経路と失敗パターン、日本企業が確認すべき対策チェックリストを事例研究として整理します。",
+  },
   "jwt-security-issues": {
     title: "JWT の脆弱性とセキュリティ問題 - alg=none・署名検証・弱い秘密鍵の対策",
     description:
@@ -447,6 +453,16 @@ const articleSeo: Record<string, ArticleSeo> = {
 };
 
 export const articles: Article[] = [
+  {
+    slug: "japan-security-incidents",
+    category: "security",
+    title: "日本国内の主要セキュリティインシデント事例（2020–2025）",
+    description:
+      "国内の主要なセキュリティインシデント12件を一覧で俯瞰し、VPN未更新・委託先/グループ経由・弱い認証という繰り返し現れる侵入経路と失敗パターン、日本企業が今すぐ確認すべき対策チェックリストを事例研究として整理します。",
+    date: "2026-06-13",
+    readingMinutes: 14,
+    relatedTools: [],
+  },
   {
     slug: "jwt-security-issues",
     category: "security",
@@ -1314,126 +1330,6 @@ export const articles: Article[] = [
     relatedTools: [],
   },
   {
-    slug: "kadokawa-blacksuit-ransomware-2024",
-    category: "security",
-    title: "KADOKAWAへのランサムウェア攻撃を解説｜ニコニコ停止・25万件漏洩と「払っても戻らない」身代金の教訓",
-    description:
-      "2024年6月8日にKADOKAWAグループが受けたBlackSuitランサムウェア攻撃を事例研究として解説。ニコニコ動画・N高など複数サービスが約2ヶ月停止し最大254,241人の個人情報が流出、特別損失24億円を計上した日本最大規模の事案。EDR未導入・ESXi/vSphere集中管理・ネットワーク分離不備という三重の脆弱性と、検知から3日間阻止できなかった経緯、身代金支払い後もデータが回復しなかった事実から、情報システム担当者が学ぶべき具体的な対策を整理する。",
-    date: "2026-06-05",
-    readingMinutes: 13,
-    relatedTools: [],
-  },
-  {
-    slug: "asahi-group-qilin-ransomware-2025",
-    category: "security",
-    title: "アサヒグループへのQilinランサムウェア攻撃を解説｜30工場停止・190万件漏洩・70億円損失の全容",
-    description:
-      "2025年9月にアサヒグループホールディングスを襲ったQilinランサムウェア攻撃を事例研究として解説。30工場停止・191万件の個人情報漏洩・推定70億円超の損失を招いた日本食品製造業最大規模のサイバー攻撃。侵入は検知の10日前からVPN経由で始まり、業務時間外の横展開、パスワード脆弱性悪用で管理者権限を奪取。OT/IT分離が工場製造ラインを守った成功例と、VPN廃止を決断させた教訓、製造業のセキュリティ盲点を実務目線で解説する。",
-    date: "2026-06-05",
-    readingMinutes: 13,
-    relatedTools: [],
-  },
-  {
-    slug: "iseto-8base-ransomware-2024",
-    category: "security",
-    title: "イセトーへのランサムウェア攻撃を解説｜3年放置VPN×7年変えぬパスワードで307万件漏洩・自治体サプライチェーン崩壊",
-    description:
-      "2024年5月にBPO企業イセトーが8Baseランサムウェアに攻撃され307万人超の個人情報が漏洩した事案を解説。VPN機器を3年間未更新、管理者パスワードは英小文字のみ11桁で7年変更なし、MFA未導入という初歩的な三重の欠陥が重なった攻撃経路を分析。豊田市・徳島県・和歌山市など自治体や三菱UFJ信託銀行・伊予銀行など金融機関を含む30以上の委託元に波及したサプライチェーン被害の構造と、個人情報保護委員会の行政指導が示す委託先管理の落とし穴を整理する。",
-    date: "2026-06-05",
-    readingMinutes: 13,
-    relatedTools: [],
-  },
-  {
-    slug: "osaka-acute-care-elbie-ransomware-2022",
-    category: "security",
-    title: "大阪急性期・総合医療センターへのランサムウェア攻撃を解説｜給食委託業者VPN侵入・電子カルテ73日停止・20億円損失の教訓",
-    description:
-      "2022年10月31日に大阪急性期・総合医療センターがPhobos亜種「Elbie」ランサムウェアに攻撃された事案を解説。給食委託業者ベルキッチンのFortiGate VPN（v5.4.8）を踏み台にした侵入から電子カルテシステムが完全停止し、2023年1月11日の完全復旧まで約73日間にわたり通常診療を制限、被害額は約20億円に上った。全ユーザー管理者権限・パスワード共通化・ウイルス対策ソフト未設定という三重の管理不備が被害を拡大させた構造と、医療機関・病院の情報システムが抱える固有のセキュリティ課題を実務目線で解説する。",
-    date: "2026-06-05",
-    readingMinutes: 14,
-    relatedTools: [],
-  },
-  {
-    slug: "nagoya-port-nuts-lockbit-2023",
-    category: "security",
-    title: "名古屋港統一ターミナルシステム（NUTS）へのランサムウェア攻撃を解説｜コンテナ2万本停止・トヨタ4拠点停止・証拠消失の教訓",
-    description:
-      "2023年7月4日に日本最大の貿易港・名古屋港の統一ターミナルシステム（NUTS）がLockBitランサムウェアに攻撃された事案を解説。コンテナ搬出入約2万本・トヨタ自動車4拠点停止という重要インフラへの深刻な影響が発生。約3日で復旧を優先した結果、バックアップからもマルウェアが検出されるなど証拠保全が困難となり、侵入経路の特定に至らなかった。復旧優先か証拠保全優先かというインシデント対応の本質的なジレンマと、重要インフラのOT/ITセキュリティ課題を整理する。",
-    date: "2026-06-05",
-    readingMinutes: 13,
-    relatedTools: [],
-  },
-  {
-    slug: "hoya-hunters-international-ransomware-2024",
-    category: "security",
-    title: "HOYAへのランサムウェア攻撃を解説｜Hunters Internationalの15億円要求を拒否・170万ファイル窃取の全容",
-    description:
-      "2024年3月30日に光学機器・半導体関連部品の世界大手HOYAがHunters Internationalランサムウェアに攻撃された事案を解説。攻撃者は約170万ファイル（約2TB）を窃取して1,000万ドル（約15億円）の身代金を要求したが、HOYAは支払いを拒否して約24日で復旧した。眼鏡レンズ・医療機器・半導体フォトマスクなど複数の製品ラインが影響を受け、EUVリソグラフィ関連部品の供給停止がチップ製造サプライチェーンに与えた波紋とともに、製造業のサイバーセキュリティ対策のあり方を解説する。",
-    date: "2026-06-05",
-    readingMinutes: 13,
-    relatedTools: [],
-  },
-  {
-    slug: "mitsubishi-electric-blacktech-cyberattack-2020",
-    category: "security",
-    title: "三菱電機への標的型サイバー攻撃を解説｜BlackTech・ウイルスバスターCVE-2019-9489ゼロデイ悪用・防衛省情報漏洩の全容",
-    description:
-      "2020年1月に公表された三菱電機への大規模標的型攻撃を解説。2019年に中国拠点のウイルスバスター法人版管理サーバー（CVE-2019-9489ゼロデイ）が突破口となり、アップデート機能を通じて国内拠点にも感染が拡大。延べ24.5万台のPCが調査対象となり、防衛装備庁・JAXA・原子力規制委員会など10以上の官公庁とのやり取りを含む機密情報が流出した可能性がある。ログ消去により被害全容の特定が困難になった事実とともに、セキュリティ製品自体が攻撃の踏み台になるリスクを解説する。",
-    date: "2026-06-05",
-    readingMinutes: 14,
-    relatedTools: [],
-  },
-  {
-    slug: "kojima-press-ransomware-toyota-shutdown-2022",
-    category: "security",
-    title: "小島プレス工業へのランサムウェア攻撃を解説｜トヨタ国内全14工場停止・1.3万台生産停止のサプライチェーン崩壊",
-    description:
-      "2022年2月26日夜にトヨタ自動車のTier1サプライヤー小島プレス工業がランサムウェアに攻撃された事案を解説。翌3月1日にトヨタは国内全14工場28ラインを停止し約1万3,000台の生産に影響が出た。日本の自動車産業が採用する「ジャスト・イン・タイム」生産方式がいかにサプライチェーンの単一点障害に脆弱かを示した先駆的事案だ。侵入経路は調査でも特定できておらず、二重脅迫型ランサムウェアがサプライヤー全体に波及するリスクと、情シス担当者が今すぐ確認すべきサプライチェーンセキュリティ対策を整理する。",
-    date: "2026-06-05",
-    readingMinutes: 13,
-    relatedTools: [],
-  },
-  {
-    slug: "lineyahoo-naver-unauthorized-access-2023",
-    category: "security",
-    title: "LINEヤフーへの不正アクセスを解説｜NAVER共通認証基盤経由・44万件漏洩・総務省行政指導の全容",
-    description:
-      "2023年10月9日にLINEヤフー株式会社が不正アクセスを受け、ユーザー・取引先・従業員の個人情報合計約44万件が漏洩した事案を解説。攻撃経路はNAVER Cloud社の委託先企業従業員PCへのマルウェア感染→旧LINE社の社内システムとNAVER Cloudが共有する認証基盤を経由した侵入という、国際的なグループ企業間の認証連携が生んだ複合的リスクだ。総務省から「資本関係の見直し含む経営体制の見直し」という前例のない行政指導を受けた背景と、外部委託・グループ間認証管理の落とし穴を解説する。",
-    date: "2026-06-05",
-    readingMinutes: 13,
-    relatedTools: [],
-  },
-  {
-    slug: "fujitsu-projectweb-unauthorized-access-2021",
-    category: "security",
-    title: "富士通ProjectWEBへの不正アクセスを解説｜内閣サイバー機構・国交省など142組織に波及したSaaSサプライチェーン攻撃の全容",
-    description:
-      "2021年5月、富士通が提供するクラウド型プロジェクト管理ツール「ProjectWEB」が不正アクセスを受け、内閣サイバーセキュリティセンター（NISC）・国土交通省・外務省・成田国際空港など142の顧客組織の情報が漏洩した事案を解説。SaaSツール1本の侵害が政府・重要インフラ全体に波及するサプライチェーンリスクと、正規の認証情報を悪用した「見えにくい」攻撃の教訓を解説する。",
-    date: "2026-06-05",
-    readingMinutes: 12,
-    relatedTools: [],
-  },
-  {
-    slug: "honda-ekans-snake-ransomware-2020",
-    category: "security",
-    title: "ホンダへのEKANS/Snakeランサムウェア攻撃を解説｜狭山・寄居工場停止・ICS/OT標的型マルウェアの衝撃と製造業への教訓",
-    description:
-      "2020年6月8日、本田技研工業（ホンダ）がSNAKE（EKANS）ランサムウェアの攻撃を受け、埼玉製作所（狭山・寄居）を含む国内外の工場が相次いで停止した事案を解説。製造業の産業制御システム（ICS/OT）を明示的に標的とした初期の事例であり、「mds.honda.com」というホンダ固有のドメインチェックがコードに組み込まれていたことから標的型攻撃と判断された。",
-    date: "2026-06-05",
-    readingMinutes: 12,
-    relatedTools: [],
-  },
-  {
-    slug: "handa-hospital-lockbit-ransomware-2021",
-    category: "security",
-    title: "つるぎ町立半田病院へのランサムウェア攻撃を解説｜LockBit 2.0・FortiGate VPN脆弱性・電子カルテ60日停止・復旧2億円の教訓",
-    description:
-      "2021年10月31日、徳島県のつるぎ町立半田病院がLockBit 2.0ランサムウェアの攻撃を受け、電子カルテシステムが約60日間停止した事案を解説。侵入経路はFortiGate VPN機器の未修正脆弱性（CVE-2018-13379）で、復旧費用は約2億円に達した。地方の公立病院がサイバー攻撃で「重症患者の受け入れ不能」に至ったこの事案は、医療機関のセキュリティ対策に警鐘を鳴らした。",
-    date: "2026-06-05",
-    readingMinutes: 13,
-    relatedTools: [],
-  },
-  {
     slug: "virusbuster-cloud-review",
     category: "security",
     title: "ウイルスバスター クラウド レビュー - 機能・料金・特徴を解説",
@@ -1559,18 +1455,6 @@ export const noindexArticleSlugs = new Set<string>([
   "fifa-world-cup-2026-cyber-fraud",
   "everest-forms-pro-cve-2026-3300",
   // 国内インシデント事例（2020〜2025）
-  "kadokawa-blacksuit-ransomware-2024",
-  "asahi-group-qilin-ransomware-2025",
-  "iseto-8base-ransomware-2024",
-  "osaka-acute-care-elbie-ransomware-2022",
-  "nagoya-port-nuts-lockbit-2023",
-  "hoya-hunters-international-ransomware-2024",
-  "mitsubishi-electric-blacktech-cyberattack-2020",
-  "kojima-press-ransomware-toyota-shutdown-2022",
-  "lineyahoo-naver-unauthorized-access-2023",
-  "fujitsu-projectweb-unauthorized-access-2021",
-  "honda-ekans-snake-ransomware-2020",
-  "handa-hospital-lockbit-ransomware-2021",
 ]);
 
 export function isArticleNoindexed(slug: string): boolean {
@@ -1677,6 +1561,7 @@ const topicSlugs: Record<TopicId, string[]> = {
     "https-tls",
   ],
   threat: [
+    "japan-security-incidents",
     "react2shell",
     "toolshell",
     "canvas-shinyhunters-breach",

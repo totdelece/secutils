@@ -2,10 +2,15 @@ import type { Metadata } from "next";
 import { getArticle, getArticleMetadata } from "@/lib/articles";
 import { ArticleJsonLd } from "@/lib/ld";
 
-const article = getArticle("security", "kojima-press-ransomware-toyota-shutdown-2022")!;
+const article = getArticle("security", "japan-security-incidents")!;
+
 export const metadata: Metadata = getArticleMetadata(article);
 
-export default function ArticlePageLayout({ children }: { children: React.ReactNode }) {
+export default function ArticlePageLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <>
       <ArticleJsonLd slug={article.slug} />
