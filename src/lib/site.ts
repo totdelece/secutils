@@ -137,6 +137,11 @@ const toolSeo: Record<string, { title: string; description: string }> = {
     description:
       "HTTPレスポンスヘッダーを貼り付けて、CSP・HSTS・X-Frame-Options・X-Content-Type-Options・Referrer-Policy・Permissions-Policyをブラウザ内で採点します。A〜F評価と各ヘッダーの意味・修正例つき。データはサーバーに送信しません。",
   },
+  "exif-viewer": {
+    title: "EXIF Viewer / Stripper - 画像の位置情報・撮影情報を確認・削除",
+    description:
+      "写真のEXIFメタデータ（GPSの撮影位置・撮影日時・カメラ機種など）をブラウザ内で表示し、ワンクリックで取り除いた画像をダウンロードできる無料ツールです。JPEGは再圧縮なしで除去。画像はサーバーに送信しません。",
+  },
 };
 
 export function getToolSeo(slug: string) {

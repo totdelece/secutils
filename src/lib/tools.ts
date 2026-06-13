@@ -240,4 +240,13 @@ export const tools: Tool[] = [
     icon: "SH",
     useCase: "レスポンスヘッダーの安全性採点",
   },
+  {
+    slug: "exif-viewer",
+    title: "EXIF Viewer / Stripper",
+    description:
+      "写真の EXIF メタデータ（GPS の撮影位置・撮影日時・カメラ機種など）を表示し、ワンクリックで取り除いた画像をダウンロードできます。画像はブラウザ内だけで処理します。",
+    category: "security",
+    icon: "EXIF",
+    useCase: "画像の位置情報・撮影情報の確認と除去",
+  },
 ];
