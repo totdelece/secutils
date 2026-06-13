@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArticleLayout } from "../../_components/ArticleLayout";
 import { getArticle } from "@/lib/articles";
 
@@ -145,6 +146,74 @@ export default function Page() {
         さらに API を <strong>Cookie 認証ではなく Bearer トークン</strong>（<code>Authorization: Bearer ...</code>）にすれば、ブラウザが自動付与しないので CSRF はそもそも成立しません。SPA や JWT 認証では事実上これがベース防御になっています。
       </p>
 
+      <h2>防御方式の比較（どれを選ぶか）</h2>
+      <p>
+        これらは排他ではなく<strong>重ねて使う</strong>のが基本です。まず <code>SameSite</code> を土台に敷き、構成に応じてトークンや Origin 検証を足します。
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>方式</th>
+            <th>サーバ状態</th>
+            <th>SPA / API 向き</th>
+            <th>備考</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>SameSite Cookie</td>
+            <td>不要</td>
+            <td>△（Cookie 認証前提）</td>
+            <td>まず入れる土台</td>
+          </tr>
+          <tr>
+            <td>Synchronizer Token</td>
+            <td>必要（セッション）</td>
+            <td>△</td>
+            <td>最も確実・FW 内蔵</td>
+          </tr>
+          <tr>
+            <td>Double Submit Cookie</td>
+            <td>不要</td>
+            <td>○</td>
+            <td>ステートレス・実装に注意</td>
+          </tr>
+          <tr>
+            <td>Origin / Referer 検証</td>
+            <td>不要</td>
+            <td>○</td>
+            <td>軽量・SameSite と併用</td>
+          </tr>
+          <tr>
+            <td>Bearer トークン（Cookie 不使用）</td>
+            <td>不要</td>
+            <td>◎</td>
+            <td>原理的に CSRF が成立しない</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>状態を変えるリクエストを GET にしない</h2>
+      <p>
+        副作用のある操作を <code>GET</code> で公開してはいけません。<code>&lt;img src&gt;</code> や <code>&lt;a&gt;</code> で<strong>自動的に発火</strong>でき、<code>SameSite=Lax</code> でもトップレベルの GET 遷移は Cookie が送られるため、削除・課金・設定変更を GET にすると CSRF の格好の的になります。状態変更は必ず <code>POST</code> / <code>PUT</code> / <code>DELETE</code> にし、トークンか Origin を検証します。
+      </p>
+      <pre><code>{`// 脆弱: GET で状態変更、検証なし（<img src> だけで発火する）
+app.get('/account/delete', (req, res) => {
+  deleteAccount(req.session.userId);
+});
+
+// 修正: POST + Origin 検証 + CSRF トークン照合
+app.post('/account/delete', (req, res) => {
+  if (req.headers.origin !== 'https://bank.example.com') return res.sendStatus(403);
+  if (req.body.csrf_token !== req.session.csrfToken)      return res.sendStatus(403);
+  deleteAccount(req.session.userId);
+});`}</code></pre>
+
+      <h2>Login CSRF という変種</h2>
+      <p>
+        CSRF はログイン前にも起こります。攻撃者が<strong>自分のアカウントの資格情報</strong>で被害者を勝手にログインさせ、被害者の操作（検索履歴・アップロード・保存した支払い情報など）を攻撃者アカウントに紐付ける「Login CSRF」です。見落とされがちですが、<strong>ログインフォームにも CSRF トークンを付ける</strong>ことで防げます。
+      </p>
+
       <h2>防御してはいけないやり方</h2>
       <ul>
         <li>
@@ -158,12 +227,66 @@ export default function Page() {
         </li>
       </ul>
 
+      <h2>チェックリスト</h2>
+      <ul>
+        <li>☐ 状態変更は <code>POST</code> / <code>PUT</code> / <code>DELETE</code> のみ（GET に副作用を持たせない）</li>
+        <li>☐ Cookie に <code>SameSite=Lax</code> または <code>Strict</code>（クロスサイト埋込が要る物だけ <code>None; Secure</code>）</li>
+        <li>☐ 重要操作で CSRF トークンまたは <code>Origin</code> 検証を実施</li>
+        <li>☐ ログインフォームにも CSRF トークン（Login CSRF 対策）</li>
+        <li>☐ Cookie に <code>Secure</code> / <code>HttpOnly</code></li>
+        <li>☐ SPA / API は Bearer トークンかカスタムヘッダ必須 ＋ CORS を厳格化</li>
+        <li>☐ XSS を塞いでいる（XSS があると CSRF 対策は無効化される）</li>
+      </ul>
+
+      <h2>関連ツールと記事</h2>
+      <ul>
+        <li>
+          <Link href="/tools/cookie-parser">HTTP Cookie Parser</Link> — <code>SameSite</code> / <code>Secure</code> / <code>HttpOnly</code> 属性を可視化し、危険な設定に警告
+        </li>
+        <li>
+          <Link href="/tools/security-headers">Security Headers Analyzer</Link> — Cookie とあわせてセキュリティヘッダー全体を採点
+        </li>
+        <li>
+          <Link href="/learn/security/xss">XSS の仕組みと対策</Link> — CSRF 対策の大前提
+        </li>
+        <li>
+          <Link href="/learn/security/session-vs-jwt">セッション認証と JWT の違い</Link>
+        </li>
+        <li>
+          <Link href="/learn/security/jwt-security-issues">JWT のセキュリティ問題</Link> — Bearer トークン構成での注意点
+        </li>
+      </ul>
+
+      <h2>参考（一次情報）</h2>
+      <ul>
+        <li>
+          <a
+            href="https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            OWASP — Cross-Site Request Forgery Prevention Cheat Sheet
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie#samesitesamesite-value"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            MDN — Set-Cookie の SameSite 属性
+          </a>
+        </li>
+      </ul>
+
       <h2>おわりに</h2>
       <p>
-        CSRF は「ブラウザが律儀に Cookie を付ける」前提で成立する攻撃で、現代では <strong>SameSite Cookie</strong> + <strong>CSRF トークン or Origin チェック</strong> の二段構えが定番です。SPA + Bearer トークン構成なら原理的に成立しないので、API 設計の段階で経路を選ぶ手もあります。
+        CSRF は「ブラウザが律儀に Cookie を付ける」前提で成立する攻撃で、現代では <strong>SameSite Cookie</strong> + <strong>CSRF トークン or Origin チェック</strong> の二段構えが定番です。SPA + Bearer トークン構成なら原理的に成立しないので、API 設計の段階で経路を選ぶ手もあります。状態変更を GET にしないという基本も忘れずに。
       </p>
       <p>
-        本サイトの HTTP Cookie Parser では、<code>SameSite</code> 属性の値ごとに警告メッセージが出るので、自社サービスの <code>Set-Cookie</code> 文字列を貼り付けてチェックしてみてください。
+        まずは自社サービスの <code>Set-Cookie</code> 文字列を{" "}
+        <Link href="/tools/cookie-parser">HTTP Cookie Parser</Link>{" "}
+        に貼り付け、<code>SameSite</code> 属性が意図どおりか確認してみてください。
       </p>
     </ArticleLayout>
   );
