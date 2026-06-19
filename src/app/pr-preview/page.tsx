@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { PrReviewArticle, type PrReviewData } from "@/components/pr-review/PrReviewArticle";
 
 // プレビュー専用（noindex）。本番コンテンツではないので検索結果に出さない。
@@ -129,11 +130,18 @@ const SAMPLE: PrReviewData = {
 };
 
 export default function Page() {
+  // 本番（Vercel/secutils.jp）では存在しないページとして 404 を返す。
+  // これはローカル確認専用のデモ。noindex だけでは直URLアクセスで見えてしまうため、
+  // 本番ビルドでは notFound() でルートごと封じる（ローカル npm run dev のみ表示）。
+  if (process.env.NODE_ENV === "production") {
+    notFound();
+  }
+
   return (
     <div className="min-h-screen bg-white">
       {/* プレビュー注記バー（このページ限定。本番記事には出ない） */}
       <div className="bg-amber-100 py-2 text-center text-xs text-amber-900">
-        ⚙️ これは PR記事テンプレートのプレビューです（中身はダミー・noindex）
+        ⚙️ これは PR記事テンプレートのプレビューです（中身はダミー・noindex・本番では404）
       </div>
 
       <PrReviewArticle data={SAMPLE} preview />
