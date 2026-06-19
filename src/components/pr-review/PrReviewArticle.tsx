@@ -25,10 +25,26 @@ export type ProConItem = { title: string; note: string };
 /** 料金プラン */
 export type PlanItem = {
   name: string;
-  price: string;
-  per: string;
+  /** 月額（税込）の数値部分。変動が激しく確定できない場合は省略可（→「公式で確認」表示） */
+  price?: string;
+  /** price の単位。例: "月"・"月〜"。price 省略時は不要 */
+  per?: string;
   note: string;
   popular?: boolean;
+  /** おすすめプランのラベル（既定: "おすすめ"）。"人気No.1"等の断定は根拠がある時だけ */
+  badge?: string;
+};
+/** A8等のアフィリエイト画像バナー（クリックリンク＋成果計測ピクセル） */
+export type BannerAd = {
+  /** クリック先（a8mat 入りのリンクURL） */
+  href: string;
+  /** バナー画像URL（A8の bgt 画像など） */
+  src: string;
+  /** 成果計測用の1×1 gif（任意・A8推奨） */
+  pixel?: string;
+  width: number;
+  height: number;
+  alt?: string;
 };
 /** 利用シーン・活用例 */
 export type UseCaseItem = { icon: string; title: string; text: string };
@@ -44,6 +60,8 @@ export type PrReviewData = {
   productName: string;
   /** CTAボタン・公式リンクの遷移先（アフィリエイトURL）。プレビューでは "#" */
   affiliateUrl: string;
+  /** CTAテキストリンクの成果計測ピクセル（A8の 0.gif など）。任意。ページに1度だけ埋める */
+  impressionPixel?: string;
   /** ヒーローのカテゴリバッジ（2つ目=青, 3つ目=緑）。例: ["VPN徹底レビュー", "2026年最新"] */
   categoryBadges?: [string, string];
   /** 情報の基準日。例: "2026年6月"。ヒーローのバッジと末尾の免責に差し込む */
@@ -58,8 +76,10 @@ export type PrReviewData = {
   rating: { score: string; outOf?: string; note?: string };
   /** ファーストビューの要点（✓箇条書き・3つ程度推奨） */
   heroPoints?: string[];
-  /** ヒーロー下の任意バナー画像URL。null ならプレビューでは点線枠、本番では非表示 */
-  heroBanner?: string | null;
+  /** ヒーロー下の任意バナー（A8画像バナー等）。null ならプレビューでは点線枠、本番では非表示 */
+  heroBanner?: BannerAd | null;
+  /** スマホ用ヒーローバナー（任意。あればSP幅で差し替え。例: 320×50） */
+  heroBannerMobile?: BannerAd;
   /** CTA直下に出す安心材料の一言。例: "30日間返金保証つき・登録は最短2分" */
   ctaNote?: string;
 
@@ -78,6 +98,8 @@ export type PrReviewData = {
   /** 料金プランの上に出す期間限定キャンペーン枠（任意） */
   campaign?: { title: string; body: string; deadline?: string };
   plans: PlanItem[];
+  /** 料金プラン直後に出す任意のアフィリエイト画像バナー */
+  midBanner?: BannerAd;
   useCases: UseCaseItem[];
   faqs: FaqItem[];
   finalRating: {
@@ -105,6 +127,40 @@ function StarRating({ value, className }: { value: number; className?: string })
       <span className="absolute inset-0 overflow-hidden text-[#f59e0b]" style={{ width: `${pct}%` }} aria-hidden>
         ★★★★★
       </span>
+    </span>
+  );
+}
+
+/** A8等のアフィリエイト画像バナー（クリックリンク＋成果計測ピクセル）を原寸表示 */
+function BannerAdImage({ ad }: { ad: BannerAd }) {
+  return (
+    <span className="relative inline-block">
+      <a
+        href={ad.href}
+        target="_blank"
+        rel="nofollow sponsored noopener noreferrer"
+        className="block transition hover:opacity-90"
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={ad.src}
+          alt={ad.alt ?? ""}
+          width={ad.width}
+          height={ad.height}
+          className="h-auto max-w-full rounded-lg"
+        />
+      </a>
+      {ad.pixel && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={ad.pixel}
+          width={1}
+          height={1}
+          alt=""
+          aria-hidden="true"
+          style={{ position: "absolute", left: "-9999px", width: 1, height: 1 }}
+        />
+      )}
     </span>
   );
 }
@@ -278,14 +334,22 @@ export function PrReviewArticle({
               </ul>
             )}
 
-            {/* 任意バナー: heroBanner があれば表示。なければ preview では点線枠、本番では非表示 */}
+            {/* 任意バナー: heroBanner があれば原寸表示。なければ preview では点線枠、本番では非表示 */}
             {data.heroBanner ? (
-              <div
-                role="img"
-                aria-label={`${productName} バナー`}
-                className="mt-6 aspect-[16/6] w-full rounded-2xl border border-[#e5e7eb] bg-cover bg-center"
-                style={{ backgroundImage: `url(${data.heroBanner})` }}
-              />
+              <div className="mt-6 flex justify-center">
+                {data.heroBannerMobile ? (
+                  <>
+                    <span className="sm:hidden">
+                      <BannerAdImage ad={data.heroBannerMobile} />
+                    </span>
+                    <span className="hidden sm:inline-block">
+                      <BannerAdImage ad={data.heroBanner} />
+                    </span>
+                  </>
+                ) : (
+                  <BannerAdImage ad={data.heroBanner} />
+                )}
+              </div>
             ) : preview ? (
               <div className="mt-6 flex aspect-[16/6] w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-[#bfdbfe] bg-white/60 text-center">
                 <span className="text-sm font-bold text-[#60a5fa]">バナー画像（任意）</span>
@@ -312,10 +376,10 @@ export function PrReviewArticle({
             <p className="flex items-center gap-2 text-[15px] font-bold text-[#1f2937]">
               <span aria-hidden>📑</span> この記事の内容
             </p>
-            <ol className="mt-3 grid grid-cols-1 gap-x-6 gap-y-1.5 sm:grid-cols-2">
+            <ol className="mt-3 flex flex-col divide-y divide-[#eef2f7]">
               {toc.map((t, i) => (
                 <li key={t.id}>
-                  <a href={`#${t.id}`} className="flex items-baseline gap-2 text-[15px] text-[#374151] hover:text-[#2563eb] hover:underline">
+                  <a href={`#${t.id}`} className="flex items-baseline gap-2.5 py-2 text-[15px] text-[#374151] hover:text-[#2563eb] hover:underline">
                     <span className="text-xs font-bold text-[#9ca3af]">{String(i + 1).padStart(2, "0")}</span>
                     {t.label}
                   </a>
@@ -328,7 +392,8 @@ export function PrReviewArticle({
           <AdSlot w={728} h={90} label="ファーストビュー直後" preview={preview} />
 
           {/* ② 結論カード（緑） ----------------------------------------- */}
-          <section className="rounded-2xl border border-[#bbf7d0] bg-[#f0fdf4] p-6">
+          {/* mt-10: 本番では上の広告枠が非表示(null)になるため、目次との間隔をここで確保 */}
+          <section className="mt-10 rounded-2xl border border-[#bbf7d0] bg-[#f0fdf4] p-6">
             <h2 className="flex items-center gap-2 text-[20px] font-bold text-[#16a34a]">
               ✅ こんな人におすすめ
             </h2>
@@ -472,14 +537,18 @@ export function PrReviewArticle({
               >
                 {p.popular && (
                   <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-3 py-1 text-xs font-bold text-white" style={{ background: "#f59e0b" }}>
-                    人気No.1
+                    {p.badge ?? "おすすめ"}
                   </span>
                 )}
                 <span className="text-sm font-bold text-[#1f2937]">{p.name}</span>
-                <span className="mt-3 text-[32px] font-bold" style={{ color: p.popular ? BLUE : "#1f2937" }}>
-                  ¥{p.price}
-                  <span className="text-sm font-normal text-[#6b7280]">/{p.per}</span>
-                </span>
+                {p.price ? (
+                  <span className="mt-3 text-[32px] font-bold" style={{ color: p.popular ? BLUE : "#1f2937" }}>
+                    ¥{p.price}
+                    {p.per && <span className="text-sm font-normal text-[#6b7280]">/{p.per}</span>}
+                  </span>
+                ) : (
+                  <span className="mt-3 text-[15px] font-bold text-[#6b7280]">料金は公式サイトで確認</span>
+                )}
                 <span className="mt-2 text-xs text-[#6b7280]">{p.note}</span>
                 {p.popular && (
                   <a href={affiliateUrl} target="_blank" rel="nofollow sponsored noopener noreferrer" className="mt-4 flex h-12 items-center justify-center rounded-xl text-sm font-bold text-white" style={{ background: BLUE }}>
@@ -492,6 +561,13 @@ export function PrReviewArticle({
 
           {/* CTA（料金プラン直後・最重要） */}
           <Cta href={affiliateUrl} label="公式サイトで申し込む" note={data.ctaNote} affiliateNote />
+
+          {/* 任意のアフィリエイトバナー（料金直後） */}
+          {data.midBanner && (
+            <div className="mt-8 flex justify-center rounded-2xl border border-[#e5e7eb] bg-[#f8fafc] p-5">
+              <BannerAdImage ad={data.midBanner} />
+            </div>
+          )}
 
           {/* バナー：728×90（料金表直後） */}
           <AdSlot w={728} h={90} label="料金表直後" preview={preview} />
@@ -575,6 +651,19 @@ export function PrReviewArticle({
               {data.lastUpdated ? `${data.lastUpdated}` : "記事公開"}時点の情報です。最新の内容は必ず公式サイトでご確認ください。
             </p>
           </section>
+
+          {/* CTAテキストリンクの成果計測ピクセル（A8の 0.gif）。1度だけ */}
+          {data.impressionPixel && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={data.impressionPixel}
+              width={1}
+              height={1}
+              alt=""
+              aria-hidden="true"
+              style={{ position: "absolute", left: "-9999px", width: 1, height: 1 }}
+            />
+          )}
 
         </article>
       </div>
