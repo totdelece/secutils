@@ -195,6 +195,11 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "お名前.comとXServerドメインを料金・TLD数・WHOIS代行・サーバー連携の観点で比較。XServerを使うなら一元管理が強み、XServer以外なら豊富なTLDと低コストのお名前.comが有利。用途別の選び方を解説します。",
   },
+  "shin-rental-server-review": {
+    title: "シンレンタルサーバーの評判は？料金・速度・スペックを徹底検証【2026年】",
+    description:
+      "エックスサーバーが運営する新世代レンタルサーバー「シンレンタルサーバー」を解説。NVMe SSDの高速性、実質月額539円〜の料金、独自ドメイン永年無料、10日間の無料お試しといった特徴を、公式スペックをもとに整理します。",
+  },
   clickjacking: {
     title: "クリックジャッキング詳解 - 透明iframe攻撃とX-Frame-Options/CSP対策",
     description:
@@ -644,6 +649,17 @@ export const articles: Article[] = [
     description:
       "お名前.comとXServerドメインを料金・TLD数・WHOIS代行・サーバー連携の観点で徹底比較。XServerを使うなら一元管理が強み、XServer以外なら豊富なTLDと低コストのお名前.comが有利。用途別の選び方を解説します。",
     date: "2026-06-06",
+    readingMinutes: 8,
+    relatedTools: [],
+    affiliate: true,
+  },
+  {
+    slug: "shin-rental-server-review",
+    category: "network",
+    title: "シンレンタルサーバーの評判は？料金・速度・スペックを徹底検証",
+    description:
+      "エックスサーバー運営の新世代レンタルサーバーの料金・スペック・特徴をまとめたレビュー。NVMe SSD・実質月額539円〜・独自ドメイン永年無料・10日間の無料お試しを公式情報から整理します。",
+    date: "2026-06-19",
     readingMinutes: 8,
     relatedTools: [],
     affiliate: true,
