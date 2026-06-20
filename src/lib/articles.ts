@@ -200,6 +200,11 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "エックスサーバーが運営する新世代レンタルサーバー「シンレンタルサーバー」を解説。NVMe SSDの高速性、実質月額539円〜の料金、独自ドメイン永年無料、10日間の無料お試しといった特徴を、公式スペックをもとに整理します。",
   },
+  "xserver-vps-review": {
+    title: "XServer VPSの評判は？料金・スペック・使い道を徹底検証【2026年】",
+    description:
+      "エックスサーバーの仮想専用サーバー XServer VPS をレビュー。AMD EPYC×NVMe SSDの性能、月額990円〜の料金、初期費用0円、Minecraft/Docker等のテンプレート、root権限での自由な用途を公式情報から整理します。",
+  },
   clickjacking: {
     title: "クリックジャッキング詳解 - 透明iframe攻撃とX-Frame-Options/CSP対策",
     description:
@@ -660,6 +665,17 @@ export const articles: Article[] = [
     description:
       "エックスサーバー運営の新世代レンタルサーバーの料金・スペック・特徴をまとめたレビュー。NVMe SSD・実質月額539円〜・独自ドメイン永年無料・10日間の無料お試しを公式情報から整理します。",
     date: "2026-06-19",
+    readingMinutes: 8,
+    relatedTools: [],
+    affiliate: true,
+  },
+  {
+    slug: "xserver-vps-review",
+    category: "network",
+    title: "XServer VPSの評判は？料金・スペック・使い道を徹底検証",
+    description:
+      "エックスサーバーの仮想専用サーバー XServer VPS のレビュー。AMD EPYC×NVMe SSDの性能、月額990円〜の料金、初期費用0円、Minecraft/Docker等のテンプレート、root権限での用途を公式情報から整理します。",
+    date: "2026-06-20",
     readingMinutes: 8,
     relatedTools: [],
     affiliate: true,
