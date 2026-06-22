@@ -390,6 +390,26 @@ export const toolSeoContent: Record<string, ToolSeoContent> = {
     ],
     privacy: "検索や表示はブラウザ内で完結し、入力した検索語はサーバーへ送信されません。",
   },
+  "port-reference": {
+    heading: "ポート番号とサービスの対応を調べる",
+    lead: "Port Number Reference は、よく使われる TCP / UDP のポート番号を、サービス名・用途・セキュリティ上の注意点から検索できるリファレンスです。ファイアウォールのルール設計、ポートスキャン結果の確認、不審に開いているポートの調査に使えます。",
+    sections: [
+      {
+        title: "ファイアウォール設計に使う",
+        body: "公開すべきポートと閉じるべきポートを切り分けられます。Web は 80/443、メール送信は 587 など必要なポートだけを開け、データベースやリモート接続用のポートは内部やVPNに限定する判断に役立ちます。",
+      },
+      {
+        title: "不審な開放ポートを調べる",
+        body: "nmap などのスキャン結果に出たポート番号を検索し、何のサービスかを素早く確認できます。RDP(3389)、SMB(445)、無認証で公開されがちなDBポートなど、攻撃の入口になりやすいポートには注意表示を付けています。",
+      },
+    ],
+    bullets: [
+      "TCP / UDP のポート番号を検索",
+      "サービス名・用途・プロトコルを確認",
+      "攻撃の的になりやすいポートに注意表示",
+    ],
+    privacy: "検索や表示はブラウザ内で完結し、入力した検索語はサーバーへ送信されません。",
+  },
   "cookie-parser": {
     heading: "CookieとSet-Cookieヘッダーを解析する",
     lead: "HTTP Cookie Parser は、Cookie / Set-Cookie ヘッダーを分解し、Secure、HttpOnly、SameSite、Expires、Max-Ageなどの属性を確認するツールです。",

@@ -196,6 +196,15 @@ export const tools: Tool[] = [
     useCase: "APIレスポンスの意味確認",
   },
   {
+    slug: "port-reference",
+    title: "Port Number Reference",
+    description:
+      "よく使われる TCP / UDP のポート番号を、サービス名・用途・リスクから検索できます。ファイアウォール設定やポートスキャン結果の確認、不審な開放ポートの調査に便利です。",
+    category: "network",
+    icon: "PORT",
+    useCase: "ポート番号とサービス・リスクの確認",
+  },
+  {
     slug: "cookie-parser",
     title: "HTTP Cookie Parser",
     description:
