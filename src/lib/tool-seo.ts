@@ -390,6 +390,26 @@ export const toolSeoContent: Record<string, ToolSeoContent> = {
     ],
     privacy: "検索や表示はブラウザ内で完結し、入力した検索語はサーバーへ送信されません。",
   },
+  "sri-hash": {
+    heading: "Subresource Integrity ハッシュを生成する",
+    lead: "SRI Hash Generator は、JavaScript や CSS ファイル（またはテキスト）から Subresource Integrity 用のハッシュを生成するツールです。CDN や外部ホストから読み込むリソースに integrity 属性を付けることで、配信経路で改ざんされたファイルの実行をブラウザにブロックさせられます。",
+    sections: [
+      {
+        title: "CDNリソースの改ざんを防ぐ",
+        body: "scriptやlinkタグにintegrity属性を付けると、ブラウザはダウンロードしたファイルのハッシュが一致したときだけ実行・適用します。CDN侵害やサプライチェーン攻撃で差し替えられたファイルを止められます。別オリジンから読み込む場合はcrossorigin=\"anonymous\"の付与も必要です。",
+      },
+      {
+        title: "どのハッシュを使うか",
+        body: "SRIはsha256 / sha384 / sha512に対応します。仕様ではsha384が推奨です。複数のハッシュを空白区切りで併記すると、ブラウザは対応する最も強いものを使います。ファイルを更新したらハッシュも再生成が必要です。",
+      },
+    ],
+    bullets: [
+      "sha256 / sha384 / sha512 を生成",
+      "integrity属性付きタグを出力",
+      "ファイルもテキストもブラウザ内で処理",
+    ],
+    privacy: "ハッシュ計算はcrypto.subtleを使ってブラウザ内で完結し、ファイル内容や入力テキストはサーバーへ送信されません。",
+  },
   "port-reference": {
     heading: "ポート番号とサービスの対応を調べる",
     lead: "Port Number Reference は、よく使われる TCP / UDP のポート番号を、サービス名・用途・セキュリティ上の注意点から検索できるリファレンスです。ファイアウォールのルール設計、ポートスキャン結果の確認、不審に開いているポートの調査に使えます。",

@@ -43,6 +43,15 @@ export const tools: Tool[] = [
     useCase: "ファイル改ざんや一致確認",
   },
   {
+    slug: "sri-hash",
+    title: "SRI Hash Generator",
+    description:
+      "JS / CSS ファイルやテキストから Subresource Integrity ハッシュ（sha256 / sha384 / sha512）を生成し、integrity 属性付きの script / link タグをそのまま出力します。CDN リソースの改ざん対策に。",
+    category: "security",
+    icon: "SRI",
+    useCase: "CDNリソースのintegrity属性を生成",
+  },
+  {
     slug: "base64",
     title: "Base64 Encode / Decode",
     description:
