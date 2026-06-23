@@ -195,6 +195,11 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "お名前.comとXServerドメインを料金・TLD数・WHOIS代行・サーバー連携の観点で比較。XServerを使うなら一元管理が強み、XServer以外なら豊富なTLDと低コストのお名前.comが有利。用途別の選び方を解説します。",
   },
+  "xserver-review": {
+    title: "エックスサーバーの評判は？料金・速度・スペックを徹底検証【2026年】",
+    description:
+      "国内シェアNo.1の定番レンタルサーバー「エックスサーバー」をレビュー。NVMe SSD×Xアクセラレータの速度、通常月額990円〜（30%オフキャンペーンで実質693円〜）、初期費用0円・10日間の無料お試し・独自ドメイン2つ永年無料を公式情報から整理します。",
+  },
   "shin-rental-server-review": {
     title: "シンレンタルサーバーの評判は？料金・速度・スペックを徹底検証【2026年】",
     description:
@@ -654,6 +659,17 @@ export const articles: Article[] = [
     description:
       "お名前.comとXServerドメインを料金・TLD数・WHOIS代行・サーバー連携の観点で徹底比較。XServerを使うなら一元管理が強み、XServer以外なら豊富なTLDと低コストのお名前.comが有利。用途別の選び方を解説します。",
     date: "2026-06-06",
+    readingMinutes: 8,
+    relatedTools: [],
+    affiliate: true,
+  },
+  {
+    slug: "xserver-review",
+    category: "network",
+    title: "エックスサーバーの評判は？料金・速度・スペックを徹底検証",
+    description:
+      "国内シェアNo.1の定番レンタルサーバーの料金・スペック・特徴をまとめたレビュー。NVMe SSD×Xアクセラレータ・通常月額990円〜（30%オフで実質693円〜）・独自ドメイン2つ永年無料・10日間の無料お試しを公式情報から整理します。",
+    date: "2026-06-23",
     readingMinutes: 8,
     relatedTools: [],
     affiliate: true,
