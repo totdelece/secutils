@@ -195,6 +195,11 @@ const articleSeo: Record<string, ArticleSeo> = {
     description:
       "お名前.comとXServerドメインを料金・TLD数・WHOIS代行・サーバー連携の観点で比較。XServerを使うなら一元管理が強み、XServer以外なら豊富なTLDと低コストのお名前.comが有利。用途別の選び方を解説します。",
   },
+  "conoha-wing-review": {
+    title: "ConoHa WINGの評判は？料金・速度・スペックを徹底検証【2026年】",
+    description:
+      "GMO運営の高速レンタルサーバー「ConoHa WING」をレビュー。LiteSpeed×WEXAL®の速度、WINGパック通常月額1,331円〜（長期契約＋キャンペーンで実質678円〜）、初期費用0円・独自ドメイン2つ永年無料・自動バックアップ無料・転送量無制限を公式情報から整理します。",
+  },
   "xserver-review": {
     title: "エックスサーバーの評判は？料金・速度・スペックを徹底検証【2026年】",
     description:
@@ -659,6 +664,17 @@ export const articles: Article[] = [
     description:
       "お名前.comとXServerドメインを料金・TLD数・WHOIS代行・サーバー連携の観点で徹底比較。XServerを使うなら一元管理が強み、XServer以外なら豊富なTLDと低コストのお名前.comが有利。用途別の選び方を解説します。",
     date: "2026-06-06",
+    readingMinutes: 8,
+    relatedTools: [],
+    affiliate: true,
+  },
+  {
+    slug: "conoha-wing-review",
+    category: "network",
+    title: "ConoHa WINGの評判は？料金・速度・スペックを徹底検証",
+    description:
+      "GMO運営の高速レンタルサーバーの料金・スペック・特徴をまとめたレビュー。LiteSpeed×WEXAL®・WINGパック通常月額1,331円〜（長期契約＋キャンペーンで実質678円〜）・独自ドメイン2つ永年無料・自動バックアップ無料を公式情報から整理します。",
+    date: "2026-06-23",
     readingMinutes: 8,
     relatedTools: [],
     affiliate: true,
