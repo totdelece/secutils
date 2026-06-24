@@ -711,6 +711,7 @@ export const articles: Article[] = [
     description:
       "エックスサーバーの仮想専用サーバー XServer VPS のレビュー。AMD EPYC×NVMe SSDの性能、月額990円〜の料金、初期費用0円、Minecraft/Docker等のテンプレート、root権限での用途を公式情報から整理します。",
     date: "2026-06-20",
+    updated: "2026-06-24",
     readingMinutes: 8,
     relatedTools: [],
     affiliate: true,
