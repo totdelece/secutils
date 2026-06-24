@@ -13,6 +13,8 @@ export type Article = {
   title: string;
   description: string;
   date: string;
+  /** 内容を最後に確認・更新した日（ISO yyyy-mm-dd）。未指定なら date を使用。JSON-LD の dateModified にも使う */
+  updated?: string;
   readingMinutes: number;
   relatedTools?: string[];
   affiliate?: boolean;
@@ -620,6 +622,7 @@ export const articles: Article[] = [
     description:
       "無料お試し、料金の見方、WordPressの始めやすさ、サポート、更新時の注意点を比較し、初心者が納得して選べる判断基準を整理します。",
     date: "2026-05-11",
+    updated: "2026-06-24",
     readingMinutes: 10,
     relatedTools: [],
     affiliate: true,

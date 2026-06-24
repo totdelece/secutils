@@ -3,6 +3,12 @@ import { getArticle } from "@/lib/articles";
 
 const article = getArticle("network", "xserver-vs-conoha-wing")!;
 
+// 公式情報を最後に確認した日（articles.ts の updated を単一ソースに、和暦表記へ）
+const confirmedDateJa = (() => {
+  const [y, m, d] = (article.updated ?? article.date).split("-");
+  return `${y}年${Number(m)}月${Number(d)}日`;
+})();
+
 const XSERVER_URL =
   "https://px.a8.net/svt/ejp?a8mat=4B3LMV+C506SY+CO4+61JSI";
 const CONOHA_URL =
@@ -437,7 +443,7 @@ function Hero() {
         <div className="mx-auto max-w-4xl text-center">
           <div className="mb-5 flex flex-wrap justify-center gap-2">
             <Badge color="slate">PR / 広告を含みます</Badge>
-            <Badge color="blue">2026年5月11日確認</Badge>
+            <Badge color="blue">{confirmedDateJa}確認</Badge>
             <Badge color="amber">価格は公式確認</Badge>
           </div>
           <h1 className="text-4xl font-black leading-tight tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
@@ -955,7 +961,7 @@ function References() {
           </li>
         </ul>
         <p className="mt-4">
-          この記事は{article.date}時点の公式情報を確認して作成しています。申し込み前には、各公式サイトで最新の価格・特典・契約条件を確認してください。
+          この記事は{confirmedDateJa}時点の公式情報を確認して作成しています。申し込み前には、各公式サイトで最新の価格・特典・契約条件を確認してください。
         </p>
         <p className="mt-3">
           独自ドメインを別管理したい場合は、

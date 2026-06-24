@@ -54,7 +54,7 @@ export function ArticleJsonLd({ slug }: { slug: string }) {
         url,
         inLanguage: "ja",
         datePublished: article.date,
-        dateModified: article.date,
+        dateModified: article.updated ?? article.date,
         articleSection: articleCategoryLabels[article.category],
         author: {
           "@type": "Person",
