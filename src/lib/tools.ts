@@ -285,4 +285,13 @@ export const tools: Tool[] = [
     icon: "IP↔",
     useCase: "難読化IPの展開・IP表記の相互変換",
   },
+  {
+    slug: "hash-identifier",
+    title: "Hash Identifier",
+    description:
+      "ハッシュ文字列の種類を推定します。長さ・文字種・接頭辞から MD5 / SHA-1 / SHA-256 / SHA-512 / bcrypt / Argon2 / NTLM / sha512crypt などの候補を確度つきで表示。CTF やインシデント調査で「これは何のハッシュ？」を素早く判断できます。",
+    category: "security",
+    icon: "H?",
+    useCase: "ハッシュ種別の推定（CTF・調査）",
+  },
 ];

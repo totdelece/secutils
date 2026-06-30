@@ -152,6 +152,11 @@ const toolSeo: Record<string, { title: string; description: string }> = {
     description:
       "IPアドレスをドット10進・10進整数・16進・8進・2進・逆引き(in-addr.arpa / ip6.arpa)へブラウザ内で相互変換できる無料ツールです。IPv4 / IPv6 を自動判定し、http://2130706433/ のように整数化・難読化されたIPも展開。SSRF・フィッシングURLの調査に。データはサーバーに送信しません。",
   },
+  "hash-identifier": {
+    title: "Hash Identifier - ハッシュ種別を推定（MD5/SHA/bcrypt判定）",
+    description:
+      "ハッシュ文字列の長さ・文字種・接頭辞から種類をブラウザ内で推定する無料ツールです。MD5・SHA-1・SHA-256・SHA-512・bcrypt・Argon2・NTLM・sha512crypt などを確度つきで判定。CTFやインシデント調査の切り分けに。データはサーバーに送信しません。",
+  },
 };
 
 export function getToolSeo(slug: string) {
