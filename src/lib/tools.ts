@@ -276,4 +276,13 @@ export const tools: Tool[] = [
     icon: "MOCK",
     useCase: "テスト用ダミーデータ作成",
   },
+  {
+    slug: "ip-converter",
+    title: "IP Address Converter",
+    description:
+      "IPアドレスを各表記で相互変換します。IPv4 のドット10進・10進整数・16進・8進・2進・逆引き(in-addr.arpa)、IPv6 の短縮/完全表記・逆引き(ip6.arpa)に対応。http://2130706433/ のような難読化されたIPを元に戻せるので、SSRF やフィッシングURLの調査にも使えます。",
+    category: "network",
+    icon: "IP↔",
+    useCase: "難読化IPの展開・IP表記の相互変換",
+  },
 ];

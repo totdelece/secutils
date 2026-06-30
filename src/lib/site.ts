@@ -147,6 +147,11 @@ const toolSeo: Record<string, { title: string; description: string }> = {
     description:
       "フィールドと型を指定してテスト用のダミーJSONデータをブラウザ内で生成できる無料ツールです。名前・メール・日時・UUID・価格・選択肢などに対応し、整形JSON・NDJSON(JSON Lines)・単一オブジェクトで出力。APIモックやテストデータ作成に使えます。",
   },
+  "ip-converter": {
+    title: "IP Address Converter - IPアドレス表記変換・難読化IP展開ツール",
+    description:
+      "IPアドレスをドット10進・10進整数・16進・8進・2進・逆引き(in-addr.arpa / ip6.arpa)へブラウザ内で相互変換できる無料ツールです。IPv4 / IPv6 を自動判定し、http://2130706433/ のように整数化・難読化されたIPも展開。SSRF・フィッシングURLの調査に。データはサーバーに送信しません。",
+  },
 };
 
 export function getToolSeo(slug: string) {
