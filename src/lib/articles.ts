@@ -700,6 +700,7 @@ export const articles: Article[] = [
     description:
       "エックスサーバー運営の新世代レンタルサーバーの料金・スペック・特徴をまとめたレビュー。NVMe SSD・実質月額539円〜・独自ドメイン永年無料・10日間の無料お試しを公式情報から整理します。",
     date: "2026-06-19",
+    updated: "2026-06-30",
     readingMinutes: 8,
     relatedTools: [],
     affiliate: true,
