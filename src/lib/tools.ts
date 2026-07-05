@@ -294,4 +294,13 @@ export const tools: Tool[] = [
     icon: "H?",
     useCase: "ハッシュ種別の推定（CTF・調査）",
   },
+  {
+    slug: "chmod-calculator",
+    title: "chmod Calculator",
+    description:
+      "Unix / Linux のファイルパーミッションを、記号表記（rwxr-xr-x）と 8 進数（755）・chmod コマンドで相互変換します。チェックを切り替えるだけで数値が求まり、setuid / setgid / スティッキービットにも対応しています。",
+    category: "misc",
+    icon: "755",
+    useCase: "パーミッションの記号↔数値変換",
+  },
 ];

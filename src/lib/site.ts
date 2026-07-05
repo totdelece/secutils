@@ -157,6 +157,11 @@ const toolSeo: Record<string, { title: string; description: string }> = {
     description:
       "ハッシュ文字列の長さ・文字種・接頭辞から種類をブラウザ内で推定する無料ツールです。MD5・SHA-1・SHA-256・SHA-512・bcrypt・Argon2・NTLM・sha512crypt などを確度つきで判定。CTFやインシデント調査の切り分けに。データはサーバーに送信しません。",
   },
+  "chmod-calculator": {
+    title: "chmod Calculator - パーミッション計算機（記号↔8進数変換）",
+    description:
+      "Unix / Linux のファイルパーミッションを、記号表記（rwxr-xr-x）と 8 進数（755）・chmod コマンドでブラウザ内で相互変換できる無料ツールです。所有者・グループ・その他の読み書き実行をチェックで切り替え、setuid / setgid / スティッキービットにも対応。データはサーバーに送信しません。",
+  },
 };
 
 export function getToolSeo(slug: string) {

@@ -49,6 +49,7 @@ export const relatedToolSlugs: Record<string, string[]> = {
   "json-yaml": ["json-formatter", "diff-viewer", "base64", "regex-tester"],
   "cron-parser": ["timestamp-converter", "regex-tester", "json-formatter", "diff-viewer"],
   "color-converter": ["json-formatter", "diff-viewer", "regex-tester", "qr-code"],
+  "chmod-calculator": ["cron-parser", "regex-tester", "diff-viewer", "timestamp-converter"],
 };
 
 export const shortcutActions: Record<
@@ -139,6 +140,7 @@ const toolArticleFallback: Record<string, string[]> = {
   "ulid-generator": ["secure-randomness"],
   "timestamp-converter": ["jwt-security-issues", "session-vs-jwt"],
   "qr-code": ["quishing", "mfa-totp-fido2"],
+  "chmod-calculator": ["path-traversal", "lolbins-living-off-the-land", "zero-trust-security"],
 };
 
 // ツールページ下部に出す「関連解説記事」。明示の relatedTools を優先し、
