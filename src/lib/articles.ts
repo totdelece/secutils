@@ -940,6 +940,17 @@ export const articles: Article[] = [
     affiliate: true,
   },
   {
+    slug: "expressvpn-review",
+    category: "network",
+    title: "ExpressVPNの評判は？料金・速度・安全性を徹底検証【2026年】",
+    description:
+      "セキュリティに定評のあるVPN「ExpressVPN」をレビュー。全サーバーがRAMのみで動作するTrustedServer、Rust製プロトコルLightway、耐量子暗号ML-KEMの標準採用、105カ国以上のサーバー、Basic/Advanced/Proの3プラン、30日間返金保証など、機能・プラン・注意点を公式情報から整理します。",
+    date: "2026-07-06",
+    readingMinutes: 10,
+    relatedTools: [],
+    affiliate: true,
+  },
+  {
     slug: "virusbuster-cloud-review",
     category: "security",
     title: "ウイルスバスター クラウド レビュー - 機能・料金・特徴を解説",

@@ -767,9 +767,9 @@ function References() {
 
 function RelatedLinks() {
   const links = [
+    { href: "/learn/network/nordvpn-review", title: "NordVPN レビュー — 料金・速度・機能", eyebrow: "Review" },
+    { href: "/learn/network/expressvpn-review", title: "ExpressVPN レビュー — 安全性で選ぶVPN", eyebrow: "Review" },
     { href: "/learn/network/vpn-basics", title: "VPNの仕組み — IPsec・WireGuard・プライバシー", eyebrow: "Network" },
-    { href: "/learn/security/infostealer-session-hijacking", title: "インフォスティーラーとセッションCookie窃取", eyebrow: "Security" },
-    { href: "/learn/security/device-code-phishing", title: "デバイスコードフィッシング — MFAを回避する手口", eyebrow: "Security" },
   ];
   return (
     <section className="bg-slate-50 px-5 py-14 sm:px-6">
