@@ -929,6 +929,17 @@ export const articles: Article[] = [
     affiliate: true,
   },
   {
+    slug: "nordvpn-review",
+    category: "network",
+    title: "NordVPNの評判は？料金・速度・機能を徹底検証【2026年】",
+    description:
+      "世界最大級のVPN「NordVPN」をレビュー。WireGuardベースの高速プロトコルNordLynx、広告・マルウェアを遮断するThreat Protection、Double VPN、Meshnet、10台同時接続、30日間返金保証など、機能・プラン・注意点を公式情報から整理します。",
+    date: "2026-07-06",
+    readingMinutes: 10,
+    relatedTools: [],
+    affiliate: true,
+  },
+  {
     slug: "virusbuster-cloud-review",
     category: "security",
     title: "ウイルスバスター クラウド レビュー - 機能・料金・特徴を解説",
