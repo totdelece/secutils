@@ -303,4 +303,13 @@ export const tools: Tool[] = [
     icon: "755",
     useCase: "パーミッションの記号↔数値変換",
   },
+  {
+    slug: "url-parser",
+    title: "URL Parser / Inspector",
+    description:
+      "URLを scheme・ホスト・ポート・パス・クエリ・フラグメントに分解し、パーセントエンコードや punycode(IDN) を復元して表示します。user@host の資格情報埋め込み、非標準ポート、パストラバーサル、オープンリダイレクトなど、フィッシング・SSRF 調査に役立つ危険サインも検出。処理はすべてブラウザ内で完結します。",
+    category: "network",
+    icon: "URL",
+    useCase: "URLの構造解析とフィッシング・SSRF調査",
+  },
 ];

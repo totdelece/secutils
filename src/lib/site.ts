@@ -162,6 +162,11 @@ const toolSeo: Record<string, { title: string; description: string }> = {
     description:
       "Unix / Linux のファイルパーミッションを、記号表記（rwxr-xr-x）と 8 進数（755）・chmod コマンドでブラウザ内で相互変換できる無料ツールです。所有者・グループ・その他の読み書き実行をチェックで切り替え、setuid / setgid / スティッキービットにも対応。データはサーバーに送信しません。",
   },
+  "url-parser": {
+    title: "URL Parser / Inspector - URL分解・クエリ解析・フィッシング調査ツール",
+    description:
+      "URLを scheme・ホスト・ポート・パス・クエリ・フラグメントに分解し、パーセントエンコードや punycode(IDN) をブラウザ内で復元します。user@host の資格情報埋め込み・非標準ポート・パストラバーサル・オープンリダイレクトなどの危険サインも検出。入力したURLはサーバーに送信しません。",
+  },
 };
 
 export function getToolSeo(slug: string) {
