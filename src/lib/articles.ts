@@ -951,6 +951,28 @@ export const articles: Article[] = [
     affiliate: true,
   },
   {
+    slug: "glocal-vpn-review",
+    category: "network",
+    title: "Glocal VPNの評判は？海外から日本の動画が見れないを解決【2026年】",
+    description:
+      "海外から日本の動画配信サービスが観られない…を解消する、動画視聴に特化した日本製VPN「Glocal VPN」をレビュー。TVer・ABEMA・Netflix（日本）などの対応VOD、月779円〜のシンプル料金、7日間の無料お試し、同時接続1台といった特徴・注意点を公式情報から整理します。",
+    date: "2026-07-08",
+    readingMinutes: 9,
+    relatedTools: [],
+    affiliate: true,
+  },
+  {
+    slug: "overseas-japan-streaming-vpn",
+    category: "network",
+    title: "海外から日本の動画を観るVPN比較 - Glocal VPN・NordVPN・ExpressVPNどれ？",
+    description:
+      "海外赴任・留学・旅行中に日本のTVerやNetflix（日本）が「地域制限で見れない」を解決するVPNを、動画視聴特化のGlocal VPNと総合大手のNordVPN・ExpressVPNで比較。目的・料金・同時接続・サポートの違いから、あなたに合う1本を用途別に解説します。",
+    date: "2026-07-08",
+    readingMinutes: 11,
+    relatedTools: [],
+    affiliate: true,
+  },
+  {
     slug: "virusbuster-cloud-review",
     category: "security",
     title: "ウイルスバスター クラウド レビュー - 機能・料金・特徴を解説",
