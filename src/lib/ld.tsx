@@ -134,6 +134,69 @@ export function AuthorJsonLd() {
   });
 }
 
+/** PR単体レビュー記事用: Product + Review 構造化データ。
+    Google の「レビュー スニペット」（検索結果の★表示）と
+    「長所と短所」（positiveNotes / negativeNotes）リッチリザルトに対応。
+    編集部の単一レビューなので aggregateRating は付けない（実態と一致させる） */
+export function PrReviewJsonLd({
+  productName,
+  reviewTitle,
+  description,
+  ratingValue,
+  pros,
+  cons,
+}: {
+  productName: string;
+  reviewTitle: string;
+  description?: string;
+  /** 5点満点の評価。例: "4.1" */
+  ratingValue: string;
+  pros?: string[];
+  cons?: string[];
+}) {
+  const base = getBaseUrl();
+  const notes = (items?: string[]) =>
+    items && items.length > 0
+      ? {
+          "@type": "ItemList",
+          itemListElement: items.map((name, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            name,
+          })),
+        }
+      : undefined;
+  return jsonLdScript({
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: productName,
+    description,
+    review: {
+      "@type": "Review",
+      name: reviewTitle,
+      inLanguage: "ja",
+      author: {
+        "@type": "Person",
+        name: author.handle,
+        url: `${base}${author.profilePath}`,
+      },
+      publisher: {
+        "@type": "Organization",
+        name: siteName,
+        url: base,
+      },
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue,
+        bestRating: "5",
+        worstRating: "1",
+      },
+      positiveNotes: notes(pros),
+      negativeNotes: notes(cons),
+    },
+  });
+}
+
 export function ToolJsonLd({ slug }: { slug: string }) {
   const tool = tools.find((t) => t.slug === slug);
   if (!tool) return null;

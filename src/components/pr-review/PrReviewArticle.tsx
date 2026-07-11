@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { PrReviewJsonLd } from "@/lib/ld";
 
 /* =======================================================================
    PR記事 共通テンプレート（単体レビュー型）
@@ -9,6 +10,8 @@ import type { ReactNode } from "react";
    ・Server Component のまま（onClick 等のイベントハンドラは使わない）。
      metadata は同階層の layout.tsx に置くこと。
    ・preview を渡すと広告枠・任意バナーの「枠」を可視化する（/pr-preview 用）。
+   ・本番描画時は Product + Review の JSON-LD（星・長所短所リッチリザルト対応）を
+     自動出力する（FAQ の JSON-LD は従来どおり src/lib/faqs.ts → layout.tsx 経由）。
    ======================================================================= */
 
 // ---- デザイントークン -----------------------------------------------------
@@ -82,6 +85,10 @@ export type PrReviewData = {
   heroBannerMobile?: BannerAd;
   /** CTA直下に出す安心材料の一言。例: "30日間返金保証つき・登録は最短2分" */
   ctaNote?: string;
+  /** 結論カード直後のCTAボタン文言（任意）。既定は安全側の「公式サイトで詳しく見る」。
+      「今すぐ無料で試してみる」等の"無料"文言は、無料お試しが実在する商品でだけ
+      明示的に指定すること（優良誤認・景表法対策） */
+  secondaryCtaLabel?: string;
 
   // --- 各セクション ---
   /** ヒーロー直下のスペックカード（5枚想定） */
@@ -131,8 +138,13 @@ function StarRating({ value, className }: { value: number; className?: string })
   );
 }
 
-/** A8等のアフィリエイト画像バナー（クリックリンク＋成果計測ピクセル）を原寸表示 */
-function BannerAdImage({ ad }: { ad: BannerAd }) {
+/** A8等のアフィリエイト画像バナー（クリックリンク＋成果計測ピクセル）を原寸表示。
+    lazy=true だと画像・計測ピクセルとも loading="lazy" になり、
+    display:none で隠れている側（PC/SP のレスポンシブ切替の非表示側）は
+    読み込まれない → 無駄なダウンロードとインプレッション二重計上を防ぐ。
+    ピクセルはバナー左上に 1×1 透明で重ねる（lazy 判定に表示位置が必要なため
+    画面外 -9999px には逃さない） */
+function BannerAdImage({ ad, lazy = false }: { ad: BannerAd; lazy?: boolean }) {
   return (
     <span className="relative inline-block">
       <a
@@ -147,6 +159,8 @@ function BannerAdImage({ ad }: { ad: BannerAd }) {
           alt={ad.alt ?? ""}
           width={ad.width}
           height={ad.height}
+          loading={lazy ? "lazy" : undefined}
+          decoding="async"
           className="h-auto max-w-full rounded-lg"
         />
       </a>
@@ -158,7 +172,8 @@ function BannerAdImage({ ad }: { ad: BannerAd }) {
           height={1}
           alt=""
           aria-hidden="true"
-          style={{ position: "absolute", left: "-9999px", width: 1, height: 1 }}
+          loading={lazy ? "lazy" : undefined}
+          style={{ position: "absolute", top: 0, left: 0, width: 1, height: 1, opacity: 0, pointerEvents: "none" }}
         />
       )}
     </span>
@@ -268,7 +283,7 @@ export function PrReviewArticle({
 
   // 目次（存在するセクションだけ並べる）
   const toc = [
-    data.scoreBreakdown && { id: "review-score", label: "編集部の総合評価" },
+    data.scoreBreakdown && data.scoreBreakdown.length > 0 && { id: "review-score", label: "編集部の総合評価" },
     { id: "overview", label: `${productName} 基本スペック早見表` },
     { id: "features", label: "特徴" },
     { id: "pros", label: "メリット" },
@@ -281,6 +296,17 @@ export function PrReviewArticle({
 
   return (
     <div className="bg-white text-[#1f2937]" style={{ fontSize: 17, lineHeight: 1.9 }}>
+      {/* Product + Review 構造化データ（星・長所短所リッチリザルト対応）。プレビューでは出さない */}
+      {!preview && (
+        <PrReviewJsonLd
+          productName={productName}
+          reviewTitle={data.titleAccent ? `${data.title} ${data.titleAccent}` : data.title}
+          description={data.lead}
+          ratingValue={data.rating.score}
+          pros={data.pros.map((p) => p.title)}
+          cons={data.cons.map((c) => c.title)}
+        />
+      )}
       <div className="mx-auto w-full max-w-[1100px] px-5 py-10 sm:px-6">
         <article className="mx-auto w-full max-w-[800px]">
 
@@ -338,12 +364,14 @@ export function PrReviewArticle({
             {data.heroBanner ? (
               <div className="mt-6 flex justify-center">
                 {data.heroBannerMobile ? (
+                  /* PC/SP 併用時は lazy にして、display:none で隠れている側の
+                     画像・計測ピクセルを読み込まない（二重計上防止） */
                   <>
                     <span className="sm:hidden">
-                      <BannerAdImage ad={data.heroBannerMobile} />
+                      <BannerAdImage ad={data.heroBannerMobile} lazy />
                     </span>
                     <span className="hidden sm:inline-block">
-                      <BannerAdImage ad={data.heroBanner} />
+                      <BannerAdImage ad={data.heroBanner} lazy />
                     </span>
                   </>
                 ) : (
@@ -416,8 +444,8 @@ export function PrReviewArticle({
             </a>
           </section>
 
-          {/* CTA（結論カード直後） */}
-          <Cta href={affiliateUrl} label="今すぐ無料で試してみる" className="mt-6" />
+          {/* CTA（結論カード直後）。"無料"等の文言は secondaryCtaLabel で明示指定した記事だけ */}
+          <Cta href={affiliateUrl} label={data.secondaryCtaLabel ?? "公式サイトで詳しく見る"} className="mt-6" />
 
           {/* ②.5 編集部の総合評価（軸別スコア・任意） -------------------- */}
           {data.scoreBreakdown && data.scoreBreakdown.length > 0 && (
@@ -438,7 +466,7 @@ export function PrReviewArticle({
                           <span style={{ color: BLUE }}>{a.score.toFixed(1)}</span>
                         </div>
                         <div className="mt-1 h-2 overflow-hidden rounded-full bg-[#eef2ff]">
-                          <div className="h-2 rounded-full" style={{ width: `${(a.score / 5) * 100}%`, background: BLUE }} />
+                          <div className="h-2 rounded-full" style={{ width: `${Math.min(100, Math.max(0, (a.score / 5) * 100))}%`, background: BLUE }} />
                         </div>
                       </div>
                     ))}
@@ -562,10 +590,10 @@ export function PrReviewArticle({
           {/* CTA（料金プラン直後・最重要） */}
           <Cta href={affiliateUrl} label="公式サイトで申し込む" note={data.ctaNote} affiliateNote />
 
-          {/* 任意のアフィリエイトバナー（料金直後） */}
+          {/* 任意のアフィリエイトバナー（料金直後・スクロール到達時に読み込み） */}
           {data.midBanner && (
             <div className="mt-8 flex justify-center rounded-2xl border border-[#e5e7eb] bg-[#f8fafc] p-5">
-              <BannerAdImage ad={data.midBanner} />
+              <BannerAdImage ad={data.midBanner} lazy />
             </div>
           )}
 
@@ -592,7 +620,7 @@ export function PrReviewArticle({
           <div className="divide-y divide-[#e5e7eb] rounded-2xl border border-[#e5e7eb] bg-white">
             {data.faqs.map((f) => (
               <details key={f.q} className="group p-5">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-3 font-bold text-[#1f2937]">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-3 font-bold text-[#1f2937] [&::-webkit-details-marker]:hidden">
                   <span className="flex gap-2">
                     <span className="font-bold" style={{ color: BLUE }}>Q</span>
                     {f.q}

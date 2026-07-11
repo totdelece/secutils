@@ -57,6 +57,8 @@ const data: PrReviewData = {
   lead: "国内大手エックスサーバーが手がける仮想専用サーバー XServer VPS。ハイエンドCPU「AMD EPYC」とNVMe SSDを採用し、月額990円〜（36ヶ月）でゲームサーバーやWordPress、AI開発基盤まで構築できます。初期費用0円、root権限で自由にカスタマイズできる本格VPSです。",
   rating: { score: "4.4", note: "AMD EPYC × NVMe SSD の高性能VPS" },
   ctaNote: "初期費用0円・月額990円〜（36ヶ月）",
+  // 「無料VPS」(2GB/4GBの無料試用)が実在するため"無料"文言のCTAを明示指定
+  secondaryCtaLabel: "今すぐ無料で試してみる",
   heroPoints: [
     "ハイエンドCPU AMD EPYC × NVMe SSD で高性能",
     "Minecraft・Docker・WordPress などテンプレで簡単構築",
