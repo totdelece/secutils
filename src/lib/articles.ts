@@ -973,6 +973,17 @@ export const articles: Article[] = [
     affiliate: true,
   },
   {
+    slug: "proton-vpn-review",
+    category: "network",
+    title: "Proton VPNの評判は？データ無制限の無料プランと安全性を徹底検証【2026年】",
+    description:
+      "スイス発のプライバシー特化VPN「Proton VPN」をレビュー。データ通信量無制限で使える無料プラン、Securitumによる毎年のノーログ監査、100%オープンソースのアプリ、Secure Core多段接続、10台同時接続、30日間返金保証など、機能・料金・注意点を公式情報から整理します。",
+    date: "2026-07-13",
+    readingMinutes: 10,
+    relatedTools: [],
+    affiliate: true,
+  },
+  {
     slug: "virusbuster-cloud-review",
     category: "security",
     title: "ウイルスバスター クラウド レビュー - 機能・料金・特徴を解説",
