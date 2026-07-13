@@ -156,6 +156,7 @@ const related = [
   { href: "/learn/network/nordvpn-review", title: "NordVPN レビュー — 世界最大級の総合VPN", eyebrow: "Review" },
   { href: "/learn/network/expressvpn-review", title: "ExpressVPN レビュー — 安全性で選ぶVPN", eyebrow: "Review" },
   { href: "/learn/network/nordvpn-vs-expressvpn", title: "NordVPN vs ExpressVPN 比較", eyebrow: "Compare" },
+  { href: "/learn/network/vpn-comparison", title: "VPNおすすめ比較 — 主要4社どれを選ぶ？", eyebrow: "Compare" },
   { href: "/learn/network/vpn-basics", title: "VPNの仕組み — IPsec・WireGuard・プライバシー", eyebrow: "Network" },
 ];
 
