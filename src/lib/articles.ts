@@ -200,7 +200,7 @@ const articleSeo: Record<string, ArticleSeo> = {
   "conoha-wing-review": {
     title: "ConoHa WINGの評判は？料金・速度・スペックを徹底検証【2026年】",
     description:
-      "GMO運営の高速レンタルサーバー「ConoHa WING」をレビュー。LiteSpeed×WEXAL®の速度、WINGパック通常月額1,331円〜（長期契約＋キャンペーンで実質678円〜）、初期費用0円・独自ドメイン2つ永年無料・自動バックアップ無料・転送量無制限を公式情報から整理します。",
+      "GMO運営の高速レンタルサーバー「ConoHa WING」をレビュー。LiteSpeed×WEXAL®の速度、通常月額1,451円〜（長期契約＋キャンペーンで659円〜の例）、初期費用0円・独自ドメイン2つ永年無料・自動バックアップ無料・転送量無制限を公式情報から整理します。",
   },
   "xserver-review": {
     title: "エックスサーバーの評判は？料金・速度・スペックを徹底検証【2026年】",
@@ -210,7 +210,7 @@ const articleSeo: Record<string, ArticleSeo> = {
   "shin-rental-server-review": {
     title: "シンレンタルサーバーの評判は？料金・速度・スペックを徹底検証【2026年】",
     description:
-      "エックスサーバーが運営する新世代レンタルサーバー「シンレンタルサーバー」を解説。NVMe SSDの高速性、実質月額539円〜の料金、独自ドメイン永年無料、10日間の無料お試しといった特徴を、公式スペックをもとに整理します。",
+      "エックスサーバーが運営する新世代レンタルサーバー「シンレンタルサーバー」を解説。NVMe SSDの高速性、月額1,078円〜（割引キャンペーンで862円〜の例）の料金、独自ドメイン永年無料、10日間の無料お試しといった特徴を、公式スペックをもとに整理します。",
   },
   "xserver-vps-review": {
     title: "XServer VPSの評判は？料金・スペック・使い道を徹底検証【2026年】",
@@ -676,8 +676,9 @@ export const articles: Article[] = [
     category: "network",
     title: "ConoHa WINGの評判は？料金・速度・スペックを徹底検証",
     description:
-      "GMO運営の高速レンタルサーバーの料金・スペック・特徴をまとめたレビュー。LiteSpeed×WEXAL®・WINGパック通常月額1,331円〜（長期契約＋キャンペーンで実質678円〜）・独自ドメイン2つ永年無料・自動バックアップ無料を公式情報から整理します。",
+      "GMO運営の高速レンタルサーバーの料金・スペック・特徴をまとめたレビュー。LiteSpeed×WEXAL®・通常月額1,451円〜（長期契約＋キャンペーンで659円〜の例）・独自ドメイン2つ永年無料・自動バックアップ無料を公式情報から整理します。",
     date: "2026-06-23",
+    updated: "2026-07-13",
     readingMinutes: 8,
     relatedTools: [],
     affiliate: true,
@@ -698,9 +699,9 @@ export const articles: Article[] = [
     category: "network",
     title: "シンレンタルサーバーの評判は？料金・速度・スペックを徹底検証",
     description:
-      "エックスサーバー運営の新世代レンタルサーバーの料金・スペック・特徴をまとめたレビュー。NVMe SSD・実質月額539円〜・独自ドメイン永年無料・10日間の無料お試しを公式情報から整理します。",
+      "エックスサーバー運営の新世代レンタルサーバーの料金・スペック・特徴をまとめたレビュー。NVMe SSD・月額1,078円〜（割引時862円〜の例）・独自ドメイン永年無料・10日間の無料お試しを公式情報から整理します。",
     date: "2026-06-19",
-    updated: "2026-06-30",
+    updated: "2026-07-13",
     readingMinutes: 8,
     relatedTools: [],
     affiliate: true,
@@ -969,6 +970,17 @@ export const articles: Article[] = [
       "海外赴任・留学・旅行中に日本のTVerやNetflix（日本）が「地域制限で見れない」を解決するVPNを、動画視聴特化のGlocal VPNと総合大手のNordVPN・ExpressVPNで比較。目的・料金・同時接続・サポートの違いから、あなたに合う1本を用途別に解説します。",
     date: "2026-07-08",
     readingMinutes: 11,
+    relatedTools: [],
+    affiliate: true,
+  },
+  {
+    slug: "rental-server-comparison",
+    category: "network",
+    title: "レンタルサーバーおすすめ比較 - エックスサーバー・シン・ConoHa WING・XServer VPSどれを選ぶ？【2026年】",
+    description:
+      "主要レンタルサーバー4サービス（エックスサーバー・シン・レンタルサーバー・ConoHa WING・XServer VPS）を料金・ストレージ・無料お試し・独自ドメイン特典で徹底比較。定番の安心・コスパ・高速WordPress・root権限という4つの強みから、用途別にあなたに合う1台を解説します。",
+    date: "2026-07-13",
+    readingMinutes: 12,
     relatedTools: [],
     affiliate: true,
   },

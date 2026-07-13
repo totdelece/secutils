@@ -982,6 +982,10 @@ function References() {
 
 function RelatedLinks() {
   const links = [
+    {
+      href: "/learn/network/rental-server-comparison",
+      title: "レンタルサーバーおすすめ比較（4サービス）",
+    },
     { href: "/learn/network/dns-basics", title: "DNSの仕組み" },
     { href: "/learn/network/https-tls", title: "HTTPSとTLS" },
     {
