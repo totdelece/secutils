@@ -1039,6 +1039,17 @@ export const articles: Article[] = [
     relatedTools: [],
     affiliate: true,
   },
+  {
+    slug: "shin-vs-xserver",
+    category: "network",
+    title: "シン・レンタルサーバー vs エックスサーバー 比較2026 - 同じ会社の2つ、どっちを選ぶ？",
+    description:
+      "エックスサーバー株式会社が運営する2つのレンタルサーバー「シン・レンタルサーバー」と「エックスサーバー」を、料金・割引方式・ストレージ容量・独自ドメイン特典・実績で徹底比較。王道の安心感か、新世代のコスパ・大容量か。用途別の選び方を解説します。",
+    date: "2026-07-14",
+    readingMinutes: 12,
+    relatedTools: [],
+    affiliate: true,
+  },
 ];
 
 export function getArticle(
