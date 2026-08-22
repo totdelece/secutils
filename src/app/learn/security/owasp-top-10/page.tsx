@@ -63,6 +63,9 @@ export default function Page() {
       <p>
         本サイトを作りながら実感したのは、<strong>セキュリティツール系のサイトは「ユーザーが入力した値そのものが攻撃用の文字列になり得る」</strong>点で一般的な Web サイトと少し事情が違うということです。JSON 整形ツールや Regex テスターのように入力をそのまま画面に表示するツールでは、「自分専用のツールならそこまで気にしなくても」と思いかけたこともありましたが、公開サイトである以上は<strong>入力値を HTML として解釈させない・必要に応じてエスケープする</strong>ことを、機能を1つ作るたびに意識するようになりました。
       </p>
+      <p>
+        実際に <code>{"<script>alert(...)</script>"}</code> のような文字列を各ツールの入力欄に試しに入れてみて、意図せず HTML として解釈されないかを確認する習慣もつきました。本サイトは React（JSX）で作られているため、変数をそのまま表示する分には基本的に自動でエスケープされますが、それを知って「React だから XSS は大丈夫」と一瞬油断しかけたこともあります。<code>dangerouslySetInnerHTML</code> のような自動エスケープを外す仕組みを使えば話は別ですし、外部の HTML を扱う場面では別途注意が必要です。<strong>「フレームワークがどこまで守ってくれて、どこから先は自分の責任か」</strong>を線引きして意識するようになったのは、A03 を実際に自分のサイトに当てはめて考えた結果です。
+      </p>
       <p className="text-sm">
         関連: <Link href="/learn/security/xss">XSS の基礎と防御</Link> · <Link href="/learn/security/sql-injection">SQL インジェクション</Link>
       </p>
@@ -94,7 +97,7 @@ export default function Page() {
         <strong>対策の要点</strong>: <strong>「最小権限」「不要なものは無効化」</strong>。Infrastructure as Code（Terraform 等）で設定を版管理し、定期スキャンで逸脱検出。本サイト自身も securityheaders.com で A 評価を維持しています。
       </p>
       <p>
-        実際に CSP などのセキュリティヘッダーを自分で設定してみると、<strong>「厳しくすればするほど安全」という単純な話ではない</strong>と感じます。本サイトも現状は CSP で <code>unsafe-inline</code> を許容して A 評価にとどめており、A+ 相当にするには nonce/hash 方式へ切り替える必要がありますが、それは静的化のメリットとのトレードオフです。セキュリティ設定は<strong>サイトの機能や外部サービスとの兼ね合い</strong>を見ながら決めるものだと、手を動かして初めて実感しました。
+        実際に CSP などのセキュリティヘッダーを自分で設定してみると、<strong>「厳しくすればするほど安全」という単純な話ではない</strong>と感じます。本サイトも現状は CSP で <code>unsafe-inline</code> を許容して A 評価にとどめており、A+ 相当にするには nonce/hash 方式へ切り替える必要がありますが、それは静的化のメリットとのトレードオフです。セキュリティ設定は<strong>サイトの機能や外部サービスとの兼ね合い</strong>を見ながら決めるものだと、手を動かして初めて実感しました。実際に一度厳しめの CSP を試して外部スクリプトの読み込みがブロックされ、ブラウザのコンソールに違反エラーが並んだこともあります。「セキュリティを強くしただけなのにサイトが壊れるのか」と感じたその経緯は、<Link href="/learn/security/http-security-headers">HTTP セキュリティヘッダー詳解</Link> の方に詳しくまとめています。
       </p>
       <p className="text-sm">
         関連: <Link href="/learn/security/http-security-headers">HTTP セキュリティヘッダー詳解</Link> · <Link href="/learn/security/clickjacking">クリックジャッキング</Link> · <Link href="/tools/security-headers">Security Headers Analyzer（採点ツール）</Link>

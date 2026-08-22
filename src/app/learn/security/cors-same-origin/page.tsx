@@ -212,6 +212,9 @@ Access-Control-Allow-Credentials: true`}</code></pre>
       <p>
         <code>Access-Control-Allow-Origin: *</code> も実際に試したことがあります。「CORS エラーを消したい」というだけの動機で設定したところ、それで動くようになり、一瞬「解決した」と思いました。しかし調べていくうちに、認証情報を含むリクエストでは <code>*</code> が使えないこと、そもそも「どこからのアクセスでも許可する」設定なので認証が必要な API には使えないことが分かりました。それ以来、CORS は<strong>「エラーを消すための設定」ではなく「どのオリジンにどこまでアクセスを許可するかを決める仕組み」</strong>だと考えるようになりました。
       </p>
+      <p>
+        このとき遭遇した「<code>*</code> だと動かないケースがある」という制約は、後述する<strong>credentials（Cookie 付きリクエスト）</strong>の項目で説明している <code>Access-Control-Allow-Credentials: true</code> と <code>Access-Control-Allow-Origin: *</code> の併用不可、そのものでした。当時は仕様を知らずに手探りで試していましたが、後から仕組みを理解して「あのとき動かなかったのはこれだったのか」とつながりました。
+      </p>
 
       <h2>よくある罠</h2>
 
