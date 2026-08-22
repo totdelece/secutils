@@ -354,7 +354,8 @@ export const articles: Article[] = [
     description:
       "文字数だけではなく、エントロピー、総当たり時間、パスフレーズの考え方から安全なパスワードを説明します。",
     date: "2026-05-02",
-    readingMinutes: 5,
+    updated: "2026-08-22",
+    readingMinutes: 6,
     relatedTools: ["password-generator"],
   },
   {
@@ -386,7 +387,8 @@ export const articles: Article[] = [
     description:
       "文字列連結が危険な理由、プレースホルダ、ORM利用時の注意点、Blind SQLi の考え方を解説します。",
     date: "2026-05-08",
-    readingMinutes: 7,
+    updated: "2026-08-22",
+    readingMinutes: 8,
     relatedTools: [],
   },
   {
@@ -495,7 +497,8 @@ export const articles: Article[] = [
     description:
       "/24 の意味、サブネットマスク、ホスト数、/31 の扱いなどをネットワーク初学者向けに解説します。",
     date: "2026-05-02",
-    readingMinutes: 5,
+    updated: "2026-08-22",
+    readingMinutes: 6,
     relatedTools: ["cidr-calculator"],
   },
   {
@@ -515,7 +518,8 @@ export const articles: Article[] = [
     description:
       "ブラウザにURLを入力してからIPアドレスが見つかるまでを、レコード種別とキャッシュ込みで追います。",
     date: "2026-05-02",
-    readingMinutes: 7,
+    updated: "2026-08-22",
+    readingMinutes: 8,
     relatedTools: [],
   },
   {
@@ -595,7 +599,8 @@ export const articles: Article[] = [
     description:
       "IPsec、OpenVPN、WireGuard、リモートアクセス、プライバシー面の誤解を整理します。",
     date: "2026-05-03",
-    readingMinutes: 7,
+    updated: "2026-08-22",
+    readingMinutes: 8,
     relatedTools: [],
   },
   {
@@ -605,7 +610,8 @@ export const articles: Article[] = [
     description:
       "アドレス長、表記、SLAAC、NDP、デュアルスタック、NAT不要という設計思想を解説します。",
     date: "2026-05-03",
-    readingMinutes: 6,
+    updated: "2026-08-22",
+    readingMinutes: 7,
     relatedTools: ["cidr-calculator"],
   },
   {
@@ -615,7 +621,8 @@ export const articles: Article[] = [
     description:
       "ステートレス、ステートフル、L7、WAF、クラウドのセキュリティグループまで整理します。",
     date: "2026-05-03",
-    readingMinutes: 7,
+    updated: "2026-08-22",
+    readingMinutes: 8,
     relatedTools: [],
   },
   {
@@ -748,7 +755,8 @@ export const articles: Article[] = [
     description:
       "SSRFの仕組みと典型攻撃、AWS IMDS (169.254.169.254) を狙うクラウドAPI悪用、Capital One 1億件流出事件、許可リスト方式・IMDSv2・SSRFガード設計を日本語で解説します。",
     date: "2026-05-27",
-    readingMinutes: 10,
+    updated: "2026-08-22",
+    readingMinutes: 11,
     relatedTools: ["cidr-calculator"],
   },
   {
@@ -758,7 +766,8 @@ export const articles: Article[] = [
     description:
       "パストラバーサル（ディレクトリトラバーサル）の仕組み、../ や URLエンコードを使った検査回避、Null Byte挿入、ZipSlip、防御策としての正規化後の許可リスト・抽象化APIを解説します。",
     date: "2026-05-27",
-    readingMinutes: 9,
+    updated: "2026-08-22",
+    readingMinutes: 10,
     relatedTools: ["url-encoder"],
   },
   {
@@ -889,7 +898,8 @@ export const articles: Article[] = [
     description:
       "情報処理安全確保支援士・CISSP・CompTIA Security+・CEH・OSCP・AWS Security Specialtyなど主要セキュリティ資格を難易度・費用・実務経験要件・キャリアへの影響で比較します。",
     date: "2026-06-01",
-    readingMinutes: 13,
+    updated: "2026-08-22",
+    readingMinutes: 14,
     relatedTools: [],
   },
   {
