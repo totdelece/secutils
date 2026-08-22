@@ -364,7 +364,8 @@ export const articles: Article[] = [
     description:
       "Reflected / Stored / DOM XSS の違い、出力エスケープ、CSP、危険な実装パターンを整理します。",
     date: "2026-05-08",
-    readingMinutes: 8,
+    updated: "2026-08-22",
+    readingMinutes: 9,
     relatedTools: ["html-entity"],
   },
   {
@@ -406,7 +407,8 @@ export const articles: Article[] = [
     description:
       "多要素認証の方式ごとの強み、フィッシング耐性、復旧手段を比較して選び方を整理します。",
     date: "2026-05-08",
-    readingMinutes: 7,
+    updated: "2026-08-22",
+    readingMinutes: 8,
     relatedTools: ["totp"],
   },
   {
@@ -416,7 +418,8 @@ export const articles: Article[] = [
     description:
       "平文保存が危険な理由、salt、pepper、bcrypt / scrypt / Argon2 の位置づけを説明します。",
     date: "2026-05-08",
-    readingMinutes: 7,
+    updated: "2026-08-22",
+    readingMinutes: 8,
     relatedTools: ["bcrypt", "hash-generator"],
   },
   {
@@ -456,7 +459,8 @@ export const articles: Article[] = [
     description:
       "認可と認証の違い、Authorization Code + PKCE、id_token と access_token の役割を説明します。",
     date: "2026-05-08",
-    readingMinutes: 8,
+    updated: "2026-08-22",
+    readingMinutes: 9,
     relatedTools: ["jwt-decoder"],
   },
   {
@@ -466,7 +470,8 @@ export const articles: Article[] = [
     description:
       "CSP、HSTS、X-Frame-Options、Permissions-Policy など、ブラウザ防御に効くヘッダーを整理します。",
     date: "2026-05-08",
-    readingMinutes: 8,
+    updated: "2026-08-22",
+    readingMinutes: 9,
     relatedTools: ["security-headers", "http-status"],
   },
   {

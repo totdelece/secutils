@@ -117,6 +117,14 @@ export default function Page() {
         </p>
       </blockquote>
 
+      <h3>実体験：Security Headers Analyzer を作りながら気付いたこと</h3>
+      <p>
+        本サイトの <Link href="/tools/security-headers">Security Headers Analyzer</Link> を作る中で自サイトのヘッダーも採点していたのですが、一番苦労したのはやはり CSP でした。他のヘッダーは「このヘッダーを設定すればこの項目が改善する」という比較的分かりやすいものが多い一方、CSP はサイトで何を読み込んでいるかによって設定内容が変わるため、単純に厳しい設定を入れればいいわけではありませんでした。
+      </p>
+      <p>
+        実際に一度、厳しめの CSP を設定してみたところ、今まで普通に動いていた外部スクリプトの読み込みがブロックされてしまったことがあります。ブラウザのコンソールに CSP 違反のエラーが並び、「セキュリティを強くしただけなのにサイトが壊れるのか」と実感しました。そこから、<code>default-src</code> だけを厳しくするのではなく、<code>script-src</code>・<code>style-src</code>・<code>connect-src</code> それぞれが何を許可しているのかを理解する必要があると分かりました。セキュリティヘッダーは<strong>「チェックを全部緑にするための設定」ではなく、実際のサイト構成を理解した上で設定するもの</strong>だと、手を動かして初めて実感した部分です。
+      </p>
+
       <h2>② Strict-Transport-Security（HSTS）- HTTPS 強制</h2>
       <p>
         ブラウザに「このサイトは今後 HTTPS でしか接続するな」と命令するヘッダ。MITM 攻撃や HTTP→HTTPS リダイレクトの隙間を突く攻撃を防ぎます。
