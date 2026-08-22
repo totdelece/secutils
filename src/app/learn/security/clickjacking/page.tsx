@@ -131,6 +131,14 @@ Content-Security-Policy: frame-ancestors 'self' https://partner.example`}</code>
       <pre><code>{`Content-Security-Policy: frame-ancestors 'none'
 X-Frame-Options: DENY`}</code></pre>
 
+      <h2>実体験：Security Headers Analyzer を作って意識したこと</h2>
+      <p>
+        Security Headers Analyzer を作る中で、クリックジャッキング対策について実際に意識しました。クリックジャッキングは、単純に「悪意のあるサイトにリンクを貼られる」というイメージではなく、<strong>正規のサイトを別のページの中に透明な iframe などで埋め込んで、ユーザーが意図しない操作をしてしまう可能性がある</strong>という点が印象に残りました。
+      </p>
+      <p>
+        そこで、secutils 自体についても、自分のサイトが他のサイトから iframe として埋め込まれてしまって問題ないのかを考えるようになりました。X-Frame-Options や CSP の frame-ancestors によって、どのサイトから自分のページをフレーム内に表示できるのかを制御できることを知って、セキュリティヘッダーは単に「設定しておけばいいもの」ではなく、<strong>それぞれに具体的な攻撃シナリオがある</strong>んだと実感しました。Security Headers Analyzer を作ったことで、こうしたヘッダーを実際のサイトに設定する側の視点も持てるようになりました。
+      </p>
+
       <h2>防御3: フレームバスティング（非推奨）</h2>
       <p>
         2010年代以前は、JavaScript で自身が iframe 内かを判定して脱出する <strong>フレームバスティング</strong>（frame busting）コードがよく使われました：

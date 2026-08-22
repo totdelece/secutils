@@ -508,7 +508,8 @@ export const articles: Article[] = [
     description:
       "信頼性と速度のトレードオフ、HTTP、DNS、動画配信、QUICなど用途別の選び方を説明します。",
     date: "2026-05-02",
-    readingMinutes: 6,
+    updated: "2026-08-22",
+    readingMinutes: 7,
     relatedTools: [],
   },
   {
@@ -529,7 +530,8 @@ export const articles: Article[] = [
     description:
       "TLSハンドシェイク、証明書チェーン、HSTS、MITM対策など、HTTPSの基本を整理します。",
     date: "2026-05-02",
-    readingMinutes: 7,
+    updated: "2026-08-22",
+    readingMinutes: 8,
     relatedTools: ["hmac"],
   },
   {
@@ -549,7 +551,8 @@ export const articles: Article[] = [
     description:
       "well-known、registered、dynamic/private の違いと、80、443、22など代表的な番号を整理します。",
     date: "2026-05-02",
-    readingMinutes: 5,
+    updated: "2026-08-22",
+    readingMinutes: 6,
     relatedTools: [],
   },
   {
@@ -559,7 +562,8 @@ export const articles: Article[] = [
     description:
       "家庭用ルーターで何が起きているか、NAPT、UPnP、CGNAT、IPv6との関係を説明します。",
     date: "2026-05-02",
-    readingMinutes: 6,
+    updated: "2026-08-22",
+    readingMinutes: 7,
     relatedTools: ["cidr-calculator"],
   },
   {
@@ -569,7 +573,8 @@ export const articles: Article[] = [
     description:
       "疎通確認、TTL、経路調査、パケットロスの読み方など、ネットワーク調査の入口を説明します。",
     date: "2026-05-02",
-    readingMinutes: 6,
+    updated: "2026-08-22",
+    readingMinutes: 7,
     relatedTools: [],
   },
   {
@@ -589,7 +594,8 @@ export const articles: Article[] = [
     description:
       "Keep-Alive、多重化、Head-of-Line Blocking、QUICなど、Web通信の進化を比較します。",
     date: "2026-05-03",
-    readingMinutes: 7,
+    updated: "2026-08-22",
+    readingMinutes: 8,
     relatedTools: ["http-status"],
   },
   {
@@ -632,7 +638,8 @@ export const articles: Article[] = [
     description:
       "Discover / Offer / Request / Ack の流れ、リース、DHCPリレー、トラブルシュートを説明します。",
     date: "2026-05-03",
-    readingMinutes: 6,
+    updated: "2026-08-22",
+    readingMinutes: 7,
     relatedTools: [],
   },
   {
@@ -745,7 +752,8 @@ export const articles: Article[] = [
     description:
       "透明iframeでUIを重ねて意図しないクリックを誘発する攻撃の仕組み、likejacking/cursorjackingなどUIリドレッシング全般、X-Frame-Options と CSP frame-ancestors による防御を解説します。",
     date: "2026-05-27",
-    readingMinutes: 8,
+    updated: "2026-08-22",
+    readingMinutes: 9,
     relatedTools: ["security-headers", "cookie-parser"],
   },
   {
@@ -909,7 +917,8 @@ export const articles: Article[] = [
     description:
       "情報処理安全確保支援士（登録セキスペ）の難易度・合格率・試験形式・独学スケジュール・おすすめ参考書・午後対策を実務目線で解説します。",
     date: "2026-06-01",
-    readingMinutes: 14,
+    updated: "2026-08-22",
+    readingMinutes: 15,
     relatedTools: [],
   },
   {
@@ -929,7 +938,8 @@ export const articles: Article[] = [
     description:
       "Never Trust, Always Verify を原則とするゼロトラストセキュリティを初心者向けに解説。従来型との違い、NIST SP 800-207、代表製品、導入ステップをまとめます。",
     date: "2026-06-01",
-    readingMinutes: 12,
+    updated: "2026-08-22",
+    readingMinutes: 13,
     relatedTools: [],
   },
   {
