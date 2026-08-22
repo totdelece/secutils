@@ -180,6 +180,14 @@ function randomInt(max) {
         <code>crypto.getRandomValues</code> + <code>%</code> で済ませてしまう実装は世の中に多いですが、<strong>セキュリティ用途では bias が長期的に攻撃可能性を高める</strong>ので、ライブラリ（<code>secrets.randbelow</code>, <code>SecureRandom.uniform</code> 等）を使うか、自前で書くなら rejection sampling を理解した上で書きましょう。
       </p>
 
+      <h2>実体験：Password Generator を作って理解が変わったこと</h2>
+      <p>
+        <Link href="/tools/password-generator">Password Generator</Link> を作る前は、正直なところ「ランダムな文字列を作るなら <code>Math.random()</code> でいいんじゃないか」と思っていました。JavaScript で簡単にランダムな値を作れるので、最初はそれで十分に見えます。ただ、セキュリティ用途では<strong>「見た目がランダム」なのと「予測できない」のは別</strong>だと知りました。<code>Math.random()</code> はゲームなどの一般的な用途には使えても暗号学的に安全な乱数生成器ではないので、パスワード生成には向いていません。そこで、<code>crypto.getRandomValues()</code> のような暗号学的に安全な乱数を使う必要があると理解しました。「ランダム」という言葉にも、用途によって安全性の基準があるんだと実感した部分です。
+      </p>
+      <p>
+        modulo bias についても、知る前は「乱数を文字数で割った余りを使えば均等に選べる」と単純に考えていました。しかし元になる乱数の範囲が文字数の倍数になっていない場合、単純に <code>random % length</code> とすると一部の文字が他より少し選ばれやすくなることがあります。最初に知ったときは「そんな細かいところまで考える必要があるのか」と思いましたが、Password Generator のように「安全な乱数」を扱うツールを作るなら、こういう小さな偏りも無視できないと分かりました。それ以来、セキュリティ関連のコードでは「一見ランダムに見えるから OK」ではなく、<strong>乱数の生成方法や、その後の値の変換方法まで確認する</strong>ようになりました。
+      </p>
+
       <h2>シードの問題: そもそもエントロピーがない時</h2>
       <p>
         CSPRNG も<strong>シード（初期エントロピー）がなければ無力</strong>です。組み込み機器、起動直後の VM、コンテナの大量複製などで「OS のエントロピープールが空」になり、CSPRNG が予測可能な状態に陥ることがあります。

@@ -429,7 +429,8 @@ export const articles: Article[] = [
     description:
       "ブラウザの同一オリジン制約、プリフライト、credentials、危険なCORS設定を整理します。",
     date: "2026-05-08",
-    readingMinutes: 8,
+    updated: "2026-08-22",
+    readingMinutes: 9,
     relatedTools: [],
   },
   {
@@ -439,7 +440,8 @@ export const articles: Article[] = [
     description:
       "保存場所、失効、リフレッシュトークン、用途別の選び方を比較します。",
     date: "2026-05-08",
-    readingMinutes: 7,
+    updated: "2026-08-22",
+    readingMinutes: 8,
     relatedTools: ["jwt-decoder", "cookie-parser"],
   },
   {
@@ -449,7 +451,8 @@ export const articles: Article[] = [
     description:
       "RSA、ECDSA、Ed25519、鍵交換、署名、証明書の役割を開発者向けに整理します。",
     date: "2026-05-08",
-    readingMinutes: 8,
+    updated: "2026-08-22",
+    readingMinutes: 9,
     relatedTools: ["hmac"],
   },
   {
@@ -481,7 +484,8 @@ export const articles: Article[] = [
     description:
       "CSPRNG と Math.random の違い、modulo bias、rejection sampling を実装者視点で説明します。",
     date: "2026-05-08",
-    readingMinutes: 6,
+    updated: "2026-08-22",
+    readingMinutes: 7,
     relatedTools: ["password-generator", "uuid-generator"],
   },
   {
