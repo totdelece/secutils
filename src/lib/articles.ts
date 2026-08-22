@@ -332,7 +332,8 @@ export const articles: Article[] = [
     description:
       "国内の主要なセキュリティインシデント12件を一覧で俯瞰し、VPN未更新・委託先/グループ経由・弱い認証という繰り返し現れる侵入経路と失敗パターン、日本企業が今すぐ確認すべき対策チェックリストを事例研究として整理します。",
     date: "2026-06-13",
-    readingMinutes: 22,
+    updated: "2026-08-22",
+    readingMinutes: 23,
     relatedTools: [],
   },
   {
@@ -373,7 +374,8 @@ export const articles: Article[] = [
     description:
       "SameSite Cookie、CSRFトークン、Origin検証を中心に、ログイン済みユーザーを狙う攻撃を理解します。",
     date: "2026-05-08",
-    readingMinutes: 7,
+    updated: "2026-08-22",
+    readingMinutes: 8,
     relatedTools: ["cookie-parser"],
   },
   {
@@ -393,7 +395,8 @@ export const articles: Article[] = [
     description:
       "Webアプリの代表的なリスクを、A01からA10まで実装者が押さえるべき観点で読み解きます。",
     date: "2026-05-08",
-    readingMinutes: 9,
+    updated: "2026-08-22",
+    readingMinutes: 10,
     relatedTools: [],
   },
   {
@@ -836,7 +839,8 @@ export const articles: Article[] = [
     description:
       "npm/PyPIを狙うサプライチェーン攻撃を6類型（タイポスクワッティング・依存関係混同・slopsquatting・メンテナ乗っ取り・悪意あるインストールスクリプト・自己増殖ワーム）で体系整理。Mini Shai-HuludやTrapDoor、AIが幻覚した存在しないパッケージ名の悪用、累計120万超の悪性パッケージの実態と、lockfile・Trusted Publishing・リポジトリファイアウォール・SBOM・環境分離による防御を日本語で解説します。",
     date: "2026-05-30",
-    readingMinutes: 11,
+    updated: "2026-08-22",
+    readingMinutes: 12,
     relatedTools: [],
   },
   {

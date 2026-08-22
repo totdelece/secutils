@@ -60,6 +60,9 @@ export default function Page() {
       <p>
         <strong>対策の要点</strong>: <strong>パラメータ化クエリ（プリペアドステートメント）</strong>と<strong>出力時エスケープ</strong>。「文字列連結で組み立てない」が原則。ORM、テンプレートエンジンを通すこと。
       </p>
+      <p>
+        本サイトを作りながら実感したのは、<strong>セキュリティツール系のサイトは「ユーザーが入力した値そのものが攻撃用の文字列になり得る」</strong>点で一般的な Web サイトと少し事情が違うということです。JSON 整形ツールや Regex テスターのように入力をそのまま画面に表示するツールでは、「自分専用のツールならそこまで気にしなくても」と思いかけたこともありましたが、公開サイトである以上は<strong>入力値を HTML として解釈させない・必要に応じてエスケープする</strong>ことを、機能を1つ作るたびに意識するようになりました。
+      </p>
       <p className="text-sm">
         関連: <Link href="/learn/security/xss">XSS の基礎と防御</Link> · <Link href="/learn/security/sql-injection">SQL インジェクション</Link>
       </p>
@@ -89,6 +92,9 @@ export default function Page() {
       </ul>
       <p>
         <strong>対策の要点</strong>: <strong>「最小権限」「不要なものは無効化」</strong>。Infrastructure as Code（Terraform 等）で設定を版管理し、定期スキャンで逸脱検出。本サイト自身も securityheaders.com で A 評価を維持しています。
+      </p>
+      <p>
+        実際に CSP などのセキュリティヘッダーを自分で設定してみると、<strong>「厳しくすればするほど安全」という単純な話ではない</strong>と感じます。本サイトも現状は CSP で <code>unsafe-inline</code> を許容して A 評価にとどめており、A+ 相当にするには nonce/hash 方式へ切り替える必要がありますが、それは静的化のメリットとのトレードオフです。セキュリティ設定は<strong>サイトの機能や外部サービスとの兼ね合い</strong>を見ながら決めるものだと、手を動かして初めて実感しました。
       </p>
       <p className="text-sm">
         関連: <Link href="/learn/security/http-security-headers">HTTP セキュリティヘッダー詳解</Link> · <Link href="/learn/security/clickjacking">クリックジャッキング</Link> · <Link href="/tools/security-headers">Security Headers Analyzer（採点ツール）</Link>
