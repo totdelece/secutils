@@ -831,7 +831,8 @@ export const articles: Article[] = [
     description:
       "情報窃取マルウェアがMFAを突破ではなく迂回する仕組みを解説。Lumma/StealCが数十秒で全ブラウザのCookieと保存パスワードを盗み、攻撃者がpass-the-cookieで本人になりすます流れ、3.9億件規模の被害、ClickFix等の感染経路、ChromeのDBSC・FIDO2・短命セッション・条件付きアクセス・異常検知による多層防御を日本語で整理します。",
     date: "2026-05-30",
-    readingMinutes: 11,
+    updated: "2026-08-22",
+    readingMinutes: 12,
     relatedTools: ["cookie-parser"],
   },
   {
@@ -852,7 +853,8 @@ export const articles: Article[] = [
     description:
       "PowerShell・certutil・mshta・rundll32・MSBuildなどWindows標準ツールを悪用するLOLBins／環境寄生型（LOTL）攻撃を解説。検出の79%がマルウェア無しという実態、MITRE ATT&CK技法との対応、Flax TyphoonやTA505の実例、複数バイナリのチェイン、BYOVDによるEDR無効化、プロセス系譜・Sysmon・アプリ制御・ASR・PowerShellロギングによる検知と防御を日本語で整理します。",
     date: "2026-05-30",
-    readingMinutes: 10,
+    updated: "2026-08-22",
+    readingMinutes: 11,
     relatedTools: [],
   },
   {
@@ -862,7 +864,8 @@ export const articles: Article[] = [
     description:
       "正規のOAuthデバイスコードフローを悪用してMicrosoft Entra ID／M365アカウントを乗っ取る手口を解説。被害者本人がMFAを完了するためMFAが効かない仕組み、リフレッシュトークン/PRTの悪用、ロシア系Storm-2372の標的型、PhaaS（EvilTokens）による商品化と37倍増、条件付きアクセスでのフロー遮断・ログ監視・デバイス登録検知・トークン失効による対策を日本語で整理します。",
     date: "2026-05-30",
-    readingMinutes: 9,
+    updated: "2026-08-22",
+    readingMinutes: 10,
     relatedTools: [],
   },
   {
@@ -894,7 +897,8 @@ export const articles: Article[] = [
     description:
       "2026年のランサムウェアの実態を実務者向けに解説。約35%が暗号化を伴わない「データ窃取のみの恐喝」へ移行した理由、RaaSと初期アクセスブローカー（IAB）の分業、Qilin・Cl0p・Akiraの動き、Oracle EBS大量悪用やBYOVDによるEDR無効化、二重〜四重恐喝の進化、攻撃ライフサイクル各段で効く防御を日本語で整理します。",
     date: "2026-05-30",
-    readingMinutes: 11,
+    updated: "2026-08-22",
+    readingMinutes: 12,
     relatedTools: [],
   },
   {
@@ -904,7 +908,8 @@ export const articles: Article[] = [
     description:
       "OWASP LLM Top 10第1位のプロンプトインジェクション（LLM01）を体系解説。LLMが指示とデータを区別できない根本原因、直接（ジェイルブレイク）と間接（外部コンテンツ由来・2026年は55%超）の違い、EchoLeak（CVE-2025-32711）やMCP経由のゼロクリックRCEなどの実例、危険な組み合わせLethal Trifecta、Spotlighting・ガードレール・CaMeL・最小権限・人間による承認といった多層防御とその限界を日本語で整理します。",
     date: "2026-05-30",
-    readingMinutes: 11,
+    updated: "2026-08-22",
+    readingMinutes: 12,
     relatedTools: [],
   },
   {
