@@ -541,7 +541,8 @@ export const articles: Article[] = [
     description:
       "L1からL7までの役割、カプセル化、代表プロトコル、障害切り分けへの使い方を説明します。",
     date: "2026-05-02",
-    readingMinutes: 6,
+    updated: "2026-08-22",
+    readingMinutes: 7,
     relatedTools: [],
   },
   {
@@ -584,7 +585,8 @@ export const articles: Article[] = [
     description:
       "L2でパケットが届く仕組み、ARP Request/Reply、ARP spoofing、IPv6のNDPとの違いを整理します。",
     date: "2026-05-03",
-    readingMinutes: 6,
+    updated: "2026-08-22",
+    readingMinutes: 7,
     relatedTools: [],
   },
   {
@@ -785,7 +787,8 @@ export const articles: Article[] = [
     description:
       "ブラウザに突然表示される偽のウイルス警告や、Microsoftをかたる電話で遠隔操作ソフトをインストールさせる「サポート詐欺」の手口。IPA・警察庁の被害統計、画面が閉じられない時の具体的対処、AnyDesk/Quick Assistを使った詐取の流れ、遠隔操作を許してしまった後の対応を日本語で解説します。",
     date: "2026-05-31",
-    readingMinutes: 9,
+    updated: "2026-08-22",
+    readingMinutes: 10,
     relatedTools: [],
   },
   {
@@ -795,7 +798,8 @@ export const articles: Article[] = [
     description:
       "AIエージェントの標準プロトコルMCPの攻撃面を体系整理。ツール説明文に指示を仕込むTool Poisoning、承認後に定義を差し替えるRug Pull（CVE-2025-54136）、偽MCPサーバのサプライチェーン、過剰権限トークン、MCP Inspector RCEなど2025〜26年の実例と、最小権限・人間による承認・サーバ検証の防御を日本語で解説します。",
     date: "2026-05-30",
-    readingMinutes: 11,
+    updated: "2026-08-22",
+    readingMinutes: 12,
     relatedTools: [],
   },
   {
@@ -805,7 +809,8 @@ export const articles: Article[] = [
     description:
       "偽CAPTCHA・偽エラーでWin+RやPowerShellにコマンドを貼り付け実行させ、Lumma/StealCなどを自分で感染させるClickFix攻撃を解説。Run無効化を回避するFileFix亜種、700サイト改ざん（CVE-2026-26980）などの実例、利用者教育・GPO・ASR・ログ監視による多層防御を日本語で整理します。",
     date: "2026-05-30",
-    readingMinutes: 11,
+    updated: "2026-08-22",
+    readingMinutes: 12,
     relatedTools: [],
   },
   {
@@ -815,7 +820,8 @@ export const articles: Article[] = [
     description:
       "Perplexity CometやChatGPT AtlasなどのAIブラウザを狙う間接プロンプトインジェクションを解説。Webページに隠した指示でAIを操り、ログイン中のGmailや1Passwordを横断悪用してOTPを盗むBraveのPoC、Zenityのゼロクリック乗っ取り、Same-Origin Policyが無力化される理由、入力分離・操作ゲート・モード分離による対策を日本語で整理します。",
     date: "2026-05-30",
-    readingMinutes: 11,
+    updated: "2026-08-22",
+    readingMinutes: 12,
     relatedTools: [],
   },
   {
@@ -835,7 +841,8 @@ export const articles: Article[] = [
     description:
       "2026年Q1に四半期で146%増と最速で伸びるQuishing（QRコードフィッシング）を解説。URLをQR画像に隠してメールフィルタを回避し利用者を管理外スマホへ誘導する仕組み、ASCIIアートQRやPDF添付などの検知回避、AitMによるセッション窃取とMFA回避、北朝鮮Kimsukyの事例、Passkey・画像対応メールセキュリティ・教育による多層防御を日本語で整理します。",
     date: "2026-05-30",
-    readingMinutes: 10,
+    updated: "2026-08-22",
+    readingMinutes: 11,
     relatedTools: ["qr-code"],
   },
   {
@@ -876,7 +883,8 @@ export const articles: Article[] = [
     description:
       "攻撃者の実際の振る舞いを体系化した知識ベース MITRE ATT&CK を入門解説。Tactics/Techniques/Proceduresの3層構造、TxxxxのID体系、14のEnterprise戦術、Groups/Software/Campaigns、v18のDetection Strategies刷新やv19（2026年4月）の変更、検知エンジニアリング・脅威インテリジェンス・カバレッジ可視化での使い方、Cyber Kill Chainとの違いを日本語で整理します。",
     date: "2026-05-30",
-    readingMinutes: 10,
+    updated: "2026-08-22",
+    readingMinutes: 11,
     relatedTools: [],
   },
   {
@@ -928,7 +936,8 @@ export const articles: Article[] = [
     description:
       "世界最高峰のセキュリティ資格CISSPの難易度、必要な実務経験、勉強時間、日本語試験、情報処理安全確保支援士との比較を解説します。",
     date: "2026-06-01",
-    readingMinutes: 13,
+    updated: "2026-08-22",
+    readingMinutes: 14,
     relatedTools: [],
   },
   {
@@ -949,7 +958,8 @@ export const articles: Article[] = [
     description:
       "NIST SP 800-61 に沿った検知・証拠保全・封じ込め・根絶・復旧・再発防止の各フェーズ、ランサムウェア対応の注意点、報告書テンプレートを実務目線で整理します。",
     date: "2026-06-01",
-    readingMinutes: 16,
+    updated: "2026-08-22",
+    readingMinutes: 17,
     relatedTools: [],
   },
   {
