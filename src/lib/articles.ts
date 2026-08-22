@@ -340,9 +340,10 @@ export const articles: Article[] = [
     category: "security",
     title: "JWT のよくあるセキュリティ問題",
     description:
-      "alg=none、アルゴリズム混同、弱い秘密鍵、payloadの過信など、JWTで起きがちな事故を実務目線で整理します。",
+      "alg=none、アルゴリズム混同、弱い秘密鍵、payloadの過信など、JWTで起きがちな事故を実務目線で整理します。JWT Decoderで実際に確認できる検証用サンプルトークン付き。",
     date: "2026-05-02",
-    readingMinutes: 6,
+    updated: "2026-08-22",
+    readingMinutes: 8,
     relatedTools: ["jwt-decoder", "hmac"],
   },
   {

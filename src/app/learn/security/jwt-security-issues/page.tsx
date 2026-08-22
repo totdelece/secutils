@@ -134,6 +134,31 @@ jwt.verify(token, secret);
 // 修正: 受け入れる alg を明示（none は決して許可しない）
 jwt.verify(token, secret, { algorithms: ['HS256'] });`}</code></pre>
 
+      <h2>実例で試す：<code>alg=none</code> 攻撃を JWT Decoder で見抜く</h2>
+      <p>
+        理屈だけだと実感が湧きにくいので、実際に手を動かして確認してみます。以下の2つのトークンはこの記事のために生成した検証用サンプルです（架空のユーザーID・有効期限は2030年に設定）。<Link href="/tools/jwt-decoder">JWT Decoder</Link>{" "}
+        に貼り付けて試してみてください。
+      </p>
+      <p>
+        <strong>① 正規に発行されたトークン（HS256・シークレットで署名済み）</strong>
+      </p>
+      <pre><code>{`eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1XzEwMjM0Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE4OTM0NTYwMDAsImV4cCI6MTg5MzQ1OTYwMH0.fDE-ziB9wAzwFE2ckxD24Nd64qhyKKoLptXhL_GZEok`}</code></pre>
+      <p>
+        シークレットキー欄に <code>tutorial-demo-secret-do-not-reuse</code> と入力して「署名を検証」を押すと、<strong>✓ 署名は有効です</strong>{" "}
+        と表示されます。<code>role: &quot;user&quot;</code> を持つ、ごく普通の一般ユーザートークンです。
+      </p>
+      <p>
+        <strong>② 攻撃者が <code>alg</code> を <code>none</code> に書き換え、<code>role</code> を <code>admin</code> に昇格させた偽造トークン</strong>
+      </p>
+      <pre><code>{`eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJzdWIiOiJ1XzEwMjM0Iiwicm9sZSI6ImFkbWluIiwiaWF0IjoxODkzNDU2MDAwLCJleHAiOjE4OTM0NTk2MDB9.`}</code></pre>
+      <p>
+        これを貼り付けると、Header は <code>alg: &quot;none&quot;</code>、Payload は <code>role: &quot;admin&quot;</code> と、署名部分が空のまま普通にデコードされてしまいます。ただし「署名検証」欄は<strong>「未対応・検証不可」</strong>と表示され、検証ボタン自体が使えなくなります（本ツールは <code>alg=none</code> を意図的に非サポートにしているため）。
+      </p>
+      <p>
+        <strong>この「検証不可」という表示こそが赤信号です。</strong>{" "}
+        もし自分が書いた検証コードがこの偽造トークンを何のエラーも出さずに受け入れてしまうなら、それは問題1で説明した <code>alg=none</code> 脆弱性がまさに自分のシステムに存在する証拠になります。手元の認証基盤が発行したトークンだけでなく、<code>alg</code> を <code>none</code> に書き換えた版も一度作って、自分の検証コードに通してみることをおすすめします。
+      </p>
+
       <h2>問題2: アルゴリズム混同（RS256 → HS256）</h2>
       <p>
         RS256（RSA 公開鍵署名）で運用しているサービスに対し、攻撃者が <code>alg</code> を <code>HS256</code>（HMAC）に書き換え、<strong>公開鍵をそのまま HMAC の秘密鍵として使う</strong>攻撃です。多くのライブラリが「RS256 用に渡された公開鍵」を「HS256 の検証鍵」として受け入れてしまうのが問題でした。公開鍵は誰でも入手できるため、攻撃者は任意のトークンを偽造できます。
@@ -295,6 +320,13 @@ const payload = jwt.verify(token, key, {
           </a>
         </li>
       </ul>
+
+      <h2>編集部の検証メモ</h2>
+      <p>
+        本記事のサンプルトークンは Node.js の <code>crypto</code> モジュールで実際に HMAC-SHA256 署名を生成し、公開前に{" "}
+        <Link href="/tools/jwt-decoder">JWT Decoder</Link>{" "}
+        に貼り付けて「署名が有効と表示されること」「<code>alg=none</code> トークンが検証不可と表示されること」の両方を確認しています。脆弱なコード例・修正後のコード例は、本文で参照した RFC 7519 / RFC 8725 と OWASP Cheat Sheet の記載と突き合わせたうえで掲載しています。
+      </p>
 
       <h2>おわりに</h2>
       <p>
