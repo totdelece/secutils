@@ -110,7 +110,8 @@ export function getRelatedTools(slug: string): WorkspaceTool[] {
         .filter((tool) => tool.category === current.category && tool.slug !== slug)
         .map((tool) => tool.slug)
     : [];
-  return resolveTools([...explicit, ...fallback]).slice(0, 5);
+  const uniqueSlugs = Array.from(new Set([...explicit, ...fallback]));
+  return resolveTools(uniqueSlugs).slice(0, 5);
 }
 
 // ツール → 解説記事のフォールバック。明示の relatedTools が無い／少ない

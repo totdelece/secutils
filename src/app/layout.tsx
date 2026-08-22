@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { getBaseUrl, siteDescription, siteName, siteTagline } from "@/lib/site";
@@ -73,11 +74,6 @@ export default function RootLayout({
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1275613569762995"
-          crossOrigin="anonymous"
-        />
       </head>
       <body className="flex min-h-full flex-col">
         <SiteJsonLd />
@@ -86,6 +82,12 @@ export default function RootLayout({
         <SiteFooter toolCount={tools.length} articleCount={indexedArticleCount} />
         <CommandPalette />
         <Analytics />
+        <Script
+          async
+          strategy="afterInteractive"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1275613569762995"
+          crossOrigin="anonymous"
+        />
       </body>
     </html>
   );
