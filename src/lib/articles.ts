@@ -26,6 +26,12 @@ type ArticleSeo = {
 };
 
 const articleSeo: Record<string, ArticleSeo> = {
+  "personal-data-breach-report": {
+    title:
+      "個人情報漏えいの報告義務をわかりやすく解説 - 個人情報保護委員会への速報・確報の期限と本人通知",
+    description:
+      "個人データが漏えいしたときの個人情報保護委員会への報告義務を、施行規則7条の報告対象事態4類型、速報（速やかに＝概ね3〜5日以内）と確報（30日以内・不正目的は60日以内）の期限、確報で必要な9つの報告事項、本人通知の要否、委託先が委託元へ通知した場合の免除規定まで実務目線で整理します。GDPRの72時間ルールとの混同にも注意点をまとめました。",
+  },
   "ipa-10-major-threats-2026": {
     title:
       "情報セキュリティ10大脅威 2026（IPA）全順位と対策 - 初選出「AIの利用をめぐるサイバーリスク」を実務目線で解説",
@@ -331,6 +337,16 @@ const articleSeo: Record<string, ArticleSeo> = {
 };
 
 export const articles: Article[] = [
+  {
+    slug: "personal-data-breach-report",
+    category: "security",
+    title: "個人情報が漏えいしたときの報告義務 - 速報・確報と本人通知の実務",
+    description:
+      "個人データの漏えいで個人情報保護委員会への報告が必要になるのはどんな場合か、速報・確報の期限、確報で書く9項目、本人通知の要否、委託先の免除規定を整理します。よくある「72時間以内」という誤解にも触れます。",
+    date: "2026-08-28",
+    readingMinutes: 16,
+    relatedTools: [],
+  },
   {
     slug: "ipa-10-major-threats-2026",
     category: "security",
@@ -1249,6 +1265,7 @@ const topicSlugs: Record<TopicId, string[]> = {
     "https-tls",
   ],
   threat: [
+    "personal-data-breach-report",
     "ipa-10-major-threats-2026",
     "japan-security-incidents",
     "support-scam",
