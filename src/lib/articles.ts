@@ -26,6 +26,12 @@ type ArticleSeo = {
 };
 
 const articleSeo: Record<string, ArticleSeo> = {
+  "ipa-10-major-threats-2026": {
+    title:
+      "情報セキュリティ10大脅威 2026（IPA）全順位と対策 - 初選出「AIの利用をめぐるサイバーリスク」を実務目線で解説",
+    description:
+      "IPAが2026年1月29日に公開した「情報セキュリティ10大脅威 2026」の組織向け10位・個人向け10項目を、前年からの順位変動とあわせて整理します。3位に初選出された「AIの利用をめぐるサイバーリスク」の中身、各脅威が国内で実際にどう起きたかの事例マッピング、順位を自社の優先順位に翻訳する考え方、明日から着手できるチェックリストまで日本語でまとめます。",
+  },
   "japan-security-incidents": {
     title:
       "日本の主要セキュリティインシデント事例まとめ（2020-2025）- 共通する侵入経路と教訓",
@@ -325,6 +331,16 @@ const articleSeo: Record<string, ArticleSeo> = {
 };
 
 export const articles: Article[] = [
+  {
+    slug: "ipa-10-major-threats-2026",
+    category: "security",
+    title: "情報セキュリティ10大脅威 2026 - IPAの順位を自社の優先順位に翻訳する",
+    description:
+      "IPAの「情報セキュリティ10大脅威 2026」を、順位の丸写しではなく実務の優先順位に落とし込むために読み解きます。前年からの変動、初選出された3位「AIの利用をめぐるサイバーリスク」の中身、各脅威に対応する国内事例、着手順の決め方まで整理します。",
+    date: "2026-08-28",
+    readingMinutes: 18,
+    relatedTools: ["security-headers", "password-generator"],
+  },
   {
     slug: "japan-security-incidents",
     category: "security",
@@ -1233,6 +1249,7 @@ const topicSlugs: Record<TopicId, string[]> = {
     "https-tls",
   ],
   threat: [
+    "ipa-10-major-threats-2026",
     "japan-security-incidents",
     "support-scam",
     "clickfix",

@@ -294,6 +294,7 @@ export default function Page() {
 
       <h2>関連する解説</h2>
       <ul>
+        <li><Link href="/learn/security/ipa-10-major-threats-2026">情報セキュリティ10大脅威 2026（IPA）</Link>（ここで挙げた事例が、どの脅威に対応するか）</li>
         <li><Link href="/learn/security/incident-response-guide">セキュリティインシデント対応手順</Link>（初動〜報告書）</li>
         <li><Link href="/learn/security/ransomware-2026">2026年のランサムウェア</Link>（手口の最新動向）</li>
         <li><Link href="/learn/security/supply-chain-attacks">サプライチェーン攻撃の6類型と防御</Link></li>
