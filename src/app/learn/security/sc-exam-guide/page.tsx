@@ -215,6 +215,7 @@ export default function Page() {
         <li><a href="/learn/security/xss">XSS の基本と防ぎ方</a> — 午後問題の定番テーマ</li>
         <li><a href="/learn/security/sql-injection">SQLインジェクション入門</a> — 午後で出題頻度の高い脆弱性</li>
         <li><a href="/learn/security/mfa-totp-fido2">MFA・TOTP・FIDO2・Passkey の違い</a> — 認証分野の基礎知識</li>
+        <li><a href="/learn/security/comptia-security-plus-guide">CompTIA Security+ 完全ガイド</a> — 随時受験できる国際資格。学習の区切りに</li>
         <li><a href="/learn/security/cissp-guide">CISSP難易度・合格率・勉強時間</a> — 次のステップとして</li>
       </ul>
     </ArticleLayout>

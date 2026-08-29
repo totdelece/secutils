@@ -26,6 +26,12 @@ type ArticleSeo = {
 };
 
 const articleSeo: Record<string, ArticleSeo> = {
+  "comptia-security-plus-guide": {
+    title:
+      "CompTIA Security+ 完全ガイド - 難易度・出題範囲・日本語受験と学習ロードマップ",
+    description:
+      "CompTIA Security+（SY0-701）の試験概要を実務目線で解説。最大90問90分・750点合格というスコア形式、5つの出題ドメインとその比率、2024年4月に始まった日本語試験、情報処理安全確保支援士やCISSPとの難易度比較、3年ごとの更新（50 CEU）の仕組み、平日30分から回せる学習ロードマップ、次期バージョンへの移行時期の注意点までまとめます。",
+  },
   "personal-data-breach-report": {
     title:
       "個人情報漏えいの報告義務をわかりやすく解説 - 個人情報保護委員会への速報・確報の期限と本人通知",
@@ -337,6 +343,16 @@ const articleSeo: Record<string, ArticleSeo> = {
 };
 
 export const articles: Article[] = [
+  {
+    slug: "comptia-security-plus-guide",
+    category: "security",
+    title: "CompTIA Security+ 完全ガイド - 難易度・出題範囲・日本語受験",
+    description:
+      "SY0-701 の試験形式と5つの出題ドメイン、2024年から始まった日本語受験、支援士・CISSPとの難易度比較、3年ごとの更新の仕組み、平日30分から回せる学習ロードマップを整理します。各ドメインで問われる内容は、本サイトのどの解説記事で補えるかも対応づけました。",
+    date: "2026-08-29",
+    readingMinutes: 15,
+    relatedTools: ["password-generator", "security-headers", "cidr-calculator"],
+  },
   {
     slug: "personal-data-breach-report",
     category: "security",

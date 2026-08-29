@@ -314,6 +314,7 @@ export default function Page() {
       <h2>関連記事</h2>
       <ul>
         <li><a href="/learn/security/sc-exam-guide">情報処理安全確保支援士 勉強方法・合格率</a> — 国内資格の先行ステップとして</li>
+        <li><a href="/learn/security/comptia-security-plus-guide">CompTIA Security+ 完全ガイド</a> — 実務経験が不要な入門〜中級の国際資格</li>
         <li><a href="/learn/security/owasp-top-10">OWASP Top 10 入門</a> — ドメイン8（ソフトウェア開発）に直結</li>
         <li><a href="/learn/security/mfa-totp-fido2">MFA・TOTP・FIDO2・Passkey の違い</a> — ドメイン5（IAM）の実践知識</li>
         <li><a href="/learn/security/incident-response-guide">セキュリティインシデント対応手順</a> — ドメイン7（セキュリティ運用）の実践</li>
