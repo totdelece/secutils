@@ -289,7 +289,7 @@ function CtaButton({
     <a
       href={href}
       target="_blank"
-      rel="nofollow noopener noreferrer"
+      rel="nofollow sponsored noopener noreferrer"
       className={`inline-flex w-full items-center justify-center gap-2 rounded-xl text-center font-black no-underline transition duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${variantClass} ${sizeClass}`}
     >
       <span>{children}</span>
@@ -301,7 +301,7 @@ function CtaButton({
 function BannerImage({ ad }: { ad: BannerAd }) {
   return (
     <>
-      <a href={ad.href} rel="nofollow noopener noreferrer" target="_blank" className="block transition hover:opacity-90">
+      <a href={ad.href} rel="nofollow sponsored noopener noreferrer" target="_blank" className="block transition hover:opacity-90">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={ad.src} alt={ad.alt} width={ad.width} height={ad.height} className="h-auto max-w-full rounded-md" />
       </a>
@@ -383,7 +383,7 @@ function Hero() {
                   <div className="relative flex justify-center">
                     <BannerImage ad={nordBanner300x250} />
                   </div>
-                  <a href={NORD_URL} rel="nofollow noopener noreferrer" target="_blank" className="mt-2 block text-center text-xs font-bold text-emerald-700 underline-offset-2 hover:underline">
+                  <a href={NORD_URL} rel="nofollow sponsored noopener noreferrer" target="_blank" className="mt-2 block text-center text-xs font-bold text-emerald-700 underline-offset-2 hover:underline">
                     公式サイトで詳細を見る →
                   </a>
                 </div>
@@ -392,7 +392,7 @@ function Hero() {
                   <div className="relative flex justify-center">
                     <BannerImage ad={expressBanner300x250} />
                   </div>
-                  <a href={EXPRESS_URL} rel="nofollow noopener noreferrer" target="_blank" className="mt-2 block text-center text-xs font-bold text-blue-700 underline-offset-2 hover:underline">
+                  <a href={EXPRESS_URL} rel="nofollow sponsored noopener noreferrer" target="_blank" className="mt-2 block text-center text-xs font-bold text-blue-700 underline-offset-2 hover:underline">
                     公式サイトで詳細を見る →
                   </a>
                 </div>
@@ -558,7 +558,7 @@ function NordStrengthsSection() {
               <div className="relative flex justify-center">
                 <BannerImage ad={nordBanner300x250} />
               </div>
-              <a href={NORD_URL} rel="nofollow noopener noreferrer" target="_blank" className="mt-3 block text-center text-xs font-bold text-emerald-700 underline-offset-2 hover:underline">
+              <a href={NORD_URL} rel="nofollow sponsored noopener noreferrer" target="_blank" className="mt-3 block text-center text-xs font-bold text-emerald-700 underline-offset-2 hover:underline">
                 公式サイトで詳細を見る →
               </a>
             </div>
@@ -596,7 +596,7 @@ function ExpressStrengthsSection() {
               <div className="relative flex justify-center">
                 <BannerImage ad={expressBanner300x250} />
               </div>
-              <a href={EXPRESS_URL} rel="nofollow noopener noreferrer" target="_blank" className="mt-3 block text-center text-xs font-bold text-blue-700 underline-offset-2 hover:underline">
+              <a href={EXPRESS_URL} rel="nofollow sponsored noopener noreferrer" target="_blank" className="mt-3 block text-center text-xs font-bold text-blue-700 underline-offset-2 hover:underline">
                 公式サイトで詳細を見る →
               </a>
             </div>

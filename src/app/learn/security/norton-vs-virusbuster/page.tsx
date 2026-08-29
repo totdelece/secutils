@@ -131,7 +131,7 @@ const allFaqs = [
 function BannerImage({ ad }: { ad: BannerAd }) {
   return (
     <div className="relative">
-      <a href={ad.href} rel="nofollow noopener noreferrer" target="_blank" className="block transition hover:opacity-90">
+      <a href={ad.href} rel="nofollow sponsored noopener noreferrer" target="_blank" className="block transition hover:opacity-90">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={ad.src} alt={ad.alt} width={ad.width} height={ad.height} className="h-auto max-w-full rounded-md" />
       </a>
@@ -161,7 +161,7 @@ function CtaPrimary({
     <a
       href={href}
       target="_blank"
-      rel="nofollow noopener noreferrer"
+      rel="nofollow sponsored noopener noreferrer"
       className={`flex w-full flex-col items-center justify-center rounded-xl px-6 py-4 text-white no-underline shadow-lg transition duration-200 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${colorMap[color]}`}
     >
       <span className="text-base font-black">{mainText} →</span>
@@ -188,7 +188,7 @@ function CtaOutline({
     <a
       href={href}
       target="_blank"
-      rel="nofollow noopener noreferrer"
+      rel="nofollow sponsored noopener noreferrer"
       className={`flex min-h-11 w-full items-center justify-center gap-2 rounded-xl border bg-white px-5 py-2.5 text-sm font-black no-underline transition duration-200 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${colorMap[color]}`}
     >
       {children} →

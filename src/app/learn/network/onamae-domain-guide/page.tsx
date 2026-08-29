@@ -311,7 +311,7 @@ function CtaButton({
     <a
       href={href}
       target="_blank"
-      rel="nofollow noopener noreferrer"
+      rel="nofollow sponsored noopener noreferrer"
       className={`inline-flex w-full items-center justify-center gap-2 rounded-xl text-center font-black no-underline transition duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${variantClass} ${sizeClass}`}
     >
       <span>{children}</span>
@@ -353,7 +353,7 @@ function BannerImage({ ad }: { ad: BannerAd }) {
     <>
       <a
         href={ad.href}
-        rel="nofollow noopener noreferrer"
+        rel="nofollow sponsored noopener noreferrer"
         target="_blank"
         className="block transition hover:opacity-90"
       >
@@ -471,7 +471,7 @@ function Hero() {
               </div>
               <a
                 href={ONAMAE_URL}
-                rel="nofollow noopener noreferrer"
+                rel="nofollow sponsored noopener noreferrer"
                 target="_blank"
                 className="mt-4 block text-center text-xs font-bold text-orange-600 underline-offset-2 hover:underline"
               >
@@ -561,7 +561,7 @@ function BannerCtaBand({
             </div>
             <a
               href={ad.href}
-              rel="nofollow noopener noreferrer"
+              rel="nofollow sponsored noopener noreferrer"
               target="_blank"
               className="block transition hover:opacity-90"
             >
@@ -860,7 +860,7 @@ function ServiceCardSection({ ad, tagline }: { ad: BannerAd; tagline: string }) 
         <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
           <a
             href={ad.href}
-            rel="nofollow noopener noreferrer"
+            rel="nofollow sponsored noopener noreferrer"
             target="_blank"
             className="block"
             aria-label={`お名前.com 公式サイト - ${tagline}`}
@@ -915,7 +915,7 @@ function BannerStripSection() {
       <div className="relative mx-auto w-full max-w-[728px]">
         <a
           href={banner728x90.href}
-          rel="nofollow noopener noreferrer"
+          rel="nofollow sponsored noopener noreferrer"
           target="_blank"
           className="block overflow-hidden rounded-lg transition hover:opacity-90"
         >
@@ -1025,7 +1025,7 @@ function References() {
             お名前.com 公式サイト — ドメイン取得・料金・キャンペーン情報（
             <a
               href="https://www.onamae.com/"
-              rel="nofollow noopener noreferrer"
+              rel="nofollow sponsored noopener noreferrer"
               target="_blank"
               className="text-orange-600 underline underline-offset-2 hover:text-orange-700"
             >

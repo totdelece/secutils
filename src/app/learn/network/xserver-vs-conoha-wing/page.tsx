@@ -347,7 +347,7 @@ function CtaButton({
     <a
       href={href}
       target="_blank"
-      rel="nofollow noopener noreferrer"
+      rel="nofollow sponsored noopener noreferrer"
       className={`inline-flex min-h-13 w-full items-center justify-center gap-2 rounded-lg px-5 py-3 text-center text-sm font-black no-underline transition duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${style}`}
     >
       <span>{children}</span>
@@ -825,7 +825,7 @@ function BannerSlot({
             <div key={`${title}-${ad.href}`}>
               <a
                 href={ad.href}
-                rel="nofollow noopener noreferrer"
+                rel="nofollow sponsored noopener noreferrer"
                 target="_blank"
                 className="flex min-h-32 items-center justify-center rounded-xl border border-slate-100 bg-slate-50 p-3 transition hover:border-blue-300 hover:bg-blue-50"
               >
@@ -967,7 +967,7 @@ function References() {
           独自ドメインを別管理したい場合は、
           <a
             href={XSERVER_DOMAIN_URL}
-            rel="nofollow noopener noreferrer"
+            rel="nofollow sponsored noopener noreferrer"
             target="_blank"
             className="font-bold text-blue-700 underline"
           >

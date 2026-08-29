@@ -304,7 +304,7 @@ function CtaButton({
     <a
       href={href}
       target="_blank"
-      rel="nofollow noopener noreferrer"
+      rel="nofollow sponsored noopener noreferrer"
       className={`inline-flex w-full items-center justify-center gap-2 rounded-xl text-center font-black no-underline transition duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${variantClass} ${sizeClass}`}
     >
       <span>{children}</span>
@@ -346,7 +346,7 @@ function BannerImage({ ad }: { ad: BannerAd }) {
     <>
       <a
         href={ad.href}
-        rel="nofollow noopener noreferrer"
+        rel="nofollow sponsored noopener noreferrer"
         target="_blank"
         className="block transition hover:opacity-90"
       >
@@ -463,7 +463,7 @@ function Hero() {
               </div>
               <a
                 href={VPS_URL}
-                rel="nofollow noopener noreferrer"
+                rel="nofollow sponsored noopener noreferrer"
                 target="_blank"
                 className="mt-4 block text-center text-xs font-bold text-emerald-700 underline-offset-2 hover:underline"
               >
@@ -880,7 +880,7 @@ function FinalDecision() {
             </div>
             <a
               href={VPS_URL}
-              rel="nofollow noopener noreferrer"
+              rel="nofollow sponsored noopener noreferrer"
               target="_blank"
               className="mt-4 block text-center text-xs font-bold text-emerald-700 underline-offset-2 hover:underline"
             >

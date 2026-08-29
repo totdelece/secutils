@@ -110,7 +110,7 @@ function CtaButton({
     <a
       href={href}
       target="_blank"
-      rel="nofollow noopener noreferrer"
+      rel="nofollow sponsored noopener noreferrer"
       className={`inline-flex w-full min-h-12 items-center justify-center gap-2 rounded-xl px-5 py-3 text-center text-sm font-black no-underline transition duration-200 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${variant === "solid" ? solidMap[tone] : outlineMap[tone]}`}
     >
       <span>{children}</span>
@@ -794,7 +794,7 @@ function BannerCtaBand({ ad, theme }: { ad: BannerAd; theme: "orange" | "emerald
         <div className="hidden flex-shrink-0 justify-center sm:flex">
           <div className="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
             <div className="mb-2 text-center text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">PR / 公式バナー</div>
-            <a href={ad.href} rel="nofollow noopener noreferrer" target="_blank" className="block transition hover:opacity-90">
+            <a href={ad.href} rel="nofollow sponsored noopener noreferrer" target="_blank" className="block transition hover:opacity-90">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={ad.src} alt={ad.alt} width={ad.width} height={ad.height} className="h-auto max-w-full rounded-md" />
             </a>
@@ -816,7 +816,7 @@ function ServiceCardSection({ onamaeAd, xserverAd }: { onamaeAd: BannerAd; xserv
           {/* お名前.com */}
           <div className="relative">
             <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-              <a href={onamaeAd.href} rel="nofollow noopener noreferrer" target="_blank" className="block">
+              <a href={onamaeAd.href} rel="nofollow sponsored noopener noreferrer" target="_blank" className="block">
                 <div className="flex h-[180px] items-center justify-center bg-slate-50 p-5">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={onamaeAd.src} alt={onamaeAd.alt} width={onamaeAd.width} height={onamaeAd.height}
@@ -839,7 +839,7 @@ function ServiceCardSection({ onamaeAd, xserverAd }: { onamaeAd: BannerAd; xserv
           {/* XServerドメイン */}
           <div className="relative">
             <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-              <a href={xserverAd.href} rel="nofollow noopener noreferrer" target="_blank" className="block">
+              <a href={xserverAd.href} rel="nofollow sponsored noopener noreferrer" target="_blank" className="block">
                 <div className="flex h-[180px] items-center justify-center bg-slate-50 p-5">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={xserverAd.src} alt={xserverAd.alt} width={xserverAd.width} height={xserverAd.height}
@@ -869,13 +869,13 @@ function BannerStripSection({ onamaeAd, xserverAd }: { onamaeAd: BannerAd; xserv
   return (
     <section className="relative bg-slate-50 px-5 py-12 sm:px-6">
       <div className="mx-auto flex w-full max-w-[728px] flex-col gap-4">
-        <a href={onamaeAd.href} rel="nofollow noopener noreferrer" target="_blank"
+        <a href={onamaeAd.href} rel="nofollow sponsored noopener noreferrer" target="_blank"
           className="block overflow-hidden rounded-lg transition hover:opacity-90">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={onamaeAd.src} alt={onamaeAd.alt} width={728} height={90}
             style={{ width: "100%", height: "auto", display: "block" }} />
         </a>
-        <a href={xserverAd.href} rel="nofollow noopener noreferrer" target="_blank"
+        <a href={xserverAd.href} rel="nofollow sponsored noopener noreferrer" target="_blank"
           className="block overflow-hidden rounded-lg transition hover:opacity-90">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={xserverAd.src} alt={xserverAd.alt} width={728} height={90}
@@ -904,7 +904,7 @@ function References() {
             お名前.com 公式サイト（
             <a
               href="https://www.onamae.com/"
-              rel="nofollow noopener noreferrer"
+              rel="nofollow sponsored noopener noreferrer"
               target="_blank"
               className="text-slate-700 underline underline-offset-2 hover:text-slate-950"
             >
@@ -916,7 +916,7 @@ function References() {
             XServerドメイン 公式サイト（
             <a
               href="https://www.xserver.ne.jp/domain/"
-              rel="nofollow noopener noreferrer"
+              rel="nofollow sponsored noopener noreferrer"
               target="_blank"
               className="text-slate-700 underline underline-offset-2 hover:text-slate-950"
             >

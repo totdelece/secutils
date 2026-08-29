@@ -161,7 +161,7 @@ function BannerImage({ ad }: { ad: BannerAd }) {
     <div className="relative rounded-xl border border-slate-200 bg-slate-100 p-2">
       <a
         href={ad.href}
-        rel="nofollow noopener noreferrer"
+        rel="nofollow sponsored noopener noreferrer"
         target="_blank"
         className="block transition hover:opacity-90"
       >
@@ -211,7 +211,7 @@ function CtaButton({
     <a
       href={href}
       target="_blank"
-      rel="nofollow noopener noreferrer"
+      rel="nofollow sponsored noopener noreferrer"
       className={`inline-flex w-full items-center justify-center gap-2 rounded-xl text-center font-black no-underline transition duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 ${variantClass} ${sizeClass}`}
     >
       <span>{children}</span>
