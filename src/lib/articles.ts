@@ -26,6 +26,12 @@ type ArticleSeo = {
 };
 
 const articleSeo: Record<string, ArticleSeo> = {
+  "spf-dkim-dmarc": {
+    title:
+      "SPF・DKIM・DMARC の違いと設定方法 - なりすましメールを止める仕組みを図解",
+    description:
+      "メール認証の3つの仕組みSPF・DKIM・DMARCを、それぞれ何を検証しているのかという観点から整理します。DMARCが成立する条件（SPFまたはDKIMの認証に加えてアライメントが必要）、p=none / quarantine / reject の使い分けと安全な移行手順、Gmailの送信者ガイドライン（1日5,000通以上の追加要件・迷惑メール率0.3%未満）、転送やSaaS送信で認証が壊れる典型パターンまで実務目線でまとめます。",
+  },
   "comptia-security-plus-guide": {
     title:
       "CompTIA Security+ 完全ガイド - 難易度・出題範囲・日本語受験と学習ロードマップ",
@@ -343,6 +349,16 @@ const articleSeo: Record<string, ArticleSeo> = {
 };
 
 export const articles: Article[] = [
+  {
+    slug: "spf-dkim-dmarc",
+    category: "network",
+    title: "SPF・DKIM・DMARC の違いと設定方法 - なりすましメールを止める仕組み",
+    description:
+      "3つの仕組みが何を検証しているのかを整理し、DMARCが成立する条件（アライメント）、p=none から reject への安全な移行手順、Gmailの送信者ガイドライン、転送やSaaS送信で認証が壊れる典型パターンまでまとめます。",
+    date: "2026-08-29",
+    readingMinutes: 17,
+    relatedTools: ["url-parser", "hash-generator"],
+  },
   {
     slug: "comptia-security-plus-guide",
     category: "security",
@@ -1306,6 +1322,7 @@ const topicSlugs: Record<TopicId, string[]> = {
     "cidr-notation",
     "tcp-vs-udp",
     "dns-basics",
+    "spf-dkim-dmarc",
     "https-tls",
     "osi-tcpip-model",
     "port-numbers",

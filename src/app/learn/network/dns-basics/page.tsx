@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArticleLayout } from "../../_components/ArticleLayout";
 import { getArticle } from "@/lib/articles";
 
@@ -171,6 +172,14 @@ export default function Page() {
       <p>
         「ブラウザでは見えるが API 経由だとつながらない」のようなトラブル時、まず <code>dig</code> で名前解決の段階で問題があるかを確認すると切り分けが進みます。
       </p>
+
+      <h2>関連する解説</h2>
+      <ul>
+        <li>
+          <Link href="/learn/network/spf-dkim-dmarc">SPF・DKIM・DMARC の違いと設定方法</Link>
+          {" "}— DNSのTXTレコードでなりすましメールを止める仕組み
+        </li>
+      </ul>
 
       <h2>おわりに</h2>
       <p>
