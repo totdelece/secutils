@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArticleLayout } from "../../_components/ArticleLayout";
 import { getArticle } from "@/lib/articles";
 
@@ -150,6 +151,11 @@ export default function Page() {
       <h2>おわりに</h2>
       <p>
         VPN は<strong>「インターネットの上にプライベートトンネルを張る技術」</strong>であり、目的によって最適なプロトコル・運用方法が変わります。<strong>「VPN を入れたから安全」</strong>ではなく、<strong>「具体的に何を脅威モデルから守りたいのか」</strong>を意識すると、本当に必要な対策が見えてきます。
+      </p>
+      <p>
+        よく比較されるプロキシとの違いはレイヤーです。VPN はネットワーク層で通信を丸ごと包むのに対し、プロキシはアプリケーション層で特定のプロトコルを中継します。どちらを選ぶべきかは{" "}
+        <Link href="/learn/network/proxy-vs-reverse-proxy">プロキシとリバースプロキシの違い</Link>{" "}
+        の目的別の早見表で整理しています。
       </p>
     </ArticleLayout>
   );

@@ -26,6 +26,12 @@ type ArticleSeo = {
 };
 
 const articleSeo: Record<string, ArticleSeo> = {
+  "proxy-vs-reverse-proxy": {
+    title:
+      "プロキシとリバースプロキシの違い - 誰の代理かで理解する仕組みと実務のハマりどころ",
+    description:
+      "フォワードプロキシとリバースプロキシの違いを、RFC 9110 の中間装置の定義（proxy / gateway / tunnel）から整理します。HTTPS を中継する CONNECT の仕組み、本番サイトのレスポンスヘッダーで確認するリバースプロキシの痕跡、実際に検証した X-Forwarded-For の偽装（1.2.3.4, 127.0.0.1 が残る）、502と504の切り分け、TLS終端によるリダイレクトループ、共有キャッシュの事故、リクエストスマグリングまで実務目線でまとめます。",
+  },
   "spf-dkim-dmarc": {
     title:
       "SPF・DKIM・DMARC の違いと設定方法 - なりすましメールを止める仕組みを図解",
@@ -349,6 +355,16 @@ const articleSeo: Record<string, ArticleSeo> = {
 };
 
 export const articles: Article[] = [
+  {
+    slug: "proxy-vs-reverse-proxy",
+    category: "network",
+    title: "プロキシとリバースプロキシの違い - 「誰の代理か」で理解する",
+    description:
+      "置く人も守る対象も逆になる2つのプロキシを、RFCの定義で整理します。CONNECTでHTTPSが中継される仕組み、実際のサイトのヘッダーに残るリバースプロキシの痕跡、手元で検証したX-Forwarded-Forの偽装、502/504の切り分けやリダイレクトループなど実務でハマる点まで扱います。",
+    date: "2026-08-30",
+    readingMinutes: 17,
+    relatedTools: ["security-headers", "http-status", "ip-converter"],
+  },
   {
     slug: "spf-dkim-dmarc",
     category: "network",
@@ -1319,6 +1335,7 @@ const topicSlugs: Record<TopicId, string[]> = {
     "prompt-injection",
   ],
   netbasics: [
+    "proxy-vs-reverse-proxy",
     "cidr-notation",
     "tcp-vs-udp",
     "dns-basics",

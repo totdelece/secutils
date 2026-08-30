@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArticleLayout } from "../../_components/ArticleLayout";
 import { getArticle } from "@/lib/articles";
 
@@ -189,6 +190,11 @@ DB SG:
       <h2>おわりに</h2>
       <p>
         ファイアウォールは「ルールを作る → 動かす」のは簡単ですが、<strong>「適切な粒度のルールを設計する」</strong>のが本当の難しさです。最小権限の原則、デフォルト拒否、レイヤごとの責務分離、を意識すると、長期運用でも穴が空きにくいルール体系を維持できます。
+      </p>
+      <p>
+        なお、IPアドレスとポートではなく<strong>HTTPの中身を見て制御したい</strong>場合や、アプリを直接インターネットに晒さずに公開したい場合は、プロキシが受け持つ領域になります。役割の切り分けは{" "}
+        <Link href="/learn/network/proxy-vs-reverse-proxy">プロキシとリバースプロキシの違い</Link>{" "}
+        で整理しています。
       </p>
     </ArticleLayout>
   );
