@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import Link from "next/link";
 import { WORDLIST } from "@/lib/wordlist";
 
 // 暗号学的乱数（Math.random は使わない）。rejection sampling で modulo bias を排除。
@@ -225,12 +224,6 @@ export default function MockJsonGeneratorPage() {
 
   return (
     <div className="mx-auto max-w-3xl px-6 py-12">
-      <nav className="text-sm text-black/50 dark:text-white/50 mb-6">
-        <Link href="/" className="hover:text-foreground">
-          ← Tools
-        </Link>
-      </nav>
-
       <h1 className="text-2xl sm:text-3xl font-bold tracking-tight mb-2">
         🧪 Mock JSON Generator
       </h1>

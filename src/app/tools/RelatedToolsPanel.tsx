@@ -10,7 +10,7 @@ export function RelatedToolsPanel({ slug }: { slug: string }) {
       <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <div className="text-[10px] font-semibold uppercase tracking-[0.16em] text-accent">
-            Next workflow
+            関連ツール
           </div>
           <h2 className="mt-2 text-[18px] font-bold text-fg-primary">
             次に使うツール

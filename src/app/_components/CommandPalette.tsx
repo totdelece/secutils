@@ -8,7 +8,7 @@ import {
   useState,
 } from "react";
 import { useRouter } from "next/navigation";
-import { articleCategoryLabels, articles, type Article } from "@/lib/articles";
+import { articleCategoryLabels, indexedArticles, type Article } from "@/lib/articles";
 import { categoryLabels, tools, type Tool } from "@/lib/tools";
 import {
   FAVORITE_TOOLS_STORAGE_KEY,
@@ -58,7 +58,7 @@ function entryGlyph(entry: Entry) {
 
 const allEntries: Entry[] = [
   ...tools.map((t): Entry => ({ kind: "tool", ref: t })),
-  ...articles.map((a): Entry => ({ kind: "article", ref: a })),
+  ...indexedArticles.map((a): Entry => ({ kind: "article", ref: a })),
 ];
 
 function loadRecent(): string[] {

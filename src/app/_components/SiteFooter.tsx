@@ -114,14 +114,7 @@ export function SiteFooter({
 
         <div className="mt-12 flex flex-col gap-3 border-t border-border-subtle pt-6 text-[12px] text-fg-subtle sm:flex-row sm:items-center sm:justify-between">
           <div>© 2026 secutils — built for engineers.</div>
-          <div className="flex items-center gap-3">
-            <span className="inline-flex items-center gap-1.5">
-              <span className="relative inline-flex h-2 w-2">
-                <span className="absolute inset-0 rounded-full bg-accent" />
-              </span>
-              All systems operational
-            </span>
-          </div>
+          <div>一部の記事には広告リンクを含みます（該当する記事の冒頭に表示しています）。</div>
         </div>
       </div>
     </footer>

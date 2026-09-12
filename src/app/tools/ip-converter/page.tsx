@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Link from "next/link";
 
 // =====================================================================
 // 入力の自動判定 → IPv4 / IPv6 のどちらかへ正規化
@@ -308,12 +307,6 @@ export default function IpConverterPage() {
 
   return (
     <div className="mx-auto max-w-3xl px-6 py-12">
-      <nav className="text-sm text-black/50 dark:text-white/50 mb-6">
-        <Link href="/" className="hover:text-foreground">
-          ← Tools
-        </Link>
-      </nav>
-
       <h1 className="text-2xl sm:text-3xl font-bold tracking-tight mb-2">
         🔢 IP Address Converter
       </h1>

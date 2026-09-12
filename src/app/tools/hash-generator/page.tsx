@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { md5 } from "js-md5";
-import Link from "next/link";
 
 type Algorithm = "MD5" | "SHA-1" | "SHA-256" | "SHA-512";
 type Mode = "text" | "file";
@@ -153,12 +152,6 @@ export default function HashGeneratorPage() {
 
   return (
     <div className="mx-auto max-w-3xl px-6 py-12">
-      <nav className="text-sm text-black/50 dark:text-white/50 mb-6">
-        <Link href="/" className="hover:text-foreground">
-          ← Tools
-        </Link>
-      </nav>
-
       <h1 className="text-2xl sm:text-3xl font-bold tracking-tight mb-2">
         🔑 Hash Generator
       </h1>

@@ -1,5 +1,5 @@
 import {
-  articles,
+  indexedArticles,
   getArticleSeoTitle,
   getArticleSeoDescription,
 } from "@/lib/articles";
@@ -16,7 +16,8 @@ function escapeXml(value: string): string {
 
 export async function GET() {
   const base = getBaseUrl();
-  const sorted = [...articles].sort((a, b) => b.date.localeCompare(a.date));
+  // noindex の記事は RSS にも載せない
+  const sorted = [...indexedArticles].sort((a, b) => b.date.localeCompare(a.date));
   const lastBuild =
     sorted.length > 0 ? new Date(sorted[0].date).toUTCString() : new Date().toUTCString();
 

@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import Link from "next/link";
 
 type Version = "v4" | "v7";
 type Format = "standard" | "uppercase" | "no-hyphen" | "braces";
@@ -111,12 +110,6 @@ export default function UuidGeneratorPage() {
 
   return (
     <div className="mx-auto max-w-3xl px-6 py-12">
-      <nav className="text-sm text-black/50 dark:text-white/50 mb-6">
-        <Link href="/" className="hover:text-foreground">
-          ← Tools
-        </Link>
-      </nav>
-
       <h1 className="text-2xl sm:text-3xl font-bold tracking-tight mb-2">
         🆔 UUID Generator
       </h1>

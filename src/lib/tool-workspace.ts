@@ -1,4 +1,4 @@
-import { articles, type Article } from "./articles";
+import { indexedArticles, type Article } from "./articles";
 import { tools, type Tool, type ToolCategory } from "./tools";
 
 export const RECENT_STORAGE_KEY = "secutils:recent";
@@ -149,11 +149,11 @@ const toolArticleFallback: Record<string, string[]> = {
 // ツールページ下部に出す「関連解説記事」。明示の relatedTools を優先し、
 // 足りなければフォールバックで補完して最大 limit 件返す。
 export function getToolArticles(slug: string, limit = 4): Article[] {
-  const explicit = articles.filter((article) =>
+  const explicit = indexedArticles.filter((article) =>
     article.relatedTools?.includes(slug),
   );
   const fallback = (toolArticleFallback[slug] ?? [])
-    .map((s) => articles.find((article) => article.slug === s))
+    .map((s) => indexedArticles.find((article) => article.slug === s))
     .filter((article): article is Article => Boolean(article));
 
   const merged: Article[] = [];

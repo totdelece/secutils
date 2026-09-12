@@ -57,32 +57,7 @@ export function HomeLearn() {
               </h3>
             </Link>
           ))}
-        </div>
-
-        {/* monetization: hosting comparison guide */}
-        <Link
-          href="/learn/network/xserver-vs-conoha-wing"
-          className="group mt-4 flex flex-col gap-3 rounded-xl border border-border-subtle bg-bg-base p-5 transition hover:border-border-strong hover:bg-bg-sunken sm:flex-row sm:items-center sm:justify-between"
-        >
-          <div className="min-w-0">
-            <div className="flex items-center gap-2">
-              <span className="rounded border border-border-strong px-1.5 py-0.5 text-[10px] font-semibold text-fg-subtle">
-                PR
-              </span>
-              <span className="text-xs font-medium text-fg-muted">
-                サーバー選びガイド
-              </span>
-            </div>
-            <h3 className="mt-1.5 text-sm font-semibold text-fg-primary group-hover:text-accent-strong">
-              エックスサーバー vs ConoHa WING — 料金・用途別の選び方を比較
-            </h3>
-          </div>
-          <span className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-accent-strong">
-            比較を読む
-            <ArrowIcon />
-          </span>
-        </Link>
-      </div>
+        </div>      </div>
     </section>
   );
 }

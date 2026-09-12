@@ -2,8 +2,8 @@ import Link from "next/link";
 import {
   articleCategoryLabels,
   type Article,
-  articles,
   getRelatedArticles,
+  indexedArticles,
 } from "@/lib/articles";
 import { author, disclaimerText } from "@/lib/author";
 import { tools } from "@/lib/tools";
@@ -20,7 +20,7 @@ export function ArticleLayout({
     .map((slug) => tools.find((tool) => tool.slug === slug))
     .filter((tool): tool is NonNullable<typeof tool> => Boolean(tool));
 
-  // ツール経由の関連記事を優先し、同カテゴリの新しい記事で 4 件まで埋める
+  // ツール経由の関連記事を優先し、同カテゴリの新しい記事で 4 件まで埋める（noindex の記事は出さない）
   const relatedByTool = (article.relatedTools ?? [])
     .flatMap((toolSlug) => getRelatedArticles(toolSlug))
     .filter((item) => item.slug !== article.slug)
@@ -28,7 +28,7 @@ export function ArticleLayout({
       (item, index, array) =>
         array.findIndex((candidate) => candidate.slug === item.slug) === index,
     );
-  const sameCategory = articles
+  const sameCategory = indexedArticles
     .filter(
       (item) =>
         item.category === article.category &&
@@ -59,7 +59,6 @@ export function ArticleLayout({
               <div className="mt-4 space-y-3">
                 <Metric label="Category" value={articleCategoryLabels[article.category]} />
                 <Metric label="Read" value={`${article.readingMinutes} min`} />
-                <Metric label="Mode" value="Local" />
               </div>
             </div>
           </div>
@@ -82,7 +81,7 @@ export function ArticleLayout({
             <div className="relative">
               <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-border-subtle bg-bg-sunken/50 px-3 py-1 text-[10px] font-semibold uppercase text-fg-subtle">
                 <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-                {articleCategoryLabels[article.category]} / Browser-native guide
+                {articleCategoryLabels[article.category]}
               </div>
               <h1 className="max-w-4xl text-[26px] font-bold leading-[1.2] text-fg-primary sm:text-[34px]">
                 {article.title}
@@ -101,6 +100,14 @@ export function ArticleLayout({
                 <span>
                   公開 <time dateTime={article.date}>{article.date}</time>
                 </span>
+                {article.updated && article.updated !== article.date && (
+                  <>
+                    <span className="h-1 w-1 rounded-full bg-fg-subtle/60" />
+                    <span>
+                      更新 <time dateTime={article.updated}>{article.updated}</time>
+                    </span>
+                  </>
+                )}
                 <span className="h-1 w-1 rounded-full bg-fg-subtle/60" />
                 <span>約{article.readingMinutes}分</span>
               </div>

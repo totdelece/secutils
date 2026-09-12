@@ -48,8 +48,10 @@ export function ToolWorkspaceSidebar({ slug }: { slug: string }) {
     window.dispatchEvent(new Event("secutils:workspace-sync"));
   }, [slug, pathname]);
 
+  // スマホ幅では全ツール一覧がツール本体より上に来てしまうため、lg 未満では表示しない
+  // （ツール間の移動はヘッダーのコマンドパレットと下部の「関連ツール」で代替できる）
   return (
-    <aside className="tool-workspace-sidebar lg:sticky lg:top-24 lg:self-start">
+    <aside className="tool-workspace-sidebar hidden lg:sticky lg:top-24 lg:block lg:self-start">
       <div className="rounded-[28px] border border-border-subtle bg-bg-elevated/72 p-4 shadow-[0_24px_80px_-68px_rgba(0,0,0,0.9)] backdrop-blur-xl">
         <div className="flex items-center justify-between gap-3 border-b border-border-subtle pb-4">
           <div>

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import Link from "next/link";
 
 const STANDARD_CLAIMS: Record<string, string> = {
   iss: "Issuer（発行者）",
@@ -319,12 +318,6 @@ export default function JwtDecoderPage() {
 
   return (
     <div className="mx-auto max-w-3xl px-6 py-12">
-      <nav className="text-sm text-black/50 dark:text-white/50 mb-6">
-        <Link href="/" className="hover:text-foreground">
-          ← Tools
-        </Link>
-      </nav>
-
       <h1 className="text-2xl sm:text-3xl font-bold tracking-tight mb-2">
         🪪 JWT Decoder
       </h1>

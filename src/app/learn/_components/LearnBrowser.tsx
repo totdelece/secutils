@@ -3,10 +3,9 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import {
-  articles as allArticles,
+  indexedArticles,
   articleCategoryLabels,
   getArticleTopics,
-  isArticleNoindexed,
   topicLabels,
   orderedTopics,
   type Article,
@@ -84,17 +83,8 @@ export function LearnBrowser() {
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<Filter>({ kind: "all" });
 
-  const sorted = useMemo(() => [...allArticles].sort(byDateDesc), []);
-  // evergreen（検索indexする普遍的な解説）と、noindexの速報型インシデント/CVE記事を分離。
-  // ハブの主役は evergreen に寄せ、速報型は末尾のアーカイブへまとめる。
-  const indexed = useMemo(
-    () => sorted.filter((a) => !isArticleNoindexed(a.slug)),
-    [sorted],
-  );
-  const archived = useMemo(
-    () => sorted.filter((a) => isArticleNoindexed(a.slug)),
-    [sorted],
-  );
+  // noindex の記事（重複するアフィリエイト記事）はハブに載せず、検索対象にも含めない。
+  const indexed = useMemo(() => [...indexedArticles].sort(byDateDesc), []);
 
   const tabs = useMemo(() => {
     const counts = (f: Filter) =>
@@ -123,19 +113,18 @@ export function LearnBrowser() {
   const q = query.trim().toLowerCase();
   const searching = q.length > 0;
 
-  const results = useMemo(() => {
-    // 検索時は速報アーカイブも対象に含める（直接の発見性を維持）。
-    // タブ絞り込み（検索なし）時は evergreen のみを返す。
-    const pool = searching ? [...indexed, ...archived] : indexed;
-    return pool.filter((a) => {
-      if (!matchesFilter(a, filter)) return false;
-      if (!q) return true;
-      const hay = `${a.title} ${a.description}`.toLowerCase();
-      return hay.includes(q);
-    });
-  }, [indexed, archived, filter, q, searching]);
+  const results = useMemo(
+    () =>
+      indexed.filter((a) => {
+        if (!matchesFilter(a, filter)) return false;
+        if (!q) return true;
+        const hay = `${a.title} ${a.description}`.toLowerCase();
+        return hay.includes(q);
+      }),
+    [indexed, filter, q],
+  );
 
-  // アイドル時（検索なし・全カテゴリ）は Featured → Latest → All → アーカイブ の構成。
+  // アイドル時（検索なし・全カテゴリ）は Featured → Latest → All の構成。
   // 検索／タブ絞り込み時は単一の結果グリッドに切り替える。
   const idle = !searching && filter.kind === "all";
   const featured = idle ? indexed.slice(0, 4) : [];
@@ -258,52 +247,6 @@ export function LearnBrowser() {
                   <ArticleCard key={article.slug} article={article} />
                 ))}
               </div>
-            </section>
-          )}
-
-          {/* インシデント・CVE 速報アーカイブ（折りたたみ・普遍的な解説と分離） */}
-          {archived.length > 0 && (
-            <section className="mt-24">
-              <details className="group">
-                <summary className="cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-                  <div className="flex items-center justify-between gap-3 rounded-xl border border-border-subtle bg-bg-elevated/50 px-5 py-4 transition hover:border-border-strong">
-                    <div className="min-w-0">
-                      <div className="text-[11px] font-semibold uppercase tracking-wider text-fg-subtle">
-                        Incident archive
-                      </div>
-                      <h2 className="mt-1.5 text-[17px] font-bold leading-tight text-fg-primary sm:text-[19px]">
-                        インシデント・CVE 速報アーカイブ（{archived.length}件）
-                      </h2>
-                      <p className="mt-1 text-[12.5px] leading-6 text-fg-subtle">
-                        特定時点の事案・脆弱性の速報的なまとめです。普遍的な解説とは分け、参照用として保管しています（検索からも見つかります）。
-                      </p>
-                    </div>
-                    <span
-                      className="shrink-0 text-fg-subtle transition group-open:rotate-180"
-                      aria-hidden="true"
-                    >
-                      ▾
-                    </span>
-                  </div>
-                </summary>
-                <ul className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
-                  {archived.map((article) => (
-                    <li key={article.slug}>
-                      <Link
-                        href={`/learn/${article.category}/${article.slug}`}
-                        className="flex items-center justify-between gap-3 rounded-lg border border-border-subtle bg-bg-elevated/40 px-4 py-2.5 transition hover:border-border-strong"
-                      >
-                        <span className="min-w-0 truncate text-[13px] text-fg-secondary">
-                          {article.title}
-                        </span>
-                        <span className="shrink-0 text-[11px] tabular-nums text-fg-subtle">
-                          {article.date}
-                        </span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </details>
             </section>
           )}
         </>

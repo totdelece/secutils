@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import Link from "next/link";
 import { WORDLIST, WORDLIST_SIZE } from "@/lib/wordlist";
 
 type Mode = "password" | "passphrase";
@@ -178,12 +177,6 @@ export default function PasswordGeneratorPage() {
 
   return (
     <div className="mx-auto max-w-2xl px-6 py-12">
-      <nav className="text-sm text-black/50 dark:text-white/50 mb-6">
-        <Link href="/" className="hover:text-foreground">
-          ← Tools
-        </Link>
-      </nav>
-
       <h1 className="text-2xl sm:text-3xl font-bold tracking-tight mb-2">
         🔐 Password Generator
       </h1>

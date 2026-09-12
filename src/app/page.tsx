@@ -3,6 +3,7 @@ import { tools } from "@/lib/tools";
 import { HomeHero } from "./_components/HomeHero";
 import { ToolIndex } from "./_components/ToolIndex";
 import { HomeLearn } from "./_components/HomeLearn";
+import { HomeAbout } from "./_components/HomeAbout";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <HomeHero toolCount={tools.length} articleCount={indexedArticleCount} />
       <ToolIndex />
       <HomeLearn />
+      <HomeAbout />
     </>
   );
 }

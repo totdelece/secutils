@@ -11,7 +11,7 @@ export function ToolSeoSection({ slug }: { slug: string }) {
       <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
         <div>
           <div className="inline-flex items-center gap-2 rounded-full border border-border-subtle bg-bg-sunken/55 px-3 py-1 text-[10px] font-semibold uppercase text-fg-subtle">
-            Search guide
+            使い方と解説
           </div>
           <h2 className="mt-5 text-[22px] font-bold leading-[1.2] text-fg-primary sm:text-[26px]">
             {content.heading}
@@ -21,7 +21,7 @@ export function ToolSeoSection({ slug }: { slug: string }) {
           </p>
           <div className="mt-6 rounded-[24px] border border-border-subtle bg-bg-sunken/50 p-4">
             <div className="text-[10px] font-semibold uppercase text-fg-subtle">
-              Browser-native privacy
+              入力データの扱い
             </div>
             <p className="mt-2 text-sm leading-7 text-fg-muted">
               {content.privacy}

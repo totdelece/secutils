@@ -1198,25 +1198,53 @@ export function getArticleSeoDescription(article: Article): string {
 
 /* ------------------------------------------------------------------ *
  * noindex 管理（AdSense「有用性の低いコンテンツ」対策）
- * 特定日付のインシデント/CVE/漏えいを要約した「速報型」記事は検索インデックス
- * から外し、サイト評価の主役を普遍的な解説とツールへ寄せる。記事ページ自体は
- * 残るため、直リンクや関連記事からは引き続き読める（index:false, follow:true）。
- * sitemap.ts もこの集合を見て出力対象から除外する。
+ * この集合に入れた記事は検索インデックスから外し（index:false, follow:true）、
+ * sitemap・RSS・/learn ハブ・関連記事・コマンドパレットにも出さない。
+ * 記事ページ自体は残るので、直リンクや比較記事からのリンクでは引き続き読める。
  * 再 index したくなったら、その slug をこの集合から外すだけでよい。
  * ------------------------------------------------------------------ */
-// 速報型記事の noindex 運用は終了。速報は pillar（ransomware-2026 /
-// supply-chain-attacks / japan-security-incidents 等）へ統合し個別記事は削除済み。
-// 仕組みは温存（将来また個別 slug を noindex したくなったらここに追加する）。
-export const noindexArticleSlugs = new Set<string>([]);
+// 2026-09-12: 重複するアフィリエイト記事 18 本を noindex 化。
+// 同じテーマの単体レビュー・2社比較が乱立し（VPN 7本・サーバー/ドメイン 11本・
+// ウイルス対策 3本）、Google が名指しする thin affiliate・似たページの量産に
+// 見えるため。各テーマの総合比較 3 本（rental-server-comparison / vpn-comparison /
+// norton-vs-virusbuster）だけを index に残す。A8 リンクは各ページに残している。
+// （速報型記事の noindex は 2026-06 に pillar へ統合・削除して解消済み）
+export const noindexArticleSlugs = new Set<string>([
+  // レンタルサーバー・VPS（rental-server-comparison を残す）
+  "xserver-vs-conoha-wing",
+  "shin-vs-xserver",
+  "xserver-review",
+  "conoha-wing-review",
+  "shin-rental-server-review",
+  "xserver-vps-review",
+  "xserver-vps-guide",
+  // ドメイン
+  "xserver-domain-guide",
+  "onamae-domain-guide",
+  "onamae-vs-xserver-domain",
+  // VPN（vpn-comparison を残す）
+  "nordvpn-vs-expressvpn",
+  "nordvpn-review",
+  "expressvpn-review",
+  "proton-vpn-review",
+  "glocal-vpn-review",
+  "overseas-japan-streaming-vpn",
+  // ウイルス対策（norton-vs-virusbuster を残す）
+  "norton-360-review",
+  "virusbuster-cloud-review",
+]);
 
 export function isArticleNoindexed(slug: string): boolean {
   return noindexArticleSlugs.has(slug);
 }
 
-/** 検索 index する evergreen 記事数（速報アーカイブを除く）。サイト全体の記事数表示の単一真実源。 */
-export const indexedArticleCount = articles.filter(
+/** 検索 index する記事（noindex を除く）。一覧・sitemap・RSS など公開面に出す記事の単一真実源。 */
+export const indexedArticles = articles.filter(
   (a) => !noindexArticleSlugs.has(a.slug),
-).length;
+);
+
+/** サイト全体の記事数表示に使う件数。 */
+export const indexedArticleCount = indexedArticles.length;
 
 export function getArticleMetadata(article: Article): Metadata {
   const path = `/learn/${article.category}/${article.slug}`;
@@ -1251,7 +1279,7 @@ export function getArticleMetadata(article: Article): Metadata {
 }
 
 export function getRelatedArticles(toolSlug: string): Article[] {
-  return articles.filter((article) => article.relatedTools?.includes(toolSlug));
+  return indexedArticles.filter((article) => article.relatedTools?.includes(toolSlug));
 }
 
 export function getArticleBySlug(slug: string): Article | undefined {

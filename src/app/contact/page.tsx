@@ -77,10 +77,19 @@ export default function ContactPage() {
 
         <div>
           <h2 className="text-xl font-bold tracking-tight mb-2">
+            記事の誤り・古い情報のご指摘
+          </h2>
+          <p className="mb-2">
+            解説記事の事実誤りや、仕様・料金などが古くなっている箇所にお気づきの場合も、上記の GitHub Issues からお知らせください。確認のうえ記事を修正し、修正した記事には更新日を表示します。
+          </p>
+        </div>
+
+        <div>
+          <h2 className="text-xl font-bold tracking-tight mb-2">
             ソースコード / Pull Request
           </h2>
           <p className="mb-2">
-            ソースコードは MIT 互換的に GitHub で公開しています。Pull Request も歓迎します。
+            ソースコードは GitHub で公開しています。Pull Request も歓迎します。
           </p>
           <a
             href="https://github.com/totdelece/secutils"
